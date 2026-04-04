@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Historial de Eventos - Peña Taurina Peguerinos</title>
+
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+    background-color: #f4efe2;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+header {
+    background: linear-gradient(90deg, #7a0000, #b30000);
+    padding: 25px 20px;
+    color: white;
+}
+
+.cabecera-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 40px;
+    flex: 1;
+    text-align: center;
+}
+
+.gif-cabecera {
+    height: 65px;
+    position: absolute;
+    right: 10px;
+}
+
+nav {
+    background-color: #d4af37;
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: #7a0000;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.hero {
+    background: url('https://images.unsplash.com/photo-1520975918318-3f4f52e8d9f0?auto=format&fit=crop&w=1200&q=60') center/cover;
+    height: 30vh;
+    min-height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-contenido {
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 6px black;
+}
+
+.logo-hero {
+    height: 120px;
+}
+
+.hero-texto {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.contenedor {
+    max-width: 900px;
+    margin: -30px auto 20px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.2);
+}
+
+h2 {
+    color: #7a0000;
+}
+
+.evento {
+    background: #fff3cd;
+    border-left: 6px solid #d4af37;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 8px;
+    font-size: 18px;
+}
+
+.evento h3 {
+    margin-bottom: 5px;
+    color: #7a0000;
+}
+
+footer {
+    background-color: #7a0000;
+    color: white;
+    text-align: center;
+    padding: 18px;
+    font-size: 16px;
+    margin-top: 40px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="cabecera-flex">
+        <h1>Historial de Eventos</h1>
+        <img src="toro_enfadado.gif" class="gif-cabecera">
+    </div>
+</header>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="calendario_2026.html">Calendario</a>
+    <a href="actividades_eventos.html">Actividades y Eventos</a>
+    <a href="galeria.html">Galería</a>
+    <a href="historia_peña.html">Historia de la Peña</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="enlaces.html">Enlaces</a>
+    <a href="acceso-socios.html">Socios</a>
+</nav>
+
+<div class="hero">
+    <div class="hero-contenido">
+        <img src="peña1.jpeg" class="logo-hero">
+        <div class="hero-texto">Nuestra historia reciente</div>
+    </div>
+</div>
+
+<div class="contenedor">
+
+    <h2>Eventos pasados</h2>
+
+    <div id="eventos-pasados"></div>
+
+</div>
+
+<footer>
+    Peña Taurina Peguerinos — Unidos por la afición
+</footer>
+
+<script>
+fetch("eventos.json")
+    .then(res => res.json())
+    .then(eventos => {
+        const hoy = new Date();
+        const contenedor = document.getElementById("eventos-pasados");
+
+        eventos
+            .filter(e => new Date(e.fecha) < hoy)
+            .sort((a, b) => new Date(b.fecha) - new Date(a.fecha))
+            .forEach(e => {
+                contenedor.innerHTML += `
+                    <div class="evento">
+                        <h3>${e.titulo}</h3>
+                        <p>📅 <strong>${new Date(e.fecha).toLocaleString()}</strong></p>
+                        <p>📍 <strong>${e.lugar}</strong></p>
+                        <p>ℹ️ ${e.descripcion}</p>
+                    </div>
+                `;
+            });
+    });
+</script>
+
+</body>
+</html>

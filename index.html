@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Peña Taurina Peguerinos</title>
+
+<style>
+/* ============================
+   ESTRUCTURA Y DISEÑO GENERAL
+============================ */
+html, body {
+    margin: 0; padding: 0; width: 100%; height: 100%;
+    overflow: hidden; background-color: #f4efe2;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex; flex-direction: column;
+}
+
+header {
+    background: linear-gradient(90deg, #7a0000, #b30000);
+    padding: 25px 20px; color: white;
+    flex-shrink: 0;
+}
+
+.cabecera-flex { display: flex; justify-content: center; align-items: center; position: relative; }
+header h1 { margin: 0; font-size: 40px; flex: 1; text-align: center; }
+.gif-cabecera { height: 65px; position: absolute; right: 10px; }
+
+nav {
+    background-color: #d4af37; padding: 12px;
+    display: flex; justify-content: center; gap: 25px; flex-wrap: wrap;
+    flex-shrink: 0;
+}
+nav a { color: #7a0000; font-weight: bold; text-decoration: none; font-size: 18px; transition: 0.3s; }
+nav a:hover { color: white; }
+
+.hero {
+    background: url('https://images.unsplash.com') center/cover;
+    height: 30vh; min-height: 130px; display: flex; justify-content: center; align-items: center;
+}
+.hero-contenido { text-align: center; color: white; text-shadow: 2px 2px 6px black; }
+.logo-hero { height: 100px; }
+.hero-texto { font-size: 28px; font-weight: bold; }
+
+.contenedor {
+    max-width: 900px; margin: -20px auto 10px auto;
+    background: white; padding: 12px 25px; border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.2);
+}
+h2 { color: #7a0000; font-size: 18px; margin: 5px 0; }
+
+/* ============================
+   BANNERS PUBLICITARIOS
+============================ */
+.patro-grid {
+    width: 100%; max-width: 1500px; margin: 10px auto;
+    display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;
+}
+
+.patro-banner {
+    width: 46%; height: 160px; background: #000; 
+    border: 2px solid #7a0000; overflow: hidden; 
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.patro-slider { width: 100%; height: 100%; display: flex; overflow: hidden; }
+
+.patro-slider img {
+    width: 50%; height: 100%; object-fit: cover; 
+    flex-shrink: 0; border-right: 1px solid #7a0000;
+}
+
+.img-logo-bubble { object-fit: contain !important; background: #fff; }
+
+/* IZQUIERDA: 16 fotos (8 bloques de 2) */
+.slider-izq img { animation: slideParejas8 32s infinite ease-in-out; }
+
+@keyframes slideParejas8 {
+    0%, 10% { transform: translateX(0); }
+    12.5%, 22.5% { transform: translateX(-200%); }
+    25%, 35% { transform: translateX(-400%); }
+    37.5%, 47.5% { transform: translateX(-600%); }
+    50%, 60% { transform: translateX(-800%); }
+    62.5%, 72.5% { transform: translateX(-1000%); }
+    75%, 85% { transform: translateX(-1200%); }
+    87.5%, 97.5% { transform: translateX(-1400%); }
+    100% { transform: translateX(0); }
+}
+
+/* DERECHA: 10 fotos (5 bloques de 2) - SIN ERRORES */
+.slider-der img { animation: slideParejas5 20s infinite ease-in-out; }
+
+@keyframes slideParejas5 {
+    0%, 18% { transform: translateX(0); }
+    20%, 38% { transform: translateX(-200%); }
+    40%, 58% { transform: translateX(-400%); }
+    60%, 78% { transform: translateX(-600%); }
+    80%, 98% { transform: translateX(-800%); }
+    100% { transform: translateX(0); }
+}
+
+.patro-slider:hover img { animation-play-state: paused; }
+
+footer {
+    background-color: #7a0000; color: white;
+    text-align: center; padding: 18px; flex-shrink: 0;
+}
+
+@media (max-width: 900px) { .patro-banner { width: 95%; height: 140px; } }
+.zona-scroll { flex: 1; overflow-y: auto; }
+</style>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#7a0000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="icon-192.png">
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "47ce7a35-b3f4-4a3c-b910-f09fa18b3baf",
+      serviceWorkerPath: "/peguerinos/OneSignalSDKWorker.js",
+      serviceWorkerParam: { scope: "/peguerinos/" },
+    });
+  });
+</script>
+</head>
+
+<body>
+
+<header>
+    <div class="cabecera-flex">
+        <h1>Peña Taurina Peguerinos</h1>
+        <img src="toro_enfadado.gif" class="gif-cabecera">
+    </div>
+</header>
+
+<nav>
+    <a href="calendario_2026.html">Calendario</a>
+    <a href="actividades_eventos.html">Actividades y Eventos</a>
+    <a href="galeria.html">Galería</a>
+    <a href="historia_peña.html">Historia de la Peña</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="enlaces.html">Enlaces</a>
+    <a href="acceso-socios.html">Socios</a>
+</nav>
+
+<div class="zona-scroll">
+<div class="hero">
+    <div class="hero-contenido">
+        <img src="peña1.jpeg" class="logo-hero">
+        <div class="hero-texto">Pasión por lo nuestro</div>
+    </div>
+</div>
+
+<div class="contenedor">
+    <h2>Bienvenidos</h2>
+    <p>
+        La Peña Taurina Peguerinos es un punto de encuentro para quienes viven y sienten la afición.
+        Aquí encontrarás información sobre nuestras actividades, eventos, viajes y todo lo que forma parte de nuestra peña.
+    </p>
+</div>
+
+<div class="patro-grid">
+    <!-- BANNER IZQUIERDO: POSADA ISABELAE -->
+    <div class="patro-banner">
+        <div class="patro-slider slider-izq">
+            <img src="hab_113_fuente_reina.jpg"><img src="hab_104_la_nava.jpg">
+            <img src="hab_110_puerto_malagon.jpg"><img src="hab_101_puerto_leon.jpg">
+            <img src="hab_109_fuente_negros.jpg"><img src="hab_102_cabeza_lijar.jpg">
+            <img src="hab_108_casa_la_cueva.jpg"><img src="hab_115_nava_toril.jpg">
+            <img src="hab_114_canto_berrueco.jpg"><img src="hab_107_isabelae.jpg">
+            <img src="hab_111_cueva_valiente.jpg"><img src="hab_103_peña_blanca.jpg">
+            <img src="fachada.jpg"><img src="jardinpiscina.jpg">
+            <img src="salones.jpg"><img src="terraza_isabelae.jpg">
+        </div>
+    </div>
+
+    <!-- BANNER DERECHO: RISCO DEL ÁGUILA -->
+    <div class="patro-banner">
+        <div class="patro-slider slider-der">
+            <img src="logo_risco_bubble.jpg" class="img-logo-bubble"><img src="genero_risco.jpg">
+            <img src="chuleta_risco.jpg"><img src="asado_risco.jpg">
+            <img src="brasas_risco.jpg"><img src="barra_risco.jpg">
+            <img src="fachada_risco.jpg"><img src="terraza_risco.jpg">
+            <img src="noche_risco.jpg"><img src="logo_risco_bubble.jpg" class="img-logo-bubble">
+        </div>
+    </div>
+</div>
+</div>
+
+<footer>
+    Peña Taurina Peguerinos — Unidos por la afición
+</footer>
+
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/peguerinos/sw.js');}</script>
+</body>
+</html>

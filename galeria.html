@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Galería - Peña Taurina Peguerinos</title>
+
+<style>
+/* ============================
+   ESTRUCTURA (IGUAL AL INDEX)
+============================ */
+html, body {
+    margin: 0; padding: 0; width: 100%; height: 100%;
+    overflow: hidden;
+    background-color: #f4efe2;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex; flex-direction: column;
+}
+
+header {
+    background: linear-gradient(90deg, #7a0000, #b30000);
+    padding: 25px 20px; color: white;
+    flex-shrink: 0;
+}
+
+.cabecera-flex { display: flex; justify-content: center; align-items: center; position: relative; }
+header h1 { margin: 0; font-size: 40px; flex: 1; text-align: center; }
+.gif-cabecera { height: 65px; position: absolute; right: 10px; }
+
+/* MENÚ DE 8 BOTONES (IGUAL AL INDEX) */
+nav {
+    background-color: #d4af37; padding: 12px;
+    display: flex; justify-content: center; gap: 25px; flex-wrap: wrap;
+    flex-shrink: 0;
+}
+nav a { color: #7a0000; font-weight: bold; text-decoration: none; font-size: 18px; transition: 0.3s; }
+nav a:hover { color: white; }
+
+.contenedor {
+    max-width: 900px; margin: 30px auto;
+    background: white; padding: 30px; border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.2);
+    width: calc(100% - 40px);
+}
+
+h2 { color: #7a0000; border-bottom: 2px solid #d4af37; padding-bottom: 10px; }
+
+/* ============================
+   DISEÑO DE LA GALERÍA
+============================ */
+.galeria-flex {
+    display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 20px;
+}
+
+.foto-item {
+    background: #f9f9f9; border: 1px solid #ccc; padding: 10px;
+    width: 280px; text-align: center; transition: 0.3s;
+}
+
+.foto-item:hover {
+    transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.2); border-color: #d4af37;
+}
+
+.foto-item img {
+    width: 100%; height: 200px; object-fit: cover; border-radius: 4px; cursor: zoom-in;
+}
+
+.ajuste-dibujo { object-fit: contain !important; background: white !important; }
+
+.foto-item p { margin: 10px 0 0 0; font-weight: bold; color: #7a0000; }
+
+/* MODAL / ZOOM */
+#modalGaleria {
+    display: none; position: fixed; z-index: 9999; top: 0; left: 0; 
+    width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); 
+    justify-content: center; align-items: center; flex-direction: column; cursor: pointer;
+}
+
+#imgAmpliada { max-width: 90%; max-height: 80%; border: 4px solid #d4af37; border-radius: 5px; }
+
+#pieFotoModal { color: white; margin-top: 15px; font-size: 22px; font-weight: bold; }
+
+.cerrar-modal { position: absolute; top: 20px; right: 35px; color: #d4af37; font-size: 50px; }
+
+.zona-scroll { flex: 1; overflow-y: auto; }
+footer { background-color: #7a0000; color: white; text-align: center; padding: 18px; flex-shrink: 0; }
+
+@media (max-width: 600px) { .foto-item { width: 95%; } }
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="cabecera-flex">
+        <h1>Galería de Fotos</h1>
+        <img src="toro_enfadado.gif" class="gif-cabecera">
+    </div>
+</header>
+
+<!-- LOS 8 BOTONES (IGUAL QUE EN EL INDEX) -->
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="calendario_2026.html">Calendario</a>
+    <a href="actividades_eventos.html">Actividades y Eventos</a>
+    <a href="galeria.html">Galería</a>
+    <a href="historia_peña.html">Historia de la Peña</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="enlaces.html">Enlaces</a>
+    <a href="acceso-socios.html">Socios</a>
+</nav>
+
+<div class="zona-scroll"><div class="contenedor">
+    <h2 id="tituloGaleria">Recuerdos de la Peña</h2>
+
+    <div class="galeria-flex">
+        <!-- FOTOS TEMPORALES (SE BORRAN EL 1 DE ABRIL) -->
+        <div class="foto-item foto-temporal">
+            <img src="pollo_asado.jpg" class="ajuste-dibujo">
+            <p>Antes de la Cena...</p>
+        </div>
+
+        <div class="foto-item foto-temporal">
+            <img src="pollo_huesos.jpg" class="ajuste-dibujo">
+            <p>Después de la Cena</p>
+        </div>
+
+        <!-- FOTOS FIJAS -->
+        <div class="foto-item">
+            <img src="firmas.jpg">
+            <p>Firma del Acta Fundacional</p>
+        </div>
+
+        <div class="foto-item">
+            <img src="fundadores.jpg">
+            <p>Reunión Inaugural</p>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL PARA AMPLIAR FOTOS -->
+<div id="modalGaleria" onclick="this.style.display='none'">
+    <span class="cerrar-modal">&times;</span>
+    <img id="imgAmpliada">
+    <p id="pieFotoModal"></p>
+</div></div>
+
+<footer>
+    Peña Taurina Peguerinos — Unidos por la afición
+</footer>
+
+<script>
+// BORRADO AUTOMÁTICO 1 ABRIL
+const fechaLimite = new Date('2026-04-01');
+const hoy = new Date();
+if (hoy >= fechaLimite) {
+    document.querySelectorAll('.foto-temporal').forEach(foto => foto.remove());
+}
+
+// LÓGICA DEL ZOOM
+document.querySelectorAll('.foto-item img').forEach(imagen => {
+    imagen.onclick = function() {
+        const modal = document.getElementById("modalGaleria");
+        const imgModal = document.getElementById("imgAmpliada");
+        const pieModal = document.getElementById("pieFotoModal");
+        modal.style.display = "flex";
+        imgModal.src = this.src;
+        pieModal.innerText = this.parentElement.querySelector('p').innerText;
+    }
+});
+</script>
+
+</body>
+</html>

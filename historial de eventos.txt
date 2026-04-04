@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Almacén de Eventos - Peña Taurina Peguera</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #faf3d1;
+        }
+        header {
+            background-color: #8A0303;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+        .contenedor {
+            max-width: 900px;
+            margin: auto;
+            padding: 30px;
+            background: white;
+            border-left: 5px solid #8A0303;
+            border-right: 5px solid #8A0303;
+        }
+        h2 {
+            color: #8A0303;
+        }
+        .evento {
+            background: #fff3cd;
+            border-left: 6px solid #D4AF37;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-size: 18px;
+        }
+        .evento strong {
+            color: #8A0303;
+            font-size: 20px;
+        }
+        a {
+            color: #D4AF37;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #8A0303;
+            color: white;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Almacén de Eventos</h1>
+</header>
+
+<div class="contenedor">
+
+    <p>En esta página iremos guardando todos los eventos, reuniones, actividades y convocatorias oficiales de la Peña Taurina Peguera.</p>
+
+    <!-- EVENTO 1: Reunión inaugural -->
+    <div class="evento">
+        <strong>Reunión inaugural de la Peña Taurina Peguera</strong><br><br>
+        Primera reunión para la formalización de la peña, presentación oficial y firma de estatutos.<br><br>
+        📅 <strong>Jueves</strong><br>
+        🕘 <strong>21:00 horas</strong><br>
+        📍 <strong>Bar Reste El Risco del Águila (sede provisional)</strong><br><br>
+        Este evento marca el inicio oficial de la Peña Taurina Peguera.
+    </div>
+
+    <p><a href="index.html">Volver a la página principal</a></p>
+
+    <p style="font-size: 14px; margin-top: -10px;">
+        <a href="historial_eventos.html">Historial de eventos</a>
+    </p>
+
+</div>
+
+<footer>
+    Peña Taurina Peguera — Tradición, afición y hermandad
+</footer>
+
+</body>
+</html>

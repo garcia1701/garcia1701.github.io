@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contacto - Peña Taurina Peguerinos</title>
+
+<style>
+
+/* ============================
+   AJUSTES GENERALES
+============================ */
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #f4efe2;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* ============================
+   CABECERA
+============================ */
+
+header {
+    background: linear-gradient(90deg, #7a0000, #b30000);
+    padding: 25px 20px;
+    color: white;
+}
+
+.cabecera-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    min-height: 70px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 40px;
+    text-align: center;
+    width: 100%;
+    padding-right: 70px;
+}
+
+.gif-cabecera {
+    height: 65px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 26px;
+        padding-right: 55px;
+    }
+    .gif-cabecera {
+        height: 42px;
+        right: 5px;
+    }
+}
+
+/* ============================
+   MENÚ
+============================ */
+
+nav {
+    background-color: #d4af37;
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: #7a0000;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* ============================
+   HERO
+============================ */
+
+.hero {
+    background: url('https://images.unsplash.com/photo-1520975918318-3f4f52e8d9f0?auto=format&fit=crop&w=1200&q=60') center/cover;
+    height: 20vh;
+    min-height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-contenido {
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 6px black;
+}
+
+.logo-hero {
+    height: 100px;
+}
+
+@media (max-width: 600px) {
+    .logo-hero {
+        height: 80px;
+        margin-top: 10px;
+    }
+}
+
+/* ============================
+   CONTENEDOR
+============================ */
+
+.contenedor {
+    max-width: 1100px;
+    margin: -20px auto 30px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.2);
+    flex: 1;
+}
+
+h2 {
+    color: #7a0000;
+    margin-top: 0;
+}
+
+/* ============================
+   TRES COLUMNAS
+============================ */
+
+.contacto-tres-columnas {
+    display: flex;
+    gap: 25px;
+    margin-top: 20px;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+}
+
+.columna {
+    flex: 1 1 33%;
+    min-width: 250px;
+}
+
+@media (max-width: 800px) {
+    .contacto-tres-columnas {
+        flex-wrap: wrap;
+    }
+}
+
+/* ============================
+   CONTACTO
+============================ */
+
+.contacto-box {
+    background: white;
+    border: 2px solid #d4af37;
+    padding: 15px;
+    border-radius: 6px;
+    font-size: 18px;
+    color: #7a0000;
+    box-shadow: 0 0 6px rgba(0,0,0,0.1);
+}
+
+.contacto-box p {
+    margin: 10px 0;
+}
+
+/* ============================
+   FORMULARIO
+============================ */
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+input, textarea {
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid #d4af37;
+    border-radius: 6px;
+}
+
+button {
+    background-color: #7a0000;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #b30000;
+}
+
+/* ============================
+   BOTÓN WHATSAPP
+============================ */
+
+.boton-wsp {
+    display: block;
+    margin-top: 20px;
+    background-color: #25D366;
+    color: white;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* ============================
+   MAPA
+============================ */
+
+.columna iframe {
+    width: 100%;
+    height: 260px;
+    border: 0;
+    border-radius: 10px;
+}
+
+/* ============================
+   PIE DE PÁGINA
+============================ */
+
+footer {
+    background-color: #7a0000;
+    color: white;
+    text-align: center;
+    padding: 18px;
+    font-size: 16px;
+    margin-top: auto;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="cabecera-flex">
+        <h1>Contacto</h1>
+        <img src="toro_enfadado.gif" class="gif-cabecera">
+    </div>
+</header>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="calendario_2026.html">Calendario</a>
+    <a href="actividades_eventos.html">Actividades y Eventos</a>
+    <a href="galeria.html">Galería</a>
+    <a href="historia_peña.html">Historia de la Peña</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="enlaces.html">Enlaces</a>
+    <a href="acceso-socios.html">Socios</a>
+</nav>
+
+<div class="hero">
+    <div class="hero-contenido">
+        <img src="peña1.jpeg" class="logo-hero">
+        <div class="hero-texto">Estamos aquí para escucharte</div>
+    </div>
+</div>
+
+<div class="contenedor">
+
+    <h2>Contacto directo</h2>
+
+    <div class="contacto-tres-columnas">
+
+        <!-- COLUMNA IZQUIERDA -->
+        <div class="columna">
+            <div class="contacto-box">
+                <p>⏰ <strong>Horario:</strong> Martes y Miércoles — 19:00 a 21:00</p>
+            </div>
+
+            <a class="boton-wsp" href="https://api.whatsapp.com/send?phone=34624485293&text=Hola%20Peña%20Taurina%20Peguerinos" target="_blank">
+                📲 Contactar por WhatsApp
+            </a>
+
+            <!-- NUEVO BOTÓN DE INSCRIPCIÓN -->
+            <a class="boton-wsp" 
+               style="background-color:#d4af37; color:#7a0000; margin-top:10px;" 
+               href="solicitud_ingreso.html">
+                📝 Inscripción / Afíliate
+            </a>
+        </div>
+
+        <!-- COLUMNA CENTRAL (FORMULARIO) -->
+        <div class="columna">
+            <h2>Escríbenos</h2>
+
+            <form action="https://api.web3forms.com/submit" method="POST">
+
+                <input type="hidden" name="access_key" value="22e4776b-f34b-46f2-bb4e-cd3b467dccfb">
+
+                <input type="text" name="name" placeholder="Tu nombre" required>
+                <input type="email" name="email" placeholder="Tu correo electrónico" required>
+                <textarea name="message" placeholder="Escribe tu mensaje" required></textarea>
+
+                <input type="hidden" name="redirect" value="https://garcia1701.github.io/pegueraytaurina/gracias.html">
+
+                <input type="checkbox" name="botcheck" style="display:none;">
+
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+
+        <!-- COLUMNA DERECHA (MAPA) -->
+        <div class="columna">
+            <h2>Ubicación</h2>
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3038.676937781688!2d-4.282!3d40.595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd40f1c3c0e0b0d7%3A0x123456789abcdef!2sPeguerinos!5e0!3m2!1ses!2ses!4v0000000000000"
+                allowfullscreen=""
+                loading="lazy">
+            </iframe>
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+    Peña Taurina Peguerinos — 2026
+</footer>
+
+</body>
+</html>

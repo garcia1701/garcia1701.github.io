@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panel de Socio - Peña Taurina Peguerinos</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#7a0000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="icon-192.png">
+
+<style>
+html, body {
+    margin: 0; padding: 0;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: #f4efe2;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+header {
+    background: linear-gradient(90deg, #7a0000, #b30000);
+    padding: 25px 20px; color: white;
+    flex-shrink: 0;
+}
+
+.cabecera-flex { display: flex; justify-content: center; align-items: center; position: relative; }
+header h1 { margin: 0; font-size: 40px; flex: 1; text-align: center; }
+.gif-cabecera { height: 65px; position: absolute; right: 10px; }
+
+nav {
+    background-color: #d4af37; padding: 12px;
+    display: flex; justify-content: center; gap: 25px; flex-wrap: wrap;
+    flex-shrink: 0;
+}
+nav a { color: #7a0000; font-weight: bold; text-decoration: none; font-size: 18px; }
+
+.zona-scroll { flex: 1; overflow-y: auto; }
+
+.contenedor {
+    max-width: 950px; 
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.panel-flex {
+    display: flex; gap: 35px; align-items: flex-start; flex-wrap: wrap;
+}
+
+.col-izq { flex: 1.3; min-width: 340px; }
+.col-der { flex: 1; display: flex; flex-direction: column; gap: 15px; min-width: 280px; }
+
+.carnet {
+    background: linear-gradient(135deg, #d4af37 0%, #f1d37a 100%);
+    border: 3px solid #7a0000; border-radius: 15px; padding: 25px; color: #7a0000;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+.carnet-superior { display: flex; align-items: center; gap: 15px; border-bottom: 2px solid #7a0000; padding-bottom: 12px; margin-bottom: 15px; }
+.logo-carnet { height: 65px; background: white; border: 1px solid #7a0000; padding: 2px; border-radius: 4px; }
+.nombre-socio { font-size: 22px; font-weight: bold; text-transform: uppercase; margin: 10px 0; line-height: 1.2; }
+
+.tabla-cuotas {
+    width: 100%; border-collapse: collapse; margin-top: 15px; 
+    background: rgba(255,255,255,0.2); border-radius: 8px; overflow: hidden;
+}
+.tabla-cuotas th, .tabla-cuotas td { padding: 10px; text-align: center; border: 1px solid #7a0000; font-size: 13px; }
+.tabla-cuotas th { background: #7a0000; color: white; }
+
+.btn-whatsapp {
+    background: #25d366; color: white; text-decoration: none;
+    display: flex; align-items: center; justify-content: center;
+    padding: 15px; border-radius: 8px; font-weight: bold; font-size: 18px;
+}
+.btn-montera {
+    background: #111; color: white; border: none; padding: 18px;
+    border-radius: 40px 40px 10px 10px; cursor: pointer;
+    font-weight: bold; border-bottom: 4px solid #d4af37; font-size: 16px;
+    width: 100%;
+}
+.btn-salir { background: transparent; border: 1px solid #7a0000; color: #7a0000; padding: 10px; width: 100%; cursor: pointer; border-radius: 6px; font-weight: bold; margin-top: 10px; }
+
+.indicador {
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+}
+.verde { background: #28a745; }
+.ambar { background: #ffc107; color: #333; }
+.rojo { background: #dc3545; }
+.parpadeo { animation: parpadeo 1s infinite; }
+@keyframes parpadeo { 0%, 100% {opacity: 1;} 50% {opacity: 0.5;} }
+
+footer {
+    background-color: #7a0000; color: white;
+    text-align: center; padding: 25px 20px;
+    font-size: 16px; flex-shrink: 0;
+}
+
+@media (max-width: 768px) { 
+    .panel-flex { flex-direction: column; } 
+    .col-izq, .col-der { width: 100%; min-width: unset; } 
+}
+</style>
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "47ce7a35-b3f4-4a3c-b910-f09fa18b3baf",
+      serviceWorkerPath: "/peguerinos/OneSignalSDKWorker.js",
+      serviceWorkerParam: { scope: "/peguerinos/" },
+    });
+  });
+</script>
+</head>
+
+<body>
+
+<header>
+    <div class="cabecera-flex">
+        <h1>Área de Socio</h1>
+        <img src="toro_enfadado.gif" class="gif-cabecera">
+    </div>
+</header>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="calendario_2026.html">Calendario</a>
+    <a href="actividades_eventos.html">Actividades</a>
+    <a href="galeria.html">Galería</a>
+    <a href="acceso-socios.html">Socios</a>
+</nav>
+
+<div class="zona-scroll">
+<div class="contenedor">
+    <div class="panel-flex">
+
+        <div class="col-izq">
+            <div class="carnet">
+                <div class="carnet-superior">
+                    <img src="peña1.jpeg" class="logo-carnet">
+                    <span style="font-weight: 800; font-size: 14px; letter-spacing: 1px;">PEÑA TAURINA PEGUERINOS</span>
+                </div>
+                
+                <div class="nombre-socio" id="display-nombre">Cargando...</div>
+                
+                <div style="font-weight: bold; margin: 5px 0;">Socio Nº: <span id="display-num">----</span></div>
+                <div style="font-weight: bold; margin: 5px 0;">Inscripción: <span>12 de marzo de 2026</span></div>
+                <div style="margin-top: 10px;">Estado: <span id="display-estado" style="background:#7a0000; color:white; padding:3px 12px; border-radius:15px; font-size:11px; font-weight: bold;">ACTIVO</span></div>
+
+                <table class="tabla-cuotas">
+                    <thead>
+                        <tr>
+                            <th>Año 2026</th>
+                            <th>Semestre</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2026</td>
+                            <td>Marzo</td>
+                            <td style="color: green; font-weight: bold;">PAGADO</td>
+                        </tr>
+                        <tr>
+                            <td>2026</td>
+                            <td>Septiembre</td>
+                            <td style="color: #7a0000; font-weight: bold;">PENDIENTE</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-der">
+            <div id="indicador-avisos" class="indicador verde">🟢 Cargando avisos...</div>
+            <button class="btn-montera" onclick="window.location.href='documentos.html'">📂 DOCUMENTOS Y ESTATUTOS</button>
+            <a id="link-whatsapp" href="#" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">🟢 WhatsApp</a>
+            <button class="btn-salir" onclick="cerrarSesion()">CERRAR SESIÓN</button>
+        </div>
+
+    </div>
+</div>
+</div>
+
+<footer>
+    Peña Taurina Peguerinos — Unidos por la afición
+</footer>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging-compat.js"></script>
+
+<script>
+const API = "https://script.google.com/macros/s/AKfycbxONuCsVuCMzPJ-OUt-Ev2LmWs7aOyvS_eM-qoUB4kFEGkUbgXwI9Gd1_QL2m6k68ky/exec";
+const VAPID_KEY = "BHKDMKIXOKQeUgrjjuhCJiiZ4UqM6DEOxL5DeMql5C5gbGK5Ui2OlGk6t3AOI3KeQHv6TncNlYcBP8_TFVv0t6U";
+
+firebase.initializeApp({
+  apiKey: "AIzaSyCdncrUozHk7Izh4xExqCGwNNMCBaon9uY",
+  authDomain: "peguerinos-cd378.firebaseapp.com",
+  projectId: "peguerinos-cd378",
+  storageBucket: "peguerinos-cd378.firebasestorage.app",
+  messagingSenderId: "724770006648",
+  appId: "1:724770006648:web:4d3881925041bc62a52f8d"
+});
+
+const messaging = firebase.messaging();
+const sesion = JSON.parse(localStorage.getItem("datos_sesion"));
+
+if (!sesion) {
+    window.location.href = "acceso-socios.html";
+} else {
+    document.getElementById("display-nombre").innerText = sesion.nombre;
+    document.getElementById("display-num").innerText = sesion.num;
+
+    const tlf = "34624485293";
+    const msg = encodeURIComponent("Hola Luis Alfonso, soy " + sesion.nombre + " (Socio " + sesion.num + "). ");
+    document.getElementById("link-whatsapp").href = "https://wa.me/" + tlf + "?text=" + msg;
+
+    cargarAviso();
+    activarNotificaciones();
+}
+
+async function cargarAviso() {
+    const indicador = document.getElementById("indicador-avisos");
+    try {
+        const res = await fetch(`${API}?action=getSocio&num=${sesion.num}&pin=${sesion.pin}`);
+        const data = await res.json();
+        if (data.ok && data.socio) {
+            const socio = data.socio;
+            if (socio.estado) document.getElementById("display-estado").innerText = socio.estado;
+            if (socio.aviso && socio.aviso !== "") {
+                const tipo = socio.tipoAviso || "ambar";
+                indicador.className = "indicador " + tipo;
+                indicador.innerText = socio.aviso;
+                if (tipo === "rojo") indicador.classList.add("parpadeo");
+            } else {
+                indicador.className = "indicador verde";
+                indicador.innerText = "🟢 Sin avisos";
+            }
+        } else {
+            indicador.className = "indicador verde";
+            indicador.innerText = "🟢 Sin avisos";
+        }
+    } catch(e) {
+        indicador.className = "indicador verde";
+        indicador.innerText = "🟢 Sin avisos";
+    }
+}
+
+async function activarNotificaciones() {
+    try {
+        // Registrar el SW de Firebase
+        const swReg = await navigator.serviceWorker.register('/peguerinos/firebase-messaging-sw.js');
+        
+        const permiso = await Notification.requestPermission();
+        if (permiso !== "granted") {
+            console.log("Permiso denegado");
+            return;
+        }
+
+        const token = await messaging.getToken({ 
+            vapidKey: VAPID_KEY,
+            serviceWorkerRegistration: swReg
+        });
+        
+        if (token) {
+            console.log("Token FCM:", token);
+            await fetch(API, {
+                method: "POST",
+                body: JSON.stringify({
+                    action: "saveFcmToken",
+                    num: sesion.num,
+                    token: token
+                })
+            });
+            console.log("Token guardado en Sheets");
+        }
+    } catch(e) {
+        console.log("Notificaciones no disponibles:", e);
+    }
+}
+
+function cerrarSesion() {
+    localStorage.removeItem("datos_sesion");
+    window.location.href = "index.html";
+}
+</script>
+<script>
+if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('/peguerinos/sw.js');
+    navigator.serviceWorker.register('/peguerinos/firebase-messaging-sw.js');
+}
+</script>
+</body>
+</html>

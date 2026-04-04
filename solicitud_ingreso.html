@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solicitud de Ingreso - Peña Taurina Peguerinos</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+    <div class="cabecera-flex">
+        <h1>Solicitud de Ingreso</h1>
+        <img src="toro_enfadado.gif" class="gif-cabecera">
+    </div>
+</header>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="calendario_2026.html">Calendario</a>
+    <a href="actividades_eventos.html">Actividades y Eventos</a>
+    <a href="galeria.html">Galería</a>
+    <a href="historia_peña.html">Historia de la Peña</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="enlaces.html">Enlaces</a>
+    <a href="acceso-socios.html">Socios</a>
+</nav>
+
+<div class="hero">
+    <div class="hero-contenido">
+        <img src="peña1.jpeg" class="logo-hero">
+        <div class="hero-texto">Únete a nuestra Peña</div>
+    </div>
+</div>
+
+<div class="contenedor">
+
+<h2>Formulario de Inscripción</h2>
+
+<form action="https://api.web3forms.com/submit" method="POST">
+
+    <input type="hidden" name="access_key" value="22e4776b-f34b-46f2-bb4e-cd3b467dccfb">
+
+    <!-- DATOS PERSONALES -->
+    <input type="text" name="Nombre completo" placeholder="Nombre y apellidos" required>
+    <input type="text" name="DNI" placeholder="DNI" required>
+    <input type="date" name="Fecha de nacimiento" required>
+
+    <!-- CONTACTO -->
+    <input type="text" name="Teléfono" placeholder="Teléfono móvil / WhatsApp" required>
+
+    <!-- MOTIVACIÓN -->
+    <textarea name="Motivación" placeholder="Motivación para unirse a la Peña (opcional)" rows="4"></textarea>
+
+    <!-- RGPD -->
+    <p style="font-size:14px; color:#7a0000; margin-top:10px;">
+        De conformidad con el Reglamento (UE) 2016/679 (RGPD), se informa al solicitante de que:
+        <br><br>
+        <strong>Responsable:</strong> Peña Taurina Peguerinos.<br>
+        <strong>Finalidad:</strong> Gestionar el alta de socios y comunicaciones internas.<br>
+        <strong>Legitimación:</strong> Consentimiento del interesado.<br>
+        <strong>Destinatarios:</strong> No se cederán datos a terceros salvo obligación legal.<br>
+        <strong>Derechos:</strong> Puede solicitar acceso, rectificación o supresión de sus datos.
+    </p>
+
+    <label style="font-size:15px; color:#7a0000;">
+        <input type="checkbox" name="RGPD" required>
+        Acepto el tratamiento de mis datos personales según la información facilitada.
+    </label>
+
+    <input type="hidden" name="redirect" value="https://garcia1701.github.io/pegueraytaurina/gracias.html">
+    <input type="checkbox" name="botcheck" style="display:none;">
+
+    <button type="submit">Enviar solicitud</button>
+</form>
+
+</div>
+
+<footer>
+    Peña Taurina Peguerinos — 2026
+</footer>
+
+</body>
+</html>

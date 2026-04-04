@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Historial - Peña Taurina Peguerinos</title>
+
+<style>
+/* ============================
+   ESTRUCTURA FIJA (ANTI-ROTURA)
+============================ */
+html, body {
+    margin: 0; padding: 0; height: 100%; 
+    background-color: #f4efe2;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex; flex-direction: column;
+}
+
+header {
+    background: linear-gradient(90deg, #7a0000, #b30000);
+    padding: 20px; color: white; flex-shrink: 0;
+}
+
+.cabecera-flex { display: flex; justify-content: center; align-items: center; position: relative; }
+header h1 { margin: 0; font-size: 30px; text-align: center; }
+.gif-cabecera { height: 50px; position: absolute; right: 0; }
+
+nav {
+    background-color: #d4af37; padding: 10px;
+    display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; flex-shrink: 0;
+}
+nav a { color: #7a0000; font-weight: bold; text-decoration: none; }
+
+/* CONTENEDOR PRINCIPAL CON SCROLL */
+.contenedor {
+    max-width: 800px; width: 90%; margin: 20px auto;
+    background: white; padding: 25px; border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    display: flex; flex-direction: column;
+    overflow: hidden; /* Evita que el contenedor crezca hacia abajo */
+    flex: 1; /* Ocupa el espacio sobrante */
+}
+
+h2 { color: #7a0000; border-bottom: 2px solid #d4af37; margin-top: 0; }
+
+/* CAJA DE EVENTOS CON SCROLL PROPIO */
+.lista-eventos-scroll {
+    overflow-y: auto; /* Aquí aparece el scroll si hay muchos eventos */
+    padding-right: 10px;
+    flex: 1;
+}
+
+/* ESTILO DE CADA EVENTO */
+.evento-pasado {
+    background: #fffdf5;
+    border-left: 5px solid #d4af37;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    border: 1px solid #eee;
+    border-left: 5px solid #d4af37;
+}
+
+.evento-pasado h3 { margin: 0 0 5px 0; color: #7a0000; font-size: 18px; }
+.evento-pasado p { margin: 3px 0; font-size: 14px; color: #333; }
+
+.btn-volver {
+    display: inline-block; margin-top: 15px; color: #7a0000;
+    text-decoration: none; font-weight: bold; text-align: center;
+}
+
+footer {
+    background-color: #7a0000; color: white;
+    text-align: center; padding: 12px; flex-shrink: 0;
+}
+
+/* Personalización del scrollbar para que quede bonito */
+.lista-eventos-scroll::-webkit-scrollbar { width: 8px; }
+.lista-eventos-scroll::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 10px; }
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="cabecera-flex">
+        <h1>Historial de la Peña</h1>
+        <img src="toro_enfadado.gif" class="gif-cabecera">
+    </div>
+</header>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="calendario_2026.html">Calendario</a>
+    <a href="actividades_eventos.html">Actividades</a>
+    <a href="galeria.html">Galería</a>
+    <a href="acceso-socios.html">Socios</a>
+</nav>
+
+<div class="contenedor">
+    <h2>Eventos Finalizados</h2>
+
+    <div class="lista-eventos-scroll">
+        
+        <!-- EVENTO 1 -->
+        <div class="evento-pasado">
+            <h3>Cena de la Peña</h3>
+            <p>📅 <strong>25 de Marzo de 2026</strong></p>
+            <p>📍 Restaurante Risco del Águila</p>
+            <p>ℹ️ Cena de convivencia para socios y simpatizantes.</p>
+        </div>
+
+        <!-- EVENTO 2 -->
+        <div class="evento-pasado">
+            <h3>Feria de Fallas 2026</h3>
+            <p>📅 <strong>17 de Marzo de 2026</strong></p>
+            <p>📍 Bar Restaurante El Risco del Águila</p>
+            <p>ℹ️ Retransmisión en directo. Toros de Santiago Domecq.</p>
+        </div>
+
+        <!-- EVENTO 3: REUNIÓN INAUGURAL -->
+        <div class="evento-pasado">
+            <h3>Reunión Inaugural</h3>
+            <p>📅 <strong>12 de Marzo  - 21:00h</strong></p>
+            <p>📍 Bar Reste El Risco del Águila (Sede provisional)</p>
+            <p>ℹ️ Primera reunión oficial, presentación y firma de estatutos.</p>
+        </div>
+
+        <!-- Puedes seguir pegando aquí más eventos y no se romperá nada -->
+
+    </div>
+
+    <a href="actividades_eventos.html" class="btn-volver">← Volver a Actividades</a>
+</div>
+
+<footer>
+    Peña Taurina Peguerinos — Unidos por la afición
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,3 @@
+<script src="js/evento_auto.js"></script>
+<script src="js/aviso_socio.js"></script>
+<script src="js/contador_visitas.js"></script>

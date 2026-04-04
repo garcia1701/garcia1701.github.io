@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Acceso Socios - Peña Taurina Peguerinos</title>
+
+<style>
+html, body {
+    margin: 0; padding: 0; width: 100%; height: 100%;
+    overflow: hidden; background-color: #f4efe2;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex; flex-direction: column;
+}
+
+header {
+    background: linear-gradient(90deg, #7a0000, #b30000);
+    padding: 25px 20px; color: white;
+    flex-shrink: 0;
+}
+.cabecera-flex { display: flex; justify-content: center; align-items: center; position: relative; }
+header h1 { margin: 0; font-size: 40px; flex: 1; text-align: center; }
+.gif-cabecera { height: 65px; position: absolute; right: 10px; }
+
+nav {
+    background-color: #d4af37; padding: 12px;
+    display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;
+    flex-shrink: 0;
+}
+nav a { 
+    color: #7a0000; 
+    font-weight: bold; 
+    text-decoration: none; 
+    font-size: 16px;
+    padding: 5px 10px;
+}
+nav a:hover { color: white; }
+
+.hero {
+    background: url('https://unsplash.com') center/cover;
+    height: 22vh; min-height: 110px; flex-shrink: 0;
+    display: flex; justify-content: center; align-items: center;
+}
+.hero-contenido { text-align: center; color: white; text-shadow: 2px 2px 6px black; }
+.logo-hero { height: 75px; border-radius: 10px; }
+.hero-texto { font-size: 24px; font-weight: bold; }
+
+.contenedor {
+    max-width: 450px; margin: -30px auto 40px auto;
+    background: white; padding: 35px; border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    flex: 1;
+}
+
+h2 { color: #7a0000; border-bottom: 2px solid #d4af37; padding-bottom: 10px; text-align: center; margin-top: 0; }
+
+form { display: flex; flex-direction: column; gap: 15px; }
+
+label { font-weight: bold; color: #7a0000; }
+
+input {
+    padding: 12px; font-size: 16px;
+    border: 2px solid #d4af37; border-radius: 6px;
+    outline: none;
+}
+
+button {
+    background-color: #7a0000; color: white;
+    padding: 15px; border: none; border-radius: 6px;
+    font-size: 18px; font-weight: bold; cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+button:hover { background-color: #b30000; transform: scale(1.02); }
+
+footer {
+    background-color: #7a0000; color: white;
+    text-align: center; padding: 20px;
+    font-size: 16px; flex-shrink: 0;
+}
+.zona-scroll { flex: 1; overflow-y: auto; }
+</style>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#7a0000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="icon-192.png">
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "47ce7a35-b3f4-4a3c-b910-f09fa18b3baf",
+      serviceWorkerPath: "/peguerinos/OneSignalSDKWorker.js",
+      serviceWorkerParam: { scope: "/peguerinos/" },
+    });
+  });
+</script>
+</head>
+
+<body>
+
+<header>
+    <div class="cabecera-flex">
+        <h1>Acceso Socios</h1>
+        <img src="toro_enfadado.gif" class="gif-cabecera">
+    </div>
+</header>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="calendario_2026.html">Calendario</a>
+    <a href="actividades_eventos.html">Actividades</a>
+    <a href="galeria.html">Galería</a>
+    <a href="historia_peña.html">Historia</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="enlaces.html">Enlaces</a>
+    <a href="acceso-socios.html">Socios</a>
+</nav>
+
+<div class="zona-scroll">
+<div class="hero">
+    <div class="hero-contenido">
+        <img src="peña1.jpeg" class="logo-hero">
+        <div class="hero-texto">Área Privada</div>
+    </div>
+</div>
+
+<div class="contenedor">
+    <h2>Identificación</h2>
+
+    <form onsubmit="validarAcceso(event)">
+        <label>Número de Socio</label>
+        <input type="text" id="numSocio" placeholder="Ej: 0001" required>
+
+        <label>Contraseña Personal</label>
+        <input type="password" id="passSocio" placeholder="Tu contraseña" required>
+
+        <button type="submit">ENTRAR AL PANEL</button>
+    </form>
+</div>
+</div>
+
+<footer>
+    Peña Taurina Peguerinos — Unidos por la afición
+</footer>
+
+<script>
+// Número de socio del administrador
+const ADMIN_NUM = "0011";
+
+// Base de datos de socios (num, pass, nombre)
+// El campo "pass" aquí es también el PIN que se usa en Google Sheets
+const sociosDB = [
+    { num: "0001", pass: "9796", nombre: "MIGUEL ANGEL RODRIGUEZ FARIÑA" },
+    { num: "0002", pass: "5388", nombre: "ANTONIO ROSADO GARCIA" },
+    { num: "0003", pass: "5728", nombre: "DANIEL ALVAREZ GARCIA" },
+    { num: "0004", pass: "8042", nombre: "JOAQUIN RODRIGUEZ FARIÑA" },
+    { num: "0005", pass: "7324", nombre: "JUAN FERNANDO CASADO TORMO" },
+    { num: "0006", pass: "2715", nombre: "FELIX RODRIGUEZ" },
+    { num: "0007", pass: "1659", nombre: "JOSE CARLOS GARCIA POZO" },
+    { num: "0008", pass: "8498", nombre: "JAIME VILA-CORO LAVIÑA" },
+    { num: "0009", pass: "4534", nombre: "JOSE LUIS CAÑAVERAL-FERNANDEZ" },
+    { num: "0010", pass: "2025", nombre: "ALEJANDRO TANARRO GARCIA" },
+    { num: "0011", pass: "5997", nombre: "LUIS ALFONSO GARCIA" },
+    { num: "0012", pass: "7237", nombre: "JOSE LUIS CAÑAVERAL-FERNANDEZ" },
+    { num: "0013", pass: "8446", nombre: "ALFONSO RILO" },
+    { num: "0014", pass: "1605", nombre: "SERGIO MONGE GOMEZ" }
+];
+
+function validarAcceso(event) {
+    event.preventDefault();
+    
+    const numRaw = document.getElementById("numSocio").value.trim();
+    const passIngresada = document.getElementById("passSocio").value.trim();
+    const numFormateado = numRaw.padStart(4, '0');
+
+    const socioEncontrado = sociosDB.find(s => s.num === numFormateado && s.pass === passIngresada);
+
+    if (socioEncontrado) {
+        // Guardamos datos de sesión incluyendo el PIN para consultar Google Sheets
+        const datosSesion = {
+            num: socioEncontrado.num,
+            nombre: socioEncontrado.nombre,
+            pin: socioEncontrado.pass
+        };
+        localStorage.setItem("datos_sesion", JSON.stringify(datosSesion));
+
+        // Si es el admin, va al panel de administración
+        if (numFormateado === ADMIN_NUM) {
+            window.location.href = "panel-admin.html";
+        } else {
+            window.location.href = "panel-socio.html";
+        }
+    } else {
+        alert("Número de socio o contraseña incorrectos.");
+    }
+}
+</script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js');
+  }
+</script>
+</body>
+</html>

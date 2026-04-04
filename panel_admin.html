@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panel Admin - Peña Taurina Peguerinos</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { height: 100%; }
+
+body {
+    min-height: 100%;
+    background-color: #f4efe2;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background: linear-gradient(90deg, #7a0000, #b30000);
+    padding: 25px 20px;
+    color: white;
+    text-align: center;
+}
+header h1 { font-size: 32px; margin-bottom: 4px; }
+header p { font-size: 14px; opacity: 0.8; }
+
+nav {
+    background-color: #d4af37;
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+nav a { color: #7a0000; font-weight: bold; text-decoration: none; font-size: 16px; }
+
+.contenedor {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 20px;
+    flex: 1;
+    width: 100%;
+}
+
+/* LOGIN */
+#pantalla-login {
+    max-width: 400px;
+    margin: 60px auto;
+    background: white;
+    border-radius: 12px;
+    padding: 35px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    text-align: center;
+}
+#pantalla-login h2 { color: #7a0000; margin-bottom: 20px; font-size: 22px; }
+#pantalla-login input {
+    width: 100%; padding: 12px; margin-bottom: 15px;
+    border: 2px solid #d4af37; border-radius: 8px;
+    font-size: 16px; text-align: center; letter-spacing: 3px;
+}
+#pantalla-login button {
+    background: #7a0000; color: white; border: none;
+    padding: 13px 30px; border-radius: 8px; font-size: 16px;
+    font-weight: bold; cursor: pointer; width: 100%;
+}
+#pantalla-login button:hover { background: #b30000; }
+#login-error { color: #dc3545; margin-top: 10px; font-size: 14px; }
+
+/* PANEL PRINCIPAL */
+#panel-admin { display: none; }
+
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+.tab-btn {
+    background: white;
+    border: 2px solid #d4af37;
+    color: #7a0000;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 15px;
+    transition: all 0.2s;
+}
+.tab-btn.activo {
+    background: #7a0000;
+    color: white;
+    border-color: #7a0000;
+}
+.tab-btn:hover:not(.activo) { background: #f9f0d0; }
+
+.seccion { display: none; }
+.seccion.activa { display: block; }
+
+/* TABLA SOCIOS */
+.tabla-wrap { overflow-x: auto; }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+th {
+    background: #7a0000;
+    color: white;
+    padding: 12px 10px;
+    text-align: left;
+    font-size: 13px;
+}
+td {
+    padding: 10px;
+    border-bottom: 1px solid #f0e8d0;
+    font-size: 13px;
+    vertical-align: middle;
+}
+tr:hover td { background: #fdf8ee; }
+tr:last-child td { border-bottom: none; }
+
+.badge {
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: bold;
+    color: white;
+}
+.badge-activo { background: #28a745; }
+.badge-inactivo { background: #6c757d; }
+
+.badge-aviso-verde { background: #28a745; }
+.badge-aviso-ambar { background: #ffc107; color: #333; }
+.badge-aviso-rojo { background: #dc3545; }
+.badge-aviso-ninguno { background: #ccc; color: #666; }
+
+/* BOTONES ACCIÓN */
+.btn-accion {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 2px;
+}
+.btn-editar { background: #d4af37; color: #7a0000; }
+.btn-aviso { background: #7a0000; color: white; }
+
+/* FORMULARIOS */
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+.card h3 { color: #7a0000; margin-bottom: 20px; font-size: 18px; border-bottom: 2px solid #d4af37; padding-bottom: 8px; }
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+.form-grupo { display: flex; flex-direction: column; gap: 5px; }
+.form-grupo label { font-weight: bold; font-size: 13px; color: #555; }
+.form-grupo input, .form-grupo select, .form-grupo textarea {
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 7px;
+    font-size: 14px;
+    font-family: inherit;
+}
+.form-grupo input:focus, .form-grupo select:focus, .form-grupo textarea:focus {
+    outline: none;
+    border-color: #d4af37;
+}
+.form-grupo.full { grid-column: 1 / -1; }
+
+.btn-primario {
+    background: #7a0000; color: white; border: none;
+    padding: 12px 25px; border-radius: 8px;
+    font-size: 15px; font-weight: bold; cursor: pointer;
+    margin-top: 10px;
+}
+.btn-primario:hover { background: #b30000; }
+.btn-secundario {
+    background: #d4af37; color: #7a0000; border: none;
+    padding: 12px 25px; border-radius: 8px;
+    font-size: 15px; font-weight: bold; cursor: pointer;
+    margin-top: 10px; margin-left: 10px;
+}
+
+/* AVISO GLOBAL */
+.aviso-global-box {
+    background: linear-gradient(135deg, #7a0000, #b30000);
+    color: white;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 20px;
+}
+.aviso-global-box h3 { margin-bottom: 15px; font-size: 18px; }
+.aviso-global-box textarea {
+    width: 100%; padding: 12px;
+    border: none; border-radius: 8px;
+    font-size: 14px; font-family: inherit;
+    margin-bottom: 12px; resize: vertical;
+}
+.aviso-global-box select {
+    padding: 10px; border: none; border-radius: 8px;
+    font-size: 14px; margin-bottom: 12px; margin-right: 10px;
+}
+.btn-enviar-global {
+    background: #d4af37; color: #7a0000; border: none;
+    padding: 12px 25px; border-radius: 8px;
+    font-size: 15px; font-weight: bold; cursor: pointer;
+}
+
+/* MODAL */
+.modal-overlay {
+    display: none;
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+.modal-overlay.abierto { display: flex; }
+.modal {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 480px;
+    width: 90%;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+.modal h3 { color: #7a0000; margin-bottom: 20px; font-size: 18px; }
+.modal-botones { display: flex; gap: 10px; margin-top: 15px; }
+
+/* TOAST */
+.toast {
+    position: fixed; bottom: 30px; right: 30px;
+    background: #28a745; color: white;
+    padding: 14px 22px; border-radius: 8px;
+    font-weight: bold; font-size: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    opacity: 0; transition: opacity 0.3s;
+    z-index: 2000;
+}
+.toast.visible { opacity: 1; }
+.toast.error { background: #dc3545; }
+
+/* STATS */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+.stat-card {
+    background: white;
+    border-radius: 10px;
+    padding: 18px;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    border-top: 4px solid #d4af37;
+}
+.stat-num { font-size: 32px; font-weight: bold; color: #7a0000; }
+.stat-label { font-size: 13px; color: #666; margin-top: 4px; }
+
+.cargando { text-align: center; padding: 40px; color: #7a0000; font-size: 16px; }
+
+footer {
+    background-color: #7a0000;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 15px;
+}
+
+@media (max-width: 600px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .form-grupo.full { grid-column: 1; }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>⚙️ Panel de Administrador</h1>
+    <p>Peña Taurina Peguerinos</p>
+</header>
+
+<nav>
+    <a href="index.html">Inicio</a>
+    <a href="calendario_2026.html">Calendario</a>
+    <a href="actividades_eventos.html">Actividades</a>
+    <a href="galeria.html">Galería</a>
+    <a href="acceso-socios.html">Socios</a>
+</nav>
+
+<div class="contenedor">
+
+    <!-- LOGIN -->
+    <div id="pantalla-login">
+        <h2>🔐 Acceso Administrador</h2>
+        <input type="password" id="input-pin" placeholder="PIN de administrador" onkeydown="if(event.key==='Enter') loginAdmin()">
+        <button onclick="loginAdmin()">Entrar</button>
+        <div id="login-error"></div>
+    </div>
+
+    <!-- PANEL -->
+    <div id="panel-admin">
+
+        <div class="stats-grid" id="stats-grid">
+            <div class="stat-card"><div class="stat-num" id="stat-total">—</div><div class="stat-label">Socios totales</div></div>
+            <div class="stat-card"><div class="stat-num" id="stat-activos">—</div><div class="stat-label">Activos</div></div>
+            <div class="stat-card"><div class="stat-num" id="stat-avisos">—</div><div class="stat-label">Con avisos</div></div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn activo" onclick="cambiarTab('socios', this)">👥 Socios</button>
+            <button class="tab-btn" onclick="cambiarTab('avisos', this)">📢 Avisos</button>
+            <button class="tab-btn" onclick="cambiarTab('nuevo', this)">➕ Nuevo socio</button>
+        </div>
+
+        <!-- TAB SOCIOS -->
+        <div class="seccion activa" id="tab-socios">
+            <div class="card">
+                <h3>👥 Lista de Socios</h3>
+                <div class="tabla-wrap">
+                    <table id="tabla-socios">
+                        <thead>
+                            <tr>
+                                <th>Nº</th>
+                                <th>Nombre</th>
+                                <th>PIN</th>
+                                <th>Estado</th>
+                                <th>Aviso</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-socios">
+                            <tr><td colspan="6" class="cargando">Cargando socios...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB AVISOS -->
+        <div class="seccion" id="tab-avisos">
+            <div class="aviso-global-box">
+                <h3>📢 Enviar aviso a TODOS los socios</h3>
+                <textarea id="aviso-global-texto" rows="3" placeholder="Escribe el mensaje para todos..."></textarea>
+                <br>
+                <select id="aviso-global-tipo">
+                    <option value="verde">🟢 Verde (informativo)</option>
+                    <option value="ambar" selected>🟡 Ámbar (atención)</option>
+                    <option value="rojo">🔴 Rojo (urgente)</option>
+                </select>
+                <button class="btn-enviar-global" onclick="enviarAvisoGlobal()">📤 Enviar a todos</button>
+                <button class="btn-enviar-global" style="background:#fff; margin-left:10px;" onclick="borrarAvisoGlobal()">🗑️ Borrar avisos de todos</button>
+            </div>
+
+            <div class="card">
+                <h3>📨 Enviar aviso a socio concreto</h3>
+                <div class="form-grid">
+                    <div class="form-grupo">
+                        <label>Socio</label>
+                        <select id="aviso-socio-select">
+                            <option value="">— Selecciona un socio —</option>
+                        </select>
+                    </div>
+                    <div class="form-grupo">
+                        <label>Tipo de aviso</label>
+                        <select id="aviso-socio-tipo">
+                            <option value="verde">🟢 Verde (informativo)</option>
+                            <option value="ambar" selected>🟡 Ámbar (atención)</option>
+                            <option value="rojo">🔴 Rojo (urgente)</option>
+                        </select>
+                    </div>
+                    <div class="form-grupo full">
+                        <label>Mensaje</label>
+                        <textarea id="aviso-socio-texto" rows="3" placeholder="Escribe el mensaje..."></textarea>
+                    </div>
+                </div>
+                <button class="btn-primario" onclick="enviarAvisoSocio()">📤 Enviar aviso</button>
+                <button class="btn-secundario" onclick="borrarAvisoSocio()">🗑️ Borrar aviso</button>
+            </div>
+        </div>
+
+        <!-- TAB NUEVO SOCIO -->
+        <div class="seccion" id="tab-nuevo">
+            <div class="card">
+                <h3>➕ Añadir nuevo socio</h3>
+                <div class="form-grid">
+                    <div class="form-grupo">
+                        <label>Número de socio</label>
+                        <input type="text" id="nuevo-num" placeholder="Ej: 042">
+                    </div>
+                    <div class="form-grupo">
+                        <label>PIN de acceso</label>
+                        <input type="text" id="nuevo-pin" placeholder="Ej: 1234">
+                    </div>
+                    <div class="form-grupo full">
+                        <label>Nombre completo</label>
+                        <input type="text" id="nuevo-nombre" placeholder="Nombre y apellidos">
+                    </div>
+                    <div class="form-grupo">
+                        <label>Estado</label>
+                        <select id="nuevo-estado">
+                            <option value="ACTIVO">ACTIVO</option>
+                            <option value="INACTIVO">INACTIVO</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn-primario" onclick="addSocio()">➕ Añadir socio</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- MODAL EDITAR -->
+<div class="modal-overlay" id="modal-editar">
+    <div class="modal">
+        <h3>✏️ Editar socio</h3>
+        <input type="hidden" id="edit-num-original">
+        <div class="form-grupo" style="margin-bottom:12px;">
+            <label>Nombre</label>
+            <input type="text" id="edit-nombre">
+        </div>
+        <div class="form-grupo" style="margin-bottom:12px;">
+            <label>PIN</label>
+            <input type="text" id="edit-pin">
+        </div>
+        <div class="form-grupo" style="margin-bottom:12px;">
+            <label>Estado</label>
+            <select id="edit-estado">
+                <option value="ACTIVO">ACTIVO</option>
+                <option value="INACTIVO">INACTIVO</option>
+            </select>
+        </div>
+        <div class="modal-botones">
+            <button class="btn-primario" onclick="guardarEdicion()">💾 Guardar</button>
+            <button class="btn-secundario" onclick="cerrarModal()">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<footer>Peña Taurina Peguerinos — Panel de Administración</footer>
+
+<script>
+const API = "https://script.google.com/macros/s/AKfycbybYBIw5Q47Q0ZQ6s3HoRCxUpDkWS8E_oQcnxbGAQ_nEPThpLnMrrPixaH4BoC1Fi9H/exec";
+const ADMIN_PIN = "ADMIN1234";
+let socios = [];
+
+function loginAdmin() {
+    const pin = document.getElementById("input-pin").value;
+    if (pin === ADMIN_PIN) {
+        document.getElementById("pantalla-login").style.display = "none";
+        document.getElementById("panel-admin").style.display = "block";
+        cargarSocios();
+    } else {
+        document.getElementById("login-error").innerText = "PIN incorrecto";
+    }
+}
+
+async function cargarSocios() {
+    try {
+        const res = await fetch(`${API}?action=getTodos&adminPin=${ADMIN_PIN}`);
+        const data = await res.json();
+        if (data.ok) {
+            socios = data.socios;
+            renderTabla();
+            renderStats();
+            renderSelectSocios();
+        } else {
+            mostrarToast("Error al cargar socios", true);
+        }
+    } catch(e) {
+        mostrarToast("Error de conexión", true);
+    }
+}
+
+function renderStats() {
+    document.getElementById("stat-total").innerText = socios.length;
+    document.getElementById("stat-activos").innerText = socios.filter(s => s.estado === "ACTIVO").length;
+    document.getElementById("stat-avisos").innerText = socios.filter(s => s.aviso && s.aviso !== "").length;
+}
+
+function renderTabla() {
+    const tbody = document.getElementById("tbody-socios");
+    tbody.innerHTML = socios.map(s => {
+        const tipoAviso = s.tipoAviso || "ninguno";
+        const textoAviso = s.aviso || "Sin aviso";
+        const avisoCorto = textoAviso.length > 30 ? textoAviso.substring(0, 30) + "..." : textoAviso;
+        return `<tr>
+            <td><strong>${s.num}</strong></td>
+            <td>${s.nombre}</td>
+            <td><code>${s.pin}</code></td>
+            <td><span class="badge badge-${s.estado?.toLowerCase() === 'activo' ? 'activo' : 'inactivo'}">${s.estado || 'ACTIVO'}</span></td>
+            <td><span class="badge badge-aviso-${s.aviso ? tipoAviso : 'ninguno'}" title="${textoAviso}">${avisoCorto}</span></td>
+            <td>
+                <button class="btn-accion btn-editar" onclick="abrirEditar('${s.num}')">✏️ Editar</button>
+                <button class="btn-accion btn-aviso" onclick="irAAviso('${s.num}')">📢 Aviso</button>
+            </td>
+        </tr>`;
+    }).join("");
+}
+
+function renderSelectSocios() {
+    const sel = document.getElementById("aviso-socio-select");
+    sel.innerHTML = '<option value="">— Selecciona un socio —</option>' +
+        socios.map(s => `<option value="${s.num}">${s.num} — ${s.nombre}</option>`).join("");
+}
+
+function cambiarTab(nombre, btn) {
+    document.querySelectorAll(".seccion").forEach(s => s.classList.remove("activa"));
+    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("activo"));
+    document.getElementById("tab-" + nombre).classList.add("activa");
+    btn.classList.add("activo");
+}
+
+function irAAviso(num) {
+    cambiarTab("avisos", document.querySelectorAll(".tab-btn")[1]);
+    document.getElementById("aviso-socio-select").value = num;
+}
+
+function abrirEditar(num) {
+    const s = socios.find(x => String(x.num) === String(num));
+    if (!s) return;
+    document.getElementById("edit-num-original").value = s.num;
+    document.getElementById("edit-nombre").value = s.nombre;
+    document.getElementById("edit-pin").value = s.pin;
+    document.getElementById("edit-estado").value = s.estado || "ACTIVO";
+    document.getElementById("modal-editar").classList.add("abierto");
+}
+
+function cerrarModal() {
+    document.getElementById("modal-editar").classList.remove("abierto");
+}
+
+async function guardarEdicion() {
+    const body = {
+        action: "editSocio",
+        adminPin: ADMIN_PIN,
+        num: document.getElementById("edit-num-original").value,
+        nombre: document.getElementById("edit-nombre").value,
+        pin: document.getElementById("edit-pin").value,
+        estado: document.getElementById("edit-estado").value
+    };
+    await postAPI(body);
+    cerrarModal();
+    await cargarSocios();
+    mostrarToast("Socio actualizado ✓");
+}
+
+async function enviarAvisoGlobal() {
+    const texto = document.getElementById("aviso-global-texto").value.trim();
+    if (!texto) { mostrarToast("Escribe un mensaje", true); return; }
+    const tipo = document.getElementById("aviso-global-tipo").value;
+    await postAPI({ action: "setAviso", adminPin: ADMIN_PIN, num: "TODOS", aviso: texto, tipoAviso: tipo });
+    await cargarSocios();
+    mostrarToast("Aviso enviado a todos ✓");
+    document.getElementById("aviso-global-texto").value = "";
+}
+
+async function borrarAvisoGlobal() {
+    await postAPI({ action: "setAviso", adminPin: ADMIN_PIN, num: "TODOS", aviso: "", tipoAviso: "" });
+    await cargarSocios();
+    mostrarToast("Avisos borrados ✓");
+}
+
+async function enviarAvisoSocio() {
+    const num = document.getElementById("aviso-socio-select").value;
+    const texto = document.getElementById("aviso-socio-texto").value.trim();
+    if (!num) { mostrarToast("Selecciona un socio", true); return; }
+    if (!texto) { mostrarToast("Escribe un mensaje", true); return; }
+    const tipo = document.getElementById("aviso-socio-tipo").value;
+    await postAPI({ action: "setAviso", adminPin: ADMIN_PIN, num, aviso: texto, tipoAviso: tipo });
+    await cargarSocios();
+    mostrarToast("Aviso enviado ✓");
+    document.getElementById("aviso-socio-texto").value = "";
+}
+
+async function borrarAvisoSocio() {
+    const num = document.getElementById("aviso-socio-select").value;
+    if (!num) { mostrarToast("Selecciona un socio", true); return; }
+    await postAPI({ action: "setAviso", adminPin: ADMIN_PIN, num, aviso: "", tipoAviso: "" });
+    await cargarSocios();
+    mostrarToast("Aviso borrado ✓");
+}
+
+async function addSocio() {
+    const num = document.getElementById("nuevo-num").value.trim();
+    const nombre = document.getElementById("nuevo-nombre").value.trim();
+    const pin = document.getElementById("nuevo-pin").value.trim();
+    const estado = document.getElementById("nuevo-estado").value;
+    if (!num || !nombre || !pin) { mostrarToast("Rellena todos los campos", true); return; }
+    await postAPI({ action: "addSocio", adminPin: ADMIN_PIN, num, nombre, pin, estado });
+    await cargarSocios();
+    mostrarToast("Socio añadido ✓");
+    document.getElementById("nuevo-num").value = "";
+    document.getElementById("nuevo-nombre").value = "";
+    document.getElementById("nuevo-pin").value = "";
+}
+
+async function postAPI(body) {
+    try {
+        await fetch(API, {
+            method: "POST",
+            body: JSON.stringify(body)
+        });
+    } catch(e) {
+        mostrarToast("Error de conexión", true);
+    }
+}
+
+function mostrarToast(msg, error = false) {
+    const t = document.getElementById("toast");
+    t.innerText = msg;
+    t.className = "toast visible" + (error ? " error" : "");
+    setTimeout(() => t.className = "toast", 3000);
+}
+
+document.getElementById("input-pin").addEventListener("keydown", e => {
+    if (e.key === "Enter") loginAdmin();
+});
+</script>
+</body>
+</html>
