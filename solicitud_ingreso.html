@@ -4,11 +4,79 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Solicitud de Ingreso - Peña Taurina Peguerinos</title>
-
-<link rel="stylesheet" href="style.css">
-
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#7a0000">
+<link rel="apple-touch-icon" href="icon-192.png">
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "47ce7a35-b3f4-4a3c-b910-f09fa18b3baf",
+      serviceWorkerPath: "/OneSignalSDKWorker.js",
+    });
+  });
+</script>
+<style>
+html, body {
+    margin: 0; padding: 0; width: 100%; height: 100%;
+    overflow: hidden; background-color: #f4efe2;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex; flex-direction: column;
+}
+header {
+    background: linear-gradient(90deg, #7a0000, #b30000);
+    padding: 25px 20px; color: white; flex-shrink: 0;
+}
+.cabecera-flex { display: flex; justify-content: center; align-items: center; position: relative; }
+header h1 { margin: 0; font-size: 40px; flex: 1; text-align: center; }
+.gif-cabecera { height: 65px; position: absolute; right: 10px; }
+nav {
+    background-color: #d4af37; padding: 12px;
+    display: flex; justify-content: center; gap: 25px; flex-wrap: wrap;
+    flex-shrink: 0;
+}
+nav a { color: #7a0000; font-weight: bold; text-decoration: none; font-size: 18px; }
+.zona-scroll { flex: 1; overflow-y: auto; }
+.hero {
+    background: url('https://images.unsplash.com') center/cover;
+    height: 22vh; min-height: 110px; flex-shrink: 0;
+    display: flex; justify-content: center; align-items: center;
+}
+.hero-contenido { text-align: center; color: white; text-shadow: 2px 2px 6px black; }
+.logo-hero { height: 80px; }
+.hero-texto { font-size: 24px; font-weight: bold; }
+.contenedor {
+    max-width: 600px; margin: -20px auto 30px auto;
+    background: white; padding: 30px; border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.2);
+}
+h2 { color: #7a0000; border-bottom: 2px solid #d4af37; padding-bottom: 8px; margin-top: 0; }
+form { display: flex; flex-direction: column; gap: 12px; }
+label { font-weight: bold; color: #7a0000; font-size: 14px; }
+input, textarea {
+    padding: 12px; font-size: 15px;
+    border: 2px solid #d4af37; border-radius: 6px;
+    font-family: inherit; outline: none;
+}
+input:focus, textarea:focus { border-color: #7a0000; }
+.rgpd { font-size: 13px; color: #555; background: #f4efe2; padding: 12px; border-radius: 6px; border-left: 3px solid #7a0000; }
+button {
+    background-color: #7a0000; color: white;
+    padding: 14px; border: none; border-radius: 6px;
+    font-size: 17px; font-weight: bold; cursor: pointer;
+    margin-top: 5px; transition: 0.3s;
+}
+button:hover { background-color: #b30000; }
+button:disabled { background: #ccc; cursor: not-allowed; }
+.msg-ok { background: #28a745; color: white; padding: 15px; border-radius: 8px; text-align: center; font-weight: bold; display: none; }
+.msg-err { background: #dc3545; color: white; padding: 15px; border-radius: 8px; text-align: center; font-weight: bold; display: none; }
+footer {
+    background-color: #7a0000; color: white;
+    text-align: center; padding: 18px; flex-shrink: 0;
+}
+</style>
 </head>
-
 <body>
 
 <header>
@@ -29,6 +97,7 @@
     <a href="acceso-socios.html">Socios</a>
 </nav>
 
+<div class="zona-scroll">
 <div class="hero">
     <div class="hero-contenido">
         <img src="peña1.jpeg" class="logo-hero">
@@ -37,51 +106,74 @@
 </div>
 
 <div class="contenedor">
+    <h2>Formulario de Inscripción</h2>
 
-<h2>Formulario de Inscripción</h2>
+    <form id="form-solicitud">
+        <label>Nombre y apellidos *</label>
+        <input type="text" id="nombre" placeholder="Nombre completo" required>
 
-<form action="https://api.web3forms.com/submit" method="POST">
+        <label>DNI *</label>
+        <input type="text" id="dni" placeholder="12345678A" required>
 
-    <input type="hidden" name="access_key" value="22e4776b-f34b-46f2-bb4e-cd3b467dccfb">
+        <label>Fecha de nacimiento *</label>
+        <input type="date" id="fechaNac" required>
 
-    <!-- DATOS PERSONALES -->
-    <input type="text" name="Nombre completo" placeholder="Nombre y apellidos" required>
-    <input type="text" name="DNI" placeholder="DNI" required>
-    <input type="date" name="Fecha de nacimiento" required>
+        <label>Teléfono / WhatsApp *</label>
+        <input type="tel" id="telefono" placeholder="612 345 678" required>
 
-    <!-- CONTACTO -->
-    <input type="text" name="Teléfono" placeholder="Teléfono móvil / WhatsApp" required>
+        <label>Motivación (opcional)</label>
+        <textarea id="motivacion" rows="4" placeholder="¿Por qué quieres unirte a la peña?"></textarea>
 
-    <!-- MOTIVACIÓN -->
-    <textarea name="Motivación" placeholder="Motivación para unirse a la Peña (opcional)" rows="4"></textarea>
+        <div class="rgpd">
+            <strong>Información sobre protección de datos:</strong><br>
+            Responsable: Peña Taurina Peguerinos. Finalidad: gestionar el alta de socios. 
+            Legitimación: consentimiento del interesado. No se cederán datos a terceros salvo obligación legal.
+        </div>
 
-    <!-- RGPD -->
-    <p style="font-size:14px; color:#7a0000; margin-top:10px;">
-        De conformidad con el Reglamento (UE) 2016/679 (RGPD), se informa al solicitante de que:
-        <br><br>
-        <strong>Responsable:</strong> Peña Taurina Peguerinos.<br>
-        <strong>Finalidad:</strong> Gestionar el alta de socios y comunicaciones internas.<br>
-        <strong>Legitimación:</strong> Consentimiento del interesado.<br>
-        <strong>Destinatarios:</strong> No se cederán datos a terceros salvo obligación legal.<br>
-        <strong>Derechos:</strong> Puede solicitar acceso, rectificación o supresión de sus datos.
-    </p>
+        <label style="display:flex; align-items:center; gap:8px; font-weight:normal;">
+            <input type="checkbox" id="rgpd" required style="width:auto; padding:0;">
+            Acepto el tratamiento de mis datos personales según la información facilitada.
+        </label>
 
-    <label style="font-size:15px; color:#7a0000;">
-        <input type="checkbox" name="RGPD" required>
-        Acepto el tratamiento de mis datos personales según la información facilitada.
-    </label>
+        <button type="submit" id="btn-enviar">Enviar solicitud</button>
+    </form>
 
-    <input type="hidden" name="redirect" value="https://garcia1701.github.io/pegueraytaurina/gracias.html">
-    <input type="checkbox" name="botcheck" style="display:none;">
-
-    <button type="submit">Enviar solicitud</button>
-</form>
-
+    <div class="msg-ok" id="msg-ok">✅ Solicitud enviada correctamente. Nos pondremos en contacto contigo pronto.</div>
+    <div class="msg-err" id="msg-err">❌ Error al enviar. Por favor inténtalo de nuevo.</div>
+</div>
 </div>
 
-<footer>
-    Peña Taurina Peguerinos — 2026
-</footer>
+<footer>Peña Taurina Peguerinos — 2026</footer>
 
+<script>
+const API = "https://script.google.com/macros/s/AKfycbxuR0UKh-au7EoIEufoHvazzfd9MejHEHidOrH2ifAUAvRMAdqF7KJJmk6FP4RFHSSt/exec";
+
+document.getElementById("form-solicitud").addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById("btn-enviar");
+    btn.disabled = true;
+    btn.innerText = "Enviando...";
+
+    const datos = {
+        action: "solicitud",
+        nombre: document.getElementById("nombre").value,
+        dni: document.getElementById("dni").value,
+        fechaNac: document.getElementById("fechaNac").value,
+        telefono: document.getElementById("telefono").value,
+        motivacion: document.getElementById("motivacion").value
+    };
+
+    try {
+        await fetch(API, { method: "POST", body: JSON.stringify(datos) });
+        document.getElementById("form-solicitud").style.display = "none";
+        document.getElementById("msg-ok").style.display = "block";
+    } catch(err) {
+        document.getElementById("msg-err").style.display = "block";
+        btn.disabled = false;
+        btn.innerText = "Enviar solicitud";
+    }
+});
+</script>
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/peguerinos/sw.js');}</script>
 </body>
 </html>
