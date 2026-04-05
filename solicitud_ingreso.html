@@ -154,17 +154,16 @@ document.getElementById("form-solicitud").addEventListener("submit", async funct
     btn.disabled = true;
     btn.innerText = "Enviando...";
 
-    const datos = {
-        action: "solicitud",
-        nombre: document.getElementById("nombre").value,
-        dni: document.getElementById("dni").value,
-        fechaNac: document.getElementById("fechaNac").value,
-        telefono: document.getElementById("telefono").value,
-        motivacion: document.getElementById("motivacion").value
-    };
+    const form = new FormData();
+    form.append("action", "solicitud");
+    form.append("nombre", document.getElementById("nombre").value);
+    form.append("dni", document.getElementById("dni").value);
+    form.append("fechaNac", document.getElementById("fechaNac").value);
+    form.append("telefono", document.getElementById("telefono").value);
+    form.append("motivacion", document.getElementById("motivacion").value);
 
     try {
-        await fetch(API, { method: "POST", body: JSON.stringify(datos), mode: 'no-cors' });
+        await fetch(API, { method: "POST", body: form, mode: 'no-cors' });
         document.getElementById("form-solicitud").style.display = "none";
         document.getElementById("msg-ok").style.display = "block";
     } catch(err) {
