@@ -146,54 +146,47 @@ footer {
 </footer>
 
 <script>
-// Número de socio del administrador
+const API = "https://script.google.com/macros/s/AKfycbxuR0UKh-au7EoIEufoHvazzfd9MejHEHidOrH2ifAUAvRMAdqF7KJJmk6FP4RFHSSt/exec";
 const ADMIN_NUM = "0011";
 
-// Base de datos de socios (num, pass, nombre)
-// El campo "pass" aquí es también el PIN que se usa en Google Sheets
-const sociosDB = [
-    { num: "0001", pass: "9796", nombre: "MIGUEL ANGEL RODRIGUEZ FARIÑA" },
-    { num: "0002", pass: "5388", nombre: "ANTONIO ROSADO GARCIA" },
-    { num: "0003", pass: "5728", nombre: "DANIEL ALVAREZ GARCIA" },
-    { num: "0004", pass: "8042", nombre: "JOAQUIN RODRIGUEZ FARIÑA" },
-    { num: "0005", pass: "7324", nombre: "JUAN FERNANDO CASADO TORMO" },
-    { num: "0006", pass: "2715", nombre: "FELIX RODRIGUEZ" },
-    { num: "0007", pass: "1659", nombre: "JOSE CARLOS GARCIA POZO" },
-    { num: "0008", pass: "8498", nombre: "JAIME VILA-CORO LAVIÑA" },
-    { num: "0009", pass: "4534", nombre: "JOSE LUIS CAÑAVERAL-FERNANDEZ" },
-    { num: "0010", pass: "2025", nombre: "ALEJANDRO TANARRO GARCIA" },
-    { num: "0011", pass: "5997", nombre: "LUIS ALFONSO GARCIA" },
-    { num: "0012", pass: "7237", nombre: "JOSE LUIS CAÑAVERAL-FERNANDEZ" },
-    { num: "0013", pass: "8446", nombre: "ALFONSO RILO" },
-    { num: "0014", pass: "1605", nombre: "SERGIO MONGE GOMEZ" }
-];
-
-function validarAcceso(event) {
+async function validarAcceso(event) {
     event.preventDefault();
-    
+
+    const btn = document.querySelector("button[type='submit']");
+    const textoOriginal = btn.innerText;
+    btn.innerText = "Verificando...";
+    btn.disabled = true;
+
     const numRaw = document.getElementById("numSocio").value.trim();
     const passIngresada = document.getElementById("passSocio").value.trim();
     const numFormateado = numRaw.padStart(4, '0');
 
-    const socioEncontrado = sociosDB.find(s => s.num === numFormateado && s.pass === passIngresada);
+    try {
+        const res = await fetch(`${API}?action=getSocio&num=${numFormateado}&pin=${passIngresada}`);
+        const data = await res.json();
 
-    if (socioEncontrado) {
-        // Guardamos datos de sesión incluyendo el PIN para consultar Google Sheets
-        const datosSesion = {
-            num: socioEncontrado.num,
-            nombre: socioEncontrado.nombre,
-            pin: socioEncontrado.pass
-        };
-        localStorage.setItem("datos_sesion", JSON.stringify(datosSesion));
+        if (data.ok && data.socio) {
+            const datosSesion = {
+                num: numFormateado,
+                nombre: data.socio.nombre,
+                pin: passIngresada
+            };
+            localStorage.setItem("datos_sesion", JSON.stringify(datosSesion));
 
-        // Si es el admin, va al panel de administración
-        if (numFormateado === ADMIN_NUM) {
-            window.location.href = "panel-admin.html";
+            if (numFormateado === ADMIN_NUM) {
+                window.location.href = "panel-admin.html";
+            } else {
+                window.location.href = "panel-socio.html";
+            }
         } else {
-            window.location.href = "panel-socio.html";
+            alert("Número de socio o contraseña incorrectos.");
+            btn.innerText = textoOriginal;
+            btn.disabled = false;
         }
-    } else {
-        alert("Número de socio o contraseña incorrectos.");
+    } catch(e) {
+        alert("Error de conexión. Inténtalo de nuevo.");
+        btn.innerText = textoOriginal;
+        btn.disabled = false;
     }
 }
 </script>
