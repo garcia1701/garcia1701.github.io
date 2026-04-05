@@ -154,16 +154,16 @@ document.getElementById("form-solicitud").addEventListener("submit", async funct
     btn.disabled = true;
     btn.innerText = "Enviando...";
 
-    const form = new FormData();
-    form.append("action", "solicitud");
-    form.append("nombre", document.getElementById("nombre").value);
-    form.append("dni", document.getElementById("dni").value);
-    form.append("fechaNac", document.getElementById("fechaNac").value);
-    form.append("telefono", document.getElementById("telefono").value);
-    form.append("motivacion", document.getElementById("motivacion").value);
+    const nombre = document.getElementById("nombre").value;
+    const dni = document.getElementById("dni").value;
+    const fechaNac = document.getElementById("fechaNac").value;
+    const telefono = document.getElementById("telefono").value;
+    const motivacion = document.getElementById("motivacion").value;
+
+    const url = API + "?action=solicitud&nombre=" + encodeURIComponent(nombre) + "&dni=" + encodeURIComponent(dni) + "&fechaNac=" + encodeURIComponent(fechaNac) + "&telefono=" + encodeURIComponent(telefono) + "&motivacion=" + encodeURIComponent(motivacion);
 
     try {
-        await fetch(API, { method: "POST", body: form, mode: 'no-cors' });
+        await fetch(url, { mode: 'no-cors' });
         document.getElementById("form-solicitud").style.display = "none";
         document.getElementById("msg-ok").style.display = "block";
     } catch(err) {
