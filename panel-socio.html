@@ -95,8 +95,6 @@ footer {
     .franja-lema span { font-size: 11px; letter-spacing: 1.5px; }
     footer { padding: 10px; font-size: 12px; }
 }
-
-
 .contenedor { max-width: 950px; margin: 20px auto; padding: 0 20px; }
 .panel-flex { display: flex; gap: 35px; align-items: flex-start; flex-wrap: wrap; }
 .col-izq { flex: 1.3; min-width: 340px; }
@@ -118,25 +116,13 @@ footer {
 .parpadeo { animation: parpadeo 1s infinite; }
 @keyframes parpadeo { 0%, 100% {opacity: 1;} 50% {opacity: 0.5;} }
 @media (max-width: 768px) { .panel-flex { flex-direction: column; } .col-izq, .col-der { width: 100%; min-width: unset; } .contenedor { margin: 12px 10px; padding: 0 10px; } }
-
 </style>
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#7a0000">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="apple-touch-icon" href="icon-192.png">
-<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-<script>
-  window.OneSignalDeferred = window.OneSignalDeferred || [];
-  OneSignalDeferred.push(async function(OneSignal) {
-    await OneSignal.init({
-      appId: "47ce7a35-b3f4-4a3c-b910-f09fa18b3baf",
-      serviceWorkerPath: "/OneSignalSDKWorker.js",
-      serviceWorkerParam: { scope: "/" },
-    });
-  });
-</script>
 
-
+<!-- Firebase SDK -->
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging-compat.js"></script>
 </head>
@@ -180,7 +166,6 @@ footer {
 </div>
 
 <div class="zona-scroll">
-
 <div class="contenedor">
     <div class="panel-flex">
         <div class="col-izq">
@@ -217,17 +202,17 @@ footer {
 </footer>
 
 <script>
-function abrirMenu() {
-    document.getElementById('nav-menu').classList.add('abierto');
+function abrirMenu() { document.getElementById('nav-menu').classList.add('abierto'); }
+function cerrarMenu() { document.getElementById('nav-menu').classList.remove('abierto'); }
+
+// Service worker PWA
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js');
 }
-function cerrarMenu() {
-    document.getElementById('nav-menu').classList.remove('abierto');
-}
-if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}
 </script>
 
 <script>
-const API = "https://script.google.com/macros/s/AKfycbxuR0UKh-au7EoIEufoHvazzfd9MejHEHidOrH2ifAUAvRMAdqF7KJJmk6FP4RFHSSt/exec";
+const API = "https://script.google.com/macros/s/AKfycbx1cNOTCTiBU3yjscaRrlrMTkCU6n0G4WIxxSmJhwajRvGBPMqEWc8odKkrY28mw4_C/exec";
 const VAPID_KEY = "BHKDMKIXOKQeUgrjjuhCJiiZ4UqM6DEOxL5DeMql5C5gbGK5Ui2OlGk6t3AOI3KeQHv6TncNlYcBP8_TFVv0t6U";
 
 firebase.initializeApp({
@@ -283,14 +268,24 @@ async function cargarAviso() {
 
 async function activarNotificaciones() {
     try {
-        const swReg = await navigator.serviceWorker.register('/firebase-messaging-sw.js');
+        // Registrar firebase-messaging-sw.js explícitamente
+        const swReg = await navigator.serviceWorker.register('/firebase-messaging-sw.js', { scope: '/' });
+        await navigator.serviceWorker.ready;
+
         const permiso = await Notification.requestPermission();
         if (permiso !== "granted") return;
+
         const token = await messaging.getToken({ vapidKey: VAPID_KEY, serviceWorkerRegistration: swReg });
         if (token) {
-            await fetch(API, { method: "POST", body: JSON.stringify({ action: "saveFcmToken", num: sesion.num, token: token }) });
+            await fetch(API, {
+                method: "POST",
+                body: JSON.stringify({ action: "saveFcmToken", num: sesion.num, token: token })
+            });
+            console.log("Token FCM guardado OK");
         }
-    } catch(e) { console.log("Notificaciones no disponibles:", e); }
+    } catch(e) {
+        console.log("Notificaciones no disponibles:", e);
+    }
 }
 
 function cerrarSesion() {

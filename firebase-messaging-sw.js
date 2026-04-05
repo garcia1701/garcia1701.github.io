@@ -17,8 +17,8 @@ messaging.onBackgroundMessage(function(payload) {
   const body = payload.notification.body;
   self.registration.showNotification(title, {
     body: body,
-    icon: '/peguerinos/icon-192.png',
-    badge: '/peguerinos/icon-192.png',
+    icon: '/icon-192.png',
+    badge: '/icon-192.png',
     vibrate: [200, 100, 200]
   });
 });
