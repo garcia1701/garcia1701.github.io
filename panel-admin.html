@@ -1,321 +1,215 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Panel Admin - Peña Taurina Peguerinos</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Panel Admin - Peña Taurina Peguerinos</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-
-html { height: 100%; }
-
-body {
-    min-height: 100%;
-    background-color: #f4efe2;
+html, body {
+    width: 100%; height: 100%;
+    overflow: hidden; background-color: #f4efe2;
     font-family: 'Segoe UI', Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
+    display: flex; flex-direction: column;
 }
-
 header {
-    background: linear-gradient(90deg, #7a0000, #b30000);
-    padding: 25px 20px;
-    color: white;
-    text-align: center;
+    background: linear-gradient(135deg, #5a0000 0%, #8b0000 50%, #5a0000 100%);
+    padding: 20px 20px; color: white;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: space-between;
 }
-header h1 { font-size: 32px; margin-bottom: 4px; }
-header p { font-size: 14px; opacity: 0.8; }
+.btn-menu {
+    background: none; border: 2px solid rgba(212,175,55,0.5);
+    color: #d4af37; font-size: 24px; padding: 6px 12px;
+    border-radius: 6px; cursor: pointer; line-height: 1;
+    display: none; flex-shrink: 0;
+}
+header h1 {
+    font-size: 28px; color: #d4af37;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    flex: 1; text-align: center;
+}
+.gif-cabecera { height: 55px; flex-shrink: 0; }
+.nav-desktop {
+    display: flex; gap: 14px; flex-wrap: wrap;
+}
+.nav-desktop a {
+    color: rgba(255,255,255,0.85); text-decoration: none;
+    font-size: 13px; padding: 3px 6px; border-radius: 4px;
+    transition: 0.2s;
+}
+.nav-desktop a:hover { color: #d4af37; }
+.nav-movil {
+    display: none; flex-direction: column;
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(90,0,0,0.97); z-index: 200;
+    padding: 70px 24px 24px; gap: 0;
+    overflow-y: auto;
+}
+.nav-movil.abierto { display: flex; }
+.nav-movil a {
+    color: #d4af37; font-weight: bold; text-decoration: none;
+    font-size: 20px; padding: 16px 0;
+    border-bottom: 1px solid rgba(212,175,55,0.2);
+}
+.nav-movil a:last-child { border-bottom: none; }
+.btn-cerrar-menu {
+    position: absolute; top: 16px; right: 20px;
+    background: none; border: none; color: #d4af37;
+    font-size: 36px; cursor: pointer; line-height: 1;
+}
+.zona-logo {
+    background: linear-gradient(135deg, #c9a227 0%, #d4af37 30%, #e8c84a 50%, #d4af37 70%, #c9a227 100%);
+    padding: 22px 20px;
+    display: flex; justify-content: center; align-items: center;
+    flex-shrink: 0;
+}
+.logo-principal {
+    height: 110px; border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    border: 3px solid #7a0000;
+}
+.franja-lema {
+    background: linear-gradient(90deg, #5a0000, #7a0000, #5a0000);
+    padding: 8px 16px; text-align: center; flex-shrink: 0;
+}
+.franja-lema span {
+    color: #d4af37; font-weight: bold; font-size: 14px;
+    letter-spacing: 3px; text-transform: uppercase;
+}
+.zona-scroll { flex: 1; overflow-y: auto; }
+footer {
+    background-color: #7a0000; color: #d4af37;
+    text-align: center; padding: 14px; font-size: 13px;
+    flex-shrink: 0;
+}
+@media (max-width: 768px) {
+    .btn-menu { display: block; }
+    .nav-desktop { display: none; }
+    header { padding: 14px 14px; }
+    header h1 { font-size: 20px; }
+    .gif-cabecera { height: 40px; }
+    .zona-logo { padding: 16px; }
+    .logo-principal { height: 80px; }
+    .franja-lema { padding: 6px 12px; }
+    .franja-lema span { font-size: 11px; letter-spacing: 1.5px; }
+    footer { padding: 10px; font-size: 12px; }
+}
 
-nav {
-    background-color: #d4af37;
-    padding: 12px;
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    flex-wrap: wrap;
-}
-nav a { color: #7a0000; font-weight: bold; text-decoration: none; font-size: 16px; }
 
-.contenedor {
-    max-width: 1100px;
-    margin: 30px auto;
-    padding: 0 20px;
-    flex: 1;
-    width: 100%;
-}
-
-/* LOGIN */
-#pantalla-login {
-    max-width: 400px;
-    margin: 60px auto;
-    background: white;
-    border-radius: 12px;
-    padding: 35px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    text-align: center;
-}
+.contenedor { max-width: 1100px; margin: 20px auto; padding: 0 20px; flex: 1; width: 100%; }
+#pantalla-login { max-width: 400px; margin: 40px auto; background: white; border-radius: 12px; padding: 35px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); text-align: center; }
 #pantalla-login h2 { color: #7a0000; margin-bottom: 20px; font-size: 22px; }
-#pantalla-login input {
-    width: 100%; padding: 12px; margin-bottom: 15px;
-    border: 2px solid #d4af37; border-radius: 8px;
-    font-size: 16px; text-align: center; letter-spacing: 3px;
-}
-#pantalla-login button {
-    background: #7a0000; color: white; border: none;
-    padding: 13px 30px; border-radius: 8px; font-size: 16px;
-    font-weight: bold; cursor: pointer; width: 100%;
-}
+#pantalla-login input { width: 100%; padding: 12px; margin-bottom: 15px; border: 2px solid #d4af37; border-radius: 8px; font-size: 16px; text-align: center; letter-spacing: 3px; }
+#pantalla-login button { background: #7a0000; color: white; border: none; padding: 13px 30px; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; width: 100%; }
 #pantalla-login button:hover { background: #b30000; }
 #login-error { color: #dc3545; margin-top: 10px; font-size: 14px; }
-
-/* PANEL PRINCIPAL */
 #panel-admin { display: none; }
-
-.tabs {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 25px;
-    flex-wrap: wrap;
-}
-.tab-btn {
-    background: white;
-    border: 2px solid #d4af37;
-    color: #7a0000;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    font-size: 15px;
-    transition: all 0.2s;
-}
-.tab-btn.activo {
-    background: #7a0000;
-    color: white;
-    border-color: #7a0000;
-}
+.tabs { display: flex; gap: 10px; margin-bottom: 25px; flex-wrap: wrap; }
+.tab-btn { background: white; border: 2px solid #d4af37; color: #7a0000; padding: 10px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 15px; transition: all 0.2s; }
+.tab-btn.activo { background: #7a0000; color: white; border-color: #7a0000; }
 .tab-btn:hover:not(.activo) { background: #f9f0d0; }
-
 .seccion { display: none; }
 .seccion.activa { display: block; }
-
-/* TABLA SOCIOS */
 .tabla-wrap { overflow-x: auto; }
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-th {
-    background: #7a0000;
-    color: white;
-    padding: 12px 10px;
-    text-align: left;
-    font-size: 13px;
-}
-td {
-    padding: 10px;
-    border-bottom: 1px solid #f0e8d0;
-    font-size: 13px;
-    vertical-align: middle;
-}
+table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+th { background: #7a0000; color: white; padding: 12px 10px; text-align: left; font-size: 13px; }
+td { padding: 10px; border-bottom: 1px solid #f0e8d0; font-size: 13px; vertical-align: middle; }
 tr:hover td { background: #fdf8ee; }
 tr:last-child td { border-bottom: none; }
-
-.badge {
-    padding: 3px 10px;
-    border-radius: 12px;
-    font-size: 11px;
-    font-weight: bold;
-    color: white;
-}
+.badge { padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: bold; color: white; }
 .badge-activo { background: #28a745; }
 .badge-inactivo { background: #6c757d; }
-
 .badge-aviso-verde { background: #28a745; }
 .badge-aviso-ambar { background: #ffc107; color: #333; }
 .badge-aviso-rojo { background: #dc3545; }
 .badge-aviso-ninguno { background: #ccc; color: #666; }
-
-/* BOTONES ACCIÓN */
-.btn-accion {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 12px;
-    font-weight: bold;
-    margin: 2px;
-}
+.btn-accion { padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer; font-size: 12px; font-weight: bold; margin: 2px; }
 .btn-editar { background: #d4af37; color: #7a0000; }
 .btn-aviso { background: #7a0000; color: white; }
-
-/* FORMULARIOS */
-.card {
-    background: white;
-    border-radius: 12px;
-    padding: 25px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
-}
+.card { background: white; border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 20px; }
 .card h3 { color: #7a0000; margin-bottom: 20px; font-size: 18px; border-bottom: 2px solid #d4af37; padding-bottom: 8px; }
-
-.form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-}
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
 .form-grupo { display: flex; flex-direction: column; gap: 5px; }
 .form-grupo label { font-weight: bold; font-size: 13px; color: #555; }
-.form-grupo input, .form-grupo select, .form-grupo textarea {
-    padding: 10px;
-    border: 2px solid #ddd;
-    border-radius: 7px;
-    font-size: 14px;
-    font-family: inherit;
-}
-.form-grupo input:focus, .form-grupo select:focus, .form-grupo textarea:focus {
-    outline: none;
-    border-color: #d4af37;
-}
+.form-grupo input, .form-grupo select, .form-grupo textarea { padding: 10px; border: 2px solid #ddd; border-radius: 7px; font-size: 14px; font-family: inherit; }
+.form-grupo input:focus, .form-grupo select:focus, .form-grupo textarea:focus { outline: none; border-color: #d4af37; }
 .form-grupo.full { grid-column: 1 / -1; }
-
-.btn-primario {
-    background: #7a0000; color: white; border: none;
-    padding: 12px 25px; border-radius: 8px;
-    font-size: 15px; font-weight: bold; cursor: pointer;
-    margin-top: 10px;
-}
+.btn-primario { background: #7a0000; color: white; border: none; padding: 12px 25px; border-radius: 8px; font-size: 15px; font-weight: bold; cursor: pointer; margin-top: 10px; }
 .btn-primario:hover { background: #b30000; }
-.btn-secundario {
-    background: #d4af37; color: #7a0000; border: none;
-    padding: 12px 25px; border-radius: 8px;
-    font-size: 15px; font-weight: bold; cursor: pointer;
-    margin-top: 10px; margin-left: 10px;
-}
-
-/* AVISO GLOBAL */
-.aviso-global-box {
-    background: linear-gradient(135deg, #7a0000, #b30000);
-    color: white;
-    border-radius: 12px;
-    padding: 25px;
-    margin-bottom: 20px;
-}
+.btn-secundario { background: #d4af37; color: #7a0000; border: none; padding: 12px 25px; border-radius: 8px; font-size: 15px; font-weight: bold; cursor: pointer; margin-top: 10px; margin-left: 10px; }
+.aviso-global-box { background: linear-gradient(135deg, #7a0000, #b30000); color: white; border-radius: 12px; padding: 25px; margin-bottom: 20px; }
 .aviso-global-box h3 { margin-bottom: 15px; font-size: 18px; }
-.aviso-global-box textarea {
-    width: 100%; padding: 12px;
-    border: none; border-radius: 8px;
-    font-size: 14px; font-family: inherit;
-    margin-bottom: 12px; resize: vertical;
-}
-.aviso-global-box select {
-    padding: 10px; border: none; border-radius: 8px;
-    font-size: 14px; margin-bottom: 12px; margin-right: 10px;
-}
-.btn-enviar-global {
-    background: #d4af37; color: #7a0000; border: none;
-    padding: 12px 25px; border-radius: 8px;
-    font-size: 15px; font-weight: bold; cursor: pointer;
-}
-
-/* MODAL */
-.modal-overlay {
-    display: none;
-    position: fixed; top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.5);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-}
+.aviso-global-box textarea { width: 100%; padding: 12px; border: none; border-radius: 8px; font-size: 14px; font-family: inherit; margin-bottom: 12px; resize: vertical; }
+.aviso-global-box select { padding: 10px; border: none; border-radius: 8px; font-size: 14px; margin-bottom: 12px; margin-right: 10px; }
+.btn-enviar-global { background: #d4af37; color: #7a0000; border: none; padding: 12px 25px; border-radius: 8px; font-size: 15px; font-weight: bold; cursor: pointer; }
+.modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center; }
 .modal-overlay.abierto { display: flex; }
-.modal {
-    background: white;
-    border-radius: 12px;
-    padding: 30px;
-    max-width: 480px;
-    width: 90%;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-}
+.modal { background: white; border-radius: 12px; padding: 30px; max-width: 480px; width: 90%; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
 .modal h3 { color: #7a0000; margin-bottom: 20px; font-size: 18px; }
 .modal-botones { display: flex; gap: 10px; margin-top: 15px; }
-
-/* TOAST */
-.toast {
-    position: fixed; bottom: 30px; right: 30px;
-    background: #28a745; color: white;
-    padding: 14px 22px; border-radius: 8px;
-    font-weight: bold; font-size: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    opacity: 0; transition: opacity 0.3s;
-    z-index: 2000;
-}
+.toast { position: fixed; bottom: 30px; right: 30px; background: #28a745; color: white; padding: 14px 22px; border-radius: 8px; font-weight: bold; font-size: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); opacity: 0; transition: opacity 0.3s; z-index: 2000; }
 .toast.visible { opacity: 1; }
 .toast.error { background: #dc3545; }
-
-/* STATS */
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 15px;
-    margin-bottom: 25px;
-}
-.stat-card {
-    background: white;
-    border-radius: 10px;
-    padding: 18px;
-    text-align: center;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-    border-top: 4px solid #d4af37;
-}
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; margin-bottom: 25px; }
+.stat-card { background: white; border-radius: 10px; padding: 18px; text-align: center; box-shadow: 0 3px 10px rgba(0,0,0,0.08); border-top: 4px solid #d4af37; }
 .stat-num { font-size: 32px; font-weight: bold; color: #7a0000; }
 .stat-label { font-size: 13px; color: #666; margin-top: 4px; }
-
 .cargando { text-align: center; padding: 40px; color: #7a0000; font-size: 16px; }
+@media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } .form-grupo.full { grid-column: 1; } .contenedor { margin: 12px 10px; } }
 
-footer {
-    background-color: #7a0000;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    font-size: 15px;
-}
-
-@media (max-width: 600px) {
-    .form-grid { grid-template-columns: 1fr; }
-    .form-grupo.full { grid-column: 1; }
-}
 </style>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#7a0000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="icon-192.png">
 <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script>
   window.OneSignalDeferred = window.OneSignalDeferred || [];
   OneSignalDeferred.push(async function(OneSignal) {
     await OneSignal.init({
       appId: "47ce7a35-b3f4-4a3c-b910-f09fa18b3baf",
-      serviceWorkerPath: "/peguerinos/OneSignalSDKWorker.js",
-      serviceWorkerParam: { scope: "/peguerinos/" },
+      serviceWorkerPath: "/OneSignalSDKWorker.js",
+      serviceWorkerParam: { scope: "/" },
     });
   });
 </script>
+
 </head>
+
 <body>
 
 <header>
-    <h1>⚙️ Panel de Administrador</h1>
-    <p>Peña Taurina Peguerinos</p>
+    <button class="btn-menu" onclick="abrirMenu()" aria-label="Abrir menú">&#9776;</button>
+    <h1>Peña Taurina Peguerinos</h1>
+    <nav class="nav-desktop">
+        <a href="index.html">Inicio</a>
+        <a href="calendario_2026.html">Calendario</a>
+        <a href="actividades_eventos.html">Actividades</a>
+        <a href="galeria.html">Galería</a>
+        <a href="acceso-socios.html">Socios</a>
+    </nav>
+    <img src="toro_enfadado.gif" class="gif-cabecera" alt="Toro">
 </header>
 
-<nav>
-    <a href="index.html">Inicio</a>
-    <a href="calendario_2026.html">Calendario</a>
-    <a href="actividades_eventos.html">Actividades</a>
-    <a href="galeria.html">Galería</a>
-    <a href="acceso-socios.html">Socios</a>
+<nav class="nav-movil" id="nav-menu">
+    <button class="btn-cerrar-menu" onclick="cerrarMenu()" aria-label="Cerrar menú">&times;</button>
+    <a href="index.html" onclick="cerrarMenu()">Inicio</a>
+    <a href="calendario_2026.html" onclick="cerrarMenu()">Calendario</a>
+    <a href="actividades_eventos.html" onclick="cerrarMenu()">Actividades y Eventos</a>
+    <a href="galeria.html" onclick="cerrarMenu()">Galería</a>
+    <a href="acceso-socios.html" onclick="cerrarMenu()">Socios</a>
 </nav>
 
+<div class="zona-logo">
+    <img src="peña1.jpeg" class="logo-principal" alt="Logo Peña Taurina Peguerinos">
+</div>
+
+<div class="franja-lema">
+    <span>Panel de administración</span>
+</div>
+
+<div class="zona-scroll">
 <div class="contenedor">
 
     <!-- LOGIN -->
@@ -709,6 +603,22 @@ function mostrarToast(msg, error = false) {
 document.getElementById("input-pin").addEventListener("keydown", e => {
     if (e.key === "Enter") loginAdmin();
 });
+</script>
+
+</div>
+
+<footer>
+    Peña Taurina Peguerinos — Panel de Administración
+</footer>
+
+<script>
+function abrirMenu() {
+    document.getElementById('nav-menu').classList.add('abierto');
+}
+function cerrarMenu() {
+    document.getElementById('nav-menu').classList.remove('abierto');
+}
+if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}
 </script>
 </body>
 </html>

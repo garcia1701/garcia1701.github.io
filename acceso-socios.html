@@ -4,86 +4,112 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Acceso Socios - Peña Taurina Peguerinos</title>
-
 <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
 html, body {
-    margin: 0; padding: 0; width: 100%; height: 100%;
+    width: 100%; height: 100%;
     overflow: hidden; background-color: #f4efe2;
     font-family: 'Segoe UI', Arial, sans-serif;
     display: flex; flex-direction: column;
 }
-
 header {
-    background: linear-gradient(90deg, #7a0000, #b30000);
-    padding: 25px 20px; color: white;
+    background: linear-gradient(135deg, #5a0000 0%, #8b0000 50%, #5a0000 100%);
+    padding: 20px 20px; color: white;
     flex-shrink: 0;
+    display: flex; align-items: center; justify-content: space-between;
 }
-.cabecera-flex { display: flex; justify-content: center; align-items: center; position: relative; }
-header h1 { margin: 0; font-size: 40px; flex: 1; text-align: center; }
-.gif-cabecera { height: 65px; position: absolute; right: 10px; }
-
-nav {
-    background-color: #d4af37; padding: 12px;
-    display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;
-    flex-shrink: 0;
+.btn-menu {
+    background: none; border: 2px solid rgba(212,175,55,0.5);
+    color: #d4af37; font-size: 24px; padding: 6px 12px;
+    border-radius: 6px; cursor: pointer; line-height: 1;
+    display: none; flex-shrink: 0;
 }
-nav a { 
-    color: #7a0000; 
-    font-weight: bold; 
-    text-decoration: none; 
-    font-size: 16px;
-    padding: 5px 10px;
+header h1 {
+    font-size: 28px; color: #d4af37;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    flex: 1; text-align: center;
 }
-nav a:hover { color: white; }
-
-.hero {
-    background: url('https://unsplash.com') center/cover;
-    height: 22vh; min-height: 110px; flex-shrink: 0;
+.gif-cabecera { height: 55px; flex-shrink: 0; }
+.nav-desktop {
+    display: flex; gap: 14px; flex-wrap: wrap;
+}
+.nav-desktop a {
+    color: rgba(255,255,255,0.85); text-decoration: none;
+    font-size: 13px; padding: 3px 6px; border-radius: 4px;
+    transition: 0.2s;
+}
+.nav-desktop a:hover { color: #d4af37; }
+.nav-movil {
+    display: none; flex-direction: column;
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(90,0,0,0.97); z-index: 200;
+    padding: 70px 24px 24px; gap: 0;
+    overflow-y: auto;
+}
+.nav-movil.abierto { display: flex; }
+.nav-movil a {
+    color: #d4af37; font-weight: bold; text-decoration: none;
+    font-size: 20px; padding: 16px 0;
+    border-bottom: 1px solid rgba(212,175,55,0.2);
+}
+.nav-movil a:last-child { border-bottom: none; }
+.btn-cerrar-menu {
+    position: absolute; top: 16px; right: 20px;
+    background: none; border: none; color: #d4af37;
+    font-size: 36px; cursor: pointer; line-height: 1;
+}
+.zona-logo {
+    background: linear-gradient(135deg, #c9a227 0%, #d4af37 30%, #e8c84a 50%, #d4af37 70%, #c9a227 100%);
+    padding: 22px 20px;
     display: flex; justify-content: center; align-items: center;
+    flex-shrink: 0;
 }
-.hero-contenido { text-align: center; color: white; text-shadow: 2px 2px 6px black; }
-.logo-hero { height: 75px; border-radius: 10px; }
-.hero-texto { font-size: 24px; font-weight: bold; }
-
-.contenedor {
-    max-width: 450px; margin: -30px auto 40px auto;
-    background: white; padding: 35px; border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    flex: 1;
+.logo-principal {
+    height: 110px; border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    border: 3px solid #7a0000;
 }
-
-h2 { color: #7a0000; border-bottom: 2px solid #d4af37; padding-bottom: 10px; text-align: center; margin-top: 0; }
-
-form { display: flex; flex-direction: column; gap: 15px; }
-
-label { font-weight: bold; color: #7a0000; }
-
-input {
-    padding: 12px; font-size: 16px;
-    border: 2px solid #d4af37; border-radius: 6px;
-    outline: none;
+.franja-lema {
+    background: linear-gradient(90deg, #5a0000, #7a0000, #5a0000);
+    padding: 8px 16px; text-align: center; flex-shrink: 0;
 }
-
-button {
-    background-color: #7a0000; color: white;
-    padding: 15px; border: none; border-radius: 6px;
-    font-size: 18px; font-weight: bold; cursor: pointer;
-    margin-top: 10px;
-    transition: 0.3s;
-}
-button:hover { background-color: #b30000; transform: scale(1.02); }
-
-footer {
-    background-color: #7a0000; color: white;
-    text-align: center; padding: 20px;
-    font-size: 16px; flex-shrink: 0;
+.franja-lema span {
+    color: #d4af37; font-weight: bold; font-size: 14px;
+    letter-spacing: 3px; text-transform: uppercase;
 }
 .zona-scroll { flex: 1; overflow-y: auto; }
+footer {
+    background-color: #7a0000; color: #d4af37;
+    text-align: center; padding: 14px; font-size: 13px;
+    flex-shrink: 0;
+}
+@media (max-width: 768px) {
+    .btn-menu { display: block; }
+    .nav-desktop { display: none; }
+    header { padding: 14px 14px; }
+    header h1 { font-size: 20px; }
+    .gif-cabecera { height: 40px; }
+    .zona-logo { padding: 16px; }
+    .logo-principal { height: 80px; }
+    .franja-lema { padding: 6px 12px; }
+    .franja-lema span { font-size: 11px; letter-spacing: 1.5px; }
+    footer { padding: 10px; font-size: 12px; }
+}
+
+
+.contenedor { max-width: 450px; margin: 20px auto; background: white; padding: 35px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+.contenedor h2 { color: #7a0000; border-bottom: 2px solid #d4af37; padding-bottom: 10px; text-align: center; margin-top: 0; }
+.contenedor form { display: flex; flex-direction: column; gap: 15px; }
+.contenedor label { font-weight: bold; color: #7a0000; }
+.contenedor input { padding: 12px; font-size: 16px; border: 2px solid #d4af37; border-radius: 6px; outline: none; }
+.contenedor button { background-color: #7a0000; color: white; padding: 15px; border: none; border-radius: 6px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 10px; transition: 0.3s; }
+.contenedor button:hover { background-color: #b30000; transform: scale(1.02); }
+@media (max-width: 768px) { .contenedor { margin: 12px 10px; padding: 20px; } }
+
 </style>
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#7a0000">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <link rel="apple-touch-icon" href="icon-192.png">
 <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script>
@@ -96,46 +122,56 @@ footer {
     });
   });
 </script>
+
 </head>
 
 <body>
 
 <header>
-    <div class="cabecera-flex">
-        <h1>Acceso Socios</h1>
-        <img src="toro_enfadado.gif" class="gif-cabecera">
-    </div>
+    <button class="btn-menu" onclick="abrirMenu()" aria-label="Abrir menú">&#9776;</button>
+    <h1>Peña Taurina Peguerinos</h1>
+    <nav class="nav-desktop">
+        <a href="index.html">Inicio</a>
+        <a href="calendario_2026.html">Calendario</a>
+        <a href="actividades_eventos.html">Actividades</a>
+        <a href="galeria.html">Galería</a>
+        <a href="historia_peña.html">Historia</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="enlaces.html">Enlaces</a>
+        <a href="acceso-socios.html">Socios</a>
+    </nav>
+    <img src="toro_enfadado.gif" class="gif-cabecera" alt="Toro">
 </header>
 
-<nav>
-    <a href="index.html">Inicio</a>
-    <a href="calendario_2026.html">Calendario</a>
-    <a href="actividades_eventos.html">Actividades</a>
-    <a href="galeria.html">Galería</a>
-    <a href="historia_peña.html">Historia</a>
-    <a href="contacto.html">Contacto</a>
-    <a href="enlaces.html">Enlaces</a>
-    <a href="acceso-socios.html">Socios</a>
+<nav class="nav-movil" id="nav-menu">
+    <button class="btn-cerrar-menu" onclick="cerrarMenu()" aria-label="Cerrar menú">&times;</button>
+    <a href="index.html" onclick="cerrarMenu()">Inicio</a>
+    <a href="calendario_2026.html" onclick="cerrarMenu()">Calendario</a>
+    <a href="actividades_eventos.html" onclick="cerrarMenu()">Actividades y Eventos</a>
+    <a href="galeria.html" onclick="cerrarMenu()">Galería</a>
+    <a href="historia_peña.html" onclick="cerrarMenu()">Historia de la Peña</a>
+    <a href="contacto.html" onclick="cerrarMenu()">Contacto</a>
+    <a href="enlaces.html" onclick="cerrarMenu()">Enlaces</a>
+    <a href="acceso-socios.html" onclick="cerrarMenu()">Socios</a>
 </nav>
 
-<div class="zona-scroll">
-<div class="hero">
-    <div class="hero-contenido">
-        <img src="peña1.jpeg" class="logo-hero">
-        <div class="hero-texto">Área Privada</div>
-    </div>
+<div class="zona-logo">
+    <img src="peña1.jpeg" class="logo-principal" alt="Logo Peña Taurina Peguerinos">
 </div>
+
+<div class="franja-lema">
+    <span>Pasión por lo nuestro</span>
+</div>
+
+<div class="zona-scroll">
 
 <div class="contenedor">
     <h2>Identificación</h2>
-
     <form onsubmit="validarAcceso(event)">
         <label>Número de Socio</label>
         <input type="text" id="numSocio" placeholder="Ej: 0001" required>
-
         <label>Contraseña Personal</label>
         <input type="password" id="passSocio" placeholder="Tu contraseña" required>
-
         <button type="submit">ENTRAR AL PANEL</button>
     </form>
 </div>
@@ -146,33 +182,34 @@ footer {
 </footer>
 
 <script>
+function abrirMenu() {
+    document.getElementById('nav-menu').classList.add('abierto');
+}
+function cerrarMenu() {
+    document.getElementById('nav-menu').classList.remove('abierto');
+}
+if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}
+</script>
+
+<script>
 const API = "https://script.google.com/macros/s/AKfycbxuR0UKh-au7EoIEufoHvazzfd9MejHEHidOrH2ifAUAvRMAdqF7KJJmk6FP4RFHSSt/exec";
 const ADMIN_NUM = "0011";
 
 async function validarAcceso(event) {
     event.preventDefault();
-
     const btn = document.querySelector("button[type='submit']");
     const textoOriginal = btn.innerText;
     btn.innerText = "Verificando...";
     btn.disabled = true;
-
     const numRaw = document.getElementById("numSocio").value.trim();
     const passIngresada = document.getElementById("passSocio").value.trim();
     const numFormateado = numRaw.padStart(4, '0');
-
     try {
         const res = await fetch(`${API}?action=getSocio&num=${numFormateado}&pin=${passIngresada}`);
         const data = await res.json();
-
         if (data.ok && data.socio) {
-            const datosSesion = {
-                num: numFormateado,
-                nombre: data.socio.nombre,
-                pin: passIngresada
-            };
+            const datosSesion = { num: numFormateado, nombre: data.socio.nombre, pin: passIngresada };
             localStorage.setItem("datos_sesion", JSON.stringify(datosSesion));
-
             if (numFormateado === ADMIN_NUM) {
                 window.location.href = "panel-admin.html";
             } else {
@@ -189,12 +226,6 @@ async function validarAcceso(event) {
         btn.disabled = false;
     }
 }
-</script>
-
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js');
-  }
 </script>
 </body>
 </html>

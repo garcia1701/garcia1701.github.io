@@ -3,91 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Documentación Privada - Peña Taurina Peguerinos</title>
+    <title>Documentos - Peña Taurina Peguerinos</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+    width: 100%; height: 100%;
+    overflow: hidden; background-color: #f4efe2;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex; flex-direction: column;
+}
+header {
+    background: linear-gradient(135deg, #5a0000 0%, #8b0000 50%, #5a0000 100%);
+    padding: 20px 20px; color: white;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: space-between;
+}
+.btn-menu {
+    background: none; border: 2px solid rgba(212,175,55,0.5);
+    color: #d4af37; font-size: 24px; padding: 6px 12px;
+    border-radius: 6px; cursor: pointer; line-height: 1;
+    display: none; flex-shrink: 0;
+}
+header h1 {
+    font-size: 28px; color: #d4af37;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    flex: 1; text-align: center;
+}
+.gif-cabecera { height: 55px; flex-shrink: 0; }
+.nav-desktop {
+    display: flex; gap: 14px; flex-wrap: wrap;
+}
+.nav-desktop a {
+    color: rgba(255,255,255,0.85); text-decoration: none;
+    font-size: 13px; padding: 3px 6px; border-radius: 4px;
+    transition: 0.2s;
+}
+.nav-desktop a:hover { color: #d4af37; }
+.nav-movil {
+    display: none; flex-direction: column;
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(90,0,0,0.97); z-index: 200;
+    padding: 70px 24px 24px; gap: 0;
+    overflow-y: auto;
+}
+.nav-movil.abierto { display: flex; }
+.nav-movil a {
+    color: #d4af37; font-weight: bold; text-decoration: none;
+    font-size: 20px; padding: 16px 0;
+    border-bottom: 1px solid rgba(212,175,55,0.2);
+}
+.nav-movil a:last-child { border-bottom: none; }
+.btn-cerrar-menu {
+    position: absolute; top: 16px; right: 20px;
+    background: none; border: none; color: #d4af37;
+    font-size: 36px; cursor: pointer; line-height: 1;
+}
+.zona-logo {
+    background: linear-gradient(135deg, #c9a227 0%, #d4af37 30%, #e8c84a 50%, #d4af37 70%, #c9a227 100%);
+    padding: 22px 20px;
+    display: flex; justify-content: center; align-items: center;
+    flex-shrink: 0;
+}
+.logo-principal {
+    height: 110px; border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    border: 3px solid #7a0000;
+}
+.franja-lema {
+    background: linear-gradient(90deg, #5a0000, #7a0000, #5a0000);
+    padding: 8px 16px; text-align: center; flex-shrink: 0;
+}
+.franja-lema span {
+    color: #d4af37; font-weight: bold; font-size: 14px;
+    letter-spacing: 3px; text-transform: uppercase;
+}
+.zona-scroll { flex: 1; overflow-y: auto; }
+footer {
+    background-color: #7a0000; color: #d4af37;
+    text-align: center; padding: 14px; font-size: 13px;
+    flex-shrink: 0;
+}
+@media (max-width: 768px) {
+    .btn-menu { display: block; }
+    .nav-desktop { display: none; }
+    header { padding: 14px 14px; }
+    header h1 { font-size: 20px; }
+    .gif-cabecera { height: 40px; }
+    .zona-logo { padding: 16px; }
+    .logo-principal { height: 80px; }
+    .franja-lema { padding: 6px 12px; }
+    .franja-lema span { font-size: 11px; letter-spacing: 1.5px; }
+    footer { padding: 10px; font-size: 12px; }
+}
 
-    <!-- Cargar tu CSS unificado -->
-    <link rel="stylesheet" href="style.css">
 
-    <script>
-        // BLOQUEO DE SEGURIDAD: Solo socios logueados
-        const sesionActiva = localStorage.getItem("datos_sesion");
-        if (!sesionActiva) {
-            alert("Acceso denegado. Por favor, identifícate como socio.");
-            window.location.href = "acceso-socios.html";
-        }
-    </script>
+.contenedor { max-width: 800px; margin: 20px auto; background: white; padding: 20px 24px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+.seccion-docs { margin-bottom: 30px; }
+.seccion-docs h2 { color: #7a0000; border-bottom: 2px solid #d4af37; padding-bottom: 8px; font-size: 20px; }
+.lista-docs { list-style: none; padding: 0; }
+.doc-item { display: flex; justify-content: space-between; align-items: center; padding: 15px; border-bottom: 1px solid #f0e8d0; gap: 15px; }
+.doc-item:last-child { border-bottom: none; }
+.doc-info b { color: #7a0000; display: block; font-size: 15px; }
+.doc-info span { color: #666; font-size: 13px; }
+.btn-descarga { background: #7a0000; color: white; padding: 8px 18px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 13px; white-space: nowrap; }
+.btn-descarga:hover { background: #b30000; }
+.btn-volver { display: block; text-align: center; margin-top: 25px; color: #7a0000; font-weight: bold; text-decoration: none; font-size: 16px; }
+@media (max-width: 768px) { .contenedor { margin: 12px 10px; padding: 16px; } .doc-item { flex-direction: column; align-items: flex-start; gap: 10px; } }
+
+</style>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#7a0000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="icon-192.png">
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "47ce7a35-b3f4-4a3c-b910-f09fa18b3baf",
+      serviceWorkerPath: "/OneSignalSDKWorker.js",
+      serviceWorkerParam: { scope: "/" },
+    });
+  });
+</script>
+
+
 </head>
 
 <body>
 
 <header>
-    <h1>Archivo Privado de la Peña</h1>
+    <button class="btn-menu" onclick="abrirMenu()" aria-label="Abrir menú">&#9776;</button>
+    <h1>Peña Taurina Peguerinos</h1>
+    <nav class="nav-desktop">
+        <a href="index.html">Inicio</a>
+        <a href="calendario_2026.html">Calendario</a>
+        <a href="actividades_eventos.html">Actividades</a>
+        <a href="galeria.html">Galería</a>
+        <a href="historia_peña.html">Historia</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="enlaces.html">Enlaces</a>
+        <a href="acceso-socios.html">Socios</a>
+    </nav>
+    <img src="toro_enfadado.gif" class="gif-cabecera" alt="Toro">
 </header>
 
-<div class="contenedor">
+<nav class="nav-movil" id="nav-menu">
+    <button class="btn-cerrar-menu" onclick="cerrarMenu()" aria-label="Cerrar menú">&times;</button>
+    <a href="index.html" onclick="cerrarMenu()">Inicio</a>
+    <a href="calendario_2026.html" onclick="cerrarMenu()">Calendario</a>
+    <a href="actividades_eventos.html" onclick="cerrarMenu()">Actividades y Eventos</a>
+    <a href="galeria.html" onclick="cerrarMenu()">Galería</a>
+    <a href="historia_peña.html" onclick="cerrarMenu()">Historia de la Peña</a>
+    <a href="contacto.html" onclick="cerrarMenu()">Contacto</a>
+    <a href="enlaces.html" onclick="cerrarMenu()">Enlaces</a>
+    <a href="acceso-socios.html" onclick="cerrarMenu()">Socios</a>
+</nav>
 
-    <!-- DOCUMENTOS PRINCIPALES -->
+<div class="zona-logo">
+    <img src="peña1.jpeg" class="logo-principal" alt="Logo Peña Taurina Peguerinos">
+</div>
+
+<div class="franja-lema">
+    <span>Pasión por lo nuestro</span>
+</div>
+
+<div class="zona-scroll">
+
+<div class="contenedor">
     <div class="seccion-docs">
         <h2>📜 Documentos y Estatutos</h2>
         <ul class="lista-docs">
-
-            <li class="doc-item">
-                <div class="doc-info">
-                    <b>Acta Fundacional</b>
-                    <span>Documento oficial de constitución</span>
-                </div>
-                <a href="ACTA FUNDACIONAL DE LA ASOCIACIÓN.pdf" download class="btn-descarga">Descargar</a>
-            </li>
-
-            <li class="doc-item">
-                <div class="doc-info">
-                    <b>Estatutos Vigentes</b>
-                    <span>Normas internas de funcionamiento</span>
-                </div>
-                <a href="Estatutos.pdf" download class="btn-descarga">Descargar</a>
-            </li>
-
-            <li class="doc-item">
-                <div class="doc-info">
-                    <b>Reglamento Interno</b>
-                    <span>Acuerdos y normas de organización</span>
-                </div>
-                <a href="reglamento.pdf" download class="btn-descarga">Descargar</a>
-            </li>
-
-            <li class="doc-item">
-                <div class="doc-info">
-                    <b>Normas del Grupo WhatsApp</b>
-                    <span>Reglas internas de convivencia digital</span>
-                </div>
-                <a href="NORMAS DEL GRUPO whatsapp.pdf" download class="btn-descarga">Descargar</a>
-            </li>
-
+            <li class="doc-item"><div class="doc-info"><b>Acta Fundacional</b><span>Documento oficial de constitución</span></div><a href="ACTA FUNDACIONAL DE LA ASOCIACIÓN.pdf" download class="btn-descarga">Descargar</a></li>
+            <li class="doc-item"><div class="doc-info"><b>Estatutos Vigentes</b><span>Normas internas de funcionamiento</span></div><a href="Estatutos.pdf" download class="btn-descarga">Descargar</a></li>
+            <li class="doc-item"><div class="doc-info"><b>Reglamento Interno</b><span>Acuerdos y normas de organización</span></div><a href="reglamento.pdf" download class="btn-descarga">Descargar</a></li>
+            <li class="doc-item"><div class="doc-info"><b>Normas del Grupo WhatsApp</b><span>Reglas internas de convivencia digital</span></div><a href="NORMAS DEL GRUPO whatsapp.pdf" download class="btn-descarga">Descargar</a></li>
         </ul>
     </div>
-
-    <!-- CUENTAS -->
     <div class="seccion-docs">
         <h2>💰 Transparencia y Cuentas</h2>
         <ul class="lista-docs">
-
-            <li class="doc-item">
-                <div class="doc-info">
-                    <b>Hoja de Cuentas 2026</b>
-                    <span>Ingresos, gastos y aportaciones especiales</span>
-                </div>
-                <a href="HOJA DE CUENTAS.pdf" download class="btn-descarga">Descargar</a>
-            </li>
-
+            <li class="doc-item"><div class="doc-info"><b>Hoja de Cuentas 2026</b><span>Ingresos, gastos y aportaciones especiales</span></div><a href="HOJA DE CUENTAS.pdf" download class="btn-descarga">Descargar</a></li>
         </ul>
     </div>
-
     <a href="panel-socio.html" class="btn-volver">⬅ Volver al carnet</a>
-
+</div>
 </div>
 
-<footer>Peña Taurina Peguerinos — Área Reservada</footer>
+<footer>
+    Peña Taurina Peguerinos — Unidos por la afición
+</footer>
 
+<script>
+function abrirMenu() {
+    document.getElementById('nav-menu').classList.add('abierto');
+}
+function cerrarMenu() {
+    document.getElementById('nav-menu').classList.remove('abierto');
+}
+if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}
+</script>
+
+<script>
+const sesionActiva = localStorage.getItem("datos_sesion");
+if (!sesionActiva) {
+    alert("Acceso denegado. Por favor, identifícate como socio.");
+    window.location.href = "acceso-socios.html";
+}
+</script>
 </body>
 </html>
-

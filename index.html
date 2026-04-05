@@ -17,51 +17,35 @@ html, body {
     display: flex; flex-direction: column;
 }
 
-/* HEADER PRINCIPAL */
+/* 1. HEADER GRANATE — más ancho */
 header {
     background: linear-gradient(135deg, #5a0000 0%, #8b0000 50%, #5a0000 100%);
-    padding: 18px 20px; color: white;
+    padding: 20px 20px; color: white;
     flex-shrink: 0;
     display: flex; align-items: center; justify-content: space-between;
 }
-.header-izq { display: flex; align-items: center; gap: 12px; }
 .btn-menu {
-    background: none; border: 2px solid rgba(255,255,255,0.4);
-    color: white; font-size: 22px; padding: 5px 10px;
+    background: none; border: 2px solid rgba(212,175,55,0.5);
+    color: #d4af37; font-size: 24px; padding: 6px 12px;
     border-radius: 6px; cursor: pointer; line-height: 1;
     display: none; flex-shrink: 0;
 }
-.header-centro {
-    display: flex; align-items: center; gap: 14px;
-    flex: 1; justify-content: center;
-}
-.logo-header { height: 55px; border-radius: 6px; }
 header h1 {
-    font-size: 26px; color: #d4af37;
+    font-size: 28px; color: #d4af37;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    flex: 1; text-align: center;
 }
 .gif-cabecera { height: 55px; flex-shrink: 0; }
 
-/* FRANJA DORADA */
-.franja-dorada {
-    background: linear-gradient(90deg, #c9a227, #d4af37, #e8c84a, #d4af37, #c9a227);
-    padding: 7px 16px;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; gap: 20px;
-}
-.franja-dorada span {
-    color: #7a0000; font-weight: bold; font-size: 13px;
-    letter-spacing: 2px; text-transform: uppercase;
-}
 .nav-desktop {
-    display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+    display: flex; gap: 14px; flex-wrap: wrap;
 }
 .nav-desktop a {
-    color: #7a0000; font-weight: bold; text-decoration: none;
-    font-size: 14px; padding: 3px 6px; border-radius: 4px;
+    color: rgba(255,255,255,0.85); text-decoration: none;
+    font-size: 13px; padding: 3px 6px; border-radius: 4px;
     transition: 0.2s;
 }
-.nav-desktop a:hover { background: #7a0000; color: #d4af37; }
+.nav-desktop a:hover { color: #d4af37; }
 
 /* NAV MÓVIL */
 .nav-movil {
@@ -84,7 +68,32 @@ header h1 {
     font-size: 36px; cursor: pointer; line-height: 1;
 }
 
-/* CONTENIDO */
+/* 2. ZONA LOGO — fondo DORADO */
+.zona-logo {
+    background: linear-gradient(135deg, #c9a227 0%, #d4af37 30%, #e8c84a 50%, #d4af37 70%, #c9a227 100%);
+    padding: 22px 20px;
+    display: flex; justify-content: center; align-items: center;
+    flex-shrink: 0;
+}
+.logo-principal {
+    height: 110px; border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    border: 3px solid #7a0000;
+}
+
+/* 3. FRANJA CON LEMA — granate fino */
+.franja-lema {
+    background: linear-gradient(90deg, #5a0000, #7a0000, #5a0000);
+    padding: 8px 16px;
+    text-align: center;
+    flex-shrink: 0;
+}
+.franja-lema span {
+    color: #d4af37; font-weight: bold; font-size: 14px;
+    letter-spacing: 3px; text-transform: uppercase;
+}
+
+/* 4. CONTENIDO */
 .zona-scroll { flex: 1; overflow-y: auto; }
 .contenedor {
     max-width: 800px; margin: 20px auto;
@@ -94,7 +103,7 @@ header h1 {
 .contenedor h2 { color: #7a0000; font-size: 18px; margin-bottom: 8px; }
 .contenedor p { color: #444; line-height: 1.6; font-size: 15px; }
 
-/* BANNERS */
+/* 5. BANNERS */
 .patro-titulo {
     text-align: center; color: #7a0000; font-size: 13px;
     font-weight: bold; text-transform: uppercase; letter-spacing: 2px;
@@ -139,6 +148,7 @@ header h1 {
 }
 .patro-slider:hover img { animation-play-state: paused; }
 
+/* 6. FOOTER */
 footer {
     background-color: #7a0000; color: #d4af37;
     text-align: center; padding: 14px; font-size: 13px;
@@ -149,16 +159,22 @@ footer {
 @media (max-width: 768px) {
     .btn-menu { display: block; }
     .nav-desktop { display: none; }
-    header { padding: 12px 14px; }
-    .header-centro { gap: 10px; }
-    .logo-header { height: 40px; }
-    header h1 { font-size: 18px; }
-    .gif-cabecera { height: 38px; }
-    .franja-dorada { padding: 6px 12px; }
-    .franja-dorada span { font-size: 11px; letter-spacing: 1px; }
+
+    header { padding: 14px 14px; }
+    header h1 { font-size: 20px; }
+    .gif-cabecera { height: 40px; }
+
+    .zona-logo { padding: 16px; }
+    .logo-principal { height: 80px; }
+
+    .franja-lema { padding: 6px 12px; }
+    .franja-lema span { font-size: 11px; letter-spacing: 1.5px; }
+
     .contenedor { margin: 12px 10px; padding: 16px; }
+
     .patro-banner { width: 95%; height: 100px; }
     .patro-titulo { margin: 14px 0 6px; font-size: 11px; }
+
     footer { padding: 10px; font-size: 12px; }
 }
 </style>
@@ -178,19 +194,10 @@ footer {
 
 <body>
 
+<!-- 1. HEADER GRANATE -->
 <header>
-    <div class="header-izq">
-        <button class="btn-menu" onclick="abrirMenu()" aria-label="Abrir menú">&#9776;</button>
-    </div>
-    <div class="header-centro">
-        <img src="peña1.jpeg" class="logo-header" alt="Logo Peña">
-        <h1>Peña Taurina Peguerinos</h1>
-    </div>
-    <img src="toro_enfadado.gif" class="gif-cabecera" alt="Toro">
-</header>
-
-<div class="franja-dorada">
-    <span>Pasión por lo nuestro</span>
+    <button class="btn-menu" onclick="abrirMenu()" aria-label="Abrir menú">&#9776;</button>
+    <h1>Peña Taurina Peguerinos</h1>
     <nav class="nav-desktop">
         <a href="calendario_2026.html">Calendario</a>
         <a href="actividades_eventos.html">Actividades</a>
@@ -200,8 +207,10 @@ footer {
         <a href="enlaces.html">Enlaces</a>
         <a href="acceso-socios.html">Socios</a>
     </nav>
-</div>
+    <img src="toro_enfadado.gif" class="gif-cabecera" alt="Toro">
+</header>
 
+<!-- NAV MÓVIL -->
 <nav class="nav-movil" id="nav-menu">
     <button class="btn-cerrar-menu" onclick="cerrarMenu()" aria-label="Cerrar menú">&times;</button>
     <a href="calendario_2026.html" onclick="cerrarMenu()">Calendario</a>
@@ -213,6 +222,17 @@ footer {
     <a href="acceso-socios.html" onclick="cerrarMenu()">Socios</a>
 </nav>
 
+<!-- 2. ZONA LOGO — fondo dorado -->
+<div class="zona-logo">
+    <img src="peña1.jpeg" class="logo-principal" alt="Logo Peña Taurina Peguerinos">
+</div>
+
+<!-- 3. FRANJA LEMA — granate con texto dorado -->
+<div class="franja-lema">
+    <span>Pasión por lo nuestro</span>
+</div>
+
+<!-- 4-5. CONTENIDO -->
 <div class="zona-scroll">
 
 <div class="contenedor">
@@ -251,6 +271,7 @@ footer {
 
 </div>
 
+<!-- 6. FOOTER -->
 <footer>
     Peña Taurina Peguerinos — Unidos por la afición
 </footer>

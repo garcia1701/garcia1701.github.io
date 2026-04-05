@@ -4,343 +4,215 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Contacto - Peña Taurina Peguerinos</title>
-
 <style>
-
-/* ============================
-   AJUSTES GENERALES
-============================ */
-
+* { box-sizing: border-box; margin: 0; padding: 0; }
 html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    background-color: #f4efe2;
+    width: 100%; height: 100%;
+    overflow: hidden; background-color: #f4efe2;
     font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex; flex-direction: column;
 }
-
-/* ============================
-   CABECERA
-============================ */
-
 header {
-    background: linear-gradient(90deg, #7a0000, #b30000);
-    padding: 25px 20px;
-    color: white;
+    background: linear-gradient(135deg, #5a0000 0%, #8b0000 50%, #5a0000 100%);
+    padding: 20px 20px; color: white;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: space-between;
 }
-
-.cabecera-flex {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    min-height: 70px;
+.btn-menu {
+    background: none; border: 2px solid rgba(212,175,55,0.5);
+    color: #d4af37; font-size: 24px; padding: 6px 12px;
+    border-radius: 6px; cursor: pointer; line-height: 1;
+    display: none; flex-shrink: 0;
 }
-
 header h1 {
-    margin: 0;
-    font-size: 40px;
-    text-align: center;
-    width: 100%;
-    padding-right: 70px;
+    font-size: 28px; color: #d4af37;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    flex: 1; text-align: center;
 }
-
-.gif-cabecera {
-    height: 65px;
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
+.gif-cabecera { height: 55px; flex-shrink: 0; }
+.nav-desktop {
+    display: flex; gap: 14px; flex-wrap: wrap;
 }
-
-@media (max-width: 600px) {
-    header h1 {
-        font-size: 26px;
-        padding-right: 55px;
-    }
-    .gif-cabecera {
-        height: 42px;
-        right: 5px;
-    }
+.nav-desktop a {
+    color: rgba(255,255,255,0.85); text-decoration: none;
+    font-size: 13px; padding: 3px 6px; border-radius: 4px;
+    transition: 0.2s;
 }
-
-/* ============================
-   MENÚ
-============================ */
-
-nav {
-    background-color: #d4af37;
-    padding: 12px;
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    flex-wrap: wrap;
+.nav-desktop a:hover { color: #d4af37; }
+.nav-movil {
+    display: none; flex-direction: column;
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(90,0,0,0.97); z-index: 200;
+    padding: 70px 24px 24px; gap: 0;
+    overflow-y: auto;
 }
-
-nav a {
-    color: #7a0000;
-    font-weight: bold;
-    text-decoration: none;
-    font-size: 18px;
+.nav-movil.abierto { display: flex; }
+.nav-movil a {
+    color: #d4af37; font-weight: bold; text-decoration: none;
+    font-size: 20px; padding: 16px 0;
+    border-bottom: 1px solid rgba(212,175,55,0.2);
 }
-
-/* ============================
-   HERO
-============================ */
-
-.hero {
-    background: url('https://images.unsplash.com/photo-1520975918318-3f4f52e8d9f0?auto=format&fit=crop&w=1200&q=60') center/cover;
-    height: 20vh;
-    min-height: 120px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.nav-movil a:last-child { border-bottom: none; }
+.btn-cerrar-menu {
+    position: absolute; top: 16px; right: 20px;
+    background: none; border: none; color: #d4af37;
+    font-size: 36px; cursor: pointer; line-height: 1;
 }
-
-.hero-contenido {
-    text-align: center;
-    color: white;
-    text-shadow: 2px 2px 6px black;
+.zona-logo {
+    background: linear-gradient(135deg, #c9a227 0%, #d4af37 30%, #e8c84a 50%, #d4af37 70%, #c9a227 100%);
+    padding: 22px 20px;
+    display: flex; justify-content: center; align-items: center;
+    flex-shrink: 0;
 }
-
-.logo-hero {
-    height: 100px;
+.logo-principal {
+    height: 110px; border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    border: 3px solid #7a0000;
 }
-
-@media (max-width: 600px) {
-    .logo-hero {
-        height: 80px;
-        margin-top: 10px;
-    }
+.franja-lema {
+    background: linear-gradient(90deg, #5a0000, #7a0000, #5a0000);
+    padding: 8px 16px; text-align: center; flex-shrink: 0;
 }
-
-/* ============================
-   CONTENEDOR
-============================ */
-
-.contenedor {
-    max-width: 1100px;
-    margin: -20px auto 30px auto;
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 0 12px rgba(0,0,0,0.2);
-    flex: 1;
+.franja-lema span {
+    color: #d4af37; font-weight: bold; font-size: 14px;
+    letter-spacing: 3px; text-transform: uppercase;
 }
-
-h2 {
-    color: #7a0000;
-    margin-top: 0;
-}
-
-/* ============================
-   TRES COLUMNAS
-============================ */
-
-.contacto-tres-columnas {
-    display: flex;
-    gap: 25px;
-    margin-top: 20px;
-    flex-wrap: nowrap;
-    align-items: flex-start;
-}
-
-.columna {
-    flex: 1 1 33%;
-    min-width: 250px;
-}
-
-@media (max-width: 800px) {
-    .contacto-tres-columnas {
-        flex-wrap: wrap;
-    }
-}
-
-/* ============================
-   CONTACTO
-============================ */
-
-.contacto-box {
-    background: white;
-    border: 2px solid #d4af37;
-    padding: 15px;
-    border-radius: 6px;
-    font-size: 18px;
-    color: #7a0000;
-    box-shadow: 0 0 6px rgba(0,0,0,0.1);
-}
-
-.contacto-box p {
-    margin: 10px 0;
-}
-
-/* ============================
-   FORMULARIO
-============================ */
-
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-input, textarea {
-    padding: 12px;
-    font-size: 16px;
-    border: 2px solid #d4af37;
-    border-radius: 6px;
-}
-
-button {
-    background-color: #7a0000;
-    color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 6px;
-    font-size: 18px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #b30000;
-}
-
-/* ============================
-   BOTÓN WHATSAPP
-============================ */
-
-.boton-wsp {
-    display: block;
-    margin-top: 20px;
-    background-color: #25D366;
-    color: white;
-    padding: 14px;
-    border-radius: 10px;
-    font-size: 20px;
-    text-decoration: none;
-    font-weight: bold;
-    text-align: center;
-}
-
-/* ============================
-   MAPA
-============================ */
-
-.columna iframe {
-    width: 100%;
-    height: 260px;
-    border: 0;
-    border-radius: 10px;
-}
-
-/* ============================
-   PIE DE PÁGINA
-============================ */
-
+.zona-scroll { flex: 1; overflow-y: auto; }
 footer {
-    background-color: #7a0000;
-    color: white;
-    text-align: center;
-    padding: 18px;
-    font-size: 16px;
-    margin-top: auto;
+    background-color: #7a0000; color: #d4af37;
+    text-align: center; padding: 14px; font-size: 13px;
+    flex-shrink: 0;
 }
+@media (max-width: 768px) {
+    .btn-menu { display: block; }
+    .nav-desktop { display: none; }
+    header { padding: 14px 14px; }
+    header h1 { font-size: 20px; }
+    .gif-cabecera { height: 40px; }
+    .zona-logo { padding: 16px; }
+    .logo-principal { height: 80px; }
+    .franja-lema { padding: 6px 12px; }
+    .franja-lema span { font-size: 11px; letter-spacing: 1.5px; }
+    footer { padding: 10px; font-size: 12px; }
+}
+
+
+.contenedor { max-width: 1100px; margin: 20px auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+.contenedor h2 { color: #7a0000; margin-top: 0; }
+.contacto-tres-columnas { display: flex; gap: 25px; margin-top: 20px; flex-wrap: nowrap; align-items: flex-start; }
+.columna { flex: 1 1 33%; min-width: 250px; }
+.contacto-box { background: white; border: 2px solid #d4af37; padding: 15px; border-radius: 6px; font-size: 18px; color: #7a0000; box-shadow: 0 0 6px rgba(0,0,0,0.1); }
+.contacto-box p { margin: 10px 0; }
+form { display: flex; flex-direction: column; gap: 12px; }
+input, textarea { padding: 12px; font-size: 16px; border: 2px solid #d4af37; border-radius: 6px; }
+.contenedor button { background-color: #7a0000; color: white; padding: 12px; border: none; border-radius: 6px; font-size: 18px; cursor: pointer; }
+.contenedor button:hover { background-color: #b30000; }
+.boton-wsp { display: block; margin-top: 20px; background-color: #25D366; color: white; padding: 14px; border-radius: 10px; font-size: 20px; text-decoration: none; font-weight: bold; text-align: center; }
+.columna iframe { width: 100%; height: 260px; border: 0; border-radius: 10px; }
+@media (max-width: 800px) { .contacto-tres-columnas { flex-wrap: wrap; } .contenedor { margin: 12px 10px; padding: 16px; } }
 
 </style>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#7a0000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="icon-192.png">
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "47ce7a35-b3f4-4a3c-b910-f09fa18b3baf",
+      serviceWorkerPath: "/OneSignalSDKWorker.js",
+      serviceWorkerParam: { scope: "/" },
+    });
+  });
+</script>
+
 </head>
 
 <body>
 
 <header>
-    <div class="cabecera-flex">
-        <h1>Contacto</h1>
-        <img src="toro_enfadado.gif" class="gif-cabecera">
-    </div>
+    <button class="btn-menu" onclick="abrirMenu()" aria-label="Abrir menú">&#9776;</button>
+    <h1>Peña Taurina Peguerinos</h1>
+    <nav class="nav-desktop">
+        <a href="index.html">Inicio</a>
+        <a href="calendario_2026.html">Calendario</a>
+        <a href="actividades_eventos.html">Actividades</a>
+        <a href="galeria.html">Galería</a>
+        <a href="historia_peña.html">Historia</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="enlaces.html">Enlaces</a>
+        <a href="acceso-socios.html">Socios</a>
+    </nav>
+    <img src="toro_enfadado.gif" class="gif-cabecera" alt="Toro">
 </header>
 
-<nav>
-    <a href="index.html">Inicio</a>
-    <a href="calendario_2026.html">Calendario</a>
-    <a href="actividades_eventos.html">Actividades y Eventos</a>
-    <a href="galeria.html">Galería</a>
-    <a href="historia_peña.html">Historia de la Peña</a>
-    <a href="contacto.html">Contacto</a>
-    <a href="enlaces.html">Enlaces</a>
-    <a href="acceso-socios.html">Socios</a>
+<nav class="nav-movil" id="nav-menu">
+    <button class="btn-cerrar-menu" onclick="cerrarMenu()" aria-label="Cerrar menú">&times;</button>
+    <a href="index.html" onclick="cerrarMenu()">Inicio</a>
+    <a href="calendario_2026.html" onclick="cerrarMenu()">Calendario</a>
+    <a href="actividades_eventos.html" onclick="cerrarMenu()">Actividades y Eventos</a>
+    <a href="galeria.html" onclick="cerrarMenu()">Galería</a>
+    <a href="historia_peña.html" onclick="cerrarMenu()">Historia de la Peña</a>
+    <a href="contacto.html" onclick="cerrarMenu()">Contacto</a>
+    <a href="enlaces.html" onclick="cerrarMenu()">Enlaces</a>
+    <a href="acceso-socios.html" onclick="cerrarMenu()">Socios</a>
 </nav>
 
-<div class="hero">
-    <div class="hero-contenido">
-        <img src="peña1.jpeg" class="logo-hero">
-        <div class="hero-texto">Estamos aquí para escucharte</div>
-    </div>
+<div class="zona-logo">
+    <img src="peña1.jpeg" class="logo-principal" alt="Logo Peña Taurina Peguerinos">
 </div>
 
+<div class="franja-lema">
+    <span>Pasión por lo nuestro</span>
+</div>
+
+<div class="zona-scroll">
+
 <div class="contenedor">
-
     <h2>Contacto directo</h2>
-
     <div class="contacto-tres-columnas">
-
-        <!-- COLUMNA IZQUIERDA -->
         <div class="columna">
             <div class="contacto-box">
                 <p>⏰ <strong>Horario:</strong> Martes y Miércoles — 19:00 a 21:00</p>
             </div>
-
-            <a class="boton-wsp" href="https://api.whatsapp.com/send?phone=34624485293&text=Hola%20Peña%20Taurina%20Peguerinos" target="_blank">
-                📲 Contactar por WhatsApp
-            </a>
-
-            <!-- NUEVO BOTÓN DE INSCRIPCIÓN -->
-            <a class="boton-wsp" 
-               style="background-color:#d4af37; color:#7a0000; margin-top:10px;" 
-               href="solicitud_ingreso.html">
-                📝 Inscripción / Afíliate
-            </a>
+            <a class="boton-wsp" href="https://api.whatsapp.com/send?phone=34624485293&text=Hola%20Pe%C3%B1a%20Taurina%20Peguerinos" target="_blank">📲 Contactar por WhatsApp</a>
+            <a class="boton-wsp" style="background-color:#d4af37; color:#7a0000; margin-top:10px;" href="solicitud_ingreso.html">📝 Inscripción / Afíliate</a>
         </div>
-
-        <!-- COLUMNA CENTRAL (FORMULARIO) -->
         <div class="columna">
             <h2>Escríbenos</h2>
-
             <form action="https://api.web3forms.com/submit" method="POST">
-
                 <input type="hidden" name="access_key" value="22e4776b-f34b-46f2-bb4e-cd3b467dccfb">
-
                 <input type="text" name="name" placeholder="Tu nombre" required>
                 <input type="email" name="email" placeholder="Tu correo electrónico" required>
                 <textarea name="message" placeholder="Escribe tu mensaje" required></textarea>
-
-                <input type="hidden" name="redirect" value="https://garcia1701.github.io/pegueraytaurina/gracias.html">
-
+                <input type="hidden" name="redirect" value="https://garcia1701.github.io/gracias.html">
                 <input type="checkbox" name="botcheck" style="display:none;">
-
                 <button type="submit">Enviar</button>
             </form>
         </div>
-
-        <!-- COLUMNA DERECHA (MAPA) -->
         <div class="columna">
             <h2>Ubicación</h2>
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3038.676937781688!2d-4.282!3d40.595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd40f1c3c0e0b0d7%3A0x123456789abcdef!2sPeguerinos!5e0!3m2!1ses!2ses!4v0000000000000"
-                allowfullscreen=""
-                loading="lazy">
-            </iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3038.676937781688!2d-4.282!3d40.595!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd40f1c3c0e0b0d7%3A0x123456789abcdef!2sPeguerinos!5e0!3m2!1ses!2ses!4v0000000000000" allowfullscreen="" loading="lazy"></iframe>
         </div>
-
     </div>
-
+</div>
 </div>
 
 <footer>
-    Peña Taurina Peguerinos — 2026
+    Peña Taurina Peguerinos — Unidos por la afición
 </footer>
+
+<script>
+function abrirMenu() {
+    document.getElementById('nav-menu').classList.add('abierto');
+}
+function cerrarMenu() {
+    document.getElementById('nav-menu').classList.remove('abierto');
+}
+if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}
+</script>
 
 </body>
 </html>
