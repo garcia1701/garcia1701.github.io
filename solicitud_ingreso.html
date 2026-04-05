@@ -164,7 +164,7 @@ document.getElementById("form-solicitud").addEventListener("submit", async funct
     };
 
     try {
-        await fetch(API, { method: "POST", body: JSON.stringify(datos) });
+        await fetch(API, { method: "POST", body: JSON.stringify(datos), mode: 'no-cors' });
         document.getElementById("form-solicitud").style.display = "none";
         document.getElementById("msg-ok").style.display = "block";
     } catch(err) {
