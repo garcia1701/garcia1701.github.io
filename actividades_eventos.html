@@ -5,130 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Actividades y Eventos - Peña Taurina Peguerinos</title>
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html, body {
-    width: 100%; height: 100%;
-    overflow: hidden; background-color: #f4efe2;
-    font-family: 'Segoe UI', Arial, sans-serif;
-    display: flex; flex-direction: column;
-}
-header {
-    background: linear-gradient(135deg, #5a0000 0%, #8b0000 50%, #5a0000 100%);
-    padding: 20px 20px; color: white;
-    flex-shrink: 0;
-    display: flex; align-items: center; justify-content: space-between;
-}
-.btn-menu {
-    background: none; border: 2px solid rgba(212,175,55,0.5);
-    color: #d4af37; font-size: 24px; padding: 6px 12px;
-    border-radius: 6px; cursor: pointer; line-height: 1;
-    display: none; flex-shrink: 0;
-}
-header h1 {
-    font-size: 28px; color: #d4af37;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-    flex: 1; text-align: center;
-}
-.gif-cabecera { height: 55px; flex-shrink: 0; }
-.nav-desktop {
-    display: flex; gap: 14px; flex-wrap: wrap;
-}
-.nav-desktop a {
-    color: rgba(255,255,255,0.85); text-decoration: none;
-    font-size: 13px; padding: 3px 6px; border-radius: 4px;
-    transition: 0.2s;
-}
-.nav-desktop a:hover { color: #d4af37; }
-.nav-movil {
-    display: none; flex-direction: column;
-    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(90,0,0,0.97); z-index: 200;
-    padding: 70px 24px 24px; gap: 0;
-    overflow-y: auto;
-}
-.nav-movil.abierto { display: flex; }
-.nav-movil a {
-    color: #d4af37; font-weight: bold; text-decoration: none;
-    font-size: 20px; padding: 16px 0;
-    border-bottom: 1px solid rgba(212,175,55,0.2);
-}
-.nav-movil a:last-child { border-bottom: none; }
-.btn-cerrar-menu {
-    position: absolute; top: 16px; right: 20px;
-    background: none; border: none; color: #d4af37;
-    font-size: 36px; cursor: pointer; line-height: 1;
-}
-.zona-logo {
-    background: linear-gradient(135deg, #c9a227 0%, #d4af37 30%, #e8c84a 50%, #d4af37 70%, #c9a227 100%);
-    padding: 22px 20px;
-    display: flex; justify-content: center; align-items: center;
-    flex-shrink: 0;
-}
-.logo-principal {
-    height: 110px; border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    border: 3px solid #7a0000;
-}
-.franja-lema {
-    background: linear-gradient(90deg, #5a0000, #7a0000, #5a0000);
-    padding: 8px 16px; text-align: center; flex-shrink: 0;
-}
-.franja-lema span {
-    color: #d4af37; font-weight: bold; font-size: 14px;
-    letter-spacing: 3px; text-transform: uppercase;
-}
-.zona-scroll { flex: 1; overflow-y: auto; }
-footer {
-    background-color: #7a0000; color: #d4af37;
-    text-align: center; padding: 14px; font-size: 13px;
-    flex-shrink: 0;
-}
-@media (max-width: 768px) {
-    .btn-menu { display: block; }
-    .nav-desktop { display: none; }
-    header { padding: 14px 14px; }
-    header h1 { font-size: 20px; }
-    .gif-cabecera { height: 40px; }
-    .zona-logo { padding: 16px; }
-    .logo-principal { height: 80px; }
-    .franja-lema { padding: 6px 12px; }
-    .franja-lema span { font-size: 11px; letter-spacing: 1.5px; }
-    footer { padding: 10px; font-size: 12px; }
-}
-
-
-.contenedor { max-width: 900px; margin: 20px auto; background: white; padding: 20px 24px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-.contenedor h2 { color: #7a0000; border-bottom: 2px solid #d4af37; padding-bottom: 10px; }
-.evento-bloque { background: #fdf7e3; border-left: 6px solid #7a0000; padding: 20px; margin: 20px 0; border-radius: 8px; }
-.evento-bloque h3 { margin: 0 0 10px 0; color: #7a0000; }
-.evento-bloque p { margin: 6px 0; color: #333; }
-.btn-historial { display: block; width: fit-content; margin: 40px auto 10px auto; padding: 15px 30px; background-color: #7a0000; color: white; text-decoration: none; font-weight: bold; border-radius: 6px; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
-.btn-historial:hover { background-color: #b30000; transform: scale(1.05); }
-@media (max-width: 768px) { .contenedor { margin: 12px 10px; padding: 16px; } }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background-color: #f4efe2; font-family: 'Segoe UI', Arial, sans-serif; display: flex; flex-direction: column; }
+    header { background: linear-gradient(135deg, #5a0000 0%, #8b0000 50%, #5a0000 100%); padding: 20px 20px; color: white; flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; }
+    .btn-menu { background: none; border: 2px solid rgba(212,175,55,0.5); color: #d4af37; font-size: 24px; padding: 6px 12px; border-radius: 6px; cursor: pointer; display: none; }
+    header h1 { font-size: 28px; color: #d4af37; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); flex: 1; text-align: center; }
+    .gif-cabecera { height: 55px; }
+    .nav-desktop { display: flex; gap: 14px; }
+    .nav-desktop a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 13px; padding: 3px 6px; }
+    .nav-desktop a:hover { color: #d4af37; }
+    .nav-movil { display: none; flex-direction: column; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(90,0,0,0.97); z-index: 200; padding: 70px 24px 24px; }
+    .nav-movil.abierto { display: flex; }
+    .nav-movil a { color: #d4af37; font-weight: bold; text-decoration: none; font-size: 20px; padding: 16px 0; border-bottom: 1px solid rgba(212,175,55,0.2); }
+    .btn-cerrar-menu { position: absolute; top: 16px; right: 20px; background: none; border: none; color: #d4af37; font-size: 36px; cursor: pointer; }
+    .zona-logo { background: linear-gradient(135deg, #c9a227 0%, #d4af37 30%, #e8c84a 50%, #d4af37 70%, #c9a227 100%); padding: 22px 20px; display: flex; justify-content: center; flex-shrink: 0; }
+    .logo-principal { height: 110px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); border: 3px solid #7a0000; }
+    .franja-lema { background: linear-gradient(90deg, #5a0000, #7a0000, #5a0000); padding: 8px 16px; text-align: center; flex-shrink: 0; }
+    .franja-lema span { color: #d4af37; font-weight: bold; font-size: 14px; letter-spacing: 3px; text-transform: uppercase; }
+    .zona-scroll { flex: 1; overflow-y: auto; }
+    .contenedor { max-width: 900px; margin: 20px auto; background: white; padding: 20px 24px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .contenedor h2 { color: #7a0000; border-bottom: 2px solid #d4af37; padding-bottom: 10px; }
+    .evento-bloque { background: #fdf7e3; border-left: 6px solid #7a0000; padding: 20px; margin: 20px 0; border-radius: 8px; }
+    .evento-bloque h3 { margin: 0 0 10px 0; color: #7a0000; }
+    .btn-historial { display: block; width: fit-content; margin: 40px auto 10px auto; padding: 15px 30px; background-color: #7a0000; color: white; text-decoration: none; font-weight: bold; border-radius: 6px; transition: 0.3s; }
+    footer { background-color: #7a0000; color: #d4af37; text-align: center; padding: 14px; font-size: 13px; }
+    @media (max-width: 768px) { .btn-menu { display: block; } .nav-desktop { display: none; } header h1 { font-size: 20px; } .logo-principal { height: 80px; } }
 </style>
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#7a0000">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <link rel="apple-touch-icon" href="icon-192.png">
-<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-<script>
-  window.OneSignalDeferred = window.OneSignalDeferred || [];
-  OneSignalDeferred.push(async function(OneSignal) {
-    await OneSignal.init({
-      appId: "47ce7a35-b3f4-4a3c-b910-f09fa18b3baf",
-      serviceWorkerPath: "/OneSignalSDKWorker.js",
-      serviceWorkerParam: { scope: "/" },
-    });
-  });
-</script>
-
 </head>
-
 <body>
 
 <header>
-    <button class="btn-menu" onclick="abrirMenu()" aria-label="Abrir menú">&#9776;</button>
+    <button class="btn-menu" onclick="abrirMenu()">☰</button>
     <h1>Peña Taurina Peguerinos</h1>
     <nav class="nav-desktop">
         <a href="index.html">Inicio</a>
@@ -137,71 +44,60 @@ footer {
         <a href="galeria.html">Galería</a>
         <a href="historia_peña.html">Historia</a>
         <a href="contacto.html">Contacto</a>
-        <a href="enlaces.html">Enlaces</a>
         <a href="acceso-socios.html">Socios</a>
     </nav>
     <img src="toro_enfadado.gif" class="gif-cabecera" alt="Toro">
 </header>
 
 <nav class="nav-movil" id="nav-menu">
-    <button class="btn-cerrar-menu" onclick="cerrarMenu()" aria-label="Cerrar menú">&times;</button>
-    <a href="index.html" onclick="cerrarMenu()">Inicio</a>
-    <a href="calendario_2026.html" onclick="cerrarMenu()">Calendario</a>
-    <a href="actividades_eventos.html" onclick="cerrarMenu()">Actividades y Eventos</a>
-    <a href="galeria.html" onclick="cerrarMenu()">Galería</a>
-    <a href="historia_peña.html" onclick="cerrarMenu()">Historia de la Peña</a>
-    <a href="contacto.html" onclick="cerrarMenu()">Contacto</a>
-    <a href="enlaces.html" onclick="cerrarMenu()">Enlaces</a>
-    <a href="acceso-socios.html" onclick="cerrarMenu()">Socios</a>
+    <button class="btn-cerrar-menu" onclick="cerrarMenu()">&times;</button>
+    <a href="index.html">Inicio</a>
+    <a href="actividades_eventos.html">Actividades</a>
+    <a href="historial.html">Historial</a>
 </nav>
 
 <div class="zona-logo">
-    <img src="peña1.jpeg" class="logo-principal" alt="Logo Peña Taurina Peguerinos">
+    <img src="peña1.jpeg" class="logo-principal">
 </div>
 
-<div class="franja-lema">
-    <span>Pasión por lo nuestro</span>
-</div>
+<div class="franja-lema"><span>Pasión por lo nuestro</span></div>
 
 <div class="zona-scroll">
-
-<div class="contenedor">
-    <h2>Próximas Citas</h2>
-    <div id="evento-resurreccion" class="evento-bloque">
-        <h3>Domingo de Resurrección – 18:30 h</h3>
-        <p><strong>Feria de Abril (Sevilla)</strong></p>
-        <p style="color:#b30000;"><strong>Morante de la Puebla · Roca Rey · David de Miranda</strong></p>
-        <p>La Peña Taurina Peguerinos invita a todos los aficionados a disfrutar juntos del festejo en el <strong>Risco del Águila</strong>.</p>
+    <div class="contenedor">
+        <h2>Próximas Citas</h2>
+        <div id="contenedor-proximos"></div>
+        <div id="mensaje-vacio" style="display:none;" class="evento-bloque">
+            <h3>Próximamente…</h3>
+            <p>Estamos preparando nuevas actividades.</p>
+        </div>
+        <a href="historial.html" class="btn-historial">📜 VER HISTORIAL DE EVENTOS PASADOS</a>
     </div>
-    <div id="mensaje-por-defecto" class="evento-bloque" style="display:none; border-left:6px solid #d4af37;">
-        <h3>Próximamente…</h3>
-        <p>Estamos preparando nuevas actividades para los próximos días. Mantente atento a este espacio.</p>
-    </div>
-    <a href="historial.html" class="btn-historial">📜 VER HISTORIAL DE EVENTOS PASADOS</a>
-</div>
 </div>
 
-<footer>
-    Peña Taurina Peguerinos — Unidos por la afición
-</footer>
+<footer>Peña Taurina Peguerinos — Unidos por la afición</footer>
 
+<script src="eventos.js"></script>
 <script>
-function abrirMenu() {
-    document.getElementById('nav-menu').classList.add('abierto');
-}
-function cerrarMenu() {
-    document.getElementById('nav-menu').classList.remove('abierto');
-}
-if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}
-</script>
+    function abrirMenu() { document.getElementById('nav-menu').classList.add('abierto'); }
+    function cerrarMenu() { document.getElementById('nav-menu').classList.remove('abierto'); }
+    
+    const ahora = new Date();
+    const lista = document.getElementById('contenedor-proximos');
+    let hayEventos = false;
 
-<script>
-const fechaEvento = new Date(2026, 3, 12, 18, 30);
-const ahora = new Date();
-if (ahora > fechaEvento) {
-    document.getElementById("evento-resurreccion").style.display = "none";
-    document.getElementById("mensaje-por-defecto").style.display = "block";
-}
+    EVENTOS_DATA.forEach(ev => {
+        if (ev.fecha >= ahora) {
+            hayEventos = true;
+            lista.innerHTML += `
+                <div class="evento-bloque">
+                    <h3>${ev.titulo} – ${ev.fecha.getHours()}:${ev.fecha.getMinutes().toString().padStart(2,'0')} h</h3>
+                    <p><strong>${ev.lugar}</strong></p>
+                    <p style="color:#b30000;"><strong>${ev.destacado}</strong></p>
+                    <p>${ev.descripcion}</p>
+                </div>`;
+        }
+    });
+    if (!hayEventos) document.getElementById('mensaje-vacio').style.display = 'block';
 </script>
 </body>
 </html>
