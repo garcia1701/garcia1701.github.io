@@ -25,42 +25,81 @@ html, body {
     display: flex; flex-direction: column;
 }
 header {
-    background: linear-gradient(90deg, #7a0000, #b30000);
-    padding: 25px 20px; color: white; flex-shrink: 0;
+    background: linear-gradient(135deg, #5a0000 0%, #8b0000 50%, #5a0000 100%);
+    padding: 20px 20px; color: white; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: space-between;
 }
-.cabecera-flex { display: flex; justify-content: center; align-items: center; position: relative; }
-header h1 { margin: 0; font-size: 40px; flex: 1; text-align: center; }
-.gif-cabecera { height: 65px; position: absolute; right: 10px; }
-nav {
-    background-color: #d4af37; padding: 12px;
-    display: flex; justify-content: center; gap: 25px; flex-wrap: wrap;
-    flex-shrink: 0;
-}
-nav a { color: #7a0000; font-weight: bold; text-decoration: none; font-size: 18px; }
+.btn-menu { background: none; border: 2px solid rgba(212,175,55,0.5); color: #d4af37; font-size: 24px; padding: 6px 12px; border-radius: 6px; cursor: pointer; line-height: 1; display: none; flex-shrink: 0; }
+header h1 { font-size: 28px; color: #d4af37; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); flex: 1; text-align: center; }
+.gif-cabecera { height: 55px; flex-shrink: 0; }
+.nav-desktop { display: flex; gap: 14px; flex-wrap: wrap; }
+.nav-desktop a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 13px; padding: 3px 6px; border-radius: 4px; transition: 0.2s; }
+.nav-desktop a:hover { color: #d4af37; }
+.nav-movil { display: none; flex-direction: column; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(90,0,0,0.97); z-index: 200; padding: 70px 24px 24px; gap: 0; overflow-y: auto; }
+.nav-movil.abierto { display: flex; }
+.nav-movil a { color: #d4af37; font-weight: bold; text-decoration: none; font-size: 20px; padding: 16px 0; border-bottom: 1px solid rgba(212,175,55,0.2); }
+.nav-movil a:last-child { border-bottom: none; }
+.btn-cerrar-menu { position: absolute; top: 16px; right: 20px; background: none; border: none; color: #d4af37; font-size: 36px; cursor: pointer; line-height: 1; }
+.zona-logo { background: linear-gradient(135deg, #c9a227 0%, #d4af37 30%, #e8c84a 50%, #d4af37 70%, #c9a227 100%); padding: 22px 20px; display: flex; justify-content: center; align-items: center; flex-shrink: 0; }
+.logo-principal { height: 110px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); border: 3px solid #7a0000; }
+.franja-lema { background: linear-gradient(90deg, #5a0000, #7a0000, #5a0000); padding: 8px 16px; text-align: center; flex-shrink: 0; }
+.franja-lema span { color: #d4af37; font-weight: bold; font-size: 14px; letter-spacing: 3px; text-transform: uppercase; }
 .zona-scroll { flex: 1; overflow-y: auto; }
-.hero {
-    background: url('https://images.unsplash.com') center/cover;
-    height: 22vh; min-height: 110px; flex-shrink: 0;
-    display: flex; justify-content: center; align-items: center;
+footer { background-color: #7a0000; color: #d4af37; text-align: center; padding: 14px; font-size: 13px; flex-shrink: 0; }
+@media (max-width: 768px) {
+    .btn-menu { display: block; } .nav-desktop { display: none; }
+    header { padding: 14px 14px; } header h1 { font-size: 20px; }
+    .gif-cabecera { height: 40px; } .zona-logo { padding: 16px; }
+    .logo-principal { height: 80px; } .franja-lema { padding: 6px 12px; }
+    .franja-lema span { font-size: 11px; letter-spacing: 1.5px; }
+    footer { padding: 10px; font-size: 12px; }
 }
-.hero-contenido { text-align: center; color: white; text-shadow: 2px 2px 6px black; }
-.logo-hero { height: 80px; }
-.hero-texto { font-size: 24px; font-weight: bold; }
+
+/* FORMULARIO */
 .contenedor {
-    max-width: 600px; margin: -20px auto 30px auto;
+    max-width: 600px; margin: 25px auto 30px auto;
     background: white; padding: 30px; border-radius: 12px;
-    box-shadow: 0 0 12px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
-h2 { color: #7a0000; border-bottom: 2px solid #d4af37; padding-bottom: 8px; margin-top: 0; }
-form { display: flex; flex-direction: column; gap: 12px; }
-label { font-weight: bold; color: #7a0000; font-size: 14px; }
-input, textarea {
-    padding: 12px; font-size: 15px;
-    border: 2px solid #d4af37; border-radius: 6px;
-    font-family: inherit; outline: none;
-}
+.contenedor h2 { color: #7a0000; border-bottom: 2px solid #d4af37; padding-bottom: 10px; margin-top: 0; font-size: 20px; }
+.contenedor h2 span { font-size: 13px; font-weight: normal; color: #888; display: block; margin-top: 4px; }
+form { display: flex; flex-direction: column; gap: 14px; }
+label { font-weight: bold; color: #7a0000; font-size: 13px; }
+input, textarea { padding: 12px; font-size: 15px; border: 2px solid #d4af37; border-radius: 6px; font-family: inherit; outline: none; }
 input:focus, textarea:focus { border-color: #7a0000; }
-.rgpd { font-size: 13px; color: #555; background: #f4efe2; padding: 12px; border-radius: 6px; border-left: 3px solid #7a0000; }
+
+/* SECCIÓN DOCUMENTOS */
+.docs-box {
+    background: #f4efe2; border: 2px solid #d4af37; border-radius: 8px;
+    padding: 16px; margin: 4px 0;
+}
+.docs-box p { margin: 0 0 10px 0; font-size: 13px; color: #555; font-weight: bold; }
+.docs-links { display: flex; gap: 10px; flex-wrap: wrap; }
+.doc-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: #7a0000; color: white; text-decoration: none;
+    padding: 8px 14px; border-radius: 6px; font-size: 12px;
+    font-weight: bold; transition: 0.2s;
+}
+.doc-link:hover { background: #b30000; }
+
+/* CHECKBOXES */
+.check-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    background: #f9f6ee; border: 1px solid #d4af37;
+    border-radius: 6px; padding: 12px;
+}
+.check-item input[type="checkbox"] { width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0; accent-color: #7a0000; cursor: pointer; }
+.check-item label { font-weight: normal; color: #333; font-size: 13px; cursor: pointer; line-height: 1.5; }
+.check-item label a { color: #7a0000; font-weight: bold; }
+
+/* RGPD */
+.rgpd-box {
+    font-size: 12px; color: #555; background: #f4efe2;
+    padding: 12px; border-radius: 6px; border-left: 3px solid #7a0000;
+    line-height: 1.6;
+}
+
 button {
     background-color: #7a0000; color: white;
     padding: 14px; border: none; border-radius: 6px;
@@ -69,73 +108,92 @@ button {
 }
 button:hover { background-color: #b30000; }
 button:disabled { background: #ccc; cursor: not-allowed; }
-.msg-ok { background: #28a745; color: white; padding: 15px; border-radius: 8px; text-align: center; font-weight: bold; display: none; }
-.msg-err { background: #dc3545; color: white; padding: 15px; border-radius: 8px; text-align: center; font-weight: bold; display: none; }
-footer {
-    background-color: #7a0000; color: white;
-    text-align: center; padding: 18px; flex-shrink: 0;
-}
+.msg-ok { background: #28a745; color: white; padding: 15px; border-radius: 8px; text-align: center; font-weight: bold; display: none; margin-top: 15px; }
+.msg-err { background: #dc3545; color: white; padding: 15px; border-radius: 8px; text-align: center; font-weight: bold; display: none; margin-top: 15px; }
+
+@media (max-width: 768px) { .contenedor { margin: 12px 10px; padding: 20px; } }
 </style>
 </head>
 <body>
 
 <header>
-    <div class="cabecera-flex">
-        <h1>Solicitud de Ingreso</h1>
-        <img src="toro_enfadado.gif" class="gif-cabecera">
-    </div>
+    <button class="btn-menu" onclick="abrirMenu()" aria-label="Abrir menú">&#9776;</button>
+    <h1>Peña Taurina Peguerinos</h1>
+    <nav class="nav-desktop">
+        <a href="index.html">Inicio</a>
+        <a href="calendario_2026.html">Calendario</a>
+        <a href="actividades_eventos.html">Actividades</a>
+        <a href="galeria.html">Galería</a>
+        <a href="historia_peña.html">Historia</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="enlaces.html">Enlaces</a>
+        <a href="acceso-socios.html">Socios</a>
+    </nav>
+    <img src="toro_enfadado.gif" class="gif-cabecera" alt="Toro">
 </header>
 
-<nav>
-    <a href="index.html">Inicio</a>
-    <a href="calendario_2026.html">Calendario</a>
-    <a href="actividades_eventos.html">Actividades y Eventos</a>
-    <a href="galeria.html">Galería</a>
-    <a href="historia_peña.html">Historia de la Peña</a>
-    <a href="contacto.html">Contacto</a>
-    <a href="enlaces.html">Enlaces</a>
-    <a href="acceso-socios.html">Socios</a>
+<nav class="nav-movil" id="nav-menu">
+    <button class="btn-cerrar-menu" onclick="cerrarMenu()" aria-label="Cerrar menú">&times;</button>
+    <a href="index.html" onclick="cerrarMenu()">Inicio</a>
+    <a href="calendario_2026.html" onclick="cerrarMenu()">Calendario</a>
+    <a href="actividades_eventos.html" onclick="cerrarMenu()">Actividades y Eventos</a>
+    <a href="galeria.html" onclick="cerrarMenu()">Galería</a>
+    <a href="historia_peña.html" onclick="cerrarMenu()">Historia de la Peña</a>
+    <a href="contacto.html" onclick="cerrarMenu()">Contacto</a>
+    <a href="enlaces.html" onclick="cerrarMenu()">Enlaces</a>
+    <a href="acceso-socios.html" onclick="cerrarMenu()">Socios</a>
 </nav>
 
-<div class="zona-scroll">
-<div class="hero">
-    <div class="hero-contenido">
-        <img src="peña1.jpeg" class="logo-hero">
-        <div class="hero-texto">Únete a nuestra Peña</div>
-    </div>
+<div class="zona-logo">
+    <img src="peña1.jpeg" class="logo-principal" alt="Logo Peña Taurina Peguerinos">
 </div>
+<div class="franja-lema"><span>Únete a nuestra afición</span></div>
 
+<div class="zona-scroll">
 <div class="contenedor">
-    <h2>Formulario de Inscripción</h2>
+    <h2>Solicitud de Ingreso
+        <span>Peña Taurina Peguerinos · Fundada 12 de marzo de 2026</span>
+    </h2>
 
     <form id="form-solicitud">
-        <label>Nombre y apellidos *</label>
+
+        <label for="nombre">Nombre y apellidos *</label>
         <input type="text" id="nombre" placeholder="Nombre completo" required>
 
-        <label>DNI *</label>
-        <input type="text" id="dni" placeholder="12345678A" required>
-
-        <label>Fecha de nacimiento *</label>
+        <label for="fechaNac">Fecha de nacimiento *</label>
         <input type="date" id="fechaNac" required>
 
-        <label>Teléfono / WhatsApp *</label>
+        <label for="telefono">Teléfono / WhatsApp *</label>
         <input type="tel" id="telefono" placeholder="612 345 678" required>
-
-        <label>Motivación (opcional)</label>
-        <textarea id="motivacion" rows="4" placeholder="¿Por qué quieres unirte a la peña?"></textarea>
-
-        <div class="rgpd">
-            <strong>Información sobre protección de datos:</strong><br>
-            Responsable: Peña Taurina Peguerinos. Finalidad: gestionar el alta de socios. 
-            Legitimación: consentimiento del interesado. No se cederán datos a terceros salvo obligación legal.
         </div>
 
-        <label style="display:flex; align-items:center; gap:8px; font-weight:normal;">
-            <input type="checkbox" id="rgpd" required style="width:auto; padding:0;">
-            Acepto el tratamiento de mis datos personales según la información facilitada.
-        </label>
+        <!-- CHECKBOX ESTATUTOS -->
+        <div class="check-item">
+            <input type="checkbox" id="acepta-docs" required>
+            <label for="acepta-docs">
+                He leído y acepto los <a href="Estatutos_PTP.pdf" target="_blank">Estatutos</a>
+                y el <a href="Reglamento_Interno_PTP.pdf" target="_blank">Reglamento Interno</a>
+                de la Peña Taurina Peguerinos, comprometiéndome a su cumplimiento.
+            </label>
+        </div>
 
-        <button type="submit" id="btn-enviar">Enviar solicitud</button>
+        <!-- RGPD -->
+        <div class="rgpd-box">
+            <strong>Información sobre protección de datos (RGPD):</strong><br>
+            Responsable: Peña Taurina Peguerinos. Finalidad: gestionar el alta de socios y comunicaciones internas.
+            Legitimación: consentimiento del interesado. No se cederán datos a terceros salvo obligación legal.
+            Puede ejercer sus derechos de acceso, rectificación y supresión contactando con la asociación.
+        </div>
+
+        <!-- CHECKBOX RGPD -->
+        <div class="check-item">
+            <input type="checkbox" id="acepta-rgpd" required>
+            <label for="acepta-rgpd">
+                Acepto el tratamiento de mis datos personales según la información facilitada sobre protección de datos.
+            </label>
+        </div>
+
+        <button type="submit" id="btn-enviar">📨 Enviar solicitud</button>
     </form>
 
     <div class="msg-ok" id="msg-ok">✅ Solicitud enviada correctamente. Nos pondremos en contacto contigo pronto.</div>
@@ -143,7 +201,13 @@ footer {
 </div>
 </div>
 
-<footer>Peña Taurina Peguerinos — 2026</footer>
+<footer>Peña Taurina Peguerinos — Unidos por la afición</footer>
+
+<script>
+function abrirMenu() { document.getElementById('nav-menu').classList.add('abierto'); }
+function cerrarMenu() { document.getElementById('nav-menu').classList.remove('abierto'); }
+if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js'); }
+</script>
 
 <script>
 const API = "https://script.google.com/macros/s/AKfycbzBrKaP_GAt_tCJhnly025IYZIzg8uTuK27dPOAVTDNiwe7L7G1H6T8HAZWqJt6mOkB/exec";
@@ -154,13 +218,16 @@ document.getElementById("form-solicitud").addEventListener("submit", async funct
     btn.disabled = true;
     btn.innerText = "Enviando...";
 
-    const nombre = document.getElementById("nombre").value;
-    const dni = document.getElementById("dni").value;
-    const fechaNac = document.getElementById("fechaNac").value;
-    const telefono = document.getElementById("telefono").value;
-    const motivacion = document.getElementById("motivacion").value;
+    const nombre     = document.getElementById("nombre").value;
+    const fechaNac   = document.getElementById("fechaNac").value;
+    const telefono   = document.getElementById("telefono").value;
 
-    const url = API + "?action=solicitud&nombre=" + encodeURIComponent(nombre) + "&dni=" + encodeURIComponent(dni) + "&fechaNac=" + encodeURIComponent(fechaNac) + "&telefono=" + encodeURIComponent(telefono) + "&motivacion=" + encodeURIComponent(motivacion);
+    const url = API
+        + "?action=solicitud"
+        + "&nombre="     + encodeURIComponent(nombre)
+        + "&fechaNac="   + encodeURIComponent(fechaNac)
+        + "&telefono="   + encodeURIComponent(telefono)
+;
 
     try {
         await fetch(url, { mode: 'no-cors' });
@@ -169,10 +236,9 @@ document.getElementById("form-solicitud").addEventListener("submit", async funct
     } catch(err) {
         document.getElementById("msg-err").style.display = "block";
         btn.disabled = false;
-        btn.innerText = "Enviar solicitud";
+        btn.innerText = "📨 Enviar solicitud";
     }
 });
 </script>
-<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/peguerinos/sw.js');}</script>
 </body>
 </html>
