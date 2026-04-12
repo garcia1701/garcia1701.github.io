@@ -33,3 +33,12 @@ const EVENTOS_DATA = [
         destacado: "Morante de la Puebla · Roca Rey · David de Miranda"
     }
 ];
+,
+    {
+        id: 5,
+        titulo: "Corrida de Toros — Feria de Abril",
+        fecha: new Date(2026, 3, 12, 18, 30), // 12 Abril 2026 — 18:30h
+        lugar: "Plaza de Toros de la Real Maestranza de Caballería de Sevilla",
+        descripcion: "Tercera de Abono. Retransmisión en directo en nuestra sede, Restaurante Risco del Águila.",
+        destacado: "Lorenzo · Serna · Molina — Toros de Fuente Ymbro"
+    }
