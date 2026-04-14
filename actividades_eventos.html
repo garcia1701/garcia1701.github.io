@@ -90,10 +90,11 @@
             hayEventos = true;
             lista.innerHTML += `
                 <div class="evento-bloque">
-                    <h3>${ev.titulo} – ${ev.fecha.getHours()}:${ev.fecha.getMinutes().toString().padStart(2,'0')} h</h3>
-                    <p><strong>${ev.lugar}</strong></p>
-                    <p style="color:#b30000;"><strong>${ev.destacado}</strong></p>
+                    <h3>${ev.titulo}</h3>
+                    <p>📅 <strong>${ev.fecha.toLocaleDateString('es-ES', {day:'numeric', month:'long', year:'numeric'})} — ${ev.fecha.getHours()}:${ev.fecha.getMinutes().toString().padStart(2,'0')} h</strong></p>
+                    <p>📍 ${ev.lugar}</p>
                     <p>${ev.descripcion}</p>
+                    ${ev.destacado ? `<p style="color:#b30000; margin-top:5px;"><strong>${ev.destacado}</strong></p>` : ''}
                 </div>`;
         }
     });
