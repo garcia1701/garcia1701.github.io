@@ -65,23 +65,30 @@ footer { background-color: #7a0000; color: #d4af37; text-align: center; padding:
 .contenedor h2 span { font-size: 13px; font-weight: normal; color: #888; display: block; margin-top: 4px; }
 form { display: flex; flex-direction: column; gap: 14px; }
 label { font-weight: bold; color: #7a0000; font-size: 13px; }
-input, textarea { padding: 12px; font-size: 15px; border: 2px solid #d4af37; border-radius: 6px; font-family: inherit; outline: none; }
-input:focus, textarea:focus { border-color: #7a0000; }
+input, textarea, select { padding: 12px; font-size: 15px; border: 2px solid #d4af37; border-radius: 6px; font-family: inherit; outline: none; background: white; }
+input:focus, textarea:focus, select:focus { border-color: #7a0000; }
 
-/* SECCIÓN DOCUMENTOS */
-.docs-box {
-    background: #f4efe2; border: 2px solid #d4af37; border-radius: 8px;
-    padding: 16px; margin: 4px 0;
+/* MODALIDADES */
+.modalidades-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
 }
-.docs-box p { margin: 0 0 10px 0; font-size: 13px; color: #555; font-weight: bold; }
-.docs-links { display: flex; gap: 10px; flex-wrap: wrap; }
-.doc-link {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: #7a0000; color: white; text-decoration: none;
-    padding: 8px 14px; border-radius: 6px; font-size: 12px;
-    font-weight: bold; transition: 0.2s;
+.modalidad-card {
+    border: 2px solid #d4af37; border-radius: 8px; padding: 12px 8px;
+    text-align: center; cursor: pointer; transition: 0.2s;
+    background: #f9f6ee;
 }
-.doc-link:hover { background: #b30000; }
+.modalidad-card:hover { border-color: #7a0000; background: #f4efe2; }
+.modalidad-card.activa { border-color: #7a0000; background: #7a0000; color: white; }
+.modalidad-card.activa .mod-titulo { color: white; }
+.modalidad-card.activa .mod-cuota { color: #d4af37; }
+.modalidad-card.activa .mod-desc { color: rgba(255,255,255,0.8); }
+.mod-icono { font-size: 24px; margin-bottom: 4px; }
+.mod-titulo { font-weight: bold; font-size: 13px; color: #7a0000; }
+.mod-cuota { font-size: 12px; color: #b30000; font-weight: bold; margin-top: 4px; }
+.mod-desc { font-size: 11px; color: #666; margin-top: 3px; }
+
+/* Campo empresa (oculto por defecto) */
+#campo-empresa { display: none; }
 
 /* CHECKBOXES */
 .check-item {
@@ -111,7 +118,10 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 .msg-ok { background: #28a745; color: white; padding: 15px; border-radius: 8px; text-align: center; font-weight: bold; display: none; margin-top: 15px; }
 .msg-err { background: #dc3545; color: white; padding: 15px; border-radius: 8px; text-align: center; font-weight: bold; display: none; margin-top: 15px; }
 
-@media (max-width: 768px) { .contenedor { margin: 12px 10px; padding: 20px; } }
+@media (max-width: 480px) {
+    .contenedor { margin: 12px 10px; padding: 20px; }
+    .modalidades-grid { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
@@ -157,6 +167,30 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 
     <form id="form-solicitud">
 
+        <!-- MODALIDAD -->
+        <label>Modalidad de ingreso *</label>
+        <div class="modalidades-grid">
+            <div class="modalidad-card activa" onclick="seleccionarModalidad('socio', this)">
+                <div class="mod-icono">🏆</div>
+                <div class="mod-titulo">Socio</div>
+                <div class="mod-cuota">100 €/año</div>
+                <div class="mod-desc">Derecho a voto</div>
+            </div>
+            <div class="modalidad-card" onclick="seleccionarModalidad('colaborador', this)">
+                <div class="mod-icono">🤝</div>
+                <div class="mod-titulo">Colaborador</div>
+                <div class="mod-cuota">50 € donativo</div>
+                <div class="mod-desc">Empresa/Autónomo</div>
+            </div>
+            <div class="modalidad-card" onclick="seleccionarModalidad('simpatizante', this)">
+                <div class="mod-icono">❤️</div>
+                <div class="mod-titulo">Simpatizante</div>
+                <div class="mod-cuota">40 €/año</div>
+                <div class="mod-desc">Sin voto</div>
+            </div>
+        </div>
+        <input type="hidden" id="modalidad" value="socio">
+
         <label for="nombre">Nombre y apellidos *</label>
         <input type="text" id="nombre" placeholder="Nombre completo" required>
 
@@ -165,6 +199,12 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 
         <label for="telefono">Teléfono / WhatsApp *</label>
         <input type="tel" id="telefono" placeholder="612 345 678" required>
+
+        <!-- Campo empresa: solo visible para colaborador -->
+        <div id="campo-empresa">
+            <label for="empresa">Empresa / Negocio *</label>
+            <input type="text" id="empresa" placeholder="Nombre de la empresa o negocio">
+        </div>
 
         <!-- CHECKBOX ESTATUTOS -->
         <div class="check-item">
@@ -206,10 +246,26 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 function abrirMenu() { document.getElementById('nav-menu').classList.add('abierto'); }
 function cerrarMenu() { document.getElementById('nav-menu').classList.remove('abierto'); }
 if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js'); }
+
+function seleccionarModalidad(modalidad, tarjeta) {
+    // Quitar activa de todas
+    document.querySelectorAll('.modalidad-card').forEach(c => c.classList.remove('activa'));
+    // Activar la seleccionada
+    tarjeta.classList.add('activa');
+    // Guardar en campo oculto
+    document.getElementById('modalidad').value = modalidad;
+    // Mostrar/ocultar campo empresa
+    document.getElementById('campo-empresa').style.display = (modalidad === 'colaborador') ? 'flex' : 'none';
+    document.getElementById('campo-empresa').style.flexDirection = 'column';
+    document.getElementById('campo-empresa').style.gap = '6px';
+    const inputEmpresa = document.getElementById('empresa');
+    inputEmpresa.required = (modalidad === 'colaborador');
+}
 </script>
 
 <script>
-const API = "https://script.google.com/macros/s/AKfycbzBrKaP_GAt_tCJhnly025IYZIzg8uTuK27dPOAVTDNiwe7L7G1H6T8HAZWqJt6mOkB/exec";
+// URL CORRECTA — no tocar
+const API = "https://script.google.com/macros/s/AKfycbzBrKaP_GAt_tCJhnly025IYZIzg8uTuR27dPOAVTDNiwe7L7G1H6T8HAZWqJt6mOkB/exec";
 
 document.getElementById("form-solicitud").addEventListener("submit", async function(e) {
     e.preventDefault();
@@ -217,16 +273,19 @@ document.getElementById("form-solicitud").addEventListener("submit", async funct
     btn.disabled = true;
     btn.innerText = "Enviando...";
 
+    const modalidad  = document.getElementById("modalidad").value;
     const nombre     = document.getElementById("nombre").value;
     const fechaNac   = document.getElementById("fechaNac").value;
     const telefono   = document.getElementById("telefono").value;
+    const empresa    = document.getElementById("empresa").value || "";
 
     const url = API
         + "?action=solicitud"
+        + "&modalidad="  + encodeURIComponent(modalidad)
         + "&nombre="     + encodeURIComponent(nombre)
         + "&fechaNac="   + encodeURIComponent(fechaNac)
         + "&telefono="   + encodeURIComponent(telefono)
-;
+        + "&empresa="    + encodeURIComponent(empresa);
 
     try {
         await fetch(url, { mode: 'no-cors' });
