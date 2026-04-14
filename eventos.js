@@ -30,7 +30,7 @@ const EVENTOS_DATA = [
         fecha: new Date(2026, 3, 5, 18, 30),
         lugar: "Feria de Abril (Sevilla) - Risco del Águila",
         descripcion: "Retransmisión en directo.",
-        destacado: "Morante de la Puebla · Roca Rey · David de Miranda"
+        destacado: "Morante de la Puebla · Roca Rey · David de Miranda — Toros de Garcigrande"
     },
     {
         id: 5,
