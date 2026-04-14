@@ -122,9 +122,6 @@ footer {
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="apple-touch-icon" href="icon-192.png">
 
-<!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging-compat.js"></script>
 </head>
 
 <body>
@@ -212,19 +209,8 @@ if ('serviceWorker' in navigator) {
 </script>
 
 <script>
-const API = "https://script.google.com/macros/s/AKfycbx1cNOTCTiBU3yjscaRrlrMTkCU6n0G4WIxxSmJhwajRvGBPMqEWc8odKkrY28mw4_C/exec";
-const VAPID_KEY = "BETt7nQmpn0ROUNPuyiMVoRhd9SMN7266U42n2Qi79a1O72fEWP8sY9NQrW1hxt674F_fTFe1h75McHvDYMXXVY";
+const API = "https://script.google.com/macros/s/AKfycbzxpHykv3mfWp_Q0ZODxNA6Jy06XLHQ7tya902pM7XeyiSOcoLZNv8JFpbLQoOqr11D/exec";
 
-firebase.initializeApp({
-  apiKey: "AIzaSyCdncrUozHk7Izh4xExqCGwNNMCBaon9uY",
-  authDomain: "peguerinos-cd378.firebaseapp.com",
-  projectId: "peguerinos-cd378",
-  storageBucket: "peguerinos-cd378.firebasestorage.app",
-  messagingSenderId: "724770006648",
-  appId: "1:724770006648:web:4d3881925041bc62a52f8d"
-});
-
-const messaging = firebase.messaging();
 const sesion = JSON.parse(localStorage.getItem("datos_sesion"));
 
 if (!sesion) {
@@ -236,7 +222,6 @@ if (!sesion) {
     const msg = encodeURIComponent("Hola Luis Alfonso, soy " + sesion.nombre + " (Socio " + sesion.num + "). ");
     document.getElementById("link-whatsapp").href = "https://wa.me/" + tlf + "?text=" + msg;
     cargarAviso();
-    activarNotificaciones();
 }
 
 async function cargarAviso() {
@@ -263,28 +248,6 @@ async function cargarAviso() {
     } catch(e) {
         indicador.className = "indicador verde";
         indicador.innerText = "🟢 Sin avisos";
-    }
-}
-
-async function activarNotificaciones() {
-    try {
-        // Registrar firebase-messaging-sw.js explícitamente
-        const swReg = await navigator.serviceWorker.register('/firebase-messaging-sw.js', { scope: '/' });
-        await navigator.serviceWorker.ready;
-
-        const permiso = await Notification.requestPermission();
-        if (permiso !== "granted") return;
-
-        const token = await messaging.getToken({ vapidKey: VAPID_KEY, serviceWorkerRegistration: swReg });
-        if (token) {
-            await fetch(API, {
-                method: "POST",
-                body: JSON.stringify({ action: "saveFcmToken", num: sesion.num, token: token })
-            });
-            console.log("Token FCM guardado OK");
-        }
-    } catch(e) {
-        console.log("Notificaciones no disponibles:", e);
     }
 }
 
