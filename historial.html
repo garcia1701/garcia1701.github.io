@@ -160,11 +160,11 @@
     
     // Filtramos y mostramos eventos pasados
     EVENTOS_DATA.slice().reverse().forEach(ev => {
-        if (ev.fecha < ahora) {
+        if ((ev.fin || ev.fecha) < ahora) {
             listaH.innerHTML += `
                 <div class="evento-pasado">
                     <h3>${ev.titulo}</h3>
-                    <p>📅 <strong>${ev.fecha.toLocaleDateString('es-ES', {day:'numeric', month:'long', year:'numeric'})}</strong></p>
+                    <p>📅 <strong>${ev.fecha.toLocaleDateString('es-ES', {day:'numeric', month:'long', year:'numeric'})} — ${ev.fecha.getHours()}:${ev.fecha.getMinutes().toString().padStart(2,'0')} h</strong></p>
                     <p>📍 ${ev.lugar}</p>
                     <p>${ev.descripcion}</p>
                     ${ev.destacado ? `<p style="color:#b30000; margin-top:5px;"><strong>${ev.destacado}</strong></p>` : ''}

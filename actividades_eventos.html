@@ -86,7 +86,7 @@
     let hayEventos = false;
 
     EVENTOS_DATA.forEach(ev => {
-        if (ev.fecha >= ahora) {
+        if ((ev.fin || ev.fecha) >= ahora) {
             hayEventos = true;
             lista.innerHTML += `
                 <div class="evento-bloque">

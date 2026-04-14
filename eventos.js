@@ -19,7 +19,7 @@ const EVENTOS_DATA = [
     {
         id: 3,
         titulo: "Cena de la Peña",
-        fecha: new Date(2026, 2, 25, 21, 30),
+        fecha: new Date(2026, 2, 25, 21, 0),
         lugar: "Restaurante Risco del Águila",
         descripcion: "Cena de convivencia para socios y simpatizantes.",
         destacado: ""
@@ -39,5 +39,14 @@ const EVENTOS_DATA = [
         lugar: "Real Maestranza de Sevilla — Retransmisión en Risco del Águila",
         descripcion: "Tercera de Abono. Retransmisión en directo en nuestra sede.",
         destacado: "Lorenzo · Serna · Molina — Toros de Fuente Ymbro"
+    },
+    {
+        id: 6,
+        titulo: "Cena de la Peña",
+        fecha: new Date(2026, 3, 15, 21, 0),
+        fin: new Date(2026, 3, 15, 22, 0),
+        lugar: "Restaurante Risco del Águila",
+        descripcion: "Cena de convivencia para socios y simpatizantes.",
+        destacado: ""
     }
 ];
