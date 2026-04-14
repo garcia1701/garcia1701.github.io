@@ -177,6 +177,53 @@ footer {
 
     footer { padding: 10px; font-size: 12px; }
 }
+
+/* BOTÓN ESTRELLA INSCRIPCIONES */
+.btn-estrella-wrap {
+    display: flex; justify-content: center;
+    margin: 16px 0 4px;
+}
+.btn-estrella {
+    position: relative; display: inline-flex;
+    flex-direction: column; align-items: center; justify-content: center;
+    width: 180px; height: 180px;
+    background: none; border: none; cursor: pointer;
+    text-decoration: none; animation: girar-lento 12s linear infinite;
+}
+.btn-estrella:hover { animation-play-state: paused; transform: scale(1.05); }
+.estrella-svg {
+    position: absolute; top: 0; left: 0;
+    width: 180px; height: 180px;
+}
+.btn-estrella-texto {
+    position: relative; z-index: 2;
+    text-align: center; color: #7a0000;
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+}
+.btn-estrella-texto .linea1 {
+    font-size: 11px; font-weight: bold; text-transform: uppercase;
+    letter-spacing: 1px; color: #7a0000;
+}
+.btn-estrella-texto .linea2 {
+    font-size: 13px; font-weight: 900; color: #7a0000; line-height: 1.1;
+}
+.btn-estrella-texto .linea3 {
+    font-size: 10px; color: #5a0000; font-style: italic;
+}
+@keyframes girar-lento {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+.btn-estrella-texto { animation: girar-lento-inv 12s linear infinite; }
+.btn-estrella:hover .btn-estrella-texto { animation-play-state: paused; }
+@keyframes girar-lento-inv {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(-360deg); }
+}
+@media (max-width: 768px) {
+    .btn-estrella, .estrella-svg { width: 150px; height: 150px; }
+    .btn-estrella-texto .linea2 { font-size: 11px; }
+}
 </style>
 
 <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
@@ -233,6 +280,25 @@ footer {
 </div>
 
 <!-- 4-5. CONTENIDO -->
+
+<!-- BOTÓN ESTRELLA INSCRIPCIONES -->
+<div class="btn-estrella-wrap">
+  <a href="solicitud_ingreso.html" class="btn-estrella">
+    <svg class="estrella-svg" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+      <!-- Estrella de 8 puntas -->
+      <polygon points="90,8 104,68 150,30 112,76 172,90 112,104 150,150 104,112 90,172 76,112 30,150 68,104 8,90 68,76 30,30 76,68"
+        fill="#d4af37" stroke="#7a0000" stroke-width="2"/>
+      <!-- Círculo central -->
+      <circle cx="90" cy="90" r="52" fill="#f4efe2" stroke="#7a0000" stroke-width="1.5"/>
+    </svg>
+    <div class="btn-estrella-texto">
+      <span class="linea1">🎟 Inscripciones</span>
+      <span class="linea2">Abiertas<br>hasta el<br>30 abril</span>
+      <span class="linea3">Participa · Colabora</span>
+    </div>
+  </a>
+</div>
+
 <div class="zona-scroll">
 
 <div class="contenedor">
