@@ -28,6 +28,7 @@
     .evento-bloque { background: #fdf7e3; border-left: 6px solid #7a0000; padding: 20px; margin: 20px 0; border-radius: 8px; }
     .evento-bloque h3 { margin: 0 0 10px 0; color: #7a0000; }
     .btn-historial { display: block; width: fit-content; margin: 40px auto 10px auto; padding: 15px 30px; background-color: #7a0000; color: white; text-decoration: none; font-weight: bold; border-radius: 6px; transition: 0.3s; }
+    .aviso-confirmacion { background: #fff3cd; border: 1px solid #d4af37; border-radius: 6px; padding: 10px 14px; font-size: 13px; color: #5a3e00; margin-top: 10px; }
     footer { background-color: #7a0000; color: #d4af37; text-align: center; padding: 14px; font-size: 13px; }
     @media (max-width: 768px) { .btn-menu { display: block; } .nav-desktop { display: none; } header h1 { font-size: 20px; } .logo-principal { height: 80px; } }
 </style>
@@ -93,8 +94,10 @@
                     <h3>${ev.titulo}</h3>
                     <p>📅 <strong>${ev.fecha.toLocaleDateString('es-ES', {day:'numeric', month:'long', year:'numeric'})} — ${ev.fecha.getHours()}:${ev.fecha.getMinutes().toString().padStart(2,'0')} h</strong></p>
                     <p>📍 ${ev.lugar}</p>
+                    ${ev.ganaderia ? `<p>🐂 Ganaderías: <strong>${ev.ganaderia}</strong></p>` : ''}
                     <p>${ev.descripcion}</p>
                     ${ev.destacado ? `<p style="color:#b30000; margin-top:5px;"><strong>${ev.destacado}</strong></p>` : ''}
+                    ${ev.confirmacion ? `<div class="aviso-confirmacion">🔐 ¿Te apuntas? Entra en tu <strong>panel de socio</strong> y confirma tu asistencia desde ahí.</div>` : ''}
                 </div>`;
         }
     });

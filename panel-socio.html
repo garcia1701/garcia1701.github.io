@@ -30,21 +30,17 @@ header h1 {
     flex: 1; text-align: center;
 }
 .gif-cabecera { height: 55px; flex-shrink: 0; }
-.nav-desktop {
-    display: flex; gap: 14px; flex-wrap: wrap;
-}
+.nav-desktop { display: flex; gap: 14px; flex-wrap: wrap; }
 .nav-desktop a {
     color: rgba(255,255,255,0.85); text-decoration: none;
-    font-size: 13px; padding: 3px 6px; border-radius: 4px;
-    transition: 0.2s;
+    font-size: 13px; padding: 3px 6px; border-radius: 4px; transition: 0.2s;
 }
 .nav-desktop a:hover { color: #d4af37; }
 .nav-movil {
     display: none; flex-direction: column;
     position: fixed; top: 0; left: 0; right: 0; bottom: 0;
     background: rgba(90,0,0,0.97); z-index: 200;
-    padding: 70px 24px 24px; gap: 0;
-    overflow-y: auto;
+    padding: 70px 24px 24px; gap: 0; overflow-y: auto;
 }
 .nav-movil.abierto { display: flex; }
 .nav-movil a {
@@ -60,14 +56,11 @@ header h1 {
 }
 .zona-logo {
     background: linear-gradient(135deg, #c9a227 0%, #d4af37 30%, #e8c84a 50%, #d4af37 70%, #c9a227 100%);
-    padding: 22px 20px;
-    display: flex; justify-content: center; align-items: center;
-    flex-shrink: 0;
+    padding: 22px 20px; display: flex; justify-content: center; align-items: center; flex-shrink: 0;
 }
 .logo-principal {
     height: 110px; border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    border: 3px solid #7a0000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3); border: 3px solid #7a0000;
 }
 .franja-lema {
     background: linear-gradient(90deg, #5a0000, #7a0000, #5a0000);
@@ -80,8 +73,7 @@ header h1 {
 .zona-scroll { flex: 1; overflow-y: auto; }
 footer {
     background-color: #7a0000; color: #d4af37;
-    text-align: center; padding: 14px; font-size: 13px;
-    flex-shrink: 0;
+    text-align: center; padding: 14px; font-size: 13px; flex-shrink: 0;
 }
 @media (max-width: 768px) {
     .btn-menu { display: block; }
@@ -99,29 +91,87 @@ footer {
 .panel-flex { display: flex; gap: 35px; align-items: flex-start; flex-wrap: wrap; }
 .col-izq { flex: 1.3; min-width: 340px; }
 .col-der { flex: 1; display: flex; flex-direction: column; gap: 15px; min-width: 280px; }
-.carnet { background: linear-gradient(135deg, #d4af37 0%, #f1d37a 100%); border: 3px solid #7a0000; border-radius: 15px; padding: 25px; color: #7a0000; box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
-.carnet-superior { display: flex; align-items: center; gap: 15px; border-bottom: 2px solid #7a0000; padding-bottom: 12px; margin-bottom: 15px; }
+.carnet {
+    background: linear-gradient(135deg, #d4af37 0%, #f1d37a 100%);
+    border: 3px solid #7a0000; border-radius: 15px; padding: 25px;
+    color: #7a0000; box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+.carnet-superior {
+    display: flex; align-items: center; gap: 15px;
+    border-bottom: 2px solid #7a0000; padding-bottom: 12px; margin-bottom: 15px;
+}
 .logo-carnet { height: 65px; background: white; border: 1px solid #7a0000; padding: 2px; border-radius: 4px; }
 .nombre-socio { font-size: 22px; font-weight: bold; text-transform: uppercase; margin: 10px 0; line-height: 1.2; }
 .tabla-cuotas { width: 100%; border-collapse: collapse; margin-top: 15px; background: rgba(255,255,255,0.2); border-radius: 8px; overflow: hidden; }
 .tabla-cuotas th, .tabla-cuotas td { padding: 10px; text-align: center; border: 1px solid #7a0000; font-size: 13px; }
 .tabla-cuotas th { background: #7a0000; color: white; }
-.btn-whatsapp { background: #25d366; color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 18px; }
-.btn-montera { background: #111; color: white; border: none; padding: 18px; border-radius: 40px 40px 10px 10px; cursor: pointer; font-weight: bold; border-bottom: 4px solid #d4af37; font-size: 16px; width: 100%; }
-.btn-salir { background: transparent; border: 1px solid #7a0000; color: #7a0000; padding: 10px; width: 100%; cursor: pointer; border-radius: 6px; font-weight: bold; margin-top: 10px; }
+.btn-whatsapp {
+    background: #25d366; color: white; text-decoration: none;
+    display: flex; align-items: center; justify-content: center;
+    padding: 15px; border-radius: 8px; font-weight: bold; font-size: 18px;
+}
+.btn-montera {
+    background: #111; color: white; border: none; padding: 18px;
+    border-radius: 40px 40px 10px 10px; cursor: pointer; font-weight: bold;
+    border-bottom: 4px solid #d4af37; font-size: 16px; width: 100%;
+}
+.btn-salir {
+    background: transparent; border: 1px solid #7a0000; color: #7a0000;
+    padding: 10px; width: 100%; cursor: pointer; border-radius: 6px;
+    font-weight: bold; margin-top: 10px;
+}
 .indicador { padding: 12px; border-radius: 8px; text-align: center; font-weight: bold; color: white; }
 .verde { background: #28a745; }
 .ambar { background: #ffc107; color: #333; }
 .rojo { background: #dc3545; }
 .parpadeo { animation: parpadeo 1s infinite; }
 @keyframes parpadeo { 0%, 100% {opacity: 1;} 50% {opacity: 0.5;} }
-@media (max-width: 768px) { .panel-flex { flex-direction: column; } .col-izq, .col-der { width: 100%; min-width: unset; } .contenedor { margin: 12px 10px; padding: 0 10px; } }
+
+/* EVENTOS CONFIRMACIÓN */
+.seccion-eventos { margin-top: 25px; }
+.seccion-eventos h3 {
+    color: #7a0000; font-size: 16px; font-weight: bold;
+    border-bottom: 2px solid #d4af37; padding-bottom: 8px; margin-bottom: 14px;
+}
+.evento-confirmacion {
+    background: #fdf7e3; border-left: 5px solid #7a0000;
+    border-radius: 0 8px 8px 0; padding: 16px; margin-bottom: 14px;
+}
+.evento-confirmacion h4 { color: #7a0000; font-size: 14px; margin-bottom: 6px; }
+.evento-confirmacion p { font-size: 13px; color: #333; margin-bottom: 4px; }
+.evento-confirmacion .ganaderia { color: #7a0000; font-size: 12px; font-weight: bold; margin-bottom: 10px; }
+.botones-confirmacion { display: flex; gap: 10px; margin-top: 12px; }
+.btn-si {
+    flex: 1; background: #28a745; color: white; border: none;
+    padding: 11px; border-radius: 6px; font-weight: bold; font-size: 14px;
+    cursor: pointer; transition: 0.2s;
+}
+.btn-si:hover { background: #1e7e34; }
+.btn-no {
+    flex: 1; background: #dc3545; color: white; border: none;
+    padding: 11px; border-radius: 6px; font-weight: bold; font-size: 14px;
+    cursor: pointer; transition: 0.2s;
+}
+.btn-no:hover { background: #c82333; }
+.btn-si:disabled, .btn-no:disabled { opacity: 0.5; cursor: not-allowed; }
+.estado-confirmacion {
+    margin-top: 10px; padding: 8px 12px; border-radius: 6px;
+    font-size: 13px; font-weight: bold; text-align: center;
+}
+.confirmado-si { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+.confirmado-no { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+.limite-aviso { font-size: 11px; color: #b30000; font-weight: bold; margin-top: 6px; }
+
+@media (max-width: 768px) {
+    .panel-flex { flex-direction: column; }
+    .col-izq, .col-der { width: 100%; min-width: unset; }
+    .contenedor { margin: 12px 10px; padding: 0 10px; }
+}
 </style>
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#7a0000">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="apple-touch-icon" href="icon-192.png">
-
 </head>
 
 <body>
@@ -183,7 +233,14 @@ footer {
                     </tbody>
                 </table>
             </div>
+
+            <!-- SECCIÓN EVENTOS CON CONFIRMACIÓN -->
+            <div class="seccion-eventos" id="seccion-eventos" style="display:none;">
+                <h3>📣 Actividades — Confirma tu asistencia</h3>
+                <div id="lista-eventos-confirmacion"></div>
+            </div>
         </div>
+
         <div class="col-der">
             <div id="indicador-avisos" class="indicador verde">🟢 Cargando avisos...</div>
             <button class="btn-montera" onclick="window.location.href='documentos.html'">📂 DOCUMENTOS Y ESTATUTOS</button>
@@ -201,16 +258,12 @@ footer {
 <script>
 function abrirMenu() { document.getElementById('nav-menu').classList.add('abierto'); }
 function cerrarMenu() { document.getElementById('nav-menu').classList.remove('abierto'); }
-
-// Service worker PWA
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js');
-}
+if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js'); }
 </script>
 
+<script src="eventos.js"></script>
 <script>
-const API = "https://script.google.com/macros/s/AKfycbzxpHykv3mfWp_Q0ZODxNA6Jy06XLHQ7tya902pM7XeyiSOcoLZNv8JFpbLQoOqr11D/exec";
-
+const API = "https://script.google.com/macros/s/AKfycbyxTD8laVWqDvtVJx6sXu8gG0gqwTbpYtat4hoiNxlD-XsA5VPThw5gzGcRzTAZM54/exec";
 const sesion = JSON.parse(localStorage.getItem("datos_sesion"));
 
 if (!sesion) {
@@ -222,6 +275,7 @@ if (!sesion) {
     const msg = encodeURIComponent("Hola Luis Alfonso, soy " + sesion.nombre + " (Socio " + sesion.num + "). ");
     document.getElementById("link-whatsapp").href = "https://wa.me/" + tlf + "?text=" + msg;
     cargarAviso();
+    cargarEventosConfirmacion();
 }
 
 async function cargarAviso() {
@@ -248,6 +302,132 @@ async function cargarAviso() {
     } catch(e) {
         indicador.className = "indicador verde";
         indicador.innerText = "🟢 Sin avisos";
+    }
+}
+
+async function cargarEventosConfirmacion() {
+    const ahora = new Date();
+    // Filtrar eventos con confirmación activa (fin >= hoy)
+    const eventosActivos = EVENTOS_DATA.filter(ev =>
+        ev.confirmacion === true &&
+        ev.fechaLimiteConfirmacion >= ahora
+    );
+    if (eventosActivos.length === 0) return;
+
+    // Cargar confirmaciones existentes del socio
+    let confirmacionesActuales = {};
+    try {
+        const res = await fetch(`${API}?action=getAsistencias&num=${sesion.num}&pin=${sesion.pin}`);
+        const data = await res.json();
+        if (data.ok && data.asistencias) {
+            data.asistencias.forEach(a => {
+                confirmacionesActuales[a.eventoId] = a.respuesta;
+            });
+        }
+    } catch(e) { /* si falla, mostramos igual sin estado previo */ }
+
+    const contenedor = document.getElementById("lista-eventos-confirmacion");
+    contenedor.innerHTML = "";
+
+    eventosActivos.forEach(ev => {
+        const respuestaActual = confirmacionesActuales[ev.id] || null;
+        const fechaLimite = ev.fechaLimiteConfirmacion.toLocaleDateString('es-ES', {day:'numeric', month:'long'});
+        const fechaEvento = ev.fecha.toLocaleDateString('es-ES', {day:'numeric', month:'long', year:'numeric'});
+
+        let estadoHtml = "";
+        if (respuestaActual === "SI") {
+            estadoHtml = `<div class="estado-confirmacion confirmado-si">✅ Has confirmado asistencia</div>`;
+        } else if (respuestaActual === "NO") {
+            estadoHtml = `<div class="estado-confirmacion confirmado-no">❌ Has indicado que no vas</div>`;
+        }
+
+        contenedor.innerHTML += `
+            <div class="evento-confirmacion" id="evento-bloque-${ev.id}">
+                <h4>🎯 ${ev.titulo}</h4>
+                <p>📅 <strong>${fechaEvento}</strong></p>
+                <p>📍 ${ev.lugar}</p>
+                ${ev.ganaderia ? `<p class="ganaderia">🐂 Ganaderías: ${ev.ganaderia}</p>` : ''}
+                <p>${ev.descripcion}</p>
+                <p class="limite-aviso">⏰ Plazo para confirmar: ${fechaLimite}</p>
+                ${estadoHtml}
+                <div class="botones-confirmacion">
+                    <button class="btn-si" id="btn-si-${ev.id}"
+                        onclick="confirmarAsistencia(${ev.id}, 'SI')"
+                        ${respuestaActual === 'SI' ? 'disabled' : ''}>
+                        ✅ Me apunto
+                    </button>
+                    <button class="btn-no" id="btn-no-${ev.id}"
+                        onclick="confirmarAsistencia(${ev.id}, 'NO')"
+                        ${respuestaActual === 'NO' ? 'disabled' : ''}>
+                        ❌ No voy
+                    </button>
+                </div>
+            </div>`;
+    });
+
+    document.getElementById("seccion-eventos").style.display = "block";
+}
+
+async function confirmarAsistencia(eventoId, respuesta) {
+    const btnSi = document.getElementById(`btn-si-${eventoId}`);
+    const btnNo = document.getElementById(`btn-no-${eventoId}`);
+    btnSi.disabled = true;
+    btnNo.disabled = true;
+    btnSi.innerText = "Enviando...";
+    btnNo.innerText = "Enviando...";
+
+    const ev = EVENTOS_DATA.find(e => e.id === eventoId);
+
+    try {
+        const res = await fetch(API, {
+            method: "POST",
+            body: JSON.stringify({
+                action: "confirmarAsistencia",
+                num: sesion.num,
+                pin: sesion.pin,
+                nombre: sesion.nombre,
+                eventoId: eventoId,
+                eventoTitulo: ev ? ev.titulo : "",
+                respuesta: respuesta
+            })
+        });
+        const data = await res.json();
+        if (data.ok) {
+            const bloque = document.getElementById(`evento-bloque-${eventoId}`);
+            // Actualizar estado visual
+            let estadoEl = bloque.querySelector(".estado-confirmacion");
+            if (!estadoEl) {
+                estadoEl = document.createElement("div");
+                bloque.querySelector(".botones-confirmacion").before(estadoEl);
+            }
+            if (respuesta === "SI") {
+                estadoEl.className = "estado-confirmacion confirmado-si";
+                estadoEl.innerText = "✅ Has confirmado asistencia";
+                btnSi.disabled = true;
+                btnNo.disabled = false;
+                btnSi.innerText = "✅ Me apunto";
+                btnNo.innerText = "❌ No voy";
+            } else {
+                estadoEl.className = "estado-confirmacion confirmado-no";
+                estadoEl.innerText = "❌ Has indicado que no vas";
+                btnNo.disabled = true;
+                btnSi.disabled = false;
+                btnSi.innerText = "✅ Me apunto";
+                btnNo.innerText = "❌ No voy";
+            }
+        } else {
+            alert("Error al guardar. Intentá de nuevo.");
+            btnSi.disabled = false;
+            btnNo.disabled = false;
+            btnSi.innerText = "✅ Me apunto";
+            btnNo.innerText = "❌ No voy";
+        }
+    } catch(e) {
+        alert("Error de conexión.");
+        btnSi.disabled = false;
+        btnNo.disabled = false;
+        btnSi.innerText = "✅ Me apunto";
+        btnNo.innerText = "❌ No voy";
     }
 }
 
