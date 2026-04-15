@@ -51,10 +51,10 @@ const EVENTOS_DATA = [
     },
     {
         id: 7,
-        titulo: "Copa Chenel — San Martín de la Vega",
+        titulo: "Copa Chenel — San Martín de Valdeiglesias",
         fecha: new Date(2026, 5, 27, 17, 0),
         fin: new Date(2026, 4, 15, 23, 59),
-        lugar: "San Martín de la Vega (Madrid)",
+        lugar: "San Martín de Valdeiglesias (Madrid)",
         ganaderia: "Castillejo de Huebra y Adolfo Martín",
         descripcion: "La Peña Taurina Peguerinos está valorando organizar un grupo de socios para asistir juntos. En función del número de participantes, se estudiarán formas de apoyo económico con criterios transparentes y equilibrados para todos.",
         destacado: "Confirmá tu interés antes del 14 de mayo",
