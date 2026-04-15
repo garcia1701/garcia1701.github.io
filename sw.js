@@ -2,7 +2,7 @@
 // Notificaciones push gestionadas por OneSignalSDKWorker.js
 // Este SW solo gestiona el caché de la app
 
-const CACHE_NAME = 'ptp-cache-v6';
+const CACHE_NAME = 'ptp-cache-v7';
 
 const ARCHIVOS = [
   '/index.html',
@@ -22,6 +22,13 @@ const ARCHIVOS = [
   '/toro_enfadado.gif',
 ];
 
+// URLs que NUNCA deben cachearse
+const NO_CACHEAR = [
+  'script.google.com',
+  'script.googleusercontent.com',
+  'onesignal.com',
+];
+
 self.addEventListener('install', e => {
   e.waitUntil(
     caches.open(CACHE_NAME).then(cache => cache.addAll(ARCHIVOS))
@@ -39,6 +46,13 @@ self.addEventListener('activate', e => {
 
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
+
+  // No interceptar peticiones a APIs externas
+  const url = e.request.url;
+  if (NO_CACHEAR.some(dominio => url.includes(dominio))) {
+    return; // deja pasar sin tocar
+  }
+
   e.respondWith(
     fetch(e.request)
       .then(response => {
