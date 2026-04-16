@@ -2,7 +2,7 @@
   "name": "Peña Taurina Peguerinos",
   "short_name": "PTP",
   "description": "App oficial de la Peña Taurina Peguerinos",
-  "start_url": "/index.html",
+  "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "background_color": "#f4efe2",
