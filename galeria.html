@@ -178,6 +178,7 @@ footer {
         <div class="foto-item"><img src="firmas.jpg"><p>Firma del Acta Fundacional</p></div>
         <div class="foto-item"><img src="fundadores.jpg"><p>Reunión Inaugural</p></div>
         <div class="foto-item"><img src="cartel_12_abril.jpg"><p>Cartel 12 de Abril</p></div>
+        <div class="foto-item foto-temporal"><img src="ocahuevo.jpg"><p>Poniendo la Cena</p></div>
 
     </div>
 </div>
@@ -203,7 +204,7 @@ if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}
 </script>
 
 <script>
-const fechaLimite = new Date('2026-04-01');
+const fechaLimite = new Date('2026-04-19');
 const hoy = new Date();
 if (hoy >= fechaLimite) {
     document.querySelectorAll('.foto-temporal').forEach(foto => foto.remove());
