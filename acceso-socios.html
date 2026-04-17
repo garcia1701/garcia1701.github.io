@@ -192,7 +192,7 @@ if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}
 </script>
 
 <script>
-const API = "https://script.google.com/macros/s/AKfycbxuR0UKh-au7EoIEufoHvazzfd9MejHEHidOrH2ifAUAvRMAdqF7KJJmk6FP4RFHSSt/exec";
+const API = "https://script.google.com/macros/s/AKfycbyxTD8laVWqDvtVJx6sXu8gG0gqwTbpYtat4hoiNxlD-XsA5VPThw5gzGcRzTAZM54/exec";
 const ADMIN_NUM = "0011";
 
 async function validarAcceso(event) {
@@ -211,7 +211,7 @@ async function validarAcceso(event) {
             const datosSesion = { num: numFormateado, nombre: data.socio.nombre, pin: passIngresada };
             localStorage.setItem("datos_sesion", JSON.stringify(datosSesion));
             if (numFormateado === ADMIN_NUM) {
-                window.location.href = "panel-admin.html";
+                window.location.href = "panel-socio.html";
             } else {
                 window.location.href = "panel-socio.html";
             }
