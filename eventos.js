@@ -63,22 +63,13 @@ const EVENTOS_DATA = [
     },
     {
         id: 8,
-        titulo: "Gran Jornada de Hermandad — Primer Asado Oficial",
-        fecha: new Date(2026, 3, 27, 20, 30),
-        fin: new Date(2026, 3, 27, 22, 30),
-        lugar: "Posada Isabelae, Peguerinos",
-        descripcion: "Encuentro festivo con asado, entrega de camisetas y tertulia taurina.",
-        destacado: ""
-    },
-    {
-        id: 9,
         titulo: "Corrida de Toros — Ávila 2026",
         fecha: new Date(2026, 5, 20, 19, 0),
         fin: new Date(2026, 5, 20, 21, 0),
         lugar: "Plaza de Toros de Ávila",
         ganaderia: "Pallarés",
-        descripcion: "6 toros de la ganadería Pallarés. Organiza: Tauroemoción.",
-        destacado: "Talavante · Emilio de Justo · David de Miranda — 🎟️ Descuento venta anticipada hasta el 7 de junio · tauroemocion.com · 613 611 758",
+        descripcion: "",
+        destacado: "Talavante · Emilio de Justo · David de Miranda",
         confirmacion: false
     }
 ];
