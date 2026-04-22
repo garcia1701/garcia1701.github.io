@@ -51,6 +51,16 @@ const EVENTOS_DATA = [
     },
     {
         id: 7,
+        titulo: "Gran Jornada de Hermandad — Primer Asado Oficial",
+        fecha: new Date(2026, 3, 27, 20, 30),
+        fin: new Date(2026, 3, 27, 22, 30),
+        lugar: "Posada Isabelae, Peguerinos",
+        ganaderia: "",
+        descripcion: "",
+        destacado: ""
+    },
+    {
+        id: 9,
         titulo: "Copa Chenel — San Martín de Valdeiglesias",
         fecha: new Date(2026, 5, 27, 17, 0),
         fin: new Date(2026, 5, 27, 21, 0),
@@ -62,7 +72,7 @@ const EVENTOS_DATA = [
         fechaLimiteConfirmacion: new Date(2026, 4, 14, 23, 59)
     },
     {
-        id: 8,
+        id: 10,
         titulo: "Corrida de Toros — Ávila 2026",
         fecha: new Date(2026, 5, 20, 19, 0),
         fin: new Date(2026, 5, 20, 21, 0),
