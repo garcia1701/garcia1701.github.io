@@ -63,6 +63,15 @@ const EVENTOS_DATA = [
     },
     {
         id: 8,
+        titulo: "Gran Jornada de Hermandad — Primer Asado Oficial",
+        fecha: new Date(2026, 3, 27, 20, 30),
+        fin: new Date(2026, 3, 27, 22, 30),
+        lugar: "Posada Isabelae, Peguerinos",
+        descripcion: "Encuentro festivo con asado, entrega de camisetas y tertulia taurina.",
+        destacado: ""
+    },
+    {
+        id: 9,
         titulo: "Corrida de Toros — Ávila 2026",
         fecha: new Date(2026, 5, 20, 19, 0),
         fin: new Date(2026, 5, 20, 21, 0),
