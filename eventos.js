@@ -53,12 +53,23 @@ const EVENTOS_DATA = [
         id: 7,
         titulo: "Copa Chenel — San Martín de Valdeiglesias",
         fecha: new Date(2026, 5, 27, 17, 0),
-        fin: new Date(2026, 4, 15, 23, 59),
+        fin: new Date(2026, 5, 27, 21, 0),
         lugar: "San Martín de Valdeiglesias (Madrid)",
         ganaderia: "Castillejo de Huebra y Adolfo Martín",
         descripcion: "La Peña Taurina Peguerinos está valorando organizar un grupo de socios para asistir juntos. En función del número de participantes, se estudiarán formas de apoyo económico con criterios transparentes y equilibrados para todos.",
         destacado: "Confirmá tu interés antes del 14 de mayo",
         confirmacion: true,
         fechaLimiteConfirmacion: new Date(2026, 4, 14, 23, 59)
+    },
+    {
+        id: 8,
+        titulo: "Corrida de Toros — Ávila 2026",
+        fecha: new Date(2026, 5, 20, 19, 0),
+        fin: new Date(2026, 5, 20, 21, 0),
+        lugar: "Plaza de Toros de Ávila",
+        ganaderia: "Pallarés",
+        descripcion: "6 toros de la ganadería Pallarés. Organiza: Tauroemoción.",
+        destacado: "Talavante · Emilio de Justo · David de Miranda — 🎟️ Descuento venta anticipada hasta el 7 de junio · tauroemocion.com · 613 611 758",
+        confirmacion: false
     }
 ];
