@@ -172,6 +172,27 @@ footer {
 
 <div class="contenedor">
     <h2 id="tituloGaleria">Recuerdos de la Peña</h2>
+
+    <h3 style="color:#7a0000; margin: 24px 0 10px 0; font-size:17px; border-left: 4px solid #d4af37; padding-left: 10px;">🍖 Cena Inaugural · Abril 2026</h3>
+    <div class="galeria-flex">
+        <div class="foto-item"><img src="equipacion.jpeg" alt="Equipación oficial"><p>Equipación Oficial PTP</p></div>
+        <div class="foto-item"><img src="cartel_pañuelo.jpeg" alt="Cartel y pañuelo"><p>Cartel y Pañuelo de la Peña</p></div>
+        <div class="foto-item"><img src="parrillero.jpeg" alt="El parrillero"><p>Al pie de la parrilla</p></div>
+        <div class="foto-item foto-grupo-privada"><img src="grupo1_jepg.jpeg" alt="Socios llegando"><p>Llegada de los socios</p></div>
+        <div class="foto-item foto-grupo-privada"><img src="grupo2.jpeg" alt="Grupo de socios"><p>Socios de la Peña</p></div>
+        <div class="foto-item foto-grupo-privada"><img src="grupo3.jpeg" alt="Foto de grupo"><p>Foto de grupo</p></div>
+        <div class="foto-item foto-grupo-privada"><img src="grupo4.jpeg" alt="Foto de grupo 2"><p>Foto de grupo · toma 2</p></div>
+        <div class="foto-item foto-grupo-privada"><img src="grupo5.jpeg" alt="Socios en animada charla"><p>Charla entre socios</p></div>
+        <div class="foto-item foto-grupo-privada"><img src="grupo6.jpeg" alt="Ambiente de la cena"><p>Ambiente de la cena</p></div>
+        <div class="foto-item foto-grupo-privada"><img src="grupo7.jpeg" alt="Socios reunidos"><p>Reunión de socios</p></div>
+        <div class="foto-item foto-grupo-privada"><img src="grupo8.jpeg" alt="Foto de grupo 3"><p>Foto de grupo · toma 3</p></div>
+        <div class="foto-item foto-grupo-privada"><img src="grupo9.jpeg" alt="Foto de grupo 4"><p>Foto de grupo · toma 4</p></div>
+        <div class="foto-item foto-grupo-privada"><img src="grupo10.jpeg" alt="Foto de grupo 5"><p>Foto de grupo · toma 5</p></div>
+        <div class="foto-item foto-grupo-privada"><img src="grupo11.jpeg" alt="Foto de grupo 6"><p>Foto de grupo · toma 6</p></div>
+        <div class="foto-item foto-grupo-privada"><img src="grupo12.jpeg" alt="Foto de grupo 7"><p>Foto de grupo · toma 7</p></div>
+    </div>
+
+    <h3 style="color:#7a0000; margin: 28px 0 10px 0; font-size:17px; border-left: 4px solid #d4af37; padding-left: 10px;">📸 Galería General</h3>
     <div class="galeria-flex">
         <div class="foto-item"><img src="firmas.jpg"><p>Firma del Acta Fundacional</p></div>
         <div class="foto-item"><img src="fundadores.jpg"><p>Reunión Inaugural</p></div>
@@ -204,11 +225,41 @@ if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}
 </script>
 
 <script>
+// Fecha límite fotos temporales antiguas
 const fechaLimite = new Date('2026-04-19');
 const hoy = new Date();
 if (hoy >= fechaLimite) {
     document.querySelectorAll('.foto-temporal').forEach(foto => foto.remove());
 }
+
+// Fotos de grupo: públicas hasta el 12 de mayo, luego solo para socios
+const fechaPrivada = new Date('2026-05-12');
+const esSocio = !!localStorage.getItem("datos_sesion");
+const fotosSocio = document.querySelectorAll('.foto-grupo-privada');
+
+if (hoy >= fechaPrivada) {
+    if (esSocio) {
+        // Socio: las ve pero con distintivo
+        fotosSocio.forEach(f => {
+            const badge = document.createElement('span');
+            badge.textContent = '🔒 Solo socios';
+            badge.style.cssText = 'display:block;background:#7a0000;color:#d4af37;font-size:11px;padding:2px 6px;border-radius:4px;margin-top:4px;';
+            f.appendChild(badge);
+        });
+    } else {
+        // No socio: ocultar fotos de grupo y mostrar aviso
+        fotosSocio.forEach(f => f.remove());
+        const seccionCena = document.querySelector('.galeria-flex');
+        if (seccionCena) {
+            const aviso = document.createElement('div');
+            aviso.style.cssText = 'width:100%;padding:16px;background:#fdf7e3;border:1px solid #d4af37;border-radius:8px;text-align:center;color:#5a3e00;margin-top:10px;';
+            aviso.innerHTML = '🔒 Las fotos de grupo de la Cena Inaugural están disponibles <strong>solo para socios</strong>. <a href="acceso-socios.html" style="color:#7a0000;font-weight:bold;">Identifícate aquí</a>';
+            seccionCena.parentElement.insertBefore(aviso, seccionCena);
+        }
+    }
+}
+
+// Modal de ampliación
 document.querySelectorAll('.foto-item img').forEach(imagen => {
     imagen.onclick = function() {
         const modal = document.getElementById("modalGaleria");
