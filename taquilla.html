@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>La Taquilla - Peña Taurina Peguerinos</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#7a0000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="icon-192.png">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+    width: 100%; height: 100%;
+    overflow: hidden; background-color: #f4efe2;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex; flex-direction: column;
+}
+header {
+    background: linear-gradient(135deg, #5a0000 0%, #8b0000 50%, #5a0000 100%);
+    padding: 20px 20px; color: white;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: space-between;
+}
+.btn-menu {
+    background: none; border: 2px solid rgba(212,175,55,0.5);
+    color: #d4af37; font-size: 24px; padding: 6px 12px;
+    border-radius: 6px; cursor: pointer; line-height: 1;
+    display: none; flex-shrink: 0;
+}
+header h1 {
+    font-size: 28px; color: #d4af37;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    flex: 1; text-align: center;
+}
+.gif-cabecera { height: 55px; flex-shrink: 0; }
+.nav-desktop { display: flex; gap: 14px; flex-wrap: wrap; }
+.nav-desktop a {
+    color: rgba(255,255,255,0.85); text-decoration: none;
+    font-size: 13px; padding: 3px 6px; border-radius: 4px; transition: 0.2s;
+}
+.nav-desktop a:hover { color: #d4af37; }
+.nav-movil {
+    display: none; flex-direction: column;
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(90,0,0,0.97); z-index: 200;
+    padding: 70px 24px 24px; gap: 0; overflow-y: auto;
+}
+.nav-movil.abierto { display: flex; }
+.nav-movil a {
+    color: #d4af37; font-weight: bold; text-decoration: none;
+    font-size: 20px; padding: 16px 0;
+    border-bottom: 1px solid rgba(212,175,55,0.2);
+}
+.nav-movil a:last-child { border-bottom: none; }
+.btn-cerrar-menu {
+    position: absolute; top: 16px; right: 20px;
+    background: none; border: none; color: #d4af37;
+    font-size: 36px; cursor: pointer; line-height: 1;
+}
+.zona-logo {
+    background: linear-gradient(135deg, #c9a227 0%, #d4af37 30%, #e8c84a 50%, #d4af37 70%, #c9a227 100%);
+    padding: 22px 20px;
+    display: flex; justify-content: center; align-items: center;
+    flex-shrink: 0;
+}
+.logo-principal {
+    height: 110px; border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    border: 3px solid #7a0000;
+}
+.franja-lema {
+    background: linear-gradient(90deg, #5a0000, #7a0000, #5a0000);
+    padding: 8px 16px; text-align: center; flex-shrink: 0;
+}
+.franja-lema span {
+    color: #d4af37; font-weight: bold; font-size: 14px;
+    letter-spacing: 3px; text-transform: uppercase;
+}
+.zona-scroll { flex: 1; overflow-y: auto; }
+footer {
+    background-color: #7a0000; color: #d4af37;
+    text-align: center; padding: 14px; font-size: 13px;
+    flex-shrink: 0;
+}
+@media (max-width: 768px) {
+    .btn-menu { display: block; }
+    .nav-desktop { display: none; }
+    header { padding: 14px 14px; }
+    header h1 { font-size: 20px; }
+    .gif-cabecera { height: 40px; }
+    .zona-logo { padding: 16px; }
+    .logo-principal { height: 80px; }
+    .franja-lema { padding: 6px 12px; }
+    .franja-lema span { font-size: 11px; letter-spacing: 1.5px; }
+    footer { padding: 10px; font-size: 12px; }
+}
+
+/* ===================== TAQUILLA ===================== */
+.contenedor-taquilla {
+    max-width: 750px; margin: 40px auto 60px auto;
+    padding: 0 20px; text-align: center;
+}
+
+/* Cartel estilo plaza de toros */
+.cartel-proximamente {
+    background: linear-gradient(160deg, #1a0000 0%, #3d0000 40%, #7a0000 100%);
+    border: 4px solid #d4af37;
+    border-radius: 16px;
+    padding: 50px 40px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.35), inset 0 0 60px rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Ornamento esquinas */
+.cartel-proximamente::before,
+.cartel-proximamente::after {
+    content: '✦';
+    position: absolute;
+    color: rgba(212,175,55,0.15);
+    font-size: 120px;
+    line-height: 1;
+}
+.cartel-proximamente::before { top: -20px; left: -10px; }
+.cartel-proximamente::after  { bottom: -20px; right: -10px; }
+
+    50%       { transform: rotate(4deg); }
+}
+
+.cartel-proximamente h2 {
+    font-size: 13px;
+    color: #d4af37;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    opacity: 0.85;
+}
+
+.cartel-proximamente h1 {
+    font-size: 42px;
+    color: #d4af37;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 0 3px 10px rgba(0,0,0,0.6);
+    margin-bottom: 6px;
+    line-height: 1.1;
+}
+
+.cartel-proximamente .subtitulo {
+    font-size: 18px;
+    color: rgba(212,175,55,0.7);
+    font-style: italic;
+    margin-bottom: 30px;
+}
+
+.separador-oro {
+    width: 120px; height: 2px;
+    background: linear-gradient(90deg, transparent, #d4af37, transparent);
+    margin: 0 auto 30px auto;
+}
+
+.frase-taurina {
+    background: rgba(0,0,0,0.35);
+    border-left: 3px solid #d4af37;
+    border-right: 3px solid #d4af37;
+    padding: 18px 24px;
+    margin: 0 auto 30px auto;
+    max-width: 480px;
+    border-radius: 4px;
+}
+.frase-taurina p {
+    color: #f1d37a;
+    font-size: 16px;
+    font-style: italic;
+    line-height: 1.7;
+}
+.frase-taurina span {
+    display: block;
+    color: rgba(212,175,55,0.6);
+    font-size: 12px;
+    margin-top: 8px;
+    letter-spacing: 2px;
+}
+
+.proximamente-texto {
+    color: rgba(255,255,255,0.75);
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 32px;
+}
+
+/* Artículos previstos */
+.articulos-previstos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 32px;
+}
+.articulo-chip {
+    background: rgba(212,175,55,0.12);
+    border: 1px solid rgba(212,175,55,0.4);
+    color: #d4af37;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: 0.2s;
+}
+.articulo-chip:hover {
+    background: rgba(212,175,55,0.22);
+    border-color: #d4af37;
+}
+.articulo-chip.loteria {
+    background: rgba(212,175,55,0.22);
+    border-color: #d4af37;
+    animation: brillo 2s ease-in-out infinite;
+}
+@keyframes brillo {
+    0%, 100% { box-shadow: 0 0 0px rgba(212,175,55,0); }
+    50%       { box-shadow: 0 0 12px rgba(212,175,55,0.5); }
+}
+
+/* Botón aviso */
+.btn-aviso-taquilla {
+    display: inline-block;
+    background: linear-gradient(135deg, #c9a227, #d4af37, #e8c84a);
+    color: #5a0000;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 14px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: 0.2s;
+    letter-spacing: 1px;
+}
+.btn-aviso-taquilla:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+/* Aviso lotería abajo */
+.aviso-loteria {
+    margin-top: 30px;
+    background: #fdf7e3;
+    border: 1px solid #d4af37;
+    border-radius: 10px;
+    padding: 20px 24px;
+    text-align: left;
+}
+.aviso-loteria h3 {
+    color: #7a0000;
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+.aviso-loteria p {
+    font-size: 13px;
+    color: #5a3e00;
+    line-height: 1.7;
+}
+
+@media (max-width: 480px) {
+    .cartel-proximamente { padding: 36px 22px; }
+    .cartel-proximamente h1 { font-size: 30px; letter-spacing: 2px; }
+        .contenedor-taquilla { margin: 20px auto 40px auto; }
+}
+</style>
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "47ce7a35-b3f4-4a3c-b910-f09fa18b3baf",
+      serviceWorkerPath: "/OneSignalSDKWorker.js",
+      serviceWorkerParam: { scope: "/" },
+    });
+  });
+</script>
+</head>
+
+<body>
+
+<header>
+    <button class="btn-menu" onclick="abrirMenu()" aria-label="Abrir menú">&#9776;</button>
+    <h1>Peña Taurina Peguerinos</h1>
+    <nav class="nav-desktop">
+        <a href="index.html">Inicio</a>
+        <a href="calendario_2026.html">Calendario</a>
+        <a href="actividades_eventos.html">Actividades</a>
+        <a href="galeria.html">Galería</a>
+        <a href="taquilla.html">La Taquilla</a>
+        <a href="historia_peña.html">Historia</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="enlaces.html">Enlaces</a>
+        <a href="acceso-socios.html">Socios</a>
+    </nav>
+    <img src="toro_enfadado.gif" class="gif-cabecera" alt="Toro">
+</header>
+
+<nav class="nav-movil" id="nav-menu">
+    <button class="btn-cerrar-menu" onclick="cerrarMenu()" aria-label="Cerrar menú">&times;</button>
+    <a href="index.html" onclick="cerrarMenu()">Inicio</a>
+    <a href="calendario_2026.html" onclick="cerrarMenu()">Calendario</a>
+    <a href="actividades_eventos.html" onclick="cerrarMenu()">Actividades y Eventos</a>
+    <a href="galeria.html" onclick="cerrarMenu()">Galería</a>
+    <a href="taquilla.html" onclick="cerrarMenu()">La Taquilla</a>
+    <a href="historia_peña.html" onclick="cerrarMenu()">Historia de la Peña</a>
+    <a href="contacto.html" onclick="cerrarMenu()">Contacto</a>
+    <a href="enlaces.html" onclick="cerrarMenu()">Enlaces</a>
+    <a href="acceso-socios.html" onclick="cerrarMenu()">Socios</a>
+</nav>
+
+<div class="zona-logo">
+    <img src="peña1.jpeg" class="logo-principal" alt="Logo Peña Taurina Peguerinos">
+</div>
+
+<div class="franja-lema">
+    <span>La Taquilla de la Peña</span>
+</div>
+
+<div class="zona-scroll">
+<div class="contenedor-taquilla">
+
+    <div class="cartel-proximamente">
+
+        <h2>Peña Taurina Peguerinos · 2026</h2>
+        <h1>La Taquilla</h1>
+        <p class="subtitulo">Artículos y recuerdos de la Peña</p>
+
+        <div class="separador-oro"></div>
+
+        <div class="frase-taurina">
+            <p>«El torero sale a la plaza sin saber lo que va a pasar, y eso es exactamente lo que hace grande a la fiesta.»</p>
+            <span>— Dicho taurino</span>
+        </div>
+
+        <p class="proximamente-texto">
+            Estamos preparando con todo el cariño nuestra tienda de artículos oficiales.<br>
+            Muy pronto podrás hacerte con los recuerdos de la Peña Taurina Peguerinos.
+        </p>
+
+        <div class="articulos-previstos">
+            <div class="articulo-chip">👕 Camisetas</div>
+            <div class="articulo-chip">🧢 Gorras</div>
+            <div class="articulo-chip">☕ Tazas</div>
+            <div class="articulo-chip">🔑 Llaveros</div>
+            <div class="articulo-chip">✒️ Bolígrafos</div>
+            <div class="articulo-chip loteria">🎟️ Lotería Nacional</div>
+        </div>
+
+        <a href="https://wa.me/34624485293?text=Hola,%20me%20interesa%20recibir%20novedades%20de%20La%20Taquilla%20de%20la%20Pe%C3%B1a."
+           target="_blank" rel="noopener noreferrer"
+           class="btn-aviso-taquilla">
+            🟢 Avísame cuando abra
+        </a>
+
+    </div>
+
+    <div class="aviso-loteria">
+        <h3>🎟️ Lotería Nacional — Todas las semanas</h3>
+        <p>
+            La Peña Taurina Peguerinos vende lotería nacional semanalmente.
+            Pronto podrás adquirirla desde aquí. Si quieres reservar ya,
+            contacta con nosotros por <a href="https://wa.me/34624485293" target="_blank" rel="noopener noreferrer" style="color:#7a0000;font-weight:bold;">WhatsApp</a>
+            o a través de la sección de <a href="contacto.html" style="color:#7a0000;font-weight:bold;">Contacto</a>.
+        </p>
+    </div>
+
+</div>
+</div>
+
+<footer>
+    Peña Taurina Peguerinos — Unidos por la afición
+</footer>
+
+<script>
+function abrirMenu() { document.getElementById('nav-menu').classList.add('abierto'); }
+function cerrarMenu() { document.getElementById('nav-menu').classList.remove('abierto'); }
+if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js'); }
+</script>
+
+</body>
+</html>

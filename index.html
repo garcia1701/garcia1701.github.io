@@ -252,6 +252,7 @@ footer {
         <a href="historia_peña.html">Historia</a>
         <a href="contacto.html">Contacto</a>
         <a href="enlaces.html">Enlaces</a>
+        <a href="taquilla.html">La Taquilla</a>
         <a href="acceso-socios.html">Socios</a>
     </nav>
     <img src="toro_enfadado.gif" class="gif-cabecera" alt="Toro">
@@ -266,6 +267,7 @@ footer {
     <a href="historia_peña.html" onclick="cerrarMenu()">Historia de la Peña</a>
     <a href="contacto.html" onclick="cerrarMenu()">Contacto</a>
     <a href="enlaces.html" onclick="cerrarMenu()">Enlaces</a>
+    <a href="taquilla.html" onclick="cerrarMenu()">La Taquilla</a>
     <a href="acceso-socios.html" onclick="cerrarMenu()">Socios</a>
 </nav>
 
@@ -350,6 +352,17 @@ function cerrarMenu() {
     document.getElementById('nav-menu').classList.remove('abierto');
 }
 if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}
+
+// Ocultar boton estrella inscripciones a partir del 30 de mayo de 2026
+(function() {
+    var cierre = new Date('2026-05-30');
+    var hoy = new Date();
+    hoy.setHours(0,0,0,0);
+    if (hoy >= cierre) {
+        var btn = document.querySelector('.btn-estrella-wrap');
+        if (btn) btn.style.display = 'none';
+    }
+})();
 </script>
 </body>
 </html>
