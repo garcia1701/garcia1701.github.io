@@ -78,7 +78,7 @@ const EVENTOS_DATA = [
         fin: new Date(2026, 5, 20, 21, 0),
         lugar: "Plaza de Toros de Ávila",
         ganaderia: "Pallarés",
-                descripcion: "Confirma tu asistencia también por el grupo de WhatsApp de la Peña.",
+        descripcion: "Confirma tu asistencia también por el grupo de WhatsApp de la Peña.",
         destacado: "Talavante · Emilio de Justo · David de Miranda",
         confirmacion: true
     }
