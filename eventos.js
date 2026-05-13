@@ -12,7 +12,7 @@ const EVENTOS_DATA = [
         id: 2,
         titulo: "Feria de Fallas 2026",
         fecha: new Date(2026, 2, 17, 17, 0),
-        lugar: "Bar Restaurante El Risco del Águila",
+        lugar: "Bar Restaurante El Risco del Águila",h
         descripcion: "Retransmisión en directo. Toros de Santiago Domecq.",
         destacado: ""
     },
@@ -78,8 +78,8 @@ const EVENTOS_DATA = [
         fin: new Date(2026, 5, 20, 21, 0),
         lugar: "Plaza de Toros de Ávila",
         ganaderia: "Pallarés",
-        descripcion: "",
+        descripcion: Confirma tu asistencia también por el grupo de WhatsApp de la Peña."",
         destacado: "Talavante · Emilio de Justo · David de Miranda",
-        confirmacion: false
+        confirmacion: true
     }
 ];
