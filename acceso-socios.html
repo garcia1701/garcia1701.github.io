@@ -229,8 +229,8 @@ async function validarAcceso(event) {
             localStorage.setItem("datos_sesion", JSON.stringify(datosSesion));
             window.location.href = "panel-socio.html";
         } else {
-            alert("Número de socio o contraseña incorrectos.\n\nRecuerda:\n· Nº socio: 4 dígitos (ej: 0003)\n");
-            btn.innerText = textoOriginal;
+            alert("Acceso denegado.\nRespuesta del servidor: " + JSON.stringify(data));
+                        btn.innerText = textoOriginal;
             btn.disabled  = false;
         }
     } catch(e) {
