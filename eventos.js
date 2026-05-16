@@ -67,9 +67,9 @@ const EVENTOS_DATA = [
         lugar: "San Martín de Valdeiglesias (Madrid)",
         ganaderia: "Castillejo de Huebra y Adolfo Martín",
         descripcion: "La Peña Taurina Peguerinos está valorando organizar un grupo de socios para asistir juntos. En función del número de participantes, se estudiarán formas de apoyo económico con criterios transparentes y equilibrados para todos.",
-        destacado: "Confirmá tu interés antes del 14 de mayo",
+        destacado: "Confirmá tu interés antes del 27 de junio",
         confirmacion: true,
-        fechaLimiteConfirmacion: new Date(2026, 4, 14, 23, 59)
+        fechaLimiteConfirmacion: new Date(2026, 5, 27, 23, 59)
     },
     {
         id: 10,
@@ -78,8 +78,9 @@ const EVENTOS_DATA = [
         fin: new Date(2026, 5, 20, 21, 0),
         lugar: "Plaza de Toros de Ávila",
         ganaderia: "Pallarés",
-        descripcion: "Confirma tu asistencia también por el grupo de WhatsApp de la Peña.",
+        descripcion: "",
         destacado: "Talavante · Emilio de Justo · David de Miranda",
-        confirmacion: true
+        confirmacion: true,
+        fechaLimiteConfirmacion: new Date(2026, 5, 20, 23, 59)
     }
 ];
