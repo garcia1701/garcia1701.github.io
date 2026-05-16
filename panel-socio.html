@@ -135,6 +135,20 @@ footer {
 .limite-aviso { font-size: 11px; color: #b30000; font-weight: bold; margin-top: 6px; }
 
 @media (max-width: 768px) { .panel-flex { flex-direction: column; } .col-izq, .col-der { width: 100%; min-width: unset; } .contenedor { margin: 12px 10px; padding: 0 10px; } }
+/* GALERIA DE SOCIOS */
+.seccion-galeria { margin-top: 25px; }
+.seccion-galeria h3 { color: #7a0000; font-size: 16px; font-weight: bold; border-bottom: 2px solid #d4af37; padding-bottom: 8px; margin-bottom: 14px; }
+.galeria-socios-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.foto-s { background: #fdf7e3; border: 1px solid #d4af37; border-radius: 8px; overflow: hidden; cursor: zoom-in; transition: 0.2s; }
+.foto-s:hover { transform: translateY(-3px); box-shadow: 0 6px 14px rgba(0,0,0,0.2); border-color: #7a0000; }
+.foto-s img { width: 100%; height: 110px; object-fit: cover; display: block; }
+.foto-s p { font-size: 11px; font-weight: bold; color: #7a0000; padding: 5px 6px; text-align: center; }
+#modal-gs { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); justify-content: center; align-items: center; flex-direction: column; cursor: pointer; }
+#modal-gs img { max-width: 92%; max-height: 82vh; border: 3px solid #d4af37; border-radius: 6px; }
+#modal-gs p { color: white; margin-top: 14px; font-size: 18px; font-weight: bold; }
+#modal-gs .cerrar-gs { position: absolute; top: 18px; right: 28px; color: #d4af37; font-size: 46px; line-height: 1; }
+@media (max-width: 600px) { .galeria-socios-grid { grid-template-columns: repeat(2, 1fr); } }
+
 </style>
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#7a0000">
@@ -142,12 +156,14 @@ footer {
     <link rel="apple-touch-icon" href="icon-192.png">
 <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 <script>
+  // OneSignal: init sin prompt automático — el socio activa las notificaciones manualmente
   window.OneSignalDeferred = window.OneSignalDeferred || [];
   OneSignalDeferred.push(async function(OneSignal) {
     await OneSignal.init({
       appId: "47ce7a35-b3f4-4a3c-b910-f09fa18b3baf",
       serviceWorkerPath: "/OneSignalSDKWorker.js",
       serviceWorkerParam: { scope: "/" },
+      promptOptions: { autoPrompt: false }
     });
   });
 </script>
@@ -203,7 +219,7 @@ footer {
                 </div>
                 <div class="nombre-socio" id="display-nombre">Cargando...</div>
                 <div style="font-weight: bold; margin: 5px 0;">Socio Nº: <span id="display-num">----</span></div>
-                <div style="font-weight: bold; margin: 5px 0;">Inscripción: <span>12 de marzo de 2026</span></div>
+                <div style="font-weight: bold; margin: 5px 0;">Inscripción: <span id="display-inscripcion">—</span></div>
                 <div style="margin-top: 10px;">Estado: <span id="display-estado" style="background:#7a0000; color:white; padding:3px 12px; border-radius:15px; font-size:11px; font-weight: bold;">ACTIVO</span></div>
                 <table class="tabla-cuotas">
                     <thead><tr><th>Año 2026</th><th>Semestre</th><th>Estado</th></tr></thead>
@@ -219,16 +235,42 @@ footer {
                 <h3>📣 Actividades — Confirma tu asistencia</h3>
                 <div id="lista-eventos-confirmacion"></div>
             </div>
+            <!-- GALERIA EXCLUSIVA DE SOCIOS -->
+            <div class="seccion-galeria">
+                <h3>&#128247; Galería de Socios &middot; Cena Inaugural</h3>
+                <div class="galeria-socios-grid" id="galeria-socios">
+                    <div class="foto-s"><img src="grupo2.jpeg" alt="Socios de la Pena" onclick="abrirFoto(this)"><p>Socios de la Pena</p></div>
+                    <div class="foto-s"><img src="grupo3.jpeg" alt="Foto de grupo" onclick="abrirFoto(this)"><p>Foto de grupo</p></div>
+                    <div class="foto-s"><img src="grupo4.jpeg" alt="Foto de grupo 2" onclick="abrirFoto(this)"><p>Foto de grupo - toma 2</p></div>
+                    <div class="foto-s"><img src="grupo5.jpeg" alt="Charla entre socios" onclick="abrirFoto(this)"><p>Charla entre socios</p></div>
+                    <div class="foto-s"><img src="grupo6.jpeg" alt="Ambiente de la cena" onclick="abrirFoto(this)"><p>Ambiente de la cena</p></div>
+                    <div class="foto-s"><img src="grupo7.jpeg" alt="Socios reunidos" onclick="abrirFoto(this)"><p>Reunion de socios</p></div>
+                    <div class="foto-s"><img src="grupo8.jpeg" alt="Foto de grupo 3" onclick="abrirFoto(this)"><p>Foto de grupo - toma 3</p></div>
+                    <div class="foto-s"><img src="grupo9.jpeg" alt="Foto de grupo 4" onclick="abrirFoto(this)"><p>Foto de grupo - toma 4</p></div>
+                    <div class="foto-s"><img src="grupo10.jpeg" alt="Foto de grupo 5" onclick="abrirFoto(this)"><p>Foto de grupo - toma 5</p></div>
+                    <div class="foto-s"><img src="grupo11.jpeg" alt="Foto de grupo 6" onclick="abrirFoto(this)"><p>Foto de grupo - toma 6</p></div>
+                    <div class="foto-s"><img src="grupo12.jpeg" alt="Foto de grupo 7" onclick="abrirFoto(this)"><p>Foto de grupo - toma 7</p></div>
+                </div>
+            </div>
         </div>
         <div class="col-der">
             <div id="indicador-avisos" class="indicador verde">🟢 Cargando avisos...</div>
             <button class="btn-montera" onclick="window.location.href='documentos.html'">📂 DOCUMENTOS Y ESTATUTOS</button>
             <a id="link-whatsapp" href="#" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">🟢 WhatsApp</a>
-            <button class="btn-salir" onclick="cerrarSesion()">CERRAR SESIÓN</button>
+            <button class="btn-notif" id="btn-notif" onclick="activarNotificaciones()" style="background:transparent;border:1px solid #28a745;color:#28a745;padding:10px;width:100%;cursor:pointer;border-radius:6px;font-weight:bold;margin-top:6px;display:none;">🔔 Activar notificaciones</button>
+<button class="btn-salir" onclick="cerrarSesion()">CERRAR SESIÓN</button>
         </div>
     </div>
 </div>
 </div>
+
+<!-- MODAL GALERIA SOCIOS -->
+<div id="modal-gs" onclick="this.style.display='none'">
+    <span class="cerrar-gs">&times;</span>
+    <img id="modal-gs-img" src="" alt="">
+    <p id="modal-gs-pie"></p>
+</div>
+
 
 <footer>
     Peña Taurina Peguerinos — Unidos por la afición
@@ -246,21 +288,50 @@ if ('serviceWorker' in navigator) {
 
 <script src="eventos.js"></script>
 <script>
-const API = "https://script.google.com/macros/s/AKfycby_MMR4byWJdkLvXETZzCgs5HvVxfAySc3Ff6qRpuHLRfqJsjVjLM2GLIclsk7R31K9/exec";
+const API = "https://script.google.com/macros/s/AKfycby7ImfIXGrETzpET-ndcx5b27PPjCOnW6VGYmtgU6E3YzG6E6r94-r0WklKbc5cK_3h/exec";
 const ADMIN_NUM = "0011";
 
 const sesion = JSON.parse(localStorage.getItem("datos_sesion"));
+
+// Datos de inscripción por número de socio (fuente: fichas oficiales)
+const DATOS_SOCIOS = {
+    "0001": { tipo: "Fundador",  fecha: "12 de marzo de 2026" },
+    "0003": { tipo: "Fundador",  fecha: "12 de marzo de 2026" },
+    "0004": { tipo: "Fundador",  fecha: "12 de marzo de 2026" },
+    "0005": { tipo: "Fundador",  fecha: "12 de marzo de 2026" },
+    "0006": { tipo: "Fundador",  fecha: "12 de marzo de 2026" },
+    "0007": { tipo: "Fundador",  fecha: "12 de marzo de 2026" },
+    "0008": { tipo: "Fundador",  fecha: "12 de marzo de 2026" },
+    "0009": { tipo: "Fundador",  fecha: "12 de marzo de 2026" },
+    "0010": { tipo: "Fundador",  fecha: "12 de marzo de 2026" },
+    "0011": { tipo: "Fundador",  fecha: "12 de marzo de 2026" },
+    "0012": { tipo: "Fundador",  fecha: "12 de marzo de 2026" },
+    "0013": { tipo: "Socio",     fecha: "16 de mayo de 2026" },
+    "0014": { tipo: "Socio",     fecha: "16 de mayo de 2026" },
+    "0015": { tipo: "Socio",     fecha: "16 de mayo de 2026" },
+    "0016": { tipo: "Socio",     fecha: "16 de mayo de 2026" },
+    "0017": { tipo: "Socio",     fecha: "16 de mayo de 2026" },
+};
 
 if (!sesion) {
     window.location.href = "acceso-socios.html";
 } else {
     document.getElementById("display-nombre").innerText = sesion.nombre;
     document.getElementById("display-num").innerText = sesion.num;
+
+    // Tipo y fecha de inscripción desde tabla local (no depende de la API)
+    const datosSocio = DATOS_SOCIOS[sesion.num];
+    if (datosSocio) {
+        document.getElementById("display-inscripcion").innerText = datosSocio.fecha;
+        document.getElementById("display-estado").innerText = datosSocio.tipo.toUpperCase();
+    }
+
     const tlf = "34624485293";
     const msg = encodeURIComponent("Hola Luis Alfonso, soy " + sesion.nombre + " (Socio " + sesion.num + "). ");
     document.getElementById("link-whatsapp").href = "https://wa.me/" + tlf + "?text=" + msg;
     cargarAviso();
     cargarEventosConfirmacion();
+    setTimeout(verificarNotifActivadas, 2000);
     if (sesion.num === ADMIN_NUM) {
         const btnAdmin = document.createElement("button");
         btnAdmin.className = "btn-montera";
@@ -279,7 +350,7 @@ async function cargarAviso() {
         const data = await res.json();
         if (data.ok && data.socio) {
             const socio = data.socio;
-            if (socio.estado) document.getElementById("display-estado").innerText = socio.estado;
+            // estado y fecha ya establecidos desde DATOS_SOCIOS al cargar
             if (socio.aviso && socio.aviso !== "") {
                 const tipo = socio.tipoAviso || "ambar";
                 indicador.className = "indicador " + tipo;
@@ -385,6 +456,30 @@ async function confirmarAsistencia(eventoId, respuesta) {
         btnSi.disabled = false; btnNo.disabled = false;
         btnSi.innerText = "✅ Me apunto"; btnNo.innerText = "❌ No voy";
     }
+}
+
+
+function abrirFoto(img) {
+    const modal = document.getElementById('modal-gs');
+    document.getElementById('modal-gs-img').src = img.src;
+    document.getElementById('modal-gs-pie').innerText = img.parentElement.querySelector('p').innerText;
+    modal.style.display = 'flex';
+}
+async function activarNotificaciones() {
+    try {
+        await OneSignal.showNativePrompt();
+        document.getElementById('btn-notif').style.display = 'none';
+    } catch(e) {}
+}
+
+async function verificarNotifActivadas() {
+    try {
+        await OneSignal.isPushNotificationsEnabled(function(isEnabled) {
+            if (!isEnabled) {
+                document.getElementById('btn-notif').style.display = 'block';
+            }
+        });
+    } catch(e) {}
 }
 
 function cerrarSesion() {

@@ -177,17 +177,7 @@ tr:last-child td { border-bottom: none; }
     <meta name="theme-color" content="#7a0000">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="apple-touch-icon" href="icon-192.png">
-<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-<script>
-  window.OneSignalDeferred = window.OneSignalDeferred || [];
-  OneSignalDeferred.push(async function(OneSignal) {
-    await OneSignal.init({
-      appId: "47ce7a35-b3f4-4a3c-b910-f09fa18b3baf",
-      serviceWorkerPath: "/OneSignalSDKWorker.js",
-      serviceWorkerParam: { scope: "/" },
-    });
-  });
-</script>
+<!-- OneSignal no necesario en panel admin -->
 
 </head>
 
@@ -401,7 +391,7 @@ tr:last-child td { border-bottom: none; }
 <footer>Peña Taurina Peguerinos — Panel de Administración</footer>
 
 <script>
-const API = "https://script.google.com/macros/s/AKfycby_MMR4byWJdkLvXETZzCgs5HvVxfAySc3Ff6qRpuHLRfqJsjVjLM2GLIclsk7R31K9/exec";
+const API = "https://script.google.com/macros/s/AKfycby7ImfIXGrETzpET-ndcx5b27PPjCOnW6VGYmtgU6E3YzG6E6r94-r0WklKbc5cK_3h/exec";
 const ADMIN_PIN = "ADMIN1234";
 let socios = [];
 
