@@ -174,15 +174,16 @@ footer {
 <div class="contenedor">
     <h2>Calendario Taurino España 2026</h2>
     <div class="calendario-grid">
-        <div class="mes mes-cartel" onclick="abrirCartel('sevilla_abril_2026.jpeg')"><h3>Abril</h3><ul><li><strong>Feria de Abril</strong> – Sevilla</li></ul></div>
-        <div class="mes mes-cartel" onclick="abrirCartel('san_isidro_las_ventas_20206.jpeg')"><h3>Mayo</h3><ul><li><strong>San Isidro</strong> – Madrid</li></ul></div>
-        <div class="mes"><h3>Junio</h3><ul><li><strong>Hogueras</strong> – Alicante – 20-24 junio</li><li><strong>San Juan</strong> – Badajoz – 22-24 junio</li></ul></div>
-        <div class="mes"><h3>Julio</h3><ul><li><strong>San Fermín</strong> – Pamplona – 6-14 julio</li><li><strong>Feria de Julio</strong> – Valencia</li></ul></div>
-        <div class="mes"><h3>Agosto</h3><ul><li><strong>Málaga</strong> – Feria de Agosto</li><li><strong>Bilbao</strong> – Aste Nagusia</li><li><strong>Ciudad Real</strong> – Virgen del Prado</li></ul></div>
-        <div class="mes"><h3>Septiembre</h3><ul><li><strong>Valladolid</strong> – San Lorenzo</li><li><strong>Albacete</strong> – 7-17 septiembre</li><li><strong>Murcia</strong> – Feria</li><li><strong>Ronda</strong> – Goyesca</li></ul></div>
-        <div class="mes"><h3>Octubre</h3><ul><li><strong>Pilar</strong> – Zaragoza</li></ul></div>
-        <div class="mes"><h3>Nov-Dic</h3><ul><li><strong>Festivales benéficos</strong> – Varias plazas</li></ul></div>
+        <div class="mes mes-cartel" data-hasta="2026-05" onclick="abrirCartel('sevilla_abril_2026.jpeg')"><h3>Abril</h3><ul><li><strong>Feria de Abril</strong> – Sevilla</li></ul></div>
+        <div class="mes mes-cartel" data-hasta="2026-06" onclick="abrirCartel('san_isidro_las_ventas_20206.jpeg')"><h3>Mayo</h3><ul><li><strong>San Isidro</strong> – Madrid</li></ul></div>
+        <div class="mes" data-hasta="2026-07"><h3>Junio</h3><ul><li><strong>Hogueras</strong> – Alicante – 20-24 junio</li><li><strong>San Juan</strong> – Badajoz – 22-24 junio</li></ul></div>
+        <div class="mes" data-hasta="2026-08"><h3>Julio</h3><ul><li><strong>San Fermín</strong> – Pamplona – 6-14 julio</li><li><strong>Feria de Julio</strong> – Valencia</li></ul></div>
+        <div class="mes" data-hasta="2026-09"><h3>Agosto</h3><ul><li><strong>Málaga</strong> – Feria de Agosto</li><li><strong>Bilbao</strong> – Aste Nagusia</li><li><strong>Ciudad Real</strong> – Virgen del Prado</li></ul></div>
+        <div class="mes" data-hasta="2026-10"><h3>Septiembre</h3><ul><li><strong>Valladolid</strong> – San Lorenzo</li><li><strong>Albacete</strong> – 7-17 septiembre</li><li><strong>Murcia</strong> – Feria</li><li><strong>Ronda</strong> – Goyesca</li></ul></div>
+        <div class="mes" data-hasta="2026-11"><h3>Octubre</h3><ul><li><strong>Pilar</strong> – Zaragoza</li></ul></div>
+        <div class="mes" data-hasta="2027-01"><h3>Nov-Dic</h3><ul><li><strong>Festivales benéficos</strong> – Varias plazas</li></ul></div>
     </div>
+    <p id="aviso-vacio" style="display:none; text-align:center; color:#7a0000; font-style:italic; margin-top:20px;">No quedan ferias próximas en el calendario de esta temporada.</p>
 </div>
 </div>
 
@@ -210,6 +211,24 @@ function abrirCartel(src) {
 function cerrarCartel() {
     document.getElementById('modal-cartel').style.display = 'none';
 }
+function depurarCalendario() {
+    // "YYYY-MM" del mes actual
+    const hoy = new Date();
+    const actual = hoy.getFullYear() * 12 + hoy.getMonth(); // índice de mes absoluto
+    let visibles = 0;
+    document.querySelectorAll('.calendario-grid .mes').forEach(function(card) {
+        const hasta = card.getAttribute('data-hasta'); // se muestra MIENTRAS actual < hasta
+        if (hasta) {
+            const [a, m] = hasta.split('-').map(Number);
+            const limite = a * 12 + (m - 1);
+            if (actual >= limite) { card.style.display = 'none'; return; }
+        }
+        visibles++;
+    });
+    const aviso = document.getElementById('aviso-vacio');
+    if (aviso) aviso.style.display = visibles ? 'none' : 'block';
+}
+depurarCalendario();
 if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}
 </script>
 
