@@ -72,6 +72,16 @@ const EVENTOS_DATA = [
         fechaLimiteConfirmacion: new Date(2026, 5, 27, 23, 59)
     },
     {
+        id: 11,
+        titulo: "Corrida de Toros — Marbella 2026",
+        fecha: new Date(2026, 5, 18, 19, 0),
+        fin: new Date(2026, 5, 18, 21, 30),
+        lugar: "Plaza de Toros de Marbella — Retransmisión en la sede",
+        ganaderia: "El Freixo",
+        descripcion: "Retransmisión en directo en nuestra sede.",
+        destacado: "Morante de la Puebla · Alejandro Talavante · David de Miranda — Toros de El Freixo"
+    },
+    {
         id: 10,
         titulo: "Corrida de Toros — Ávila 2026",
         fecha: new Date(2026, 5, 20, 19, 0),
