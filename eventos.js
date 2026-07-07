@@ -1,96 +1,54 @@
-// Base de datos de eventos de la Peña
+/* ============================
+   EVENTOS — Peña Taurina Peguerinos
+   Cada evento desaparece de "Próximas Citas"
+   2 horas después de su inicio (campo "fin")
+============================ */
+
+const AVISO_PENA = "Todos los socios asistentes deberán acudir con la equipación y el pañuelo de la Peña. ¡Viva España y vivan los toros!";
+
 const EVENTOS_DATA = [
+    // ---- Eventos anteriores (ya pasados, no se muestran) ----
     {
-        id: 1,
-        titulo: "Reunión Inaugural",
-        fecha: new Date(2026, 2, 12, 21, 0),
+        titulo: "Feria de Fallas 2026 — Retransmisión en la sede",
+        fecha: new Date(2026, 2, 17, 18, 0),
+        fin:   new Date(2026, 2, 17, 20, 0),
         lugar: "Bar Reste El Risco del Águila",
-        descripcion: "Primera reunión oficial, presentación y firma de estatutos.",
-        destacado: ""
+        descripcion: "Retransmisión en directo. Toros de Santiago Domecq. Cartel: Perera, Hernández y Marco Pérez."
     },
     {
-        id: 2,
-        titulo: "Feria de Fallas 2026",
-        fecha: new Date(2026, 2, 17, 17, 0),
-        lugar: "Bar Restaurante El Risco del Águila",
-        descripcion: "Retransmisión en directo. Toros de Santiago Domecq.",
-        destacado: ""
-    },
-    {
-        id: 3,
         titulo: "Cena de la Peña",
         fecha: new Date(2026, 2, 25, 21, 0),
+        fin:   new Date(2026, 2, 25, 23, 0),
         lugar: "Restaurante Risco del Águila",
-        descripcion: "Cena de convivencia para socios y simpatizantes.",
-        destacado: ""
+        descripcion: "Cena de convivencia para todos los socios y simpatizantes."
+    },
+
+    // ---- San Fermín 2026 ----
+    {
+        titulo: "Corrida de Toros — San Fermín 2026 (retransmisión en la sede)",
+        fecha: new Date(2026, 6, 11, 18, 30),        // sábado 11 julio — 18:30
+        fin:   new Date(2026, 6, 11, 20, 30),        // se retira a las 2 horas
+        lugar: "Sede de la Peña",
+        ganaderia: "José Escolar",
+        descripcion: "Cartel: Antonio Ferrera, Juan de Castilla e Isaac Fonseca.",
+        destacado: AVISO_PENA
     },
     {
-        id: 4,
-        titulo: "Domingo de Resurrección",
-        fecha: new Date(2026, 3, 5, 18, 30),
-        lugar: "Feria de Abril (Sevilla) - Risco del Águila",
-        descripcion: "Retransmisión en directo.",
-        destacado: "Morante de la Puebla · Roca Rey · David de Miranda — Toros de Garcigrande"
+        titulo: "Quedada — Encierro de San Fermín",
+        fecha: new Date(2026, 6, 12, 7, 45),         // domingo 12 julio — 7:45
+        fin:   new Date(2026, 6, 12, 9, 45),
+        lugar: "Sede de la Peña",
+        ganaderia: "La Palmosilla",
+        descripcion: "Quedada para ver juntos el encierro (suelta a las 8:00).",
+        destacado: AVISO_PENA
     },
     {
-        id: 5,
-        titulo: "Corrida de Toros — Feria de Abril",
-        fecha: new Date(2026, 3, 12, 18, 30),
-        lugar: "Real Maestranza de Sevilla — Retransmisión en Risco del Águila",
-        descripcion: "Tercera de Abono. Retransmisión en directo en nuestra sede.",
-        destacado: "Lorenzo · Serna · Molina — Toros de Fuente Ymbro"
-    },
-    {
-        id: 6,
-        titulo: "Cena de la Peña",
-        fecha: new Date(2026, 3, 15, 21, 0),
-        fin: new Date(2026, 3, 15, 22, 0),
-        lugar: "Restaurante Risco del Águila",
-        descripcion: "Cena de convivencia para socios y simpatizantes.",
-        destacado: ""
-    },
-    {
-        id: 7,
-        titulo: "Gran Jornada de Hermandad — Primer Asado Oficial",
-        fecha: new Date(2026, 3, 27, 20, 30),
-        fin: new Date(2026, 3, 27, 22, 30),
-        lugar: "Posada Isabelae, Peguerinos",
-        ganaderia: "",
-        descripcion: "",
-        destacado: ""
-    },
-    {
-        id: 9,
-        titulo: "Copa Chenel — San Martín de Valdeiglesias",
-        fecha: new Date(2026, 5, 27, 17, 0),
-        fin: new Date(2026, 5, 27, 21, 0),
-        lugar: "San Martín de Valdeiglesias (Madrid)",
-        ganaderia: "Castillejo de Huebra y Adolfo Martín",
-        descripcion: "La Peña Taurina Peguerinos está valorando organizar un grupo de socios para asistir juntos. En función del número de participantes, se estudiarán formas de apoyo económico con criterios transparentes y equilibrados para todos.",
-        destacado: "Confirmá tu interés antes del 27 de junio",
-        confirmacion: true,
-        fechaLimiteConfirmacion: new Date(2026, 5, 27, 23, 59)
-    },
-    {
-        id: 11,
-        titulo: "Corrida de Toros — Marbella 2026",
-        fecha: new Date(2026, 5, 18, 19, 0),
-        fin: new Date(2026, 5, 18, 21, 30),
-        lugar: "Plaza de Toros de Marbella — Retransmisión en la sede",
-        ganaderia: "El Freixo",
-        descripcion: "Retransmisión en directo en nuestra sede.",
-        destacado: "Morante de la Puebla · Alejandro Talavante · David de Miranda — Toros de El Freixo"
-    },
-    {
-        id: 10,
-        titulo: "Corrida de Toros — Ávila 2026",
-        fecha: new Date(2026, 5, 20, 19, 0),
-        fin: new Date(2026, 5, 20, 21, 0),
-        lugar: "Plaza de Toros de Ávila",
-        ganaderia: "Pallarés",
-        descripcion: "",
-        destacado: "Talavante · Emilio de Justo · David de Miranda",
-        confirmacion: true,
-        fechaLimiteConfirmacion: new Date(2026, 5, 20, 23, 59)
+        titulo: "Corrida de Toros — San Fermín 2026 (retransmisión en la sede)",
+        fecha: new Date(2026, 6, 12, 18, 30),        // domingo 12 julio — 18:30
+        fin:   new Date(2026, 6, 12, 20, 30),
+        lugar: "Sede de la Peña",
+        ganaderia: "La Palmosilla",
+        descripcion: "Cartel: Fortes, Fernando Adrián y Samuel Navalón.",
+        destacado: AVISO_PENA
     }
 ];
