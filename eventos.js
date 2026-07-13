@@ -50,5 +50,18 @@ const EVENTOS_DATA = [
         ganaderia: "La Palmosilla",
         descripcion: "Cartel: Fortes, Fernando Adrián y Samuel Navalón.",
         destacado: AVISO_PENA
+    },
+    // ---- Feria de la Virgen de San Lorenzo 2026 — VIAJE A VALLADOLID ----
+    {
+        id: 1,
+        titulo: "Viaje a la corrida de toros — Valladolid (Victorino Martín)",
+        fecha: new Date(2026, 8, 12, 18, 0),          // sábado 12 septiembre — 18:00
+        fin:   new Date(2026, 8, 1, 23, 59),          // el 2 de septiembre pasa al historial
+        lugar: "Plaza de Toros de Valladolid (Coso del Paseo de Zorrilla)",
+        ganaderia: "Victorino Martín",
+        descripcion: "Salida en grupo de la peña a la Feria de la Virgen de San Lorenzo. Cartel: Manuel Escribano, Daniel Luque y Aarón Palacio. Según lo acordado en el Acta nº 2 (12/07/2026): la entrada la abona cada asistente y el transporte lo sufragan los fondos de la peña.",
+        destacado: "⚠️ Plazo para apuntarse: hasta el 1 de septiembre. " + AVISO_PENA,
+        confirmacion: true,
+        fechaLimiteConfirmacion: new Date(2026, 8, 1, 23, 59)  // cierra Me apunto / No voy el 1-sep a las 23:59
     }
 ];
