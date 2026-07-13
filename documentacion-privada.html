@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Documentación Privada - Peña Taurina Peguerinos</title>
+
+    <!-- Cargar tu CSS unificado -->
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+        // BLOQUEO DE SEGURIDAD: Solo socios logueados
+        const sesionActiva = localStorage.getItem("datos_sesion");
+        if (!sesionActiva) {
+            alert("Acceso denegado. Por favor, identifícate como socio.");
+            window.location.href = "acceso-socios.html";
+        }
+    </script>
+</head>
+
+<body>
+
+<header>
+    <h1>Archivo Privado de la Peña</h1>
+</header>
+
+<div class="contenedor">
+
+    <!-- DOCUMENTOS PRINCIPALES -->
+    <div class="seccion-docs">
+        <h2>📜 Documentos y Estatutos</h2>
+        <ul class="lista-docs">
+
+            <li class="doc-item">
+                <div class="doc-info">
+                    <b>Acta Fundacional</b>
+                    <span>Documento oficial de constitución</span>
+                </div>
+                <a href="ACTA FUNDACIONAL DE LA ASOCIACIÓN.pdf" download class="btn-descarga">Descargar</a>
+            </li>
+
+            <li class="doc-item">
+                <div class="doc-info">
+                    <b>Estatutos Vigentes</b>
+                    <span>Normas internas de funcionamiento</span>
+                </div>
+                <a href="Estatutos.pdf" download class="btn-descarga">Descargar</a>
+            </li>
+
+            <li class="doc-item">
+                <div class="doc-info">
+                    <b>Reglamento Interno</b>
+                    <span>Acuerdos y normas de organización</span>
+                </div>
+                <a href="reglamento.pdf" download class="btn-descarga">Descargar</a>
+            </li>
+
+            <li class="doc-item">
+                <div class="doc-info">
+                    <b>Normas del Grupo WhatsApp</b>
+                    <span>Reglas internas de convivencia digital</span>
+                </div>
+                <a href="NORMAS DEL GRUPO whatsapp.pdf" download class="btn-descarga">Descargar</a>
+            </li>
+
+            <li class="doc-item">
+                <div class="doc-info">
+                    <b>Actas de Reuniones</b>
+                    <span>Acta nº 2 — Reunión del 12/07/2026</span>
+                </div>
+                <a href="Acta_Reunion_PTP.pdf" download class="btn-descarga">Descargar</a>
+            </li>
+
+        </ul>
+    </div>
+
+    <!-- CUENTAS -->
+    <div class="seccion-docs">
+        <h2>💰 Transparencia y Cuentas</h2>
+        <ul class="lista-docs">
+
+            <li class="doc-item">
+                <div class="doc-info">
+                    <b>Hoja de Cuentas 2026</b>
+                    <span>Ingresos, gastos y aportaciones especiales</span>
+                </div>
+                <a href="HOJA DE CUENTAS.pdf" download class="btn-descarga">Descargar</a>
+            </li>
+
+        </ul>
+    </div>
+
+    <a href="panel-socio.html" class="btn-volver">⬅ Volver al carnet</a>
+
+</div>
+
+<footer>Peña Taurina Peguerinos — Área Reservada</footer>
+
+</body>
+</html>
