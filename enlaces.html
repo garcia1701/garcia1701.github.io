@@ -96,15 +96,71 @@ footer {
     footer { padding: 10px; font-size: 12px; }
 }
 
-
 .contenedor { max-width: 900px; margin: 20px auto; background: white; padding: 20px 24px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); width: calc(100% - 40px); }
-.contenedor h2 { color: #7a0000; }
-.bloque { background: #fdf7e3; border-left: 6px solid #d4af37; padding: 18px; border-radius: 8px; margin-bottom: 25px; }
-.bloque h3 { margin-top: 0; color: #7a0000; }
-.bloque ul { padding-left: 20px; }
-.bloque li { margin-bottom: 8px; }
+.contenedor h2 { color: #7a0000; margin-bottom: 14px; }
 @media (max-width: 768px) { .contenedor { margin: 12px 10px; padding: 16px; } }
 
+/* ===== AGENDA TOROS EN TV ===== */
+.agenda-tv { border: 2px solid #7a0000; border-radius: 10px; overflow: hidden; margin-bottom: 10px; }
+.agenda-cab {
+    background: linear-gradient(90deg, #5a0000, #8b0000);
+    color: #d4af37; padding: 10px 16px; font-weight: bold;
+    font-size: 15px; letter-spacing: 1px;
+}
+.emision {
+    display: flex; gap: 14px; padding: 12px 16px;
+    border-bottom: 1px solid #f0e6cf; align-items: flex-start;
+}
+.emision:last-child { border-bottom: none; }
+.emision:nth-child(even) { background: #fdf9ef; }
+.emision .fecha {
+    background: #7a0000; color: #fff; border-radius: 8px;
+    padding: 6px 10px; text-align: center; flex-shrink: 0;
+    min-width: 62px; line-height: 1.2;
+}
+.emision .fecha b { display: block; font-size: 18px; color: #d4af37; }
+.emision .fecha span { font-size: 11px; text-transform: uppercase; }
+.emision .detalle { font-size: 14px; line-height: 1.45; }
+.emision .detalle b { color: #7a0000; }
+.chip-canal {
+    display: inline-block; background: #d4af37; color: #5a0000;
+    font-weight: bold; font-size: 11px; border-radius: 20px;
+    padding: 2px 10px; margin-left: 6px; vertical-align: middle;
+    text-transform: uppercase;
+}
+.nota-agenda { font-size: 12.5px; color: #666; margin: 8px 2px 0; }
+.nota-agenda a { color: #7a0000; font-weight: bold; }
+
+/* ===== TARJETAS DE ENLACES ===== */
+.rejilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; }
+.tarjeta {
+    display: block; text-decoration: none;
+    background: #fdf7e3; border: 1px solid #e8d9a8;
+    border-left: 6px solid #d4af37;
+    border-radius: 10px; padding: 14px 16px;
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+.tarjeta:hover { transform: translateY(-3px); box-shadow: 0 6px 14px rgba(122,0,0,0.18); }
+.tarjeta .tit { color: #7a0000; font-weight: bold; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+.tarjeta .desc { color: #555; font-size: 13px; margin-top: 5px; line-height: 1.4; }
+.tarjeta .url { color: #b08d1e; font-size: 12px; margin-top: 7px; font-weight: bold; }
+.tarjeta.local { border-left-color: #7a0000; background: #fbf2f2; }
+.tarjeta.local .url { color: #7a0000; }
+
+/* ===== RINCÓN DEL AFICIONADO ===== */
+.destacado-mes {
+    background: linear-gradient(135deg, #fdf7e3, #f7ebc8);
+    border: 2px dashed #c9a227; border-radius: 10px;
+    padding: 16px 18px; margin-bottom: 18px;
+}
+.destacado-mes h3 { color: #7a0000; margin-bottom: 6px; }
+.destacado-mes p { font-size: 14px; line-height: 1.5; color: #444; }
+.glosario { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; }
+.termino {
+    background: #fff; border: 1px solid #e8d9a8; border-radius: 8px;
+    padding: 10px 12px; font-size: 13px; line-height: 1.4;
+}
+.termino b { color: #7a0000; display: block; margin-bottom: 3px; font-size: 14px; }
 </style>
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#7a0000">
@@ -166,32 +222,141 @@ footer {
 
 <div class="zona-scroll">
 
+<!-- ============ 1. TOROS EN TV ============ -->
 <div class="contenedor">
-    <h2>Canales de TV y Plataformas</h2>
-    <div class="bloque"><ul>
-        <li><strong>OneToro TV</strong>: Plataforma principal para seguir ferias como Sevilla, Madrid o Pamplona.</li>
-        <li><strong>PlayToros (CMM Play)</strong>: Plataforma gratuita con festejos y reportajes.</li>
-        <li><strong>Toros en España Play</strong>: Festejos en España con suscripción.</li>
-        <li><strong>Canal Sur Más</strong>: Contenido taurino andaluz.</li>
-        <li><strong>El Toro TV</strong>: Programas de actualidad taurina.</li>
-        <li><strong>Feria TV</strong>: Retransmisiones de ferias taurinas.</li>
-        <li><strong>YouTube / Facebook Live</strong>: Festejos populares emitidos por peñas y productoras locales.</li>
-    </ul></div>
-    <h2>Páginas de Noticias Taurinas</h2>
-    <div class="bloque"><ul>
-        <li><strong>Mundotoro.com</strong>: Noticias, resultados y crónicas.</li>
-        <li><strong>Cultoro.es</strong>: Actualidad, entrevistas y resultados.</li>
-        <li><strong>Aplausos.es</strong>: Revista taurina con amplia cobertura.</li>
-        <li><strong>Burladero.tv</strong>: Información y crónicas taurinas.</li>
-        <li><strong>El Muletazo</strong>: Agenda de toros en TV.</li>
-        <li><strong>Portal Taurino</strong>: Noticias, enciclopedias y foros.</li>
-    </ul></div>
-    <h2>Entradas y Gestión</h2>
-    <div class="bloque"><ul>
-        <li><strong>Servitoro.com</strong>: Compra de entradas en plazas como Madrid.</li>
-        <li><strong>Toroflix / Toromedia</strong>: Vídeos bajo demanda y resúmenes.</li>
-    </ul></div>
+    <h2>📺 Toros en Televisión</h2>
+    <div class="agenda-tv">
+        <div class="agenda-cab">PRÓXIMAS RETRANSMISIONES · Actualizado 19/07/2026</div>
+        <div class="emision" id="agenda-vacia" style="display:none;">
+            <div class="detalle"><b>Agenda pendiente de actualizar.</b> Consulta las próximas retransmisiones en
+            <a href="https://elmuletazo.com/agenda-de-toros-en-television/" target="_blank" rel="noopener" style="color:#7a0000;font-weight:bold;">El Muletazo</a> o
+            <a href="https://cultoro.es/toros-en-television-agenda" target="_blank" rel="noopener" style="color:#7a0000;font-weight:bold;">Cultoro</a>.</div>
+        </div>
+        <div class="emision" data-fecha="2026-07-19">
+            <div class="fecha"><b>19</b><span>Jul · Dom</span></div>
+            <div class="detalle"><b>Valencia — Feria de Julio</b> (18:00 h)<span class="chip-canal">À Punt</span><br>
+            Novillada picada. Novillos de Talavante para Álvaro Serrano, Julio Norte y Marco Polope. <i>Solo TDT Comunidad Valenciana.</i></div>
+        </div>
+        <div class="emision" data-fecha="2026-07-23">
+            <div class="fecha"><b>23</b><span>Jul · Jue</span></div>
+            <div class="detalle"><b>Santander — Feria de Santiago</b> (18:30 h)<span class="chip-canal">OneToro</span><br>
+            Toros de Victorino Martín para El Cid, Manuel Escribano y Tomás Rufo.</div>
+        </div>
+        <div class="emision" data-fecha="2026-07-24">
+            <div class="fecha"><b>24</b><span>Jul · Vie</span></div>
+            <div class="detalle"><b>Santander — Feria de Santiago</b> (18:30 h)<span class="chip-canal">OneToro</span><br>
+            Toros de Juan Manuel Criado para Roca Rey, Pablo Aguado y Tomás Bastos, que toma la alternativa.</div>
+        </div>
+        <div class="emision" data-fecha="2026-07-25">
+            <div class="fecha"><b>25</b><span>Jul · Sáb</span></div>
+            <div class="detalle"><b>Roa de Duero (Burgos)</b> (18:30 h)<span class="chip-canal">OneToro</span> · Novillada<br>
+            <b>Munera (Albacete)</b> (19:30 h)<span class="chip-canal">CMM</span> · Semifinal "Promesas de Nuestra Tierra".</div>
+        </div>
+        <div class="emision" data-fecha="2026-07-31">
+            <div class="fecha"><b>31</b><span>Jul · Vie</span></div>
+            <div class="detalle"><b>Paio Pires (Portugal)</b> (22:30 h)<span class="chip-canal">OneToro</span><br>
+            Corrida de rejones al estilo portugués con los forcados de Lisboa y Coruche.</div>
+        </div>
+        <div class="emision" data-fecha="2026-08-01">
+            <div class="fecha"><b>1</b><span>Ago · Sáb</span></div>
+            <div class="detalle"><b>Navas de San Juan (Jaén)</b> (19:00 h)<span class="chip-canal">Canal Sur</span><br>
+            Novillada del ciclo "Fomento de la Cultura Taurina en Andalucía".</div>
+        </div>
+    </div>
+    <p class="nota-agenda">Agenda completa y actualizada cada semana en
+        <a href="https://elmuletazo.com/agenda-de-toros-en-television/" target="_blank" rel="noopener">El Muletazo</a> y
+        <a href="https://cultoro.es/toros-en-television-agenda" target="_blank" rel="noopener">Cultoro</a>.</p>
 </div>
+
+<!-- ============ 2. WEBS PRINCIPALES ============ -->
+<div class="contenedor">
+    <h2>🌐 Las webs del toro</h2>
+    <div class="rejilla">
+        <a class="tarjeta" href="https://www.mundotoro.com" target="_blank" rel="noopener">
+            <div class="tit">🗞️ Mundotoro</div>
+            <div class="desc">El portal de referencia: noticias, crónicas, resultados y escalafón al día.</div>
+            <div class="url">mundotoro.com →</div>
+        </a>
+        <a class="tarjeta" href="https://cultoro.es" target="_blank" rel="noopener">
+            <div class="tit">🗞️ Cultoro</div>
+            <div class="desc">Actualidad diaria, entrevistas y la mejor agenda de toros en televisión.</div>
+            <div class="url">cultoro.es →</div>
+        </a>
+        <a class="tarjeta" href="https://www.aplausos.es" target="_blank" rel="noopener">
+            <div class="tit">📖 Aplausos</div>
+            <div class="desc">La revista taurina decana: reportajes, ferias y análisis en profundidad.</div>
+            <div class="url">aplausos.es →</div>
+        </a>
+        <a class="tarjeta" href="https://www.onetoro.tv" target="_blank" rel="noopener">
+            <div class="tit">📺 OneToro TV</div>
+            <div class="desc">La plataforma para ver los toros en directo: Sevilla, Madrid, Pamplona, Santander...</div>
+            <div class="url">onetoro.tv →</div>
+        </a>
+        <a class="tarjeta" href="https://www.servitoro.com" target="_blank" rel="noopener">
+            <div class="tit">🎟️ Servitoro</div>
+            <div class="desc">Compra de entradas para las principales plazas y ferias de España.</div>
+            <div class="url">servitoro.com →</div>
+        </a>
+    </div>
+</div>
+
+<!-- ============ 3. LO NUESTRO ============ -->
+<div class="contenedor">
+    <h2>🏔️ Lo nuestro — Peguerinos, Ávila y alrededores</h2>
+    <div class="rejilla">
+        <a class="tarjeta local" href="https://www.peguerinos.es" target="_blank" rel="noopener">
+            <div class="tit">🏛️ Ayuntamiento de Peguerinos</div>
+            <div class="desc">Web oficial del pueblo: fiestas, bandos y actualidad municipal.</div>
+            <div class="url">peguerinos.es →</div>
+        </a>
+        <a class="tarjeta local" href="https://tauroemocion.es/avila/" target="_blank" rel="noopener">
+            <div class="tit">🏟️ Plaza de Toros de Ávila</div>
+            <div class="desc">Web oficial de nuestra plaza: cartelería, corrida concurso de ganaderías y venta de entradas.</div>
+            <div class="url">tauroemocion.es/avila →</div>
+        </a>
+        <a class="tarjeta local" href="https://www.las-ventas.com" target="_blank" rel="noopener">
+            <div class="tit">🏟️ Las Ventas (Madrid)</div>
+            <div class="desc">La primera plaza del mundo, a poco más de una hora: carteles y entradas.</div>
+            <div class="url">las-ventas.com →</div>
+        </a>
+        <a class="tarjeta local" href="https://fundaciontorodelidia.org" target="_blank" rel="noopener">
+            <div class="tit">🐂 Fundación Toro de Lidia</div>
+            <div class="desc">Defensa y promoción de la tauromaquia. Circuitos de novilladas de Castilla y León.</div>
+            <div class="url">fundaciontorodelidia.org →</div>
+        </a>
+        <a class="tarjeta local" href="https://www.diputacionavila.es" target="_blank" rel="noopener">
+            <div class="tit">🏛️ Diputación de Ávila</div>
+            <div class="desc">Actualidad de la provincia, ayudas y agenda cultural abulense.</div>
+            <div class="url">diputacionavila.es →</div>
+        </a>
+        <a class="tarjeta local" href="contacto.html">
+            <div class="tit">🤝 Nuestra Peña</div>
+            <div class="desc">¿Todavía no eres socio? Escríbenos y únete a la afición de Peguerinos.</div>
+            <div class="url">Contacto →</div>
+        </a>
+    </div>
+</div>
+
+<!-- ============ 4. RINCÓN DEL AFICIONADO ============ -->
+<div class="contenedor">
+    <h2>🎓 El Rincón del Aficionado</h2>
+
+    <div class="destacado-mes">
+        <h3>⭐ La cita de la semana: Feria de Santiago de Santander</h3>
+        <p>Del 23 al 25 de julio, Santander reúne carteles de primera: los victorinos el jueves y la alternativa de Tomás Bastos junto a Roca Rey y Pablo Aguado el viernes. Ambas tardes en directo por OneToro a las 18:30 h. ¡Buen plan para juntarse en el local!</p>
+    </div>
+
+    <h3 style="color:#7a0000; margin-bottom:10px;">Pequeño glosario taurino</h3>
+    <div class="glosario">
+        <div class="termino"><b>Alternativa</b>Ceremonia en la que un novillero se convierte en matador de toros. El padrino le cede los trastos ante un testigo.</div>
+        <div class="termino"><b>Quite</b>Suerte con el capote para apartar al toro, normalmente tras la vara del picador. Lucimiento y competencia entre toreros.</div>
+        <div class="termino"><b>Tercio de varas</b>Primera parte de la lidia: el picador tienta la bravura del toro con la puya desde el caballo.</div>
+        <div class="termino"><b>Indulto</b>Perdón de la vida al toro por su extraordinaria bravura. Vuelve a la ganadería como semental.</div>
+        <div class="termino"><b>Encaste</b>Línea genética de una ganadería brava (Victorino: encaste Albaserrada; Jandilla: Domecq...).</div>
+        <div class="termino"><b>Faena</b>Trabajo del matador con la muleta en el último tercio, preparando al toro para la suerte suprema.</div>
+    </div>
+</div>
+
 </div>
 
 <footer>
@@ -206,6 +371,20 @@ function cerrarMenu() {
     document.getElementById('nav-menu').classList.remove('abierto');
 }
 if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}
+
+// Ocultar retransmisiones ya celebradas (se mantienen visibles el día del festejo)
+(function(){
+    var hoy = new Date(); hoy.setHours(0,0,0,0);
+    var emisiones = document.querySelectorAll('.emision[data-fecha]');
+    var visibles = 0;
+    emisiones.forEach(function(e){
+        var f = new Date(e.getAttribute('data-fecha') + 'T00:00:00');
+        if (f < hoy) { e.style.display = 'none'; } else { visibles++; }
+    });
+    if (visibles === 0) {
+        document.getElementById('agenda-vacia').style.display = 'flex';
+    }
+})();
 </script>
 
 </body>
