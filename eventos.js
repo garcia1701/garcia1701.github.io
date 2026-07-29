@@ -51,6 +51,17 @@ const EVENTOS_DATA = [
         descripcion: "Cartel: Fortes, Fernando Adrián y Samuel Navalón.",
         destacado: AVISO_PENA
     },
+    // ---- Gran Final Copa Chenel (retransmisión por TV) ----
+    {
+        titulo: "Gran Final de la Copa Chenel",
+        fecha: new Date(2026, 6, 30, 21, 0),          // jueves 30 julio — 21:00
+        fin:   new Date(2026, 6, 30, 22, 0),          // a las 22:00 pasa al historial
+        lugar: "Plaza de Toros de Las Ventas, Madrid",
+        ganaderia: "El Capea y Carmen Lorenzo",
+        descripcion: "Gran final de la Copa Chenel. Terna: Alejandro Marcos, Héctor Gutiérrez (que confirma su alternativa) y Manuel Diosleguarde.",
+        destacado: "📺 En directo por Telemadrid"
+    },
+
     // ---- Feria de la Virgen de San Lorenzo 2026 — VIAJE A VALLADOLID ----
     {
         id: 1,
