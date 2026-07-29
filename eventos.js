@@ -4,7 +4,7 @@
    2 horas después de su inicio (campo "fin")
 ============================ */
 
-const AVISO_PENA = "Todos los socios asistentes deberán acudir con la equipación y el pañuelo de la Peña. ¡Viva España y vivan los toros!";
+const AVISO_PENA = "Todos los socios asistentes deberán acudir con la equipación y el pañuelo de la Peña.";
 
 const EVENTOS_DATA = [
     // ---- Eventos anteriores (ya pasados, no se muestran) ----
@@ -51,15 +51,15 @@ const EVENTOS_DATA = [
         descripcion: "Cartel: Fortes, Fernando Adrián y Samuel Navalón.",
         destacado: AVISO_PENA
     },
-    // ---- Gran Final Copa Chenel (retransmisión por TV) ----
+    // ---- Gran Final Copa Chenel (retransmisión en la sede) ----
     {
-        titulo: "Gran Final de la Copa Chenel",
+        titulo: "Gran Final de la Copa Chenel (retransmisión en la sede)",
         fecha: new Date(2026, 6, 30, 21, 0),          // jueves 30 julio — 21:00
         fin:   new Date(2026, 6, 30, 22, 0),          // a las 22:00 pasa al historial
-        lugar: "Plaza de Toros de Las Ventas, Madrid",
+        lugar: "Sede de la Peña",
         ganaderia: "El Capea y Carmen Lorenzo",
-        descripcion: "Gran final de la Copa Chenel. Terna: Alejandro Marcos, Héctor Gutiérrez (que confirma su alternativa) y Manuel Diosleguarde.",
-        destacado: "📺 En directo por Telemadrid"
+        descripcion: "Nos reunimos en la sede para ver juntos la gran final de la Copa Chenel, desde la Plaza de Toros de Las Ventas (Madrid), en directo por Telemadrid. Terna: Alejandro Marcos, Héctor Gutiérrez (que confirma su alternativa) y Manuel Diosleguarde.",
+        destacado: AVISO_PENA
     },
 
     // ---- Feria de la Virgen de San Lorenzo 2026 — VIAJE A VALLADOLID ----
