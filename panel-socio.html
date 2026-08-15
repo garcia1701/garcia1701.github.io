@@ -166,6 +166,18 @@ footer {
       promptOptions: { autoPrompt: false }
     });
   });
+
+  // --- Etiquetar al socio en OneSignal (para verlo por NOMBRE en Audience -> Subscriptions) ---
+  // Bloque aparte y aditivo: si algo fallara, NO afecta al resto de la pagina.
+  OneSignalDeferred.push(async function(OneSignal) {
+    try {
+      var s = JSON.parse(localStorage.getItem("datos_sesion") || "null");
+      if (s && s.num) {
+        await OneSignal.login(String(s.num));                        // ID externo = nº de socio
+        await OneSignal.User.addTags({ nombre: s.nombre || "", num: String(s.num) });
+      }
+    } catch (e) { /* sin efecto si falla */ }
+  });
 </script>
 
 </head>
@@ -467,20 +479,31 @@ function abrirFoto(img) {
     modal.style.display = 'flex';
 }
 async function activarNotificaciones() {
-    try {
-        await OneSignal.showNativePrompt();
-        document.getElementById('btn-notif').style.display = 'none';
-    } catch(e) {}
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(async function(OneSignal) {
+        try {
+            await OneSignal.Notifications.requestPermission();   // v16: muestra el aviso del navegador
+            if (OneSignal.Notifications.permission) {            // true si ya ha dado permiso
+                document.getElementById('btn-notif').style.display = 'none';
+                // Reetiquetar por si acaba de suscribirse ahora mismo
+                var s = JSON.parse(localStorage.getItem("datos_sesion") || "null");
+                if (s && s.num) {
+                    await OneSignal.login(String(s.num));
+                    await OneSignal.User.addTags({ nombre: s.nombre || "", num: String(s.num) });
+                }
+            }
+        } catch(e) {}
+    });
 }
 
-async function verificarNotifActivadas() {
-    try {
-        await OneSignal.isPushNotificationsEnabled(function(isEnabled) {
-            if (!isEnabled) {
-                document.getElementById('btn-notif').style.display = 'block';
-            }
-        });
-    } catch(e) {}
+function verificarNotifActivadas() {
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(async function(OneSignal) {
+        try {
+            var activadas = OneSignal.Notifications.permission;  // v16: booleano
+            document.getElementById('btn-notif').style.display = activadas ? 'none' : 'block';
+        } catch(e) {}
+    });
 }
 
 function cerrarSesion() {
