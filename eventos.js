@@ -62,6 +62,16 @@ const EVENTOS_DATA = [
         destacado: AVISO_PENA
     },
 
+    // ---- Fiestas de Peguerinos 2026 — TORO DE FUEGO ----
+    {
+        titulo: "🔥 Toro de Fuego de la Peña — Fiestas de Peguerinos",
+        fecha: new Date(2026, 7, 16, 0, 0),     // medianoche de esta noche (00:00)
+        fin:   new Date(2026, 7, 16, 2, 0),      // a las 02:00 de la madrugada se va al historial
+        lugar: "Calles de Peguerinos — Fiestas del pueblo",
+        descripcion: "¡Esta noche arde la fiesta! Este año la Peña ha puesto su granito, así que el toro de fuego se dará también una vuelta para nosotros.",
+        destacado: "🐂🔥 Ponte la camiseta y el pañuelo de la Peña y a correr delante del toro de fuego… ¡pero sin chamuscarse! El que no corra, que anime bien fuerte."
+    },
+
     // ---- Feria de la Virgen de San Lorenzo 2026 — VIAJE A VALLADOLID ----
     {
         id: 1,
