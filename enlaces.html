@@ -161,6 +161,13 @@ footer {
     padding: 10px 12px; font-size: 13px; line-height: 1.4;
 }
 .termino b { color: #7a0000; display: block; margin-bottom: 3px; font-size: 14px; }
+.termino-plegable { cursor: pointer; }
+.termino-plegable .def { display: none; }
+.termino-plegable.abierto .def { display: block; margin-top: 4px; }
+.termino-plegable b::after { content: " ▸"; color: #b08d1e; font-size: 11px; }
+.termino-plegable.abierto b::after { content: " ▾"; }
+.termino-nuevo { border-color: #d4af37; border-width: 2px; background: #fdf7e3; }
+.termino-nuevo b::before { content: "🆕 "; }
 </style>
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#7a0000">
@@ -226,73 +233,62 @@ footer {
 <div class="contenedor">
     <h2>📺 Toros en Televisión</h2>
     <div class="agenda-tv">
-        <div class="agenda-cab">PRÓXIMAS RETRANSMISIONES · Actualizado 09/08/2026</div>
+        <div class="agenda-cab">PRÓXIMAS RETRANSMISIONES · Actualizado 03/09/2026</div>
         <div class="emision" id="agenda-vacia" style="display:none;">
             <div class="detalle"><b>Agenda pendiente de actualizar.</b> Consulta las próximas retransmisiones en
             <a href="https://elmuletazo.com/agenda-de-toros-en-television/" target="_blank" rel="noopener" style="color:#7a0000;font-weight:bold;">El Muletazo</a> o
             <a href="https://cultoro.es/toros-en-television-agenda" target="_blank" rel="noopener" style="color:#7a0000;font-weight:bold;">Cultoro</a>.</div>
         </div>
-        <div class="emision" data-fecha="2026-08-09">
-            <div class="fecha"><b>9</b><span>Ago · Dom</span></div>
-            <div class="detalle"><b>Málaga</b> (19:00 h)<span class="chip-canal">Canal Sur</span><br>
-            Final del Circuito de Novilladas de Andalucía. Novillos de Antonio López Gibaja para Dennis Martín, Manuel Quintana y Julio Norte.</div>
+        <div class="emision" data-fecha="2026-09-05">
+            <div class="fecha"><b>5</b><span>Sep · Sáb</span></div>
+            <div class="detalle"><b>Utiel (Valencia)</b> (18:00 h)<span class="chip-canal">À Punt</span> · ⭐ Cita destacada<br>
+            Corrida de toros de Araúz del Robles para Daniel Luque, Emilio de Justo y Samuel Navalón.</div>
         </div>
-        <div class="emision" data-fecha="2026-08-09">
-            <div class="fecha"><b>9</b><span>Ago · Dom</span></div>
-            <div class="detalle"><b>Villacañas (Toledo)</b> (19:00 h)<span class="chip-canal">CMM</span><br>
-            Toros de Madroñiz para Joaquín Galdós, José Fernando Molina y Cristiano Torres.</div>
+        <div class="emision" data-fecha="2026-09-05">
+            <div class="fecha"><b>5</b><span>Sep · Sáb</span></div>
+            <div class="detalle"><b>Navacerrada (Madrid)</b> (18:00 h)<span class="chip-canal">Telemadrid</span><br>
+            Novillada con picadores. Novillos de Baltasar Ibán y El Retamar para Nacho Torrejón, Santiago López Ortega y David Gutiérrez.</div>
         </div>
-        <div class="emision" data-fecha="2026-08-13">
-            <div class="fecha"><b>13</b><span>Ago · Jue</span></div>
-            <div class="detalle"><b>Herrera del Duque (Badajoz)</b> (21:00 h)<span class="chip-canal">Canal Extremadura</span><br>
-            Certamen de novilladas sin caballos de la Diputación de Badajoz. Erales de Diego García de la Peña para Cristian Restrepo, Manuel Férbola y Joao Mexía.</div>
+        <div class="emision" data-fecha="2026-09-05">
+            <div class="fecha"><b>5</b><span>Sep · Sáb</span></div>
+            <div class="detalle"><b>Lucena (Córdoba)</b> (19:00 h)<span class="chip-canal">Canal Sur</span><br>
+            Final del XXVIII Ciclo de Becerradas de las Escuelas Taurinas Andaluzas.</div>
         </div>
-        <div class="emision" data-fecha="2026-08-14">
-            <div class="fecha"><b>14</b><span>Ago · Vie</span></div>
-            <div class="detalle"><b>Abiul (Portugal)</b> (23:00 h)<span class="chip-canal">OneToro</span><br>
-            Corrida de rejones al estilo portugués. Reses de Antonio Charrua para Rui Fernandes, Francisco Palha y Miguel Moura, con los forcados de Lisboa y Coruche.</div>
+        <div class="emision" data-fecha="2026-09-06">
+            <div class="fecha"><b>6</b><span>Sep · Dom</span></div>
+            <div class="detalle"><b>Ondara (Alicante)</b> (18:30 h, diferido)<span class="chip-canal">À Punt</span><br>
+            Semifinal del Circuito de Novilladas con picadores de la Comunidad Valenciana. Novillos de Castillejo de Huebra para Simón Andreu, Marco Polope y Samuel Castrejón.</div>
         </div>
-        <div class="emision" data-fecha="2026-08-15">
-            <div class="fecha"><b>15</b><span>Ago · Sáb</span></div>
-            <div class="detalle"><b>Sigüenza (Guadalajara)</b> (18:00 h)<span class="chip-canal">CMM</span> · Novillada mixta<br>
-            Novillos de Torres Gallego para el rejoneador Roberto Armendáriz y los novilleros Daniel Moset y Andrés García.</div>
+        <div class="emision" data-fecha="2026-09-08">
+            <div class="fecha"><b>8</b><span>Sep · Mar</span></div>
+            <div class="detalle"><b>Albacete</b> (18:00 h)<span class="chip-canal">CMM</span> · Feria de la Virgen de los Llanos<br>
+            Corrida de toros de Conde de Mayalde para Román, José Fernando Molina e Ismael Martín.</div>
         </div>
-        <div class="emision" data-fecha="2026-08-15">
-            <div class="fecha"><b>15</b><span>Ago · Sáb</span></div>
-            <div class="detalle"><b>La Línea de la Concepción (Cádiz)</b> (19:00 h)<span class="chip-canal">Canal Sur</span><br>
-            Novillada del ciclo "Fomento de la Cultura Taurina en Andalucía".</div>
+        <div class="emision" data-fecha="2026-09-08">
+            <div class="fecha"><b>8</b><span>Sep · Mar</span></div>
+            <div class="detalle"><b>Don Benito (Badajoz)</b> (18:30 h)<span class="chip-canal">Canal Extremadura</span> · ⭐ Cita destacada · Día de Extremadura<br>
+            Toros de Ángel Sánchez y Sánchez (rejones) y de Virgen María y Victoriano del Río para el rejoneador Diego Ventura y los espadas <b>Roca Rey</b> y Ginés Marín.</div>
         </div>
-        <div class="emision" data-fecha="2026-08-16">
-            <div class="fecha"><b>16</b><span>Ago · Dom</span></div>
-            <div class="detalle"><b>Sanlúcar de Barrameda (Cádiz)</b> (19:00 h)<span class="chip-canal">Canal Sur</span> · ⭐ Cita destacada<br>
-            <b>Toros de Miura</b> para Octavio Chacón, Pepe Moral y Daniel Crespo. Una de las ganaderías más legendarias del campo bravo.</div>
+        <div class="emision" data-fecha="2026-09-11">
+            <div class="fecha"><b>11</b><span>Sep · Vie</span></div>
+            <div class="detalle"><b>Dax (Francia)</b> (20:30 h)<span class="chip-canal">Toros en España Play</span><br>
+            Noche del Toro.</div>
         </div>
-        <div class="emision" data-fecha="2026-08-16">
-            <div class="fecha"><b>16</b><span>Ago · Dom</span></div>
-            <div class="detalle"><b>El Bonillo (Albacete)</b> (19:00 h)<span class="chip-canal">CMM</span><br>
-            Corrida de rejones.</div>
+        <div class="emision" data-fecha="2026-09-12">
+            <div class="fecha"><b>12</b><span>Sep · Sáb</span></div>
+            <div class="detalle"><b>Almendralejo (Badajoz)</b> (18:30 h)<span class="chip-canal">Canal Extremadura</span><br>
+            Final del Circuito de Novilladas con picadores de Extremadura. Novillos de Chamaco para Jesús Yglesias, David Gutiérrez y Pepe Martínez.</div>
         </div>
-        <div class="emision" data-fecha="2026-08-20">
-            <div class="fecha"><b>20</b><span>Ago · Jue</span></div>
-            <div class="detalle"><b>Ciudad Real</b> (19:30 h)<span class="chip-canal">CMM</span><br>
-            Toros de Arauz de Robles para Víctor Puerto, Daniel Luque y Samuel Navalón.</div>
+        <div class="emision" data-fecha="2026-09-13">
+            <div class="fecha"><b>13</b><span>Sep · Dom</span></div>
+            <div class="detalle"><b>Yepes (Toledo)</b> (18:00 h)<span class="chip-canal">CMM</span> · Semifinal Trofeo "Domingo Ortega"<br>
+            Novillada sin picadores. Novillos de Cerrolongo para seis novilleros del certamen.</div>
         </div>
-        <div class="emision" data-fecha="2026-08-22">
-            <div class="fecha"><b>22</b><span>Ago · Sáb</span></div>
-            <div class="detalle"><b>Villanueva del Fresno (Badajoz)</b> (19:00 h)<span class="chip-canal">Canal Extremadura</span><br>
-            Certamen de novilladas de la Diputación de Badajoz. Novillos de Guadajira para Adrián Guillén, Fran Perera y Francisco Jesús Méndez.</div>
+        <div class="emision" data-fecha="2026-09-13">
+            <div class="fecha"><b>13</b><span>Sep · Dom</span></div>
+            <div class="detalle"><b>Higuera la Real (Badajoz)</b> (18:30 h)<span class="chip-canal">Canal Extremadura</span><br>
+            XIV Certamen de Novilladas sin caballos de la Diputación de Badajoz.</div>
         </div>
-        <div class="emision" data-fecha="2026-08-29">
-            <div class="fecha"><b>29</b><span>Ago · Sáb</span></div>
-            <div class="detalle"><b>Sacedón (Guadalajara)</b> (18:00 h)<span class="chip-canal">CMM</span> · ⭐ Cita destacada<br>
-            Toros de Gavira para Sebastián Castella, Ginés Marín y Cid de María, que toma la alternativa.</div>
-        </div>
-        <div class="emision" data-fecha="2026-08-30">
-            <div class="fecha"><b>30</b><span>Ago · Dom</span></div>
-            <div class="detalle"><b>Borox (Toledo)</b> (18:00 h)<span class="chip-canal">CMM</span><br>
-            Semifinal del Certamen "Domingo Ortega".</div>
-        </div>
-    </div>
     <p class="nota-agenda">Agenda completa y actualizada cada semana en
         <a href="https://elmuletazo.com/agenda-de-toros-en-television/" target="_blank" rel="noopener">El Muletazo</a> y
         <a href="https://cultoro.es/toros-en-television-agenda" target="_blank" rel="noopener">Cultoro</a>.</p>
@@ -372,24 +368,29 @@ footer {
     <h2>🎓 El Rincón del Aficionado</h2>
 
     <div class="destacado-mes">
-        <h3>⭐ La cita de la semana: los Miura de Sanlúcar</h3>
-        <p>El puente de la Asunción trae uno de esos carteles que ponen en pie a cualquier aficionado: el <strong>domingo 16 de agosto</strong>, Sanlúcar de Barrameda lidia una corrida de <strong>Miura</strong> —la ganadería más mítica y respetada del campo bravo— para Octavio Chacón, Pepe Moral y Daniel Crespo. En abierto por Canal Sur a las 19:00 h. La víspera, el sábado 15, hay novilladas en Sigüenza (CMM) y La Línea de la Concepción (Canal Sur). ¡Buen finde para juntarse en el local!</p>
+        <h3>⭐ La cita de la semana: Roca Rey en el Día de Extremadura</h3>
+        <p>El <strong>martes 8 de septiembre</strong>, Don Benito (Badajoz) vive su gran corrida del Día de Extremadura con un cartel de altura: <strong>Roca Rey</strong> y Ginés Marín se miden a los toros de Virgen María y Victoriano del Río, con el rejoneador Diego Ventura abriendo plaza. En abierto por Canal Extremadura a las 18:30 h. Ese mismo día, Albacete también tiene corrida por CMM dentro de la Feria de la Virgen de los Llanos. ¡Semana taurina completa!</p>
     </div>
 
     <h3 style="color:#7a0000; margin-bottom:10px;">Pequeño glosario taurino</h3>
     <div class="glosario">
-        <div class="termino"><b>Alternativa</b>Ceremonia en la que un novillero se convierte en matador de toros. El padrino le cede los trastos ante un testigo.</div>
-        <div class="termino"><b>Quite</b>Suerte con el capote para apartar al toro, normalmente tras la vara del picador. Lucimiento y competencia entre toreros.</div>
-        <div class="termino"><b>Tercio de varas</b>Primera parte de la lidia: el picador tienta la bravura del toro con la puya desde el caballo.</div>
-        <div class="termino"><b>Indulto</b>Perdón de la vida al toro por su extraordinaria bravura. Vuelve a la ganadería como semental.</div>
-        <div class="termino"><b>Encaste</b>Línea genética de una ganadería brava (Victorino: encaste Albaserrada; Jandilla: Domecq...).</div>
-        <div class="termino"><b>Faena</b>Trabajo del matador con la muleta en el último tercio, preparando al toro para la suerte suprema.</div>
-        <div class="termino"><b>Verónica</b>Lance clásico a dos manos con el capote, uno de los más bellos del toreo. Da nombre a la forma de recibir al toro.</div>
-        <div class="termino"><b>Puerta grande</b>Salida a hombros por la puerta principal, reservada al torero que corta dos orejas o más. El máximo triunfo de la tarde.</div>
-        <div class="termino"><b>Rejoneo</b>Toreo a caballo: el rejoneador cita y quiebra al toro montado, colocando rejones y banderillas desde la grupa.</div>
-        <div class="termino"><b>Suerte suprema</b>El momento de matar, con estoque y muleta. Una estocada bien colocada "hasta la bola" remata una gran faena.</div>
-        <div class="termino"><b>Sobrero</b>Toro de reserva que sustituye a otro devuelto a los corrales por manso, inválido o herido.</div>
-        <div class="termino"><b>Manoletina</b>Pase de muleta adornado, con la tela por detrás del cuerpo, popularizado por el diestro Manolete.</div>
+        <div class="termino termino-plegable" onclick="this.classList.toggle('abierto')"><b>Alternativa</b><span class="def">Ceremonia en la que un novillero se convierte en matador de toros. El padrino le cede los trastos ante un testigo.</span></div>
+        <div class="termino termino-plegable" onclick="this.classList.toggle('abierto')"><b>Quite</b><span class="def">Suerte con el capote para apartar al toro, normalmente tras la vara del picador. Lucimiento y competencia entre toreros.</span></div>
+        <div class="termino termino-plegable" onclick="this.classList.toggle('abierto')"><b>Tercio de varas</b><span class="def">Primera parte de la lidia: el picador tienta la bravura del toro con la puya desde el caballo.</span></div>
+        <div class="termino termino-plegable" onclick="this.classList.toggle('abierto')"><b>Indulto</b><span class="def">Perdón de la vida al toro por su extraordinaria bravura. Vuelve a la ganadería como semental.</span></div>
+        <div class="termino termino-plegable" onclick="this.classList.toggle('abierto')"><b>Encaste</b><span class="def">Línea genética de una ganadería brava (Victorino: encaste Albaserrada; Jandilla: Domecq...).</span></div>
+        <div class="termino termino-plegable" onclick="this.classList.toggle('abierto')"><b>Faena</b><span class="def">Trabajo del matador con la muleta en el último tercio, preparando al toro para la suerte suprema.</span></div>
+        <div class="termino termino-plegable" onclick="this.classList.toggle('abierto')"><b>Verónica</b><span class="def">Lance clásico a dos manos con el capote, uno de los más bellos del toreo. Da nombre a la forma de recibir al toro.</span></div>
+        <div class="termino termino-plegable" onclick="this.classList.toggle('abierto')"><b>Puerta grande</b><span class="def">Salida a hombros por la puerta principal, reservada al torero que corta dos orejas o más. El máximo triunfo de la tarde.</span></div>
+        <div class="termino termino-plegable" onclick="this.classList.toggle('abierto')"><b>Rejoneo</b><span class="def">Toreo a caballo: el rejoneador cita y quiebra al toro montado, colocando rejones y banderillas desde la grupa.</span></div>
+        <div class="termino termino-plegable" onclick="this.classList.toggle('abierto')"><b>Suerte suprema</b><span class="def">El momento de matar, con estoque y muleta. Una estocada bien colocada "hasta la bola" remata una gran faena.</span></div>
+        <div class="termino termino-plegable" onclick="this.classList.toggle('abierto')"><b>Sobrero</b><span class="def">Toro de reserva que sustituye a otro devuelto a los corrales por manso, inválido o herido.</span></div>
+        <div class="termino termino-plegable" onclick="this.classList.toggle('abierto')"><b>Manoletina</b><span class="def">Pase de muleta adornado, con la tela por detrás del cuerpo, popularizado por el diestro Manolete.</span></div>
+        <div class="termino termino-nuevo"><b>Volapié</b>Suerte de matar en la que es el torero quien recorre la distancia hacia el toro, ya que éste se ha quedado parado o defendiéndose.</div>
+        <div class="termino termino-nuevo"><b>Natural</b>Pase de muleta con la mano izquierda y sin el auxilio del estoque, considerado el pase más puro y difícil del toreo.</div>
+        <div class="termino termino-nuevo"><b>Larga cambiada</b>Lance de capote a modo de recibo, girando el cuerpo para llevar al toro al lado contrario del que embiste.</div>
+        <div class="termino termino-nuevo"><b>Chicuelina</b>Lance de capote en el que el torero gira sobre sí mismo mientras el toro pasa, ceñido al cuerpo. Ideado por el diestro Chicuelo.</div>
+        <div class="termino termino-nuevo"><b>Recibir</b>Suerte de matar en la que el torero cita al toro parado, sin moverse, y es el animal quien acude al encuentro del estoque.</div>
     </div>
 </div>
 
