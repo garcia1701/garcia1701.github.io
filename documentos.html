@@ -108,6 +108,7 @@ footer {
 .btn-descarga { background: #7a0000; color: white; padding: 8px 18px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 13px; white-space: nowrap; }
 .btn-descarga:hover { background: #b30000; }
 .btn-volver { display: block; text-align: center; margin-top: 25px; color: #7a0000; font-weight: bold; text-decoration: none; font-size: 16px; }
+.aviso-obras { background: #fff3cd; border: 1px solid #ffe08a; color: #7a5b00; padding: 14px 18px; border-radius: 8px; margin-bottom: 20px; font-size: 14px; text-align: center; }
 @media (max-width: 768px) { .contenedor { margin: 12px 10px; padding: 16px; } .doc-item { flex-direction: column; align-items: flex-start; gap: 10px; } }
 
 </style>
@@ -171,20 +172,21 @@ footer {
 <div class="zona-scroll">
 
 <div class="contenedor">
+    <div class="aviso-obras">🚧 <strong>Sección en obras / remodelación.</strong> Estamos actualizando los documentos, disculpa las molestias.</div>
     <div class="seccion-docs">
         <h2>📜 Documentos y Estatutos</h2>
         <ul class="lista-docs">
-            <li class="doc-item"><div class="doc-info"><b>Acta Fundacional</b><span>Documento oficial de constitución</span></div><a href="Acta_Fundacional_PTP.pdf" download class="btn-descarga">Descargar</a></li>
-            <li class="doc-item"><div class="doc-info"><b>Estatutos Vigentes</b><span>Normas internas de funcionamiento</span></div><a href="Estatutos.pdf" download class="btn-descarga">Descargar</a></li>
-            <li class="doc-item"><div class="doc-info"><b>Reglamento Interno</b><span>Acuerdos y normas de organización</span></div><a href="reglamento.pdf" download class="btn-descarga">Descargar</a></li>
-            <li class="doc-item"><div class="doc-info"><b>Normas del Grupo WhatsApp</b><span>Reglas internas de convivencia digital</span></div><a href="Normas_Grupo_PTP.pdf" download class="btn-descarga">Descargar</a></li>
-            <li class="doc-item"><div class="doc-info"><b>Actas de Reuniones</b><span>Acta nº 2 — Reunión del 12/07/2026</span></div><a href="Acta_Reunion_PTP.pdf" download class="btn-descarga">Descargar</a></li>
+            <li class="doc-item"><div class="doc-info"><b>Acta Fundacional</b><span>Documento oficial de constitución</span></div><a href="#" onclick="avisoObras(event)" class="btn-descarga">Descargar</a></li>
+            <li class="doc-item"><div class="doc-info"><b>Estatutos Vigentes</b><span>Normas internas de funcionamiento</span></div><a href="#" onclick="avisoObras(event)" class="btn-descarga">Descargar</a></li>
+            <li class="doc-item"><div class="doc-info"><b>Reglamento Interno</b><span>Acuerdos y normas de organización</span></div><a href="#" onclick="avisoObras(event)" class="btn-descarga">Descargar</a></li>
+            <li class="doc-item"><div class="doc-info"><b>Normas del Grupo WhatsApp</b><span>Reglas internas de convivencia digital</span></div><a href="#" onclick="avisoObras(event)" class="btn-descarga">Descargar</a></li>
+            <li class="doc-item"><div class="doc-info"><b>Actas de Reuniones</b><span>Acta nº 2 — Reunión del 12/07/2026</span></div><a href="#" onclick="avisoObras(event)" class="btn-descarga">Descargar</a></li>
         </ul>
     </div>
     <div class="seccion-docs">
         <h2>💰 Transparencia y Cuentas</h2>
         <ul class="lista-docs">
-            <li class="doc-item"><div class="doc-info"><b>Hoja de Cuentas 2026</b><span>Ingresos, gastos y aportaciones especiales</span></div><a href="HOJA_DE_CUENTAS.pdf" download class="btn-descarga">Descargar</a></li>
+            <li class="doc-item"><div class="doc-info"><b>Hoja de Cuentas 2026</b><span>Ingresos, gastos y aportaciones especiales</span></div><a href="#" onclick="avisoObras(event)" class="btn-descarga">Descargar</a></li>
         </ul>
     </div>
     <a href="panel-socio.html" class="btn-volver">⬅ Volver al carnet</a>
@@ -201,6 +203,10 @@ function abrirMenu() {
 }
 function cerrarMenu() {
     document.getElementById('nav-menu').classList.remove('abierto');
+}
+function avisoObras(e) {
+    e.preventDefault();
+    alert('🚧 Este documento no está disponible en este momento. Sección en obras / remodelación.');
 }
 if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}
 </script>
