@@ -84,5 +84,17 @@ const EVENTOS_DATA = [
         destacado: "⚠️ Plazo para apuntarse: hasta el 1 de septiembre. " + AVISO_PENA,
         confirmacion: true,
         fechaLimiteConfirmacion: new Date(2026, 8, 1, 23, 59)  // cierra Me apunto / No voy el 1-sep a las 23:59
+    },
+
+    // ---- Desafío Ganadero 2026 — José Escolar vs. Prieto de la Cal ----
+    {
+        id: 2,
+        titulo: "Desafío Ganadero — José Escolar vs. Prieto de la Cal",
+        fecha: new Date(2026, 8, 19, 18, 0),          // sábado 19 septiembre — 18:00
+        fin:   new Date(2026, 8, 19, 22, 0),          // a las 22:00 pasa al historial
+        lugar: "Sede de la Peña (Restaurante Risco del Águila)",
+        ganaderia: "José Escolar y Prieto de la Cal",
+        descripcion: "Desafío ganadero. Terna: Damián Castaño, Francisco Montero y Cristian Pérez. Abierto a todos los socios y simpatizantes que quieran acercarse a verlo en la sede.",
+        destacado: "📺 Posible visionado en la sede: dependerá de la ocupación del restaurante por parte del público general esos días, ya que no todos los clientes son aficionados taurinos. Si hay poca afluencia, se pondrá la retransmisión para nosotros; si el restaurante está muy concurrido, puede que no sea posible. " + AVISO_PENA
     }
 ];
