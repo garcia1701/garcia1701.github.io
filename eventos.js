@@ -96,5 +96,22 @@ const EVENTOS_DATA = [
         ganaderia: "José Escolar y Prieto de la Cal",
         descripcion: "Desafío ganadero. Terna: Damián Castaño, Francisco Montero y Cristian Pérez. Abierto a todos los socios y simpatizantes que quieran acercarse a verlo en la sede.",
         destacado: "📺 Posible visionado en la sede: dependerá de la ocupación del restaurante por parte del público general esos días, ya que no todos los clientes son aficionados taurinos. Si hay poca afluencia, se pondrá la retransmisión para nosotros; si el restaurante está muy concurrido, puede que no sea posible. " + AVISO_PENA
+    },
+
+    // ---- PRÓXIMAMENTE (sin fecha todavía) ----
+    // Mientras tengan "porConfirmar: true" salen en Próximas Citas con "Fecha por confirmar".
+    // Cuando sepáis el día: quitad "porConfirmar: true" y poned fecha, fin y lugar,
+    // como en los eventos de arriba. Al pasar la fecha de "fin" irán solos al Historial.
+    {
+        titulo: "Día de campo: la Peña se va a la dehesa",
+        porConfirmar: true,
+        descripcion: "Cambiamos la tele de la sede por el campo abierto. Pasaremos un día en una ganadería para ver al toro en su casa, charlar con el mayoral y aprender cómo se cría la bravura. Y como buena excursión de la Peña, no faltará la comida en buena compañía.",
+        destacado: "📢 Pronto daremos el día y el lugar. ¡Estad atentos a esta página!"
+    },
+    {
+        titulo: "Cena de fin de temporada",
+        porConfirmar: true,
+        descripcion: "Se acabaron las ferias, pero no la afición. Nos juntamos para cenar, repasar las mejores faenas del año, discutir un poco (como debe ser) y brindar por la próxima temporada.",
+        destacado: "📢 Pronto daremos el día y el lugar. ¡Estad atentos a esta página!"
     }
 ];

@@ -94,13 +94,13 @@
     let hayEventos = false;
 
     EVENTOS_DATA.forEach(ev => {
-        if ((ev.fin || ev.fecha) >= ahora) {
+        if (ev.porConfirmar || (ev.fin || ev.fecha) >= ahora) {
             hayEventos = true;
             lista.innerHTML += `
                 <div class="evento-bloque">
                     <h3>${ev.titulo}</h3>
-                    <p>📅 <strong>${ev.fecha.toLocaleDateString('es-ES', {day:'numeric', month:'long', year:'numeric'})} — ${ev.fecha.getHours()}:${ev.fecha.getMinutes().toString().padStart(2,'0')} h</strong></p>
-                    <p>📍 ${ev.lugar}</p>
+                    <p>📅 <strong>${ev.porConfirmar ? 'Fecha por confirmar' : ev.fecha.toLocaleDateString('es-ES', {day:'numeric', month:'long', year:'numeric'}) + ' — ' + ev.fecha.getHours() + ':' + ev.fecha.getMinutes().toString().padStart(2,'0') + ' h'}</strong></p>
+                    ${ev.lugar ? `<p>📍 ${ev.lugar}</p>` : ''}
                     ${ev.ganaderia ? `<p>🐂 Ganaderías: <strong>${ev.ganaderia}</strong></p>` : ''}
                     <p>${ev.descripcion}</p>
                     ${ev.destacado ? `<p style="color:#b30000; margin-top:5px;"><strong>${ev.destacado}</strong></p>` : ''}
