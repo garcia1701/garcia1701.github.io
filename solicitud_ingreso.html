@@ -87,6 +87,16 @@ input:focus, textarea:focus, select:focus { border-color: #7a0000; }
 .mod-cuota { font-size: 12px; color: #b30000; font-weight: bold; margin-top: 4px; }
 .mod-desc { font-size: 11px; color: #666; margin-top: 3px; }
 
+/* INFO MODALIDAD Y RESUMEN */
+.info-modalidad { background: #fdf7e3; border-left: 4px solid #7a0000; border-radius: 6px; padding: 12px 14px; font-size: 13px; color: #333; line-height: 1.55; }
+.info-modalidad strong { color: #7a0000; }
+.resumen { font-size: 13px; color: #333; line-height: 1.55; background: #f9f6ee; border: 1px solid #d4af37; border-radius: 6px; padding: 12px 14px; }
+.resumen h3 { margin: 0 0 6px 0; font-size: 14px; color: #7a0000; }
+.resumen ul { margin: 0; padding-left: 18px; }
+.resumen li { margin-bottom: 4px; }
+.resumen a { color: #7a0000; font-weight: bold; }
+.aviso-bloqueo { font-size: 12px; color: #b30000; text-align: center; font-weight: bold; }
+
 /* Campo empresa (oculto por defecto) */
 #campo-empresa { display: none; }
 
@@ -172,24 +182,27 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         <div class="modalidades-grid">
             <div class="modalidad-card activa" onclick="seleccionarModalidad('socio', this)">
                 <div class="mod-icono">🏆</div>
-                <div class="mod-titulo">Socio</div>
+                <div class="mod-titulo">Socio de número</div>
                 <div class="mod-cuota">100 €/año</div>
-                <div class="mod-desc">Derecho a voto</div>
+                <div class="mod-desc">Con voto · camiseta y pañoleta incluidas</div>
             </div>
             <div class="modalidad-card" onclick="seleccionarModalidad('colaborador', this)">
                 <div class="mod-icono">🤝</div>
                 <div class="mod-titulo">Colaborador</div>
-                <div class="mod-cuota">50 € donativo</div>
-                <div class="mod-desc">Empresa/Autónomo</div>
+                <div class="mod-cuota">Desde 60 €</div>
+                <div class="mod-desc">Empresa o particular · no es socio</div>
             </div>
             <div class="modalidad-card" onclick="seleccionarModalidad('simpatizante', this)">
                 <div class="mod-icono">❤️</div>
-                <div class="mod-titulo">Simpatizante</div>
-                <div class="mod-cuota">40 €/año</div>
-                <div class="mod-desc">Sin voto</div>
+                <div class="mod-titulo">Socio simpatizante</div>
+                <div class="mod-cuota">80 €/año</div>
+                <div class="mod-desc">Sin voto · sin camiseta</div>
             </div>
         </div>
         <input type="hidden" id="modalidad" value="socio">
+
+        <!-- Explicación de la modalidad elegida (cambia al pulsar una tarjeta) -->
+        <div class="info-modalidad" id="info-modalidad"></div>
 
         <label for="nombre">Nombre y apellidos *</label>
         <input type="text" id="nombre" placeholder="Nombre completo" required>
@@ -206,12 +219,27 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             <input type="text" id="empresa" placeholder="Nombre de la empresa o negocio">
         </div>
 
+        <!-- RESUMEN DE CÓMO FUNCIONA LA PEÑA -->
+        <div class="resumen">
+            <h3>📜 Cómo funciona la Peña (resumen)</h3>
+            <ul>
+                <li><strong>Admisión:</strong> la decide la Junta Directiva en un plazo de 30 días. Si se deniega, será por escrito y con motivo, y se puede recurrir ante la Asamblea General.</li>
+                <li><strong>Cuotas:</strong> se pagan en los plazos de cada modalidad y las revisa cada año la Asamblea General. Las cuotas pagadas no se devuelven.</li>
+                <li><strong>Deberes:</strong> compartir los fines de la Peña y cumplir los Estatutos, el Reglamento Interno y los acuerdos.</li>
+                <li><strong>Actividades:</strong> los socios tienen preferencia. Cada socio puede llevar un acompañante, que paga el precio de socio más un 25 %.</li>
+                <li><strong>Equipación:</strong> a los actos de la Peña se acude con la camiseta y la pañoleta oficiales.</li>
+                <li><strong>Baja:</strong> por escrito cuando quieras. También se pierde la condición de socio por impago de más de seis meses o por expulsión tras expediente.</li>
+                <li><strong>Menores:</strong> los mayores de 14 años pueden ser socios con autorización firmada de sus padres o tutores.</li>
+            </ul>
+            <p style="margin:8px 0 0 0;">Texto completo: <a href="Estatutos_PTP.pdf" target="_blank">Estatutos</a> y <a href="Reglamento_Interno_PTP.pdf" target="_blank">Reglamento Interno</a>.</p>
+        </div>
+
         <!-- CHECKBOX ESTATUTOS -->
         <div class="check-item">
             <input type="checkbox" id="acepta-docs" required>
             <label for="acepta-docs">
                 He leído y acepto los <a href="Estatutos_PTP.pdf" target="_blank">Estatutos</a>
-                y el <a href="Reglamento_PTP.pdf" target="_blank">Reglamento Interno</a>
+                y el <a href="Reglamento_Interno_PTP.pdf" target="_blank">Reglamento Interno</a>
                 de la Peña Taurina Peguerinos, comprometiéndome a su cumplimiento.
             </label>
         </div>
@@ -232,7 +260,8 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             </label>
         </div>
 
-        <button type="submit" id="btn-enviar">📨 Enviar solicitud</button>
+        <p class="aviso-bloqueo" id="aviso-bloqueo">🔒 Para enviar la solicitud debes aceptar los Estatutos y el Reglamento Interno y la protección de datos.</p>
+        <button type="submit" id="btn-enviar" disabled>📨 Enviar solicitud</button>
     </form>
 
     <div class="msg-ok" id="msg-ok">✅ Solicitud enviada correctamente. Nos pondremos en contacto contigo pronto.</div>
@@ -260,7 +289,28 @@ function seleccionarModalidad(modalidad, tarjeta) {
     document.getElementById('campo-empresa').style.gap = '6px';
     const inputEmpresa = document.getElementById('empresa');
     inputEmpresa.required = (modalidad === 'colaborador');
+    mostrarInfoModalidad(modalidad);
 }
+
+const INFO_MODALIDAD = {
+    socio: '<strong>Socio de número:</strong> 100 € al año, en dos plazos de 50 € (marzo y septiembre). Incluye la camiseta y la pañoleta oficiales. Tienes voz y <strong>voto</strong> en la Asamblea General y puedes ser elegido para la Junta Directiva.',
+    simpatizante: '<strong>Socio simpatizante:</strong> 80 € al año, en dos plazos de 40 € (uno al inscribirte y otro a los seis meses). Participas en las actividades y asistes a la Asamblea con voz pero <strong>sin voto</strong>. No incluye camiseta ni pañoleta (puedes comprarlas: 28 € y 12 €).',
+    colaborador: '<strong>Colaborador:</strong> para empresas o particulares que quieran apoyar a la Peña con una aportación voluntaria. <strong>No es socio</strong> ni tiene voto. Con una aportación desde 60 €, la Peña te da a conocer en su web, su app y sus carteles.'
+};
+function mostrarInfoModalidad(m) {
+    document.getElementById('info-modalidad').innerHTML = INFO_MODALIDAD[m] || '';
+}
+mostrarInfoModalidad('socio');
+
+// Sin aceptar los Estatutos/Reglamento y la protección de datos, no se puede enviar
+function comprobarAceptacion() {
+    const ok = document.getElementById('acepta-docs').checked && document.getElementById('acepta-rgpd').checked;
+    document.getElementById('btn-enviar').disabled = !ok;
+    document.getElementById('aviso-bloqueo').style.display = ok ? 'none' : 'block';
+    return ok;
+}
+document.getElementById('acepta-docs').addEventListener('change', comprobarAceptacion);
+document.getElementById('acepta-rgpd').addEventListener('change', comprobarAceptacion);
 </script>
 
 <script>
@@ -269,6 +319,7 @@ const API = "https://script.google.com/macros/s/AKfycbzxpHykv3mfWp_Q0ZODxNA6Jy06
 
 document.getElementById("form-solicitud").addEventListener("submit", async function(e) {
     e.preventDefault();
+    if (!comprobarAceptacion()) return;   // doble seguridad: no se envía sin aceptar
     const btn = document.getElementById("btn-enviar");
     btn.disabled = true;
     btn.innerText = "Enviando...";
