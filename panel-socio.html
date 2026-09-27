@@ -225,7 +225,7 @@ footer {
                     <thead><tr><th>Año 2026</th><th>Semestre</th><th>Estado</th></tr></thead>
                     <tbody>
                         <tr><td>2026</td><td>Marzo</td><td style="color: green; font-weight: bold;">PAGADO</td></tr>
-                        <tr><td>2026</td><td>Septiembre</td><td style="color: #7a0000; font-weight: bold;">PENDIENTE</td></tr>
+                        <tr><td>2026</td><td>Septiembre</td><td id="estado-sept" style="color: green; font-weight: bold;">PAGADO</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -314,6 +314,10 @@ const DATOS_SOCIOS = {
     "0017": { tipo: "Socio",     fecha: "16 de mayo de 2026" },
 };
 
+// Cuota de septiembre 2026: todos la tienen pagada salvo los socios de esta lista (por nombre).
+// Cuando alguien pague, quítalo de la lista.
+const PENDIENTES_SEPTIEMBRE = ["antonio rosado"];
+
 if (!sesion) {
     window.location.href = "acceso-socios.html";
 } else {
@@ -325,6 +329,14 @@ if (!sesion) {
     if (datosSocio) {
         document.getElementById("display-inscripcion").innerText = datosSocio.fecha;
         document.getElementById("display-estado").innerText = datosSocio.tipo.toUpperCase();
+    }
+
+    // Estado de la cuota de septiembre
+    const nombreNorm = (sesion.nombre || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    if (PENDIENTES_SEPTIEMBRE.some(n => nombreNorm.includes(n))) {
+        const celdaSept = document.getElementById("estado-sept");
+        celdaSept.innerText = "PENDIENTE";
+        celdaSept.style.color = "#7a0000";
     }
 
     const tlf = "34624485293";
