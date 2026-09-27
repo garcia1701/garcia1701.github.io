@@ -109,6 +109,17 @@ const EVENTOS_DATA = [
         destacado: "📺 Posible visionado en la sede: dependerá de la ocupación del restaurante por parte del público general, ya que no todos los clientes son aficionados taurinos. Si hay poca afluencia, se pondrá la retransmisión para nosotros; si el restaurante está muy concurrido, puede que no sea posible. " + AVISO_PENA
     },
 
+    // ---- Feria de San Miguel 2026 — Sevilla, última corrida (retransmisión en la sede) ----
+    {
+        titulo: "Corrida de Toros — Feria de San Miguel, Sevilla (retransmisión en la sede)",
+        fecha: new Date(2026, 8, 27, 18, 0),          // domingo 27 septiembre — 18:00
+        fin:   new Date(2026, 8, 27, 20, 30),         // a las 20:30 pasa al historial
+        lugar: "Sede de la Peña (Restaurante Risco del Águila)",
+        ganaderia: "Garcigrande",
+        descripcion: "Última corrida de la Feria de San Miguel, desde la Real Maestranza de Sevilla, en directo por Canal Sur Televisión. Terna: Morante de la Puebla, Daniel Luque y Borja Jiménez. Abierto a todos los socios, simpatizantes y a quien quiera acercarse a verla en la sede.",
+        destacado: "📺 Posible visionado en la sede: dependerá de la ocupación del restaurante por parte del público general, ya que no todos los clientes son aficionados taurinos. Si hay poca afluencia, se pondrá la retransmisión para nosotros; si el restaurante está muy concurrido, puede que no sea posible. " + AVISO_PENA
+    },
+
     // ---- PRÓXIMAMENTE (sin fecha todavía) ----
     // Mientras tengan "porConfirmar: true" salen en Próximas Citas con "Fecha por confirmar".
     // Cuando sepáis el día: quitad "porConfirmar: true" y poned fecha, fin y lugar,
