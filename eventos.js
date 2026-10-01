@@ -120,6 +120,17 @@ const EVENTOS_DATA = [
         destacado: "📺 Posible visionado en la sede: dependerá de la ocupación del restaurante por parte del público general, ya que no todos los clientes son aficionados taurinos. Si hay poca afluencia, se pondrá la retransmisión para nosotros; si el restaurante está muy concurrido, puede que no sea posible. " + AVISO_PENA
     },
 
+    // ---- Las Ventas, 12 de octubre 2026 (retransmisión en la sede) + cena de peñistas ----
+    {
+        titulo: "Corrida de Toros — Las Ventas, Madrid (retransmisión en la sede) y cena de peñistas",
+        fecha: new Date(2026, 9, 12, 17, 30),        // lunes 12 octubre — 17:30
+        fin:   new Date(2026, 9, 12, 23, 0),         // después de la cena (23:00) pasa al historial
+        lugar: "Sede de la Peña (Restaurante Risco del Águila)",
+        ganaderia: "Garcigrande y Núñez del Cuvillo",
+        descripcion: "Veremos en la sede la corrida de toros desde la Plaza de Toros de Las Ventas (Madrid). Terna: Morante de la Puebla, Héctor Gutiérrez (campeón de la Copa Chenel) y Aarón Palacio (que confirma la alternativa). Después habrá cena para los peñistas.",
+        destacado: AVISO_PENA
+    },
+
     // ---- PRÓXIMAMENTE (sin fecha todavía) ----
     // Mientras tengan "porConfirmar: true" salen en Próximas Citas con "Fecha por confirmar".
     // Cuando sepáis el día: quitad "porConfirmar: true" y poned fecha, fin y lugar,
