@@ -131,16 +131,24 @@ const EVENTOS_DATA = [
         destacado: AVISO_PENA
     },
 
+    // ---- Día de campo en la ganadería Flor de Jara (hay que apuntarse) ----
+    {
+        id: 3,
+        titulo: "Día de campo: la Peña se va a la dehesa — Ganadería Flor de Jara",
+        fecha: new Date(2026, 9, 24, 10, 0),         // sábado 24 octubre — hora por confirmar
+        fin:   new Date(2026, 9, 24, 23, 59),        // el 25 de octubre pasa al historial
+        lugar: "Ganadería Flor de Jara, Manzanares el Real (Madrid)",
+        ganaderia: "Flor de Jara",
+        descripcion: "Cambiamos la tele de la sede por el campo abierto. Pasaremos un día en la ganadería Flor de Jara, a 35 minutos de Madrid, para ver al toro bravo en su casa: recorrido guiado por la familia ganadera, lote de vacas, camada de saca e instalaciones. Y como buena excursión de la Peña, no faltará la comida en buena compañía.",
+        destacado: "⚠️ Plazo para apuntarse: hasta el 12 de octubre. La hora, la comida y el transporte se concretarán cuando sepamos cuántos vamos; entre el 12 y el 24 se dirá lo que pone la peña y lo que paga cada uno. " + AVISO_PENA,
+        confirmacion: true,
+        fechaLimiteConfirmacion: new Date(2026, 9, 12, 23, 59)  // cierra Me apunto / No voy el 12-oct a las 23:59
+    },
+
     // ---- PRÓXIMAMENTE (sin fecha todavía) ----
     // Mientras tengan "porConfirmar: true" salen en Próximas Citas con "Fecha por confirmar".
     // Cuando sepáis el día: quitad "porConfirmar: true" y poned fecha, fin y lugar,
     // como en los eventos de arriba. Al pasar la fecha de "fin" irán solos al Historial.
-    {
-        titulo: "Día de campo: la Peña se va a la dehesa",
-        porConfirmar: true,
-        descripcion: "Cambiamos la tele de la sede por el campo abierto. Pasaremos un día en una ganadería para ver al toro en su casa, charlar con el mayoral y aprender cómo se cría la bravura. Y como buena excursión de la Peña, no faltará la comida en buena compañía.",
-        destacado: "📢 Pronto daremos el día y el lugar. ¡Estad atentos a esta página!"
-    },
     {
         titulo: "Cena de fin de temporada",
         porConfirmar: true,
