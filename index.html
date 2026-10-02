@@ -103,50 +103,38 @@ header h1 {
 .contenedor h2 { color: #7a0000; font-size: 18px; margin-bottom: 8px; }
 .contenedor p { color: #444; line-height: 1.6; font-size: 15px; }
 
-/* 5. BANNERS */
-.patro-titulo {
+/* 5. COLABORADORES — fijo, sin movimiento */
+.colab-titulo {
     text-align: center; color: #7a0000; font-size: 13px;
     font-weight: bold; text-transform: uppercase; letter-spacing: 2px;
-    margin: 20px 0 10px;
+    margin: 24px 0 12px;
 }
-.patro-grid {
-    max-width: 900px; margin: 0 auto 20px;
-    display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;
-    padding: 0 16px;
+.colab-grid {
+    max-width: 800px; margin: 0 auto 14px; padding: 0 16px;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;
 }
-.patro-banner {
-    width: 46%; height: 140px; background: #000;
-    border: 2px solid #7a0000; border-radius: 8px;
-    overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+.colab-card {
+    background: #fff; border-radius: 12px; overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.10);
+    display: flex; flex-direction: column;
 }
-.patro-slider { width: 100%; height: 100%; display: flex; overflow: hidden; }
-.patro-slider img {
-    width: 50%; height: 100%; object-fit: cover;
-    flex-shrink: 0; border-right: 1px solid #7a0000;
+.colab-card > img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block; }
+.colab-info { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 3px; flex: 1; text-align: center; }
+.colab-tipo { font-size: 11px; font-weight: bold; color: #a07d10; text-transform: uppercase; letter-spacing: 1.5px; }
+.colab-nombre { font-size: 18px; color: #7a0000; line-height: 1.25; }
+.colab-dir { font-size: 13px; color: #666; margin-bottom: 10px; }
+.colab-botones { display: flex; gap: 8px; margin-top: auto; }
+.colab-btn {
+    flex: 1; text-align: center; text-decoration: none;
+    font-size: 14px; font-weight: 600; padding: 10px 6px; border-radius: 8px;
 }
-.img-logo-bubble { object-fit: contain !important; background: #fff; }
-.slider-izq img { animation: slideParejas8 32s infinite ease-in-out; }
-@keyframes slideParejas8 {
-    0%, 10% { transform: translateX(0); }
-    12.5%, 22.5% { transform: translateX(-200%); }
-    25%, 35% { transform: translateX(-400%); }
-    37.5%, 47.5% { transform: translateX(-600%); }
-    50%, 60% { transform: translateX(-800%); }
-    62.5%, 72.5% { transform: translateX(-1000%); }
-    75%, 85% { transform: translateX(-1200%); }
-    87.5%, 97.5% { transform: translateX(-1400%); }
-    100% { transform: translateX(0); }
+.colab-btn.lleno { background: #7a0000; color: #fff; border: 2px solid #7a0000; }
+.colab-btn.borde { background: #fff; color: #7a0000; border: 2px solid #d4af37; }
+.colab-unete {
+    max-width: 768px; margin: 0 auto 24px; text-align: center;
+    font-size: 13px; color: #666;
 }
-.slider-der img { animation: slideParejas5 20s infinite ease-in-out; }
-@keyframes slideParejas5 {
-    0%, 18% { transform: translateX(0); }
-    20%, 38% { transform: translateX(-200%); }
-    40%, 58% { transform: translateX(-400%); }
-    60%, 78% { transform: translateX(-600%); }
-    80%, 98% { transform: translateX(-800%); }
-    100% { transform: translateX(0); }
-}
-.patro-slider:hover img { animation-play-state: paused; }
+.colab-unete a { color: #7a0000; font-weight: 700; }
 
 /* 6. FOOTER */
 footer {
@@ -172,8 +160,16 @@ footer {
 
     .contenedor { margin: 12px 10px; padding: 16px; }
 
-    .patro-banner { width: 95%; height: 100px; }
-    .patro-titulo { margin: 14px 0 6px; font-size: 11px; }
+    .colab-grid { grid-template-columns: 1fr 1fr; padding: 0 10px; gap: 10px; }
+    .colab-titulo { margin: 18px 0 10px; font-size: 11px; }
+    .colab-card > img { aspect-ratio: 1 / 1; }
+    .colab-info { padding: 10px 8px; }
+    .colab-tipo { font-size: 9px; letter-spacing: 1px; }
+    .colab-nombre { font-size: 15px; }
+    .colab-dir { font-size: 11.5px; margin-bottom: 8px; }
+    .colab-botones { flex-direction: column; gap: 6px; }
+    .colab-btn { font-size: 13px; padding: 8px 4px; }
+    .colab-unete { padding: 0 16px; font-size: 12px; }
 
     footer { padding: 10px; font-size: 12px; }
 }
@@ -328,31 +324,38 @@ footer {
     </p>
 </div>
 
-<div class="patro-titulo">Colaboradores</div>
-<div class="patro-grid">
-    <div class="patro-banner">
-        <div class="patro-slider slider-izq">
-            <img src="hab_113_fuente_reina.jpg"><img src="hab_104_la_nava.jpg">
-            <img src="hab_110_puerto_malagon.jpg"><img src="hab_101_puerto_leon.jpg">
-            <img src="hab_109_fuente_negros.jpg"><img src="hab_102_cabeza_lijar.jpg">
-            <img src="hab_108_casa_la_cueva.jpg"><img src="hab_115_nava_toril.jpg">
-            <img src="hab_114_canto_berrueco.jpg"><img src="hab_107_isabelae.jpg">
-            <img src="hab_111_cueva_valiente.jpg"><img src="hab_103_peña_blanca.jpg">
-            <img src="fachada.jpg"><img src="jardinpiscina.jpg">
-            <img src="salones.jpg"><img src="terraza_isabelae.jpg">
-        </div>
-    </div>
+<div class="colab-titulo">Colaboran con la peña</div>
+<!-- Para añadir otro colaborador: copia un bloque <article> entero y cambia foto, nombre, dirección y teléfono -->
+<div class="colab-grid">
 
-    <div class="patro-banner">
-        <div class="patro-slider slider-der">
-            <img src="logo_risco_bubble.jpg" class="img-logo-bubble"><img src="genero_risco.jpg">
-            <img src="chuleta_risco.jpg"><img src="asado_risco.jpg">
-            <img src="brasas_risco.jpg"><img src="barra_risco.jpg">
-            <img src="fachada_risco.jpg"><img src="terraza_risco.jpg">
-            <img src="noche_risco.jpg"><img src="logo_risco_bubble.jpg" class="img-logo-bubble">
+    <article class="colab-card">
+        <img src="terraza_isabelae.jpg" alt="Posada Isabelae">
+        <div class="colab-info">
+            <span class="colab-tipo">Posada rural</span>
+            <h3 class="colab-nombre">Posada Isabelae</h3>
+            <span class="colab-dir">Avda. de Madrid, 36 · Peguerinos</span>
+            <div class="colab-botones">
+                <a class="colab-btn lleno" href="tel:+34686997324">📞 Llamar</a>
+                <a class="colab-btn borde" href="https://www.google.com/maps/search/?api=1&query=Posada+Isabelae+Avenida+Madrid+36+Peguerinos" target="_blank" rel="noopener">Cómo llegar</a>
+            </div>
         </div>
-    </div>
+    </article>
+
+    <article class="colab-card">
+        <img src="terraza_risco.jpg" alt="El Risco del Águila">
+        <div class="colab-info">
+            <span class="colab-tipo">Mesón-Restaurante</span>
+            <h3 class="colab-nombre">El Risco del Águila</h3>
+            <span class="colab-dir">Avda. de Madrid, 2 · Peguerinos</span>
+            <div class="colab-botones">
+                <a class="colab-btn lleno" href="tel:+34918983160">📞 Llamar</a>
+                <a class="colab-btn borde" href="https://www.google.com/maps/search/?api=1&query=El+Risco+del+Aguila+Avenida+Madrid+2+Peguerinos" target="_blank" rel="noopener">Cómo llegar</a>
+            </div>
+        </div>
+    </article>
+
 </div>
+<p class="colab-unete">¿Tienes un negocio y quieres colaborar con la peña? <a href="contacto.html">Escríbenos</a></p>
 
 </div>
 
