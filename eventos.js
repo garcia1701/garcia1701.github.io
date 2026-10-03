@@ -135,12 +135,12 @@ const EVENTOS_DATA = [
     {
         id: 3,
         titulo: "Día de campo: la Peña se va a la dehesa — Ganadería Flor de Jara",
-        fecha: new Date(2026, 9, 24, 10, 0),         // sábado 24 octubre — hora por confirmar
-        fin:   new Date(2026, 9, 24, 23, 59),        // el 25 de octubre pasa al historial
+        fecha: new Date(2026, 9, 25, 10, 0),         // domingo 25 octubre — hora por confirmar
+        fin:   new Date(2026, 9, 25, 23, 59),        // el 26 de octubre pasa al historial
         lugar: "Ganadería Flor de Jara, Manzanares el Real (Madrid)",
         ganaderia: "Flor de Jara",
         descripcion: "Cambiamos la tele de la sede por el campo abierto. Pasaremos un día en la ganadería Flor de Jara, a 35 minutos de Madrid, para ver al toro bravo en su casa: recorrido guiado por la familia ganadera, lote de vacas, camada de saca e instalaciones. Y como buena excursión de la Peña, no faltará la comida en buena compañía.",
-        destacado: "⚠️ Plazo para apuntarse: hasta el 12 de octubre. La hora, la comida y el transporte se concretarán cuando sepamos cuántos vamos; entre el 12 y el 24 se dirá lo que pone la peña y lo que paga cada uno. " + AVISO_PENA,
+        destacado: "⚠️ Plazo para apuntarse: hasta el 12 de octubre. La hora, la comida y el transporte se concretarán cuando sepamos cuántos vamos; entre el 12 y el 25 se dirá lo que pone la peña y lo que paga cada uno. " + AVISO_PENA,
         confirmacion: true,
         fechaLimiteConfirmacion: new Date(2026, 9, 12, 23, 59)  // cierra Me apunto / No voy el 12-oct a las 23:59
     },
