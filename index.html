@@ -329,7 +329,7 @@ footer {
 <div class="colab-grid">
 
     <article class="colab-card">
-        <img src="terraza_isabelae.jpg" alt="Posada Isabelae">
+        <img src="terraza_isabelae.jpg" alt="Posada Isabelae" data-fotos="terraza_isabelae.jpg,fachada.jpg,jardinpiscina.jpg,salones.jpg">
         <div class="colab-info">
             <span class="colab-tipo">Posada rural</span>
             <h3 class="colab-nombre">Posada Isabelae</h3>
@@ -342,7 +342,7 @@ footer {
     </article>
 
     <article class="colab-card">
-        <img src="terraza_risco.jpg" alt="El Risco del Águila">
+        <img src="terraza_risco.jpg" alt="El Risco del Águila" data-fotos="terraza_risco.jpg,noche_risco.jpg,barra_risco.jpg,asado_risco.jpg,fachada_risco.jpg,chuleta_risco.jpg,genero_risco.jpg">
         <div class="colab-info">
             <span class="colab-tipo">Mesón-Restaurante</span>
             <h3 class="colab-nombre">El Risco del Águila</h3>
@@ -393,6 +393,17 @@ if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}
         var aviso = document.getElementById('aviso-cuotas');
         if (aviso) aviso.style.display = 'none';
     }
+})();
+</script>
+<script>
+/* Foto del día de los colaboradores: cambia sola cada día.
+   Para añadir o quitar fotos, edita la lista data-fotos de cada <img>. */
+(function(){
+  var dia = Math.floor((Date.now() - new Date().getTimezoneOffset()*60000) / 86400000);
+  document.querySelectorAll('img[data-fotos]').forEach(function(img){
+    var fotos = img.getAttribute('data-fotos').split(',');
+    img.src = fotos[dia % fotos.length].trim();
+  });
 })();
 </script>
 </body>

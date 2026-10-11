@@ -107,6 +107,9 @@ footer {
 .doc-info span { color: #666; font-size: 13px; }
 .btn-descarga { background: #7a0000; color: white; padding: 8px 18px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 13px; white-space: nowrap; }
 .btn-descarga:hover { background: #b30000; }
+.doc-botones { display: flex; gap: 8px; flex-shrink: 0; }
+.btn-ver { background: white; color: #7a0000; border: 2px solid #7a0000; padding: 6px 16px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 13px; white-space: nowrap; }
+.btn-ver:hover { background: #f8efe0; }
 .btn-volver { display: block; text-align: center; margin-top: 25px; color: #7a0000; font-weight: bold; text-decoration: none; font-size: 16px; }
 .aviso-obras { background: #fff3cd; border: 1px solid #ffe08a; color: #7a5b00; padding: 14px 18px; border-radius: 8px; margin-bottom: 20px; font-size: 14px; text-align: center; }
 @media (max-width: 768px) { .contenedor { margin: 12px 10px; padding: 16px; } .doc-item { flex-direction: column; align-items: flex-start; gap: 10px; } }
@@ -174,21 +177,21 @@ footer {
 <div class="zona-scroll">
 
 <div class="contenedor">
-    <div class="aviso-obras">📄 <strong>Documentos actualizados.</strong> Ya puedes descargar el Acta Fundacional, los Estatutos, el Reglamento Interno, las Normas del Grupo y la Hoja de Cuentas. Las actas de reuniones estarán disponibles próximamente.</div>
+    <div class="aviso-obras">📄 <strong>Documentos actualizados.</strong> Ya puedes ver o descargar el Acta Fundacional, los Estatutos, el Reglamento Interno, las Normas del Grupo y la Hoja de Cuentas. Las actas de reuniones estarán disponibles próximamente.</div>
     <div class="seccion-docs">
         <h2>📜 Documentos y Estatutos</h2>
         <ul class="lista-docs">
-            <li class="doc-item"><div class="doc-info"><b>Acta Fundacional</b><span>Documento oficial de constitución</span></div><a href="Acta_Fundacional_PTP.pdf" download="Acta_Fundacional_PTP.pdf" class="btn-descarga">Descargar</a></li>
-            <li class="doc-item"><div class="doc-info"><b>Estatutos Vigentes</b><span>Normas internas de funcionamiento</span></div><a href="Estatutos_PTP.pdf" download="Estatutos_PTP.pdf" class="btn-descarga">Descargar</a></li>
-            <li class="doc-item"><div class="doc-info"><b>Reglamento Interno</b><span>Acuerdos y normas de organización</span></div><a href="Reglamento_Interno_PTP.pdf" download="Reglamento_Interno_PTP.pdf" class="btn-descarga">Descargar</a></li>
-            <li class="doc-item"><div class="doc-info"><b>Normas del Grupo WhatsApp</b><span>Reglas internas de convivencia digital</span></div><a href="Normas_Grupo_PTP.pdf" download="Normas_Grupo_PTP.pdf" class="btn-descarga">Descargar</a></li>
+            <li class="doc-item"><div class="doc-info"><b>Acta Fundacional</b><span>Documento oficial de constitución</span></div><div class="doc-botones"><a href="Acta_Fundacional_PTP.pdf" target="_blank" rel="noopener" class="btn-ver">👁 Ver</a><a href="Acta_Fundacional_PTP.pdf" download="Acta_Fundacional_PTP.pdf" class="btn-descarga">Descargar</a></div></li>
+            <li class="doc-item"><div class="doc-info"><b>Estatutos Vigentes</b><span>Normas internas de funcionamiento</span></div><div class="doc-botones"><a href="Estatutos_PTP.pdf" target="_blank" rel="noopener" class="btn-ver">👁 Ver</a><a href="Estatutos_PTP.pdf" download="Estatutos_PTP.pdf" class="btn-descarga">Descargar</a></div></li>
+            <li class="doc-item"><div class="doc-info"><b>Reglamento Interno</b><span>Acuerdos y normas de organización</span></div><div class="doc-botones"><a href="Reglamento_Interno_PTP.pdf" target="_blank" rel="noopener" class="btn-ver">👁 Ver</a><a href="Reglamento_Interno_PTP.pdf" download="Reglamento_Interno_PTP.pdf" class="btn-descarga">Descargar</a></div></li>
+            <li class="doc-item"><div class="doc-info"><b>Normas del Grupo WhatsApp</b><span>Reglas internas de convivencia digital</span></div><div class="doc-botones"><a href="Normas_Grupo_PTP.pdf" target="_blank" rel="noopener" class="btn-ver">👁 Ver</a><a href="Normas_Grupo_PTP.pdf" download="Normas_Grupo_PTP.pdf" class="btn-descarga">Descargar</a></div></li>
             <li class="doc-item"><div class="doc-info"><b>Actas de Reuniones</b><span>Acta nº 2 — Reunión del 12/07/2026</span></div><a href="#" onclick="avisoObras(event)" class="btn-descarga">Próximamente</a></li>
         </ul>
     </div>
     <div class="seccion-docs">
         <h2>💰 Transparencia y Cuentas</h2>
         <ul class="lista-docs">
-            <li class="doc-item"><div class="doc-info"><b>Hoja de Cuentas 2026</b><span>Ingresos, gastos y aportaciones especiales</span></div><a href="Hoja_de_Cuentas_PTP_2026.pdf" download="Hoja_de_Cuentas_PTP_2026.pdf" class="btn-descarga">Descargar</a></li>
+            <li class="doc-item"><div class="doc-info"><b>Hoja de Cuentas 2026</b><span>Ingresos, gastos y aportaciones especiales</span></div><div class="doc-botones"><a href="Hoja_de_Cuentas_PTP_2026.pdf" target="_blank" rel="noopener" class="btn-ver">👁 Ver</a><a href="Hoja_de_Cuentas_PTP_2026.pdf" download="Hoja_de_Cuentas_PTP_2026.pdf" class="btn-descarga">Descargar</a></div></li>
         </ul>
     </div>
     <a href="panel-socio.html" class="btn-volver">⬅ Volver al carnet</a>
@@ -218,6 +221,14 @@ const sesionActiva = localStorage.getItem("datos_sesion");
 if (!sesionActiva) {
     alert("Acceso denegado. Por favor, identifícate como socio.");
     window.location.href = "acceso-socios.html";
+}
+</script>
+<script>
+/* En Android el móvil descarga los PDF en vez de enseñarlos: allí se abren con el visor de Google */
+if (/Android/i.test(navigator.userAgent)) {
+  document.querySelectorAll('a.btn-ver').forEach(function(a){
+    a.href = 'https://docs.google.com/viewer?url=' + encodeURIComponent(a.href);
+  });
 }
 </script>
 </body>
