@@ -127,7 +127,7 @@ const EVENTOS_DATA = [
         fin:   new Date(2026, 9, 12, 23, 0),         // después de la cena (23:00) pasa al historial
         lugar: "Sede de la Peña (Restaurante Risco del Águila)",
         ganaderia: "Garcigrande y Núñez del Cuvillo",
-        descripcion: "Veremos en la sede la corrida de toros desde la Plaza de Toros de Las Ventas (Madrid). Terna: Morante de la Puebla, Héctor Gutiérrez (campeón de la Copa Chenel) y Aarón Palacio (que confirma la alternativa). Después habrá cena para los peñistas.",
+        descripcion: "Veremos en la sede la corrida de toros desde la Plaza de Toros de Las Ventas (Madrid). Terna: Morante de la Puebla, Héctor Gutiérrez (campeón de la Copa Chenel) y Aarón Palacio (que confirma la alternativa). Después habrá cena para los peñistas. <a href=\"galeria.html#cena-pilar-2026\" style=\"color:#7a0000;font-weight:bold;\">📸 Ver fotos de la cena</a>",
         destacado: AVISO_PENA
     },
 

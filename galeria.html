@@ -109,6 +109,19 @@ footer {
 #imgAmpliada { max-width: 90%; max-height: 80%; border: 4px solid #d4af37; border-radius: 5px; }
 #pieFotoModal { color: white; margin-top: 15px; font-size: 22px; font-weight: bold; }
 .cerrar-modal { position: absolute; top: 20px; right: 35px; color: #d4af37; font-size: 50px; }
+.album { margin: 18px 0; border: 1px solid #e3d3a0; border-radius: 10px; background: #fffdf6; overflow: hidden; }
+.album > summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 14px; padding: 10px; }
+.album > summary::-webkit-details-marker { display: none; }
+.album-portada { width: 96px; height: 72px; object-fit: cover; border-radius: 6px; flex-shrink: 0; border: 2px solid #d4af37; }
+.album-texto { flex: 1; min-width: 0; }
+.album-titulo { display: block; color: #7a0000; font-weight: bold; font-size: 17px; }
+.album-info { display: block; color: #6b5a2a; font-size: 13px; margin-top: 3px; }
+.album-boton { background: #7a0000; color: #d4af37; font-weight: bold; font-size: 13px; padding: 7px 12px; border-radius: 20px; white-space: nowrap; }
+.album[open] .album-boton::before { content: "Cerrar "; }
+.album:not([open]) .album-boton::before { content: "Ver "; }
+.album .galeria-flex { padding: 0 10px 16px; margin-top: 6px; }
+.aviso-socios { width: 100%; padding: 14px; background: #fdf7e3; border: 1px solid #d4af37; border-radius: 8px; text-align: center; color: #5a3e00; box-sizing: border-box; }
+@media (max-width: 520px) { .album > summary { flex-wrap: wrap; } .album-portada { width: 84px; height: 64px; } .album-texto { flex-basis: calc(100% - 100px); } .album-boton { width: 100%; text-align: center; box-sizing: border-box; } }
 @media (max-width: 768px) { .foto-item { width: 95%; } .contenedor { margin: 12px 10px; padding: 16px; } }
 
 </style>
@@ -175,7 +188,40 @@ footer {
 <div class="contenedor">
     <h2 id="tituloGaleria">Recuerdos de la Peña</h2>
 
-    <h3 style="color:#7a0000; margin: 24px 0 10px 0; font-size:17px; border-left: 4px solid #d4af37; padding-left: 10px;">🍖 Cena Inaugural · Abril 2026</h3>
+    <!-- ===== ÁLBUMES =====
+         Cada actividad es un álbum plegado (portada + botón).
+         data-privada = fecha y hora en que las fotos con clase "foto-grupo-privada" pasan a ser solo para socios
+         (regla de la peña: 24 horas públicas, luego solo socios). El más nuevo va arriba. -->
+
+    <details class="album" id="cena-pilar-2026" data-privada="2026-10-14T01:00:00">
+        <summary>
+            <img class="album-portada" src="cena_pilar_2026_03.jpg" alt="">
+            <span class="album-texto">
+                <span class="album-titulo">🍖 Cena de la Peña · Fiesta del Pilar</span>
+                <span class="album-info">12 de octubre de 2026 · Risco del Águila · <span class="album-num"></span></span>
+            </span>
+            <span class="album-boton">fotos</span>
+        </summary>
+        <div class="galeria-flex">
+            <div class="foto-item foto-grupo-privada"><img src="cena_pilar_2026_01.jpg" alt="Socios en la mesa" loading="lazy"><p>Llegando a la mesa</p></div>
+            <div class="foto-item foto-grupo-privada"><img src="cena_pilar_2026_02.jpg" alt="Socios en la sede" loading="lazy"><p>Tertulia antes de cenar</p></div>
+            <div class="foto-item foto-grupo-privada"><img src="cena_pilar_2026_03.jpg" alt="Cena de la peña" loading="lazy"><p>Empieza la cena</p></div>
+            <div class="foto-item foto-grupo-privada"><img src="cena_pilar_2026_04.jpg" alt="Socios cenando" loading="lazy"><p>Buen ambiente en la mesa</p></div>
+            <div class="foto-item foto-grupo-privada"><img src="cena_pilar_2026_05.jpg" alt="Sirviendo el cochinillo" loading="lazy"><p>¡Llega el cochinillo!</p></div>
+            <div class="foto-item foto-grupo-privada"><img src="cena_pilar_2026_06.jpg" alt="Presentando el cochinillo" loading="lazy"><p>Presentando el cochinillo</p></div>
+            <div class="foto-item"><img src="cena_pilar_2026_07.jpg" alt="Cochinillo asado" loading="lazy"><p>Cochinillo del Risco del Águila</p></div>
+        </div>
+    </details>
+
+    <details class="album" id="cena-inaugural-2026" data-privada="2026-05-12T00:00:00">
+        <summary>
+            <img class="album-portada" src="equipacion.jpeg" alt="">
+            <span class="album-texto">
+                <span class="album-titulo">🍖 Cena Inaugural</span>
+                <span class="album-info">Abril de 2026 · <span class="album-num"></span></span>
+            </span>
+            <span class="album-boton">fotos</span>
+        </summary>
     <div class="galeria-flex">
         <div class="foto-item"><img src="equipacion.jpeg" alt="Equipación oficial"><p>Equipación Oficial PTP</p></div>
         <div class="foto-item"><img src="cartel_pañuelo.jpeg" alt="Cartel y pañuelo"><p>Cartel y Pañuelo de la Peña</p></div>
@@ -192,6 +238,7 @@ footer {
         <div class="foto-item foto-grupo-privada"><img src="grupo11.jpeg" alt="Foto de grupo 6"><p>Foto de grupo · toma 6</p></div>
         <div class="foto-item foto-grupo-privada"><img src="grupo12.jpeg" alt="Foto de grupo 7"><p>Foto de grupo · toma 7</p></div>
     </div>
+    </details>
 
     <h3 style="color:#7a0000; margin: 28px 0 10px 0; font-size:17px; border-left: 4px solid #d4af37; padding-left: 10px;">📸 Galería General</h3>
     <div class="galeria-flex">
@@ -233,31 +280,35 @@ if (hoy >= fechaLimite) {
     document.querySelectorAll('.foto-temporal').forEach(foto => foto.remove());
 }
 
-// Fotos de grupo: públicas hasta el 12 de mayo, luego solo para socios
-const fechaPrivada = new Date('2026-05-12');
+// Álbumes: fotos de grupo públicas hasta la fecha de data-privada, luego solo para socios
 const esSocio = !!localStorage.getItem("datos_sesion");
-const fotosSocio = document.querySelectorAll('.foto-grupo-privada');
-
-if (hoy >= fechaPrivada) {
-    if (esSocio) {
-        // Socio: las ve pero con distintivo
-        fotosSocio.forEach(f => {
-            const badge = document.createElement('span');
-            badge.textContent = '🔒 Solo socios';
-            badge.style.cssText = 'display:block;background:#7a0000;color:#d4af37;font-size:11px;padding:2px 6px;border-radius:4px;margin-top:4px;';
-            f.appendChild(badge);
-        });
-    } else {
-        // No socio: ocultar fotos de grupo y mostrar aviso
-        fotosSocio.forEach(f => f.remove());
-        const seccionCena = document.querySelector('.galeria-flex');
-        if (seccionCena) {
+document.querySelectorAll('.album').forEach(album => {
+    const privada = new Date(album.dataset.privada);
+    const fotosSocio = album.querySelectorAll('.foto-grupo-privada');
+    if (hoy >= privada && fotosSocio.length) {
+        if (esSocio) {
+            fotosSocio.forEach(f => {
+                const badge = document.createElement('span');
+                badge.textContent = '🔒 Solo socios';
+                badge.style.cssText = 'display:block;background:#7a0000;color:#d4af37;font-size:11px;padding:2px 6px;border-radius:4px;margin-top:4px;';
+                f.appendChild(badge);
+            });
+        } else {
+            fotosSocio.forEach(f => f.remove());
             const aviso = document.createElement('div');
-            aviso.style.cssText = 'width:100%;padding:16px;background:#fdf7e3;border:1px solid #d4af37;border-radius:8px;text-align:center;color:#5a3e00;margin-top:10px;';
-            aviso.innerHTML = '🔒 Las fotos de grupo de la Cena Inaugural están disponibles <strong>solo para socios</strong>. <a href="acceso-socios.html" style="color:#7a0000;font-weight:bold;">Identifícate aquí</a>';
-            seccionCena.parentElement.insertBefore(aviso, seccionCena);
+            aviso.className = 'aviso-socios';
+            aviso.innerHTML = '🔒 Hay ' + fotosSocio.length + ' fotos de este álbum <strong>solo para socios</strong>. <a href="acceso-socios.html" style="color:#7a0000;font-weight:bold;">Identifícate aquí</a>';
+            album.querySelector('.galeria-flex').prepend(aviso);
         }
     }
+    const n = album.querySelectorAll('.foto-item').length;
+    const num = album.querySelector('.album-num');
+    if (num) num.textContent = n ? n + ' fotos' : 'solo socios';
+});
+// Abrir un álbum si se llega con #id (por ejemplo desde Actividades)
+if (location.hash) {
+    const a = document.querySelector('details.album' + location.hash);
+    if (a) { a.open = true; a.scrollIntoView(); }
 }
 
 // Modal de ampliación
