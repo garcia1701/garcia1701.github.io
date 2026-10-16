@@ -367,6 +367,15 @@ footer {
 <div class="contenedor">
     <h2>🎓 El Rincón del Aficionado</h2>
 
+    <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:#7a0000;color:#fff;border:2px solid #d4af37;border-radius:12px;padding:14px 16px;margin-bottom:16px;">
+        <div style="font-size:40px;line-height:1;">🐂</div>
+        <div style="flex:1;min-width:200px;">
+            <b style="color:#d4af37;font-size:18px;">Juega a «El Quite»</b><br>
+            <span style="font-size:14px;">Salta los toros, da capotazos y muletazos y entra a matar para salir por la puerta grande.</span>
+        </div>
+        <button type="button" onclick="abrirQuite()" style="background:#d4af37;color:#7a0000;border:none;border-radius:20px;padding:10px 20px;font-weight:bold;font-size:15px;cursor:pointer;">¡A torear!</button>
+    </div>
+
     <div class="destacado-mes">
         <h3>⭐ La cita de la semana: doble tarde el sábado 17 de octubre</h3>
         <p>El <strong>sábado 17 de octubre</strong> hay dos citas en abierto. A las 17:00 h, <strong>Telemadrid</strong> emite desde Chinchón un festival con Paco Ureña, Fortes, Fernando Adrián y David Galván, en una de las plazas más bonitas de Madrid. Y a las 17:30 h, <strong>Canal Sur</strong> retransmite desde Jaén la corrida de la Feria de San Lucas: toros de El Parralejo para <strong>El Fandi</strong>, <strong>Emilio de Justo</strong> y David de Miranda. Una buena tarde para ver toros en la sede antes de nuestra excursión del <strong>domingo 25</strong> a la ganadería Flor de Jara.</p>
@@ -434,5 +443,6 @@ if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}
 })();
 </script>
 
+<script src="el-quite.js" defer></script>
 </body>
 </html>
