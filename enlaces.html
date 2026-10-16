@@ -1,1 +1,438 @@
-__PLACEHOLDER__
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Enlaces de Interés - Peña Taurina Peguerinos</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+    width: 100%; height: 100%;
+    overflow: hidden; background-color: #f4efe2;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex; flex-direction: column;
+}
+header {
+    background: linear-gradient(135deg, #5a0000 0%, #8b0000 50%, #5a0000 100%);
+    padding: 20px 20px; color: white;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: space-between;
+}
+.btn-menu {
+    background: none; border: 2px solid rgba(212,175,55,0.5);
+    color: #d4af37; font-size: 24px; padding: 6px 12px;
+    border-radius: 6px; cursor: pointer; line-height: 1;
+    display: none; flex-shrink: 0;
+}
+header h1 {
+    font-size: 28px; color: #d4af37;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    flex: 1; text-align: center;
+}
+.gif-cabecera { height: 55px; flex-shrink: 0; }
+.nav-desktop {
+    display: flex; gap: 14px; flex-wrap: wrap;
+}
+.nav-desktop a {
+    color: rgba(255,255,255,0.85); text-decoration: none;
+    font-size: 13px; padding: 3px 6px; border-radius: 4px;
+    transition: 0.2s;
+}
+.nav-desktop a:hover { color: #d4af37; }
+.nav-movil {
+    display: none; flex-direction: column;
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(90,0,0,0.97); z-index: 200;
+    padding: 70px 24px 24px; gap: 0;
+    overflow-y: auto;
+}
+.nav-movil.abierto { display: flex; }
+.nav-movil a {
+    color: #d4af37; font-weight: bold; text-decoration: none;
+    font-size: 20px; padding: 16px 0;
+    border-bottom: 1px solid rgba(212,175,55,0.2);
+}
+.nav-movil a:last-child { border-bottom: none; }
+.btn-cerrar-menu {
+    position: absolute; top: 16px; right: 20px;
+    background: none; border: none; color: #d4af37;
+    font-size: 36px; cursor: pointer; line-height: 1;
+}
+.zona-logo {
+    background: linear-gradient(135deg, #c9a227 0%, #d4af37 30%, #e8c84a 50%, #d4af37 70%, #c9a227 100%);
+    padding: 22px 20px;
+    display: flex; justify-content: center; align-items: center;
+    flex-shrink: 0;
+}
+.logo-principal {
+    height: 110px; border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    border: 3px solid #7a0000;
+}
+.franja-lema {
+    background: linear-gradient(90deg, #5a0000, #7a0000, #5a0000);
+    padding: 8px 16px; text-align: center; flex-shrink: 0;
+}
+.franja-lema span {
+    color: #d4af37; font-weight: bold; font-size: 14px;
+    letter-spacing: 3px; text-transform: uppercase;
+}
+.zona-scroll { flex: 1; overflow-y: auto; }
+footer {
+    background-color: #7a0000; color: #d4af37;
+    text-align: center; padding: 14px; font-size: 13px;
+    flex-shrink: 0;
+}
+@media (max-width: 768px) {
+    .btn-menu { display: block; }
+    .nav-desktop { display: none; }
+    header { padding: 14px 14px; }
+    header h1 { font-size: 20px; }
+    .gif-cabecera { height: 40px; }
+    .zona-logo { padding: 16px; }
+    .logo-principal { height: 80px; }
+    .franja-lema { padding: 6px 12px; }
+    .franja-lema span { font-size: 11px; letter-spacing: 1.5px; }
+    footer { padding: 10px; font-size: 12px; }
+}
+
+.contenedor { max-width: 900px; margin: 20px auto; background: white; padding: 20px 24px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); width: calc(100% - 40px); }
+.contenedor h2 { color: #7a0000; margin-bottom: 14px; }
+@media (max-width: 768px) { .contenedor { margin: 12px 10px; padding: 16px; } }
+
+/* ===== AGENDA TOROS EN TV ===== */
+.agenda-tv { border: 2px solid #7a0000; border-radius: 10px; overflow: hidden; margin-bottom: 10px; }
+.agenda-cab {
+    background: linear-gradient(90deg, #5a0000, #8b0000);
+    color: #d4af37; padding: 10px 16px; font-weight: bold;
+    font-size: 15px; letter-spacing: 1px;
+}
+.emision {
+    display: flex; gap: 14px; padding: 12px 16px;
+    border-bottom: 1px solid #f0e6cf; align-items: flex-start;
+}
+.emision:last-child { border-bottom: none; }
+.emision:nth-child(even) { background: #fdf9ef; }
+.emision .fecha {
+    background: #7a0000; color: #fff; border-radius: 8px;
+    padding: 6px 10px; text-align: center; flex-shrink: 0;
+    min-width: 62px; line-height: 1.2;
+}
+.emision .fecha b { display: block; font-size: 18px; color: #d4af37; }
+.emision .fecha span { font-size: 11px; text-transform: uppercase; }
+.emision .detalle { font-size: 14px; line-height: 1.45; }
+.emision .detalle b { color: #7a0000; }
+.chip-canal {
+    display: inline-block; background: #d4af37; color: #5a0000;
+    font-weight: bold; font-size: 11px; border-radius: 20px;
+    padding: 2px 10px; margin-left: 6px; vertical-align: middle;
+    text-transform: uppercase;
+}
+.nota-agenda { font-size: 12.5px; color: #666; margin: 8px 2px 0; }
+.nota-agenda a { color: #7a0000; font-weight: bold; }
+
+/* ===== TARJETAS DE ENLACES ===== */
+.rejilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; }
+.tarjeta {
+    display: block; text-decoration: none;
+    background: #fdf7e3; border: 1px solid #e8d9a8;
+    border-left: 6px solid #d4af37;
+    border-radius: 10px; padding: 14px 16px;
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+.tarjeta:hover { transform: translateY(-3px); box-shadow: 0 6px 14px rgba(122,0,0,0.18); }
+.tarjeta .tit { color: #7a0000; font-weight: bold; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+.tarjeta .desc { color: #555; font-size: 13px; margin-top: 5px; line-height: 1.4; }
+.tarjeta .url { color: #b08d1e; font-size: 12px; margin-top: 7px; font-weight: bold; }
+.tarjeta.local { border-left-color: #7a0000; background: #fbf2f2; }
+.tarjeta.local .url { color: #7a0000; }
+
+/* ===== RINCÓN DEL AFICIONADO ===== */
+.destacado-mes {
+    background: linear-gradient(135deg, #fdf7e3, #f7ebc8);
+    border: 2px dashed #c9a227; border-radius: 10px;
+    padding: 16px 18px; margin-bottom: 18px;
+}
+.destacado-mes h3 { color: #7a0000; margin-bottom: 6px; }
+.destacado-mes p { font-size: 14px; line-height: 1.5; color: #444; }
+.glosario { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; }
+.termino {
+    background: #fff; border: 1px solid #e8d9a8; border-radius: 8px;
+    padding: 10px 12px; font-size: 13px; line-height: 1.4;
+}
+.termino b { color: #7a0000; display: block; margin-bottom: 3px; font-size: 14px; }
+.termino-plegable { cursor: pointer; }
+.termino-plegable .def { display: none; }
+.termino-plegable.abierto .def { display: block; margin-top: 4px; }
+.termino-plegable b::after { content: " ▸"; color: #b08d1e; font-size: 11px; }
+.termino-plegable.abierto b::after { content: " ▾"; }
+.termino-nuevo { border-color: #d4af37; border-width: 2px; background: #fdf7e3; }
+.termino-nuevo b::before { content: "🆕 "; }
+</style>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#7a0000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="icon-192.png">
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "47ce7a35-b3f4-4a3c-b910-f09fa18b3baf",
+      serviceWorkerPath: "/OneSignalSDKWorker.js",
+      serviceWorkerParam: { scope: "/" },
+    });
+  });
+</script>
+
+</head>
+
+<body>
+
+<header>
+    <button class="btn-menu" onclick="abrirMenu()" aria-label="Abrir menú">&#9776;</button>
+    <h1>Peña Taurina Peguerinos</h1>
+    <nav class="nav-desktop">
+        <a href="index.html">Inicio</a>
+        <a href="calendario_2026.html">Calendario</a>
+        <a href="actividades_eventos.html">Actividades</a>
+        <a href="galeria.html">Galería</a>
+        <a href="historia_peña.html">Historia</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="enlaces.html">Enlaces</a>
+        <a href="taquilla.html">La Taquilla</a>
+        <a href="acceso-socios.html">Socios</a>
+    </nav>
+    <img src="toro_enfadado.gif" class="gif-cabecera" alt="Toro">
+</header>
+
+<nav class="nav-movil" id="nav-menu">
+    <button class="btn-cerrar-menu" onclick="cerrarMenu()" aria-label="Cerrar menú">&times;</button>
+    <a href="index.html" onclick="cerrarMenu()">Inicio</a>
+    <a href="calendario_2026.html" onclick="cerrarMenu()">Calendario</a>
+    <a href="actividades_eventos.html" onclick="cerrarMenu()">Actividades y Eventos</a>
+    <a href="galeria.html" onclick="cerrarMenu()">Galería</a>
+    <a href="historia_peña.html" onclick="cerrarMenu()">Historia de la Peña</a>
+    <a href="contacto.html" onclick="cerrarMenu()">Contacto</a>
+    <a href="enlaces.html" onclick="cerrarMenu()">Enlaces</a>
+    <a href="taquilla.html" onclick="cerrarMenu()">La Taquilla</a>
+    <a href="acceso-socios.html" onclick="cerrarMenu()">Socios</a>
+</nav>
+
+<div class="zona-logo">
+    <img src="peña1.jpeg" class="logo-principal" alt="Logo Peña Taurina Peguerinos">
+</div>
+
+<div class="franja-lema">
+    <span>Pasión por lo nuestro</span>
+</div>
+
+<div class="zona-scroll">
+
+<!-- ============ 1. TOROS EN TV ============ -->
+<div class="contenedor">
+    <h2>📺 Toros en Televisión</h2>
+    <div class="agenda-tv">
+        <div class="agenda-cab">PRÓXIMAS RETRANSMISIONES · Actualizado 16/10/2026</div>
+        <div class="emision" id="agenda-vacia" style="display:none;">
+            <div class="detalle"><b>Agenda pendiente de actualizar.</b> Consulta las próximas retransmisiones en
+            <a href="https://elmuletazo.com/agenda-de-toros-en-television/" target="_blank" rel="noopener" style="color:#7a0000;font-weight:bold;">El Muletazo</a> o
+            <a href="https://cultoro.es/toros-en-television-agenda" target="_blank" rel="noopener" style="color:#7a0000;font-weight:bold;">Cultoro</a>.</div>
+        </div>
+        <div class="emision" data-fecha="2026-10-17">
+            <div class="fecha"><b>17</b><span>Oct · Sáb</span></div>
+            <div class="detalle"><b>Chinchón (Madrid)</b> (17:00 h)<span class="chip-canal">Telemadrid</span> · Festival taurino<br>
+            Reses de Victoriano del Río, El Pilar, Daniel Ruiz, La Cercada, Antonio Palla y José Vázquez para Paco Ureña, Fortes, Fernando Adrián y David Galván, y los novilleros Emiliano Osornio, Aitor Fernández y Álvaro Chinchón.</div>
+        </div>
+        <div class="emision" data-fecha="2026-10-17">
+            <div class="fecha"><b>17</b><span>Oct · Sáb</span></div>
+            <div class="detalle"><b>Jaén</b> (17:30 h)<span class="chip-canal">Canal Sur</span> · Feria de San Lucas · ⭐ Cita destacada<br>
+            Toros de El Parralejo para <b>El Fandi</b>, <b>Emilio de Justo</b> y David de Miranda.</div>
+        </div>
+        <div class="emision" data-fecha="2026-10-18">
+            <div class="fecha"><b>18</b><span>Oct · Dom</span></div>
+            <div class="detalle"><b>Albacete</b> (17:30 h)<span class="chip-canal">CMM</span> · Festival benéfico a favor del Cotolengo<br>
+            Novillos de Los Chospes, Castillo de Montizón, Garcigrande y San Isidro para Sergio Martínez, Abraham Barragán, Antón Cortés, César Jiménez, Andrés Palacios y Neyzan Espín.</div>
+        </div>
+        <div class="emision" data-fecha="2026-10-18">
+            <div class="fecha"><b>18</b><span>Oct · Dom</span></div>
+            <div class="detalle"><b>Zaragoza</b> (11:30 h)<span class="chip-canal">Toros en España Play (pago)</span> · Recortadores<br>
+            Concurso de recortadores con anillas, con reses de Hermanos Marcén.</div>
+        </div>
+        <div class="emision" data-fecha="2026-10-24">
+            <div class="fecha"><b>24</b><span>Oct · Sáb</span></div>
+            <div class="detalle"><b>Los Barrios (Cádiz)</b> (18:00 h)<span class="chip-canal">Canal Sur</span> · Encuentro Andaluz de Escuelas Taurinas<br>
+            Novillada sin picadores. Novillos de Condessa de Sobral para Pablo Hernández, Gabriel García, Manuel Troncoso, Blas Márquez, Juanmi Vidal y Pablo Galván.</div>
+        </div>
+        <div class="emision" data-fecha="2026-10-24">
+            <div class="fecha"><b>24</b><span>Oct · Sáb</span></div>
+            <div class="detalle"><b>Lima (Perú) · Plaza de Acho</b> (noche, hora de España)<span class="chip-canal">OneToro (pago)</span> · Feria del Señor de los Milagros<br>
+            Toros de El Capea para Fernando Adrián, David de Miranda y Tomás Rufo.</div>
+        </div>
+        <div class="emision" data-fecha="2026-10-25">
+            <div class="fecha"><b>25</b><span>Oct · Dom</span></div>
+            <div class="detalle"><b>Montoro (Córdoba)</b> (17:30 h)<span class="chip-canal">Canal Sur</span> · Corrida mixta<br>
+            Toros de Salvador Domecq y novillos de Jiménez Pasquau para Oliva Soto, Manuel Román y el novillero Manuel Quintana.</div>
+        </div>
+        <div class="emision" data-fecha="2026-10-25">
+            <div class="fecha"><b>25</b><span>Oct · Dom</span></div>
+            <div class="detalle"><b>Lima (Perú) · Plaza de Acho</b> (noche, hora de España)<span class="chip-canal">OneToro (pago)</span> · Feria del Señor de los Milagros<br>
+            Toros de <b>Victorino Martín</b> para Morenito de Aranda, Román y Joaquín Galdós.</div>
+        </div>
+        <div class="emision" data-fecha="2026-10-31">
+            <div class="fecha"><b>31</b><span>Oct · Sáb</span></div>
+            <div class="detalle"><b>Sanlúcar de Barrameda (Cádiz)</b> (17:00 h)<span class="chip-canal">Canal Sur</span> · Final de la Liga Nacional de Novilladas<br>
+            Novillos de Fuente Ymbro para Sergio Rollón, Marco Polope, Manuel Quintana, Jorge Oliva y Pepe Martínez.</div>
+        </div>
+        <div class="emision" data-fecha="2026-11-07">
+            <div class="fecha"><b>7</b><span>Nov · Sáb</span></div>
+            <div class="detalle"><b>La Línea de la Concepción (Cádiz)</b> (18:00 h)<span class="chip-canal">Canal Sur</span> · Encuentro Andaluz de Escuelas Taurinas<br>
+            Novillada sin picadores con novillos de Fermín Bohórquez.</div>
+        </div>
+    <p class="nota-agenda">Agenda completa y actualizada cada semana en
+        <a href="https://elmuletazo.com/agenda-de-toros-en-television/" target="_blank" rel="noopener">El Muletazo</a> y
+        <a href="https://cultoro.es/toros-en-television-agenda" target="_blank" rel="noopener">Cultoro</a>.</p>
+</div>
+
+<!-- ============ 2. WEBS PRINCIPALES ============ -->
+<div class="contenedor">
+    <h2>🌐 Las webs del toro</h2>
+    <div class="rejilla">
+        <a class="tarjeta" href="https://www.mundotoro.com" target="_blank" rel="noopener">
+            <div class="tit">🗞️ Mundotoro</div>
+            <div class="desc">El portal de referencia: noticias, crónicas, resultados y escalafón al día.</div>
+            <div class="url">mundotoro.com →</div>
+        </a>
+        <a class="tarjeta" href="https://cultoro.es" target="_blank" rel="noopener">
+            <div class="tit">🗞️ Cultoro</div>
+            <div class="desc">Actualidad diaria, entrevistas y la mejor agenda de toros en televisión.</div>
+            <div class="url">cultoro.es →</div>
+        </a>
+        <a class="tarjeta" href="https://www.aplausos.es" target="_blank" rel="noopener">
+            <div class="tit">📖 Aplausos</div>
+            <div class="desc">La revista taurina decana: reportajes, ferias y análisis en profundidad.</div>
+            <div class="url">aplausos.es →</div>
+        </a>
+        <a class="tarjeta" href="https://www.onetoro.tv" target="_blank" rel="noopener">
+            <div class="tit">📺 OneToro TV</div>
+            <div class="desc">La plataforma para ver los toros en directo: Sevilla, Madrid, Pamplona, Santander...</div>
+            <div class="url">onetoro.tv →</div>
+        </a>
+        <a class="tarjeta" href="https://www.servitoro.com" target="_blank" rel="noopener">
+            <div class="tit">🎟️ Servitoro</div>
+            <div class="desc">Compra de entradas para las principales plazas y ferias de España.</div>
+            <div class="url">servitoro.com →</div>
+        </a>
+    </div>
+</div>
+
+<!-- ============ 3. LO NUESTRO ============ -->
+<div class="contenedor">
+    <h2>🏔️ Lo nuestro — Peguerinos, Ávila y alrededores</h2>
+    <div class="rejilla">
+        <a class="tarjeta local" href="https://www.peguerinos.es" target="_blank" rel="noopener">
+            <div class="tit">🏛️ Ayuntamiento de Peguerinos</div>
+            <div class="desc">Web oficial del pueblo: fiestas, bandos y actualidad municipal.</div>
+            <div class="url">peguerinos.es →</div>
+        </a>
+        <a class="tarjeta local" href="https://tauroemocion.es/avila/" target="_blank" rel="noopener">
+            <div class="tit">🏟️ Plaza de Toros de Ávila</div>
+            <div class="desc">Web oficial de nuestra plaza: cartelería, corrida concurso de ganaderías y venta de entradas.</div>
+            <div class="url">tauroemocion.es/avila →</div>
+        </a>
+        <a class="tarjeta local" href="https://www.las-ventas.com" target="_blank" rel="noopener">
+            <div class="tit">🏟️ Las Ventas (Madrid)</div>
+            <div class="desc">La primera plaza del mundo, a poco más de una hora: carteles y entradas.</div>
+            <div class="url">las-ventas.com →</div>
+        </a>
+        <a class="tarjeta local" href="https://fundaciontorodelidia.org" target="_blank" rel="noopener">
+            <div class="tit">🐂 Fundación Toro de Lidia</div>
+            <div class="desc">Defensa y promoción de la tauromaquia. Circuitos de novilladas de Castilla y León.</div>
+            <div class="url">fundaciontorodelidia.org →</div>
+        </a>
+        <a class="tarjeta local" href="https://www.diputacionavila.es" target="_blank" rel="noopener">
+            <div class="tit">🏛️ Diputación de Ávila</div>
+            <div class="desc">Actualidad de la provincia, ayudas y agenda cultural abulense.</div>
+            <div class="url">diputacionavila.es →</div>
+        </a>
+        <a class="tarjeta local" href="contacto.html">
+            <div class="tit">🤝 Nuestra Peña</div>
+            <div class="desc">¿Todavía no eres socio? Escríbenos y únete a la afición de Peguerinos.</div>
+            <div class="url">Contacto →</div>
+        </a>
+    </div>
+</div>
+
+<!-- ============ 4. RINCÓN DEL AFICIONADO ============ -->
+<div class="contenedor">
+    <h2>🎓 El Rincón del Aficionado</h2>
+
+    <div class="destacado-mes">
+        <h3>⭐ La cita de la semana: doble tarde el sábado 17 de octubre</h3>
+        <p>El <strong>sábado 17 de octubre</strong> hay dos citas en abierto. A las 17:00 h, <strong>Telemadrid</strong> emite desde Chinchón un festival con Paco Ureña, Fortes, Fernando Adrián y David Galván, en una de las plazas más bonitas de Madrid. Y a las 17:30 h, <strong>Canal Sur</strong> retransmite desde Jaén la corrida de la Feria de San Lucas: toros de El Parralejo para <strong>El Fandi</strong>, <strong>Emilio de Justo</strong> y David de Miranda. Una buena tarde para ver toros en la sede antes de nuestra excursión del <strong>domingo 25</strong> a la ganadería Flor de Jara.</p>
+    </div>
+
+    <h3 style="color:#7a0000; margin-bottom:10px;">Pequeño glosario taurino</h3>
+    <div class="glosario">
+        <div class="termino termino-plegable" onclick="this.classList.toggle('abierto')"><b>Alternativa</b><span class="def">Ceremonia en la que un novillero se convierte en matador de toros. El padrino le cede los trastos ante un testigo.</span></div>
+        <div class="termino termino-plegable" onclick="this.classList.toggle('abierto')"><b>Quite</b><span class="def">Suerte con el capote para apartar al toro, normalmente tras la vara del picador. Lucimiento y competencia entre toreros.</span></div>
+        <div class="termino termino-plegable" onclick="this.classList.toggle('abierto')"><b>Tercio de varas</b><span class="def">Primera parte de la lidia: el picador tienta la bravura del toro con la puya desde el caballo.</span></div>
+        <div class="termino termino-plegable" onclick="this.classList.toggle('abierto')"><b>Indulto</b><span class="def">Perdón de la vida al toro por su extraordinaria bravura. Vuelve a la ganadería como semental.</span></div>
+        <div class="termino termino-plegable" onclick="this.classList.toggle('abierto')"><b>Encaste</b><span class="def">Línea genética de una ganadería brava (Victorino: encaste Albaserrada; Jandilla: Domecq...).</span></div>
+        <div class="termino termino-plegable" onclick="this.classList.toggle('abierto')"><b>Faena</b><span class="def">Trabajo del matador con la muleta en el último tercio, preparando al toro para la suerte suprema.</span></div>
+        <div class="termino termino-plegable" onclick="this.classList.toggle('abierto')"><b>Verónica</b><span class="def">Lance clásico a dos manos con el capote, uno de los más bellos del toreo. Da nombre a la forma de recibir al toro.</span></div>
+        <div class="termino termino-plegable" onclick="this.classList.toggle('abierto')"><b>Puerta grande</b><span class="def">Salida a hombros por la puerta principal, reservada al torero que corta dos orejas o más. El máximo triunfo de la tarde.</span></div>
+        <div class="termino termino-plegable" onclick="this.classList.toggle('abierto')"><b>Rejoneo</b><span class="def">Toreo a caballo: el rejoneador cita y quiebra al toro montado, colocando rejones y banderillas desde la grupa.</span></div>
+        <div class="termino termino-plegable" onclick="this.classList.toggle('abierto')"><b>Suerte suprema</b><span class="def">El momento de matar, con estoque y muleta. Una estocada bien colocada "hasta la bola" remata una gran faena.</span></div>
+        <div class="termino termino-plegable" onclick="this.classList.toggle('abierto')"><b>Sobrero</b><span class="def">Toro de reserva que sustituye a otro devuelto a los corrales por manso, inválido o herido.</span></div>
+        <div class="termino termino-plegable" onclick="this.classList.toggle('abierto')"><b>Manoletina</b><span class="def">Pase de muleta adornado, con la tela por detrás del cuerpo, popularizado por el diestro Manolete.</span></div>
+        <div class="termino termino-plegable" onclick="this.classList.toggle('abierto')"><b>Volapié</b><span class="def">Suerte de matar en la que es el torero quien recorre la distancia hacia el toro, ya que éste se ha quedado parado o defendiéndose.</span></div>
+        <div class="termino termino-plegable" onclick="this.classList.toggle('abierto')"><b>Natural</b><span class="def">Pase de muleta con la mano izquierda y sin el auxilio del estoque, considerado el pase más puro y difícil del toreo.</span></div>
+        <div class="termino termino-plegable" onclick="this.classList.toggle('abierto')"><b>Larga cambiada</b><span class="def">Lance de capote a modo de recibo, girando el cuerpo para llevar al toro al lado contrario del que embiste.</span></div>
+        <div class="termino termino-plegable" onclick="this.classList.toggle('abierto')"><b>Chicuelina</b><span class="def">Lance de capote en el que el torero gira sobre sí mismo mientras el toro pasa, ceñido al cuerpo. Ideado por el diestro Chicuelo.</span></div>
+        <div class="termino termino-plegable" onclick="this.classList.toggle('abierto')"><b>Recibir</b><span class="def">Suerte de matar en la que el torero cita al toro parado, sin moverse, y es el animal quien acude al encuentro del estoque.</span></div>
+        <div class="termino termino-plegable" onclick="this.classList.toggle('abierto')"><b>Trapío</b><span class="def">Conjunto de características físicas —tipo, cornamenta, lámina— que debe reunir un toro de lidia para ser considerado digno de la plaza.</span></div>
+        <div class="termino termino-plegable" onclick="this.classList.toggle('abierto')"><b>Brindis</b><span class="def">Momento en que el torero dedica la muerte del toro a una persona, al público o a una localidad, antes de iniciar la faena de matar.</span></div>
+        <div class="termino termino-plegable" onclick="this.classList.toggle('abierto')"><b>Gaonera</b><span class="def">Lance de capote realizado a la espalda del torero, con los brazos cruzados tras el cuerpo. Ideado por el mexicano Rodolfo Gaona.</span></div>
+        <div class="termino termino-plegable" onclick="this.classList.toggle('abierto')"><b>Espontáneo</b><span class="def">Persona que salta al ruedo sin autorización durante la lidia para intentar torear, incurriendo en una infracción.</span></div>
+        <div class="termino termino-plegable" onclick="this.classList.toggle('abierto')"><b>Divisa</b><span class="def">Lazo de cintas de colores que se coloca en el morrillo del toro al salir al ruedo, e identifica la ganadería a la que pertenece.</span></div>
+        <div class="termino termino-nuevo"><b>Tentadero</b>Prueba en la ganadería para medir la bravura de vacas y becerros ante el caballo y la muleta. Sirve al ganadero para elegir qué reses dejar como madres o sementales.</div>
+        <div class="termino termino-nuevo"><b>Burladero</b>Tabla de madera delante de la barrera, en la que se refugian los toreros y sus cuadrillas durante la lidia.</div>
+        <div class="termino termino-nuevo"><b>Montera</b>Gorro negro de los toreros a pie. Al brindar, el matador la lanza o la entrega a quien dedica el toro.</div>
+        <div class="termino termino-nuevo"><b>Pase de pecho</b>Remate de una tanda de muletazos: el torero despide al toro por delante del pecho, de pitón a rabo.</div>
+        <div class="termino termino-nuevo"><b>Novillada</b>Festejo con reses de tres años, los novillos, lidiadas por novilleros que todavía no han tomado la alternativa.</div>
+    </div>
+</div>
+
+</div>
+
+<footer>
+    Peña Taurina Peguerinos — Unidos por la afición
+</footer>
+
+<script>
+function abrirMenu() {
+    document.getElementById('nav-menu').classList.add('abierto');
+}
+function cerrarMenu() {
+    document.getElementById('nav-menu').classList.remove('abierto');
+}
+if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}
+
+// Ocultar retransmisiones ya celebradas (se mantienen visibles el día del festejo)
+(function(){
+    var hoy = new Date(); hoy.setHours(0,0,0,0);
+    var emisiones = document.querySelectorAll('.emision[data-fecha]');
+    var visibles = 0;
+    emisiones.forEach(function(e){
+        var f = new Date(e.getAttribute('data-fecha') + 'T00:00:00');
+        if (f < hoy) { e.style.display = 'none'; } else { visibles++; }
+    });
+    if (visibles === 0) {
+        document.getElementById('agenda-vacia').style.display = 'flex';
+    }
+})();
+</script>
+
+</body>
+</html>
