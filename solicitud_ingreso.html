@@ -281,7 +281,7 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 <script>
 function abrirMenu() { document.getElementById('nav-menu').classList.add('abierto'); }
 function cerrarMenu() { document.getElementById('nav-menu').classList.remove('abierto'); }
-if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js'); }
+if('serviceWorker' in navigator){ navigator.serviceWorker.register('/OneSignalSDKWorker.js'); }
 
 function seleccionarModalidad(modalidad, tarjeta) {
     // Quitar activa de todas

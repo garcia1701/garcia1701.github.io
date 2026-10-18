@@ -2,7 +2,7 @@
 // Notificaciones push gestionadas por OneSignalSDKWorker.js
 // Este SW solo gestiona el caché de la app
 
-const CACHE_NAME = 'ptp-cache-v7';
+const CACHE_NAME = 'ptp-cache-v8';
 
 const ARCHIVOS = [
   '/index.html',
