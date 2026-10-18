@@ -117,6 +117,11 @@ input, textarea { padding: 12px; font-size: 16px; border: 2px solid #d4af37; bor
 .acompanante .ejemplo { background: #f4efe2; border-radius: 6px; padding: 6px 10px; display: inline-block; margin-top: 4px; color: #7a0000; font-weight: bold; }
 .acompanante .nota { font-size: 13px; color: #8a6d1a; margin-top: 6px; }
 .columna iframe { width: 100%; height: 260px; border: 0; border-radius: 10px; }
+.mapa-boton { height: 260px; border-radius: 10px; background: #f4efe2; border: 1px dashed #d4af37; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 16px; text-align: center; }
+.mapa-boton p { margin: 0; color: #7a0000; font-weight: bold; }
+.mapa-boton button { background: #7a0000; color: #fff; border: 0; border-radius: 6px; padding: 10px 18px; font-size: 15px; cursor: pointer; }
+.mapa-boton a { color: #7a0000; font-weight: bold; }
+.mapa-boton small { color: #666; font-size: 12px; line-height: 1.4; }
 @media (max-width: 800px) { .contacto-tres-columnas { flex-wrap: wrap; } .contenedor { margin: 12px 10px; padding: 16px; } }
 
 /* AVISO DE REESTRUCTURACIÓN */
@@ -222,7 +227,12 @@ input, textarea { padding: 12px; font-size: 16px; border: 2px solid #d4af37; bor
 
         <div class="columna">
             <h2>Ubicación</h2>
-            <iframe src="https://www.google.com/maps?q=Avenida+de+Madrid+2,+05239+Peguerinos,+%C3%81vila&output=embed" allowfullscreen="" loading="lazy" title="Mapa de la sede"></iframe>
+            <div id="mapa-sede" class="mapa-boton">
+                <p>📍 Avda. de Madrid, 2 · 05239 Peguerinos (Ávila)</p>
+                <button type="button" onclick="cargarMapa()">Ver el mapa aquí</button>
+                <a href="https://www.google.com/maps?q=Avenida+de+Madrid+2,+05239+Peguerinos,+%C3%81vila" target="_blank" rel="noopener">Abrir en Google Maps</a>
+                <small>Al pulsar «Ver el mapa aquí» se carga Google Maps, que puede usar sus propias cookies. <a href="cookies.html">Más información</a>.</small>
+            </div>
         </div>
     </div>
 
@@ -256,5 +266,11 @@ function cerrarMenu() {
 if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}
 </script>
 
+<script>
+function cargarMapa() {
+    document.getElementById('mapa-sede').outerHTML = '<iframe src="https://www.google.com/maps?q=Avenida+de+Madrid+2,+05239+Peguerinos,+%C3%81vila&output=embed" allowfullscreen="" loading="lazy" title="Mapa de la sede"></iframe>';
+}
+</script>
+<script src="legal.js" defer></script>
 </body>
 </html>

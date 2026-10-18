@@ -165,6 +165,11 @@ footer {
       serviceWorkerParam: { scope: "/" },
       promptOptions: { autoPrompt: false }
     });
+    // Vincula este móvil con el número de socio para poder enviarle avisos personales
+    try {
+      const s = JSON.parse(localStorage.getItem("datos_sesion") || "null");
+      if (s && s.num) await OneSignal.login(String(s.num));
+    } catch (e) {}
   });
 </script>
 
@@ -519,5 +524,6 @@ function cerrarSesion() {
     window.location.href = "index.html";
 }
 </script>
+<script src="legal.js" defer></script>
 </body>
 </html>

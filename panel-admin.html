@@ -401,23 +401,37 @@ tr:last-child td { border-bottom: none; }
 <script src="eventos.js"></script>
 <script>
 const API = "https://script.google.com/macros/s/AKfycby7ImfIXGrETzpET-ndcx5b27PPjCOnW6VGYmtgU6E3YzG6E6r94-r0WklKbc5cK_3h/exec";
-const ADMIN_PIN = "ADMIN1234";
+let ADMIN_PIN = ""; // ya no se guarda en el código: lo comprueba el servidor
 let socios = [];
 
-function loginAdmin() {
-    const pin = document.getElementById("input-pin").value;
-    if (pin === ADMIN_PIN) {
-        document.getElementById("pantalla-login").style.display = "none";
-        document.getElementById("panel-admin").style.display = "block";
-        cargarSocios();
-    } else {
-        document.getElementById("login-error").innerText = "PIN incorrecto";
+async function loginAdmin() {
+    const pin = document.getElementById("input-pin").value.trim();
+    const err = document.getElementById("login-error");
+    if (!pin) { err.innerText = "Escribe el PIN"; return; }
+    err.innerText = "Comprobando...";
+    try {
+        const res = await fetch(`${API}?action=getTodos&adminPin=${encodeURIComponent(pin)}`);
+        const data = await res.json();
+        if (data.ok) {
+            ADMIN_PIN = pin;
+            err.innerText = "";
+            document.getElementById("pantalla-login").style.display = "none";
+            document.getElementById("panel-admin").style.display = "block";
+            socios = data.socios;
+            renderTabla();
+            renderStats();
+            renderSelectSocios();
+        } else {
+            err.innerText = "PIN incorrecto";
+        }
+    } catch(e) {
+        err.innerText = "Error de conexión";
     }
 }
 
 async function cargarSocios() {
     try {
-        const res = await fetch(`${API}?action=getTodos&adminPin=${ADMIN_PIN}`);
+        const res = await fetch(`${API}?action=getTodos&adminPin=${encodeURIComponent(ADMIN_PIN)}`);
         const data = await res.json();
         if (data.ok) {
             socios = data.socios;
@@ -576,7 +590,8 @@ async function notificarTodos() {
             })
         });
         const data = await res.json();
-        mostrarToast("Notificaciones enviadas: " + (data.enviados || 0) + " ✓");
+        if (data.ok) mostrarToast("Notificación enviada a todos ✓");
+        else mostrarToast("No se pudo enviar: " + (data.error || "error desconocido"), true);
     } catch(e) {
         mostrarToast("Error enviando notificaciones", true);
     }
@@ -599,7 +614,8 @@ async function notificarSocio() {
             })
         });
         const data = await res.json();
-        mostrarToast("Notificación enviada ✓");
+        if (data.ok) mostrarToast("Notificación enviada ✓");
+        else mostrarToast("No se pudo enviar: " + (data.error || "error desconocido"), true);
     } catch(e) {
         mostrarToast("Error enviando notificación", true);
     }
@@ -609,7 +625,7 @@ async function cargarAsistencias() {
     const contenedor = document.getElementById("asistencia-eventos-lista");
     contenedor.innerHTML = '<p style="color:#666;font-size:14px;">Cargando...</p>';
     try {
-        const res = await fetch(`${API}?action=getAsistenciasAdmin&adminPin=${ADMIN_PIN}`);
+        const res = await fetch(`${API}?action=getAsistenciasAdmin&adminPin=${encodeURIComponent(ADMIN_PIN)}`);
         const data = await res.json();
         if (!data.ok) { contenedor.innerHTML = '<p style="color:#dc3545;">Error al cargar datos.</p>'; return; }
         const porEvento = {};
