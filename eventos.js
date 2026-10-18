@@ -150,9 +150,9 @@ const EVENTOS_DATA = [
     // Cuando sepáis el día: quitad "porConfirmar: true" y poned fecha, fin y lugar,
     // como en los eventos de arriba. Al pasar la fecha de "fin" irán solos al Historial.
     {
-        titulo: "Cena de fin de temporada",
+        titulo: "¡Volvemos con más!",
         porConfirmar: true,
-        descripcion: "Se acabaron las ferias, pero no la afición. Nos juntamos para cenar, repasar las mejores faenas del año, discutir un poco (como debe ser) y brindar por la próxima temporada.",
-        destacado: "📢 Pronto daremos el día y el lugar. ¡Estad atentos a esta página!"
+        descripcion: "Después del día de campo en Flor de Jara seguiremos preparando nuevas citas para la Peña. Estad atentos a la web y a la app: aquí os iremos contando las próximas actividades.",
+        destacado: "📢 Muy pronto, nuevas citas. ¡Seguimos unidos por la afición!"
     }
 ];
