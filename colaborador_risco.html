@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>El Risco del Águila · Peña Taurina Peguerinos</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#7a0000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="icon-192.png">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+    width: 100%; height: 100%;
+    overflow: hidden; background-color: #f4efe2;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    display: flex; flex-direction: column;
+}
+
+/* 1. HEADER GRANATE — más ancho */
+header {
+    background: linear-gradient(135deg, #5a0000 0%, #8b0000 50%, #5a0000 100%);
+    padding: 20px 20px; color: white;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: space-between;
+}
+.btn-menu {
+    background: none; border: 2px solid rgba(212,175,55,0.5);
+    color: #d4af37; font-size: 24px; padding: 6px 12px;
+    border-radius: 6px; cursor: pointer; line-height: 1;
+    display: none; flex-shrink: 0;
+}
+header h1 {
+    font-size: 28px; color: #d4af37;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    flex: 1; text-align: center;
+}
+.gif-cabecera { height: 55px; flex-shrink: 0; }
+
+.nav-desktop {
+    display: flex; gap: 14px; flex-wrap: wrap;
+}
+.nav-desktop a {
+    color: rgba(255,255,255,0.85); text-decoration: none;
+    font-size: 13px; padding: 3px 6px; border-radius: 4px;
+    transition: 0.2s;
+}
+.nav-desktop a:hover { color: #d4af37; }
+
+/* NAV MÓVIL */
+.nav-movil {
+    display: none; flex-direction: column;
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(90,0,0,0.97); z-index: 200;
+    padding: 70px 24px 24px; gap: 0;
+    overflow-y: auto;
+}
+.nav-movil.abierto { display: flex; }
+.nav-movil a {
+    color: #d4af37; font-weight: bold; text-decoration: none;
+    font-size: 20px; padding: 16px 0;
+    border-bottom: 1px solid rgba(212,175,55,0.2);
+}
+.nav-movil a:last-child { border-bottom: none; }
+.btn-cerrar-menu {
+    position: absolute; top: 16px; right: 20px;
+    background: none; border: none; color: #d4af37;
+    font-size: 36px; cursor: pointer; line-height: 1;
+}
+
+/* 2. ZONA LOGO — fondo DORADO */
+.zona-logo {
+    background: linear-gradient(135deg, #c9a227 0%, #d4af37 30%, #e8c84a 50%, #d4af37 70%, #c9a227 100%);
+    padding: 22px 20px;
+    display: flex; justify-content: center; align-items: center;
+    flex-shrink: 0;
+}
+.logo-principal {
+    height: 110px; border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    border: 3px solid #7a0000;
+}
+
+/* 3. FRANJA CON LEMA — granate fino */
+.franja-lema {
+    background: linear-gradient(90deg, #5a0000, #7a0000, #5a0000);
+    padding: 8px 16px;
+    text-align: center;
+    flex-shrink: 0;
+}
+.franja-lema span {
+    color: #d4af37; font-weight: bold; font-size: 14px;
+    letter-spacing: 3px; text-transform: uppercase;
+}
+
+/* 4. CONTENIDO */
+.zona-scroll { flex: 1; overflow-y: auto; }
+.contenedor {
+    max-width: 800px; margin: 20px auto;
+    background: white; padding: 20px 24px; border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.contenedor h2 { color: #7a0000; font-size: 18px; margin-bottom: 8px; }
+.contenedor p { color: #444; line-height: 1.6; font-size: 15px; }
+
+/* 5. COLABORADORES — fijo, sin movimiento */
+.colab-titulo {
+    text-align: center; color: #7a0000; font-size: 13px;
+    font-weight: bold; text-transform: uppercase; letter-spacing: 2px;
+    margin: 24px 0 12px;
+}
+.colab-grid {
+    max-width: 800px; margin: 0 auto 14px; padding: 0 16px;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;
+}
+.colab-card {
+    background: #fff; border-radius: 12px; overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.10);
+    display: flex; flex-direction: column;
+}
+.colab-card > img, .colab-foto > img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block; }
+.colab-info { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 3px; flex: 1; text-align: center; }
+.colab-tipo { font-size: 11px; font-weight: bold; color: #a07d10; text-transform: uppercase; letter-spacing: 1.5px; }
+.colab-nombre { font-size: 18px; color: #7a0000; line-height: 1.25; }
+.colab-dir { font-size: 13px; color: #666; margin-bottom: 10px; }
+.colab-botones { display: flex; gap: 8px; margin-top: auto; }
+.colab-btn {
+    flex: 1; text-align: center; text-decoration: none;
+    font-size: 14px; font-weight: 600; padding: 10px 6px; border-radius: 8px;
+}
+.colab-btn.lleno { background: #7a0000; color: #fff; border: 2px solid #7a0000; }
+.colab-btn.borde { background: #fff; color: #7a0000; border: 2px solid #d4af37; }
+.colab-unete {
+    max-width: 768px; margin: 0 auto 24px; text-align: center;
+    font-size: 13px; color: #666;
+}
+.colab-unete a { color: #7a0000; font-weight: 700; }
+
+.colab-foto { position: relative; display: block; }
+.colab-vermas { position: absolute; right: 8px; bottom: 8px; background: rgba(122,0,0,.92); color: #fff;
+  font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: 20px; border: 1px solid #d4af37; }
+.colab-nombre a { color: inherit; text-decoration: none; }
+@media (max-width: 768px) {
+  .colab-foto > img { aspect-ratio: 1 / 1; }
+  .colab-vermas { font-size: 11px; padding: 4px 8px; right: 6px; bottom: 6px; }
+}
+
+/* 6. FOOTER */
+footer {
+    background-color: #7a0000; color: #d4af37;
+    text-align: center; padding: 14px; font-size: 13px;
+    flex-shrink: 0;
+}
+
+/* MÓVIL */
+@media (max-width: 768px) {
+    .btn-menu { display: block; }
+    .nav-desktop { display: none; }
+
+    header { padding: 14px 14px; }
+    header h1 { font-size: 20px; }
+    .gif-cabecera { height: 40px; }
+
+    .zona-logo { padding: 16px; }
+    .logo-principal { height: 80px; }
+
+    .franja-lema { padding: 6px 12px; }
+    .franja-lema span { font-size: 11px; letter-spacing: 1.5px; }
+
+    .contenedor { margin: 12px 10px; padding: 16px; }
+
+    .colab-grid { grid-template-columns: 1fr 1fr; padding: 0 10px; gap: 10px; }
+    .colab-titulo { margin: 18px 0 10px; font-size: 11px; }
+    .colab-card > img { aspect-ratio: 1 / 1; }
+    .colab-info { padding: 10px 8px; }
+    .colab-tipo { font-size: 9px; letter-spacing: 1px; }
+    .colab-nombre { font-size: 15px; }
+    .colab-dir { font-size: 11.5px; margin-bottom: 8px; }
+    .colab-botones { flex-direction: column; gap: 6px; }
+    .colab-btn { font-size: 13px; padding: 8px 4px; }
+    .colab-unete { padding: 0 16px; font-size: 12px; }
+
+    footer { padding: 10px; font-size: 12px; }
+}
+
+/* BANNER AVISO CUOTAS */
+.aviso-cuotas {
+    background: linear-gradient(90deg, #d4af37, #e8c84a, #d4af37);
+    color: #5a0000; text-align: center;
+    padding: 10px 16px; font-size: 14px; font-weight: bold;
+    flex-shrink: 0; border-bottom: 2px solid #7a0000;
+}
+.aviso-cuotas span.icono { margin-right: 6px; }
+@media (max-width: 768px) {
+    .aviso-cuotas { padding: 8px 12px; font-size: 12px; }
+}
+
+/* BOTÓN ESTRELLA INSCRIPCIONES */
+.btn-estrella-wrap {
+    display: flex; justify-content: center;
+    margin: 16px 0 4px;
+}
+.btn-estrella {
+    position: relative; display: inline-flex;
+    flex-direction: column; align-items: center; justify-content: center;
+    width: 180px; height: 180px;
+    background: none; border: none; cursor: pointer;
+    text-decoration: none; animation: girar-lento 12s linear infinite;
+}
+.btn-estrella:hover { animation-play-state: paused; transform: scale(1.05); }
+.estrella-svg {
+    position: absolute; top: 0; left: 0;
+    width: 180px; height: 180px;
+}
+.btn-estrella-texto {
+    position: relative; z-index: 2;
+    text-align: center; color: #7a0000;
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+}
+.btn-estrella-texto .linea1 {
+    font-size: 11px; font-weight: bold; text-transform: uppercase;
+    letter-spacing: 1px; color: #7a0000;
+}
+.btn-estrella-texto .linea2 {
+    font-size: 13px; font-weight: 900; color: #7a0000; line-height: 1.1;
+}
+.btn-estrella-texto .linea3 {
+    font-size: 10px; color: #5a0000; font-style: italic;
+}
+@keyframes girar-lento {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+.btn-estrella-texto { animation: girar-lento-inv 12s linear infinite; }
+.btn-estrella:hover .btn-estrella-texto { animation-play-state: paused; }
+@keyframes girar-lento-inv {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(-360deg); }
+}
+@media (max-width: 768px) {
+    .btn-estrella, .estrella-svg { width: 150px; height: 150px; }
+    .btn-estrella-texto .linea2 { font-size: 11px; }
+}
+</style>
+
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "47ce7a35-b3f4-4a3c-b910-f09fa18b3baf",
+      serviceWorkerPath: "/OneSignalSDKWorker.js",
+      serviceWorkerParam: { scope: "/" },
+    });
+  });
+</script>
+<style>
+.ficha { max-width: 760px; margin: 18px auto; padding: 0 14px; }
+.ficha-volver { display:inline-block; color:#7a0000; font-weight:700; text-decoration:none; margin-bottom:10px; font-size:14px; }
+.ficha-card { background:#fff; border-radius:14px; box-shadow:0 2px 12px rgba(0,0,0,.1); overflow:hidden; }
+.ficha-portada { width:100%; aspect-ratio:16/8; object-fit:cover; display:block; }
+.ficha-cuerpo { padding:16px 18px 20px; }
+.ficha-tipo { font-size:11px; font-weight:bold; color:#a07d10; text-transform:uppercase; letter-spacing:1.5px; }
+.ficha h2 { color:#7a0000; margin:4px 0 2px; font-size:24px; }
+.ficha-dir { color:#666; font-size:14px; }
+.ficha-sello { display:inline-block; margin:10px 0 4px; background:#fff8e1; border:1px solid #d4af37; color:#7a0000; font-size:13px; font-weight:600; padding:6px 10px; border-radius:8px; }
+.ficha p { color:#444; line-height:1.6; font-size:15px; }
+.ficha-botones { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:14px 0 4px; }
+.ficha-botones a { text-align:center; text-decoration:none; font-weight:600; font-size:14px; padding:11px 6px; border-radius:8px; }
+.fb-lleno { background:#7a0000; color:#fff; border:2px solid #7a0000; }
+.fb-borde { background:#fff; color:#7a0000; border:2px solid #d4af37; }
+.ficha h3 { color:#7a0000; font-size:16px; margin:20px 0 8px; border-bottom:2px solid #d4af37; padding-bottom:4px; }
+.ficha-galeria { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; }
+.ficha-galeria img { width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:8px; display:block; }
+.ficha-carta { background:#faf6ee; border:1px dashed #d4af37; border-radius:10px; padding:14px; text-align:center; color:#555; font-size:14px; }
+.ficha-carta a { display:inline-block; margin-top:8px; }
+.ficha-tabla { width:100%; font-size:14px; color:#444; border-collapse:collapse; }
+.ficha-tabla td { padding:6px 4px; border-bottom:1px solid #eee; }
+.ficha-tabla td:first-child { font-weight:600; color:#7a0000; width:38%; }
+.ficha-habs { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin-top:10px; }
+.ficha-mas summary { cursor:pointer; list-style:none; text-align:center; color:#7a0000; font-weight:600; font-size:14px; padding:10px; border:2px solid #d4af37; border-radius:8px; background:#fff; }
+.ficha-mas summary::-webkit-details-marker{display:none}
+.ficha-mas[open] summary .abrir{display:none}
+.ficha-mas:not([open]) summary .cerrar{display:none}
+.ficha-frase { background:#faf6ee; border-left:4px solid #d4af37; border-radius:8px; padding:14px 16px; color:#444; font-size:15px; line-height:1.6; font-style:italic; }
+.ficha-hab { position:relative; border-radius:8px; overflow:hidden; }
+.ficha-hab img { width:100%; aspect-ratio:1/1; object-fit:cover; object-position:right center; display:block; }
+.ficha-hab span { position:absolute; left:0; right:0; bottom:0; background:linear-gradient(transparent,rgba(0,0,0,.75)); color:#fff; font-size:11px; font-weight:600; padding:14px 6px 5px; }
+.ficha-botones a:last-child:nth-child(odd) { grid-column:1/-1; }
+.ficha-redes { display:flex; justify-content:center; gap:18px; margin:14px 0 4px; }
+.red { display:flex; flex-direction:column; align-items:center; gap:4px; text-decoration:none; font-size:11px; color:#555; }
+.red i { width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:21px; color:#fff; }
+.red.wa i { background:#25D366; } .red.ig i { background:linear-gradient(45deg,#f09433,#dc2743,#bc1888); }
+.red.fb i { background:#1877F2; } .red.xx i { background:#000; }
+.red.off { opacity:.3; pointer-events:none; filter:grayscale(1); }
+.ficha-pie { text-align:center; color:#a07d10; font-size:12px; margin:18px 0 0; letter-spacing:.5px; }
+.ficha-tipo { display:block; }
+</style>
+</head>
+
+<body>
+
+<!-- 1. HEADER GRANATE -->
+<header>
+    <button class="btn-menu" onclick="abrirMenu()" aria-label="Abrir menú">&#9776;</button>
+    <h1>Peña Taurina Peguerinos</h1>
+    <nav class="nav-desktop">
+        <a href="calendario_2026.html">Calendario</a>
+        <a href="actividades_eventos.html">Actividades</a>
+        <a href="galeria.html">Galería</a>
+        <a href="historia_peña.html">Historia</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="enlaces.html">Enlaces</a>
+        <a href="taquilla.html">La Taquilla</a>
+        <a href="acceso-socios.html">Socios</a>
+    </nav>
+    <img src="toro_enfadado.gif" class="gif-cabecera" alt="Toro">
+</header>
+
+<!-- NAV MÓVIL -->
+<nav class="nav-movil" id="nav-menu">
+    <button class="btn-cerrar-menu" onclick="cerrarMenu()" aria-label="Cerrar menú">&times;</button>
+    <a href="calendario_2026.html" onclick="cerrarMenu()">Calendario</a>
+    <a href="actividades_eventos.html" onclick="cerrarMenu()">Actividades y Eventos</a>
+    <a href="galeria.html" onclick="cerrarMenu()">Galería</a>
+    <a href="historia_peña.html" onclick="cerrarMenu()">Historia de la Peña</a>
+    <a href="contacto.html" onclick="cerrarMenu()">Contacto</a>
+    <a href="enlaces.html" onclick="cerrarMenu()">Enlaces</a>
+    <a href="taquilla.html" onclick="cerrarMenu()">La Taquilla</a>
+    <a href="acceso-socios.html" onclick="cerrarMenu()">Socios</a>
+</nav>
+
+<!-- 2. ZONA LOGO — fondo dorado -->
+<div class="zona-logo">
+    <img src="peña1.jpeg" class="logo-principal" alt="Logo Peña Taurina Peguerinos">
+</div>
+
+<!-- 3. FRANJA LEMA — granate con texto dorado -->
+<div class="franja-lema">
+    <span>Pasión por lo nuestro</span>
+</div>
+
+<!-- AVISO CUOTAS -->
+<!-- 4-5. CONTENIDO -->
+
+<!-- BOTÓN ESTRELLA INSCRIPCIONES -->
+
+
+<div class="zona-scroll">
+<div class="ficha">
+  <a class="ficha-volver" href="index.html">‹ Volver a la portada</a>
+  <div class="ficha-card">
+    <img class="ficha-portada" src="terraza_risco.jpg" alt="El Risco del Águila">
+    <div class="ficha-cuerpo">
+      <span class="ficha-tipo">Mesón-Restaurante</span>
+      <h2>El Risco del Águila</h2>
+      <div class="ficha-dir">📍 Avda. de Madrid, 2 · Peguerinos</div>
+      <div class="ficha-sello">⭐ Sede de la peña</div>
+      <p>Cocina en horno de leña.</p>
+      <div class="ficha-botones"><a class="fb-lleno" href="tel:+34918983160">📞 Llamar</a><a class="fb-borde" href="https://www.google.com/maps/search/?api=1&query=El+Risco+del+Aguila+Avenida+Madrid+2+Peguerinos" target="_blank" rel="noopener">📍 Cómo llegar</a></div>
+      <div class="ficha-redes"><span class="red wa off"><i><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path></svg></i>WhatsApp</span><span class="red ig off"><i><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path></svg></i>Instagram</span><span class="red fb off"><i><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 320 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"></path></svg></i>Facebook</span><span class="red xx off"><i><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"></path></svg></i>X</span></div>
+      <h3 id="carta">🍽 Carta</h3><div class="ficha-carta">La carta estará disponible aquí muy pronto.</div>
+      <h3>🕒 Información</h3>
+      <table class="ficha-tabla"><tr><td>Teléfono</td><td>918 983 160</td></tr><tr><td>Dirección</td><td>Avda. de Madrid, 2 · Peguerinos</td></tr></table>
+      <h3>📷 Fotos</h3>
+      <div class="ficha-galeria"><img src="asado_risco.jpg" alt=""><img src="chuleta_risco.jpg" alt=""><img src="barra_risco.jpg" alt=""><img src="brasas_risco.jpg" alt=""><img src="genero_risco.jpg" alt=""><img src="noche_risco.jpg" alt=""></div>
+      
+      <p class="ficha-pie">Colabora con la Peña Taurina Peguerinos</p>
+    </div>
+  </div>
+</div>
+</div>
+<footer>Peña Taurina Peguerinos — Unidos por la afición</footer>
+<script>
+function abrirMenu(){document.getElementById('nav-menu').classList.add('abierto');}
+function cerrarMenu(){document.getElementById('nav-menu').classList.remove('abierto');}
+</script>
+<script src="legal.js" defer></script>
+</body>
+</html>

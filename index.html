@@ -118,7 +118,7 @@ header h1 {
     box-shadow: 0 2px 10px rgba(0,0,0,0.10);
     display: flex; flex-direction: column;
 }
-.colab-card > img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block; }
+.colab-card > img, .colab-foto > img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block; }
 .colab-info { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 3px; flex: 1; text-align: center; }
 .colab-tipo { font-size: 11px; font-weight: bold; color: #a07d10; text-transform: uppercase; letter-spacing: 1.5px; }
 .colab-nombre { font-size: 18px; color: #7a0000; line-height: 1.25; }
@@ -135,6 +135,15 @@ header h1 {
     font-size: 13px; color: #666;
 }
 .colab-unete a { color: #7a0000; font-weight: 700; }
+
+.colab-foto { position: relative; display: block; }
+.colab-vermas { position: absolute; right: 8px; bottom: 8px; background: rgba(122,0,0,.92); color: #fff;
+  font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: 20px; border: 1px solid #d4af37; }
+.colab-nombre a { color: inherit; text-decoration: none; }
+@media (max-width: 768px) {
+  .colab-foto > img { aspect-ratio: 1 / 1; }
+  .colab-vermas { font-size: 11px; padding: 4px 8px; right: 6px; bottom: 6px; }
+}
 
 /* 6. FOOTER */
 footer {
@@ -325,15 +334,15 @@ footer {
 </div>
 
 <div class="colab-titulo">Colaboran con la peña</div>
-<!-- Para añadir otro colaborador: copia un bloque <article> entero y cambia foto, nombre, dirección y teléfono -->
+<!-- Para añadir otro colaborador: copia un bloque <article> entero y cambia foto, nombre, dirección, teléfono y su ficha (colaborador_xxx.html) -->
 <div class="colab-grid">
 
     <article class="colab-card">
         <!-- Del 18/10 a primeros de noviembre de 2026 solo la fachada. Lista anterior: terraza_isabelae.jpg,fachada.jpg,jardinpiscina.jpg,salones.jpg -->
-        <img src="fachada.jpg" alt="Posada Isabelae" data-fotos="fachada.jpg">
+        <a class="colab-foto" href="colaborador_isabelae.html"><img src="fachada.jpg" alt="Posada Isabelae" data-fotos="fachada.jpg"><span class="colab-vermas">Ver más ›</span></a>
         <div class="colab-info">
             <span class="colab-tipo">Posada rural</span>
-            <h3 class="colab-nombre">Posada Isabelae</h3>
+            <h3 class="colab-nombre"><a href="colaborador_isabelae.html">Posada Isabelae</a></h3>
             <span class="colab-dir">Avda. de Madrid, 36 · Peguerinos</span>
             <div class="colab-botones">
                 <a class="colab-btn lleno" href="tel:+34686997324">📞 Llamar</a>
@@ -344,10 +353,10 @@ footer {
 
     <article class="colab-card">
         <!-- Del 18/10 a primeros de noviembre de 2026 solo la fachada. Lista anterior: terraza_risco.jpg,noche_risco.jpg,barra_risco.jpg,asado_risco.jpg,fachada_risco.jpg,chuleta_risco.jpg,genero_risco.jpg -->
-        <img src="noche_risco.jpg" alt="El Risco del Águila" data-fotos="noche_risco.jpg">
+        <a class="colab-foto" href="colaborador_risco.html"><img src="noche_risco.jpg" alt="El Risco del Águila" data-fotos="noche_risco.jpg"><span class="colab-vermas">Ver más ›</span></a>
         <div class="colab-info">
             <span class="colab-tipo">Mesón-Restaurante</span>
-            <h3 class="colab-nombre">El Risco del Águila</h3>
+            <h3 class="colab-nombre"><a href="colaborador_risco.html">El Risco del Águila</a></h3>
             <span class="colab-dir">Avda. de Madrid, 2 · Peguerinos</span>
             <div class="colab-botones">
                 <a class="colab-btn lleno" href="tel:+34918983160">📞 Llamar</a>
