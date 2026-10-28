@@ -193,6 +193,23 @@ footer {
          data-privada = fecha y hora en que las fotos con clase "foto-grupo-privada" pasan a ser solo para socios
          (regla de la peña: 24 horas públicas, luego solo socios). El más nuevo va arriba. -->
 
+    <details class="album" id="flor-de-jara-2026" data-privada="2026-10-30T21:50:00" data-tipo="video">
+        <summary>
+            <img class="album-portada" src="video_flor_de_jara_2026.jpg" alt="">
+            <span class="album-texto">
+                <span class="album-titulo">🐂 Excursión a la ganadería Flor de Jara</span>
+                <span class="album-info">25 de octubre de 2026 · Manzanares el Real · vídeo</span>
+            </span>
+            <span class="album-boton">vídeo</span>
+        </summary>
+        <div class="galeria-flex">
+            <div class="video-item foto-grupo-privada" style="width:100%;max-width:760px;margin:0 auto;text-align:center;">
+                <video src="video_flor_de_jara_2026.mp4" poster="video_flor_de_jara_2026.jpg" controls preload="metadata" playsinline style="width:100%;border-radius:8px;background:#000;"></video>
+                <p>Visita, tentadero y comida en Flor de Jara · Música: «Wildflower», Guitarra Azul</p>
+            </div>
+        </div>
+    </details>
+
     <details class="album" id="cena-pilar-2026" data-privada="2026-10-14T01:00:00">
         <summary>
             <img class="album-portada" src="cena_pilar_2026_07.jpg" alt="">
@@ -294,7 +311,7 @@ document.querySelectorAll('.album').forEach(album => {
             fotosSocio.forEach(f => f.remove());
             const aviso = document.createElement('div');
             aviso.className = 'aviso-socios';
-            aviso.innerHTML = '🔒 Hay ' + fotosSocio.length + ' fotos de este álbum <strong>solo para socios</strong>. <a href="acceso-socios.html" style="color:#7a0000;font-weight:bold;">Identifícate aquí</a>';
+            aviso.innerHTML = (album.dataset.tipo === 'video' ? '🔒 El vídeo de esta actividad es <strong>solo para socios</strong>.' : '🔒 Hay ' + fotosSocio.length + ' fotos de este álbum <strong>solo para socios</strong>.') + ' <a href="acceso-socios.html" style="color:#7a0000;font-weight:bold;">Identifícate aquí</a>';
             album.querySelector('.galeria-flex').prepend(aviso);
         }
     }
