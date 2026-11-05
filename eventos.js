@@ -145,6 +145,16 @@ const EVENTOS_DATA = [
         fechaLimiteConfirmacion: new Date(2026, 9, 12, 23, 59)  // cierra Me apunto / No voy el 12-oct a las 23:59
     },
 
+    // ---- V Corrida Benéfica Villaseca de la Sagra 2027 — Homenaje a Iván Fandiño ----
+    {
+        titulo: "V Corrida Benéfica — Villaseca de la Sagra 2027: Homenaje a Iván Fandiño",
+        fecha: new Date(2027, 2, 20, 17, 0),          // sábado 20 marzo 2027 — 17:00
+        fin:   new Date(2027, 2, 20, 19, 0),          // a las 19:00 pasa al historial
+        lugar: "Plaza de Toros de Villaseca de la Sagra (Toledo)",
+        ganaderia: "Adolfo Martín, Fuente Ymbro, Baltasar Ibán, Hijos de Celestino Cuadri, Peñajara y Cebada Gago",
+        descripcion: "Morenito de Aranda, en solitario, frente a seis toros de seis ganaderías de máximo nivel, en homenaje a Iván Fandiño en el décimo aniversario de su pérdida. Corrida con fines benéficos. Os dejamos el cartel para que lo vayáis viendo.<br><img src=\"cartel_villaseca_2027.jpg\" alt=\"Cartel V Corrida Benéfica Villaseca de la Sagra 2027\" loading=\"lazy\" style=\"display:block;max-width:100%;height:auto;margin:10px auto 0;border-radius:6px;\">"
+    },
+
     // ---- PRÓXIMAMENTE (sin fecha todavía) ----
     // Mientras tengan "porConfirmar: true" salen en Próximas Citas con "Fecha por confirmar".
     // Cuando sepáis el día: quitad "porConfirmar: true" y poned fecha, fin y lugar,
