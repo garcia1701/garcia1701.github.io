@@ -138,6 +138,14 @@ button:disabled { background: #ccc; cursor: not-allowed; }
 .msg-ok { background: #28a745; color: white; padding: 15px; border-radius: 8px; text-align: center; font-weight: bold; display: none; margin-top: 15px; }
 .msg-err { background: #dc3545; color: white; padding: 15px; border-radius: 8px; text-align: center; font-weight: bold; display: none; margin-top: 15px; }
 
+/* FIRMA */
+.firma-box { background: #f9f6ee; border: 1px solid #d4af37; border-radius: 6px; padding: 12px; }
+.firma-box label { margin: 0; }
+.firma-ayuda { font-size: 12px; color: #555; margin: 4px 0 8px; }
+#firma-canvas { display: block; width: 100%; height: 160px; background: #fff; border: 2px dashed #7a0000; border-radius: 6px; touch-action: none; cursor: crosshair; }
+.btn-borrar-firma { background: #fff; color: #7a0000; border: 1px solid #7a0000; font-size: 13px; padding: 6px 12px; margin-top: 8px; }
+.btn-borrar-firma:hover { background: #f4efe2; }
+
 @media (max-width: 480px) {
     .contenedor { margin: 12px 10px; padding: 20px; }
     .modalidades-grid { grid-template-columns: 1fr; }
@@ -225,6 +233,9 @@ button:disabled { background: #ccc; cursor: not-allowed; }
         <label for="telefono">Teléfono / WhatsApp *</label>
         <input type="tel" id="telefono" placeholder="612 345 678" required>
 
+        <label for="dni">DNI / NIE *</label>
+        <input type="text" id="dni" placeholder="12345678A" required autocomplete="off" maxlength="12" style="text-transform:uppercase;">
+
         <!-- Campo empresa: solo visible para colaborador -->
         <div id="campo-empresa">
             <label for="empresa">Empresa / Negocio *</label>
@@ -288,7 +299,22 @@ button:disabled { background: #ccc; cursor: not-allowed; }
             </label>
         </div>
 
-        <p class="aviso-bloqueo" id="aviso-bloqueo">🔒 Para enviar la solicitud debes aceptar los Estatutos y el Reglamento Interno y la protección de datos.</p>
+        <!-- FIRMA ELECTRÓNICA -->
+        <div class="firma-box">
+            <label>✍️ Tu firma *</label>
+            <p class="firma-ayuda">Firma con el dedo (o con el ratón) dentro del recuadro.</p>
+            <canvas id="firma-canvas" aria-label="Recuadro para firmar"></canvas>
+            <button type="button" class="btn-borrar-firma" id="btn-borrar-firma">↺ Borrar y volver a firmar</button>
+        </div>
+        <div class="check-item">
+            <input type="checkbox" id="acepta-firma" required>
+            <label for="acepta-firma">
+                Declaro que mis datos son ciertos y <strong>firmo electrónicamente</strong> esta solicitud,
+                con el mismo valor que mi firma en papel.
+            </label>
+        </div>
+
+        <p class="aviso-bloqueo" id="aviso-bloqueo">🔒 Para enviar la solicitud: escribe tu DNI, acepta los Estatutos, el Reglamento Interno y la protección de datos, firma en el recuadro y marca la casilla de firma.</p>
         <button type="submit" id="btn-enviar" disabled>📨 Enviar solicitud</button>
     </form>
 
@@ -332,13 +358,57 @@ mostrarInfoModalidad('socio');
 
 // Sin aceptar los Estatutos/Reglamento y la protección de datos, no se puede enviar
 function comprobarAceptacion() {
-    const ok = document.getElementById('acepta-docs').checked && document.getElementById('acepta-rgpd').checked;
+    const dniOk = /^[0-9XYZxyz][0-9]{7}[A-Za-z]$/.test((document.getElementById('dni').value || '').replace(/[\s.-]/g, ''));
+    const ok = document.getElementById('acepta-docs').checked && document.getElementById('acepta-rgpd').checked
+            && document.getElementById('acepta-firma').checked && hayFirma && dniOk;
     document.getElementById('btn-enviar').disabled = !ok;
     document.getElementById('aviso-bloqueo').style.display = ok ? 'none' : 'block';
     return ok;
 }
 document.getElementById('acepta-docs').addEventListener('change', comprobarAceptacion);
 document.getElementById('acepta-rgpd').addEventListener('change', comprobarAceptacion);
+document.getElementById('acepta-firma').addEventListener('change', comprobarAceptacion);
+document.getElementById('dni').addEventListener('input', comprobarAceptacion);
+
+// ===== Recuadro de firma (dedo o ratón) =====
+let hayFirma = false;
+const lienzo = document.getElementById('firma-canvas');
+const pincel = lienzo.getContext('2d');
+function prepararLienzo() {
+    const r = lienzo.getBoundingClientRect(), z = window.devicePixelRatio || 1;
+    const copia = hayFirma ? lienzo.toDataURL() : null;
+    lienzo.width = Math.round(r.width * z); lienzo.height = Math.round(r.height * z);
+    pincel.setTransform(z, 0, 0, z, 0, 0);
+    pincel.lineWidth = 2.4; pincel.lineCap = 'round'; pincel.lineJoin = 'round'; pincel.strokeStyle = '#10204a';
+    if (copia) { const im = new Image(); im.onload = () => pincel.drawImage(im, 0, 0, r.width, r.height); im.src = copia; }
+}
+let dibujando = false, ultimo = null;
+function punto(e) { const r = lienzo.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; }
+lienzo.addEventListener('pointerdown', e => { e.preventDefault(); lienzo.setPointerCapture(e.pointerId); dibujando = true; ultimo = punto(e); pincel.beginPath(); pincel.arc(ultimo.x, ultimo.y, 1.1, 0, Math.PI * 2); pincel.fillStyle = '#10204a'; pincel.fill(); });
+lienzo.addEventListener('pointermove', e => {
+    if (!dibujando) return; e.preventDefault();
+    const p = punto(e); pincel.beginPath(); pincel.moveTo(ultimo.x, ultimo.y); pincel.lineTo(p.x, p.y); pincel.stroke(); ultimo = p;
+    if (!hayFirma) { hayFirma = true; comprobarAceptacion(); }
+});
+['pointerup', 'pointercancel', 'pointerleave'].forEach(t => lienzo.addEventListener(t, () => { dibujando = false; }));
+document.getElementById('btn-borrar-firma').addEventListener('click', () => { hayFirma = false; prepararLienzo(); comprobarAceptacion(); });
+window.addEventListener('resize', prepararLienzo);
+prepararLienzo();
+
+// Firma recortada, en PNG pequeño y con fondo blanco (para el PDF)
+function firmaPNG() {
+    if (!hayFirma) return '';
+    const w = lienzo.width, h = lienzo.height, d = pincel.getImageData(0, 0, w, h).data;
+    let x0 = w, y0 = h, x1 = 0, y1 = 0;
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) if (d[(y * w + x) * 4 + 3] > 0) { if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y; }
+    if (x1 <= x0 || y1 <= y0) return '';
+    const m = 10, cw = x1 - x0 + 2 * m, ch = y1 - y0 + 2 * m, esc = Math.min(1, 500 / cw);
+    const c = document.createElement('canvas'); c.width = Math.round(cw * esc); c.height = Math.round(ch * esc);
+    const k = c.getContext('2d'); k.fillStyle = '#fff'; k.fillRect(0, 0, c.width, c.height);
+    k.drawImage(lienzo, x0 - m, y0 - m, cw, ch, 0, 0, c.width, c.height);
+    return c.toDataURL('image/png').split(',')[1];
+}
+comprobarAceptacion();
 </script>
 
 <script>
@@ -357,6 +427,9 @@ document.getElementById("form-solicitud").addEventListener("submit", async funct
     const fechaNac   = document.getElementById("fechaNac").value;
     const telefono   = document.getElementById("telefono").value;
     const empresa    = document.getElementById("empresa").value || "";
+    const dni        = document.getElementById("dni").value.replace(/[\s.-]/g, "").toUpperCase();
+    const firma      = firmaPNG();
+    const firmaAcepta = document.getElementById("acepta-firma").checked ? "si" : "";
 
     const url = API
         + "?action=solicitud"
@@ -364,28 +437,27 @@ document.getElementById("form-solicitud").addEventListener("submit", async funct
         + "&nombre="     + encodeURIComponent(nombre)
         + "&fechaNac="   + encodeURIComponent(fechaNac)
         + "&telefono="   + encodeURIComponent(telefono)
-        + "&empresa="    + encodeURIComponent(empresa);
+        + "&empresa="    + encodeURIComponent(empresa)
+        + "&dni="        + encodeURIComponent(dni)
+        + "&firmaAcepta=" + firmaAcepta;
 
     try {
         const archivos = (modalidad === 'colaborador') ? await prepararArchivos() : [];
         let fotosOk = true;
-        if (archivos.length) {
-            btn.innerText = "Subiendo fotos...";
-            fotosOk = false;
-            try {
-                const res = await fetch(API, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                    body: JSON.stringify({ action: 'solicitud', modalidad, nombre, fechaNac, telefono, empresa, archivos })
-                });
-                const json = await res.json();
-                fotosOk = !!json.ok;
-            } catch(e2) { fotosOk = false; }
-            // Si no se pudieron subir las fotos, la solicitud se manda igual (sin fotos)
-            if (!fotosOk) await fetch(url, { mode: 'no-cors' });
-        } else {
-            await fetch(url, { mode: 'no-cors' });
-        }
+        // Se envía todo junto (datos, firma y, si es colaborador, logo y fotos)
+        if (archivos.length) btn.innerText = "Subiendo fotos...";
+        let enviadoOk = false;
+        try {
+            const res = await fetch(API, {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify({ action: 'solicitud', modalidad, nombre, fechaNac, telefono, empresa, dni, firma, firmaAcepta, archivos })
+            });
+            const json = await res.json();
+            enviadoOk = !!json.ok;
+        } catch(e2) { enviadoOk = false; }
+        // Si falla, la solicitud se manda igual por la vía sencilla (sin firma dibujada ni fotos)
+        if (!enviadoOk) { await fetch(url, { mode: 'no-cors' }); if (archivos.length) fotosOk = false; }
         if (!fotosOk) {
             document.getElementById("msg-ok").innerText = "✅ Solicitud enviada. Las fotos no se han podido subir: mándanoslas por WhatsApp, por favor.";
         }
