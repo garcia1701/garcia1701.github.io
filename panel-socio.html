@@ -144,6 +144,32 @@ footer {
 .caja-cuentas a.ver-hoja { color: #7a0000; font-weight: bold; }
 .btn-tickets { background: #25d366; color: white; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 6px; padding: 12px; border-radius: 8px; font-weight: bold; font-size: 15px; margin-top: 4px; text-align: center; }
 .seccion-galeria h3 { color: #7a0000; font-size: 16px; font-weight: bold; border-bottom: 2px solid #d4af37; padding-bottom: 8px; margin-bottom: 14px; }
+.album { background: #fdf7e3; border: 1px solid #d4af37; border-left: 5px solid #7a0000; border-radius: 0 10px 10px 0; margin-bottom: 12px; }
+.album summary { list-style: none; display: flex; align-items: center; gap: 12px; padding: 10px 14px; cursor: pointer; }
+.album summary::-webkit-details-marker { display: none; }
+.album summary img { width: 64px; height: 48px; object-fit: cover; border-radius: 6px; border: 1px solid #d4af37; }
+.album summary .txt { flex: 1; color: #7a0000; font-size: 14px; line-height: 1.3; }
+.album summary .txt span { display: block; color: #666; font-size: 12px; }
+.album summary .flecha { color: #b08d1e; font-size: 18px; transition: transform 0.2s; }
+.album[open] summary .flecha { transform: rotate(90deg); }
+.album .galeria-socios-grid { padding: 0 12px 12px; }
+.proxima-cita { margin-top: 25px; }
+.proxima-cita h3, .seccion-juego h3 { color: #7a0000; font-size: 16px; font-weight: bold; border-bottom: 2px solid #d4af37; padding-bottom: 8px; margin-bottom: 14px; }
+.caja-cita { background: #fdf7e3; border-left: 5px solid #7a0000; border-radius: 0 8px 8px 0; padding: 14px 16px; display: flex; gap: 14px; align-items: center; }
+.caja-cita .dia { background: #7a0000; color: #d4af37; border-radius: 8px; padding: 8px 10px; text-align: center; min-width: 62px; }
+.caja-cita .dia b { display: block; font-size: 22px; line-height: 1; }
+.caja-cita .dia span { font-size: 11px; text-transform: uppercase; color: #fff; }
+.caja-cita .info { font-size: 13px; color: #333; line-height: 1.45; }
+.caja-cita .info b { color: #7a0000; font-size: 14px; }
+.caja-cita .info a { color: #7a0000; font-weight: bold; }
+.seccion-juego { margin-top: 25px; }
+.caja-juego { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; background: #7a0000; color: #fff; border: 2px solid #d4af37; border-radius: 12px; padding: 14px 16px; }
+.caja-juego .txt { flex: 1; min-width: 180px; font-size: 13px; }
+.caja-juego .txt b { color: #d4af37; font-size: 16px; display: block; }
+.caja-juego button { background: #d4af37; color: #7a0000; border: none; border-radius: 20px; padding: 10px 20px; font-weight: bold; font-size: 15px; cursor: pointer; }
+.accesos { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.accesos a { background: #fdf7e3; border: 1px solid #d4af37; border-radius: 8px; padding: 10px 6px; text-align: center; color: #7a0000; font-weight: bold; font-size: 13px; text-decoration: none; }
+.accesos a:hover { border-color: #7a0000; }
 .galeria-socios-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .foto-s { background: #fdf7e3; border: 1px solid #d4af37; border-radius: 8px; overflow: hidden; cursor: zoom-in; transition: 0.2s; }
 .foto-s:hover { transform: translateY(-3px); box-shadow: 0 6px 14px rgba(0,0,0,0.2); border-color: #7a0000; }
@@ -232,6 +258,7 @@ footer {
                 <div style="font-weight: bold; margin: 5px 0;">Socio Nº: <span id="display-num">----</span></div>
                 <div style="font-weight: bold; margin: 5px 0;">Inscripción: <span id="display-inscripcion">—</span></div>
                 <div style="margin-top: 10px;">Estado: <span id="display-estado" style="background:#7a0000; color:white; padding:3px 12px; border-radius:15px; font-size:11px; font-weight: bold;">ACTIVO</span></div>
+                <div id="display-antiguedad" style="margin-top: 8px; font-size: 13px; font-weight: bold;"></div>
                 <table class="tabla-cuotas">
                     <thead><tr><th id="cuotas-anio">Año 2026</th><th>Semestre</th><th>Estado</th></tr></thead>
                     <tbody id="cuotas-body">
@@ -239,6 +266,12 @@ footer {
                         <tr><td>2026</td><td>Septiembre</td><td id="estado-sept" style="color: green; font-weight: bold;">PAGADO</td></tr>
                     </tbody>
                 </table>
+            </div>
+
+            <!-- PRÓXIMA CITA DE LA PEÑA -->
+            <div class="proxima-cita" id="proxima-cita" style="display:none;">
+                <h3>📅 Tu próxima cita con la Peña</h3>
+                <div class="caja-cita" id="caja-cita"></div>
             </div>
 
             <!-- CUENTAS CLARAS · TRANSPARENCIA -->
@@ -256,27 +289,46 @@ footer {
                 <h3>📣 Actividades — Confirma tu asistencia</h3>
                 <div id="lista-eventos-confirmacion"></div>
             </div>
-            <!-- GALERIA EXCLUSIVA DE SOCIOS -->
+            <!-- GALERIA EXCLUSIVA DE SOCIOS (álbumes plegados: se abren al tocar) -->
             <div class="seccion-galeria">
-                <h3>&#128247; Galería de Socios &middot; Cena Inaugural</h3>
-                <div class="galeria-socios-grid" id="galeria-socios">
-                    <div class="foto-s"><img src="grupo2.jpeg" alt="Socios de la Pena" onclick="abrirFoto(this)"><p>Socios de la Pena</p></div>
-                    <div class="foto-s"><img src="grupo3.jpeg" alt="Foto de grupo" onclick="abrirFoto(this)"><p>Foto de grupo</p></div>
-                    <div class="foto-s"><img src="grupo4.jpeg" alt="Foto de grupo 2" onclick="abrirFoto(this)"><p>Foto de grupo - toma 2</p></div>
-                    <div class="foto-s"><img src="grupo5.jpeg" alt="Charla entre socios" onclick="abrirFoto(this)"><p>Charla entre socios</p></div>
-                    <div class="foto-s"><img src="grupo6.jpeg" alt="Ambiente de la cena" onclick="abrirFoto(this)"><p>Ambiente de la cena</p></div>
-                    <div class="foto-s"><img src="grupo7.jpeg" alt="Socios reunidos" onclick="abrirFoto(this)"><p>Reunion de socios</p></div>
-                    <div class="foto-s"><img src="grupo8.jpeg" alt="Foto de grupo 3" onclick="abrirFoto(this)"><p>Foto de grupo - toma 3</p></div>
-                    <div class="foto-s"><img src="grupo9.jpeg" alt="Foto de grupo 4" onclick="abrirFoto(this)"><p>Foto de grupo - toma 4</p></div>
-                    <div class="foto-s"><img src="grupo10.jpeg" alt="Foto de grupo 5" onclick="abrirFoto(this)"><p>Foto de grupo - toma 5</p></div>
-                    <div class="foto-s"><img src="grupo11.jpeg" alt="Foto de grupo 6" onclick="abrirFoto(this)"><p>Foto de grupo - toma 6</p></div>
-                    <div class="foto-s"><img src="grupo12.jpeg" alt="Foto de grupo 7" onclick="abrirFoto(this)"><p>Foto de grupo - toma 7</p></div>
+                <h3>&#128247; Galería de Socios</h3>
+                <details class="album">
+                    <summary><img src="grupo2.jpeg" alt=""><div class="txt"><b>Cena Inaugural</b><span>11 fotos · toca para verlas</span></div><span class="flecha">▸</span></summary>
+                    <div class="galeria-socios-grid" id="galeria-socios">
+                        <div class="foto-s"><img loading="lazy" src="grupo2.jpeg" alt="Socios de la Pena" onclick="abrirFoto(this)"><p>Socios de la Pena</p></div>
+                        <div class="foto-s"><img loading="lazy" src="grupo3.jpeg" alt="Foto de grupo" onclick="abrirFoto(this)"><p>Foto de grupo</p></div>
+                        <div class="foto-s"><img loading="lazy" src="grupo4.jpeg" alt="Foto de grupo 2" onclick="abrirFoto(this)"><p>Foto de grupo - toma 2</p></div>
+                        <div class="foto-s"><img loading="lazy" src="grupo5.jpeg" alt="Charla entre socios" onclick="abrirFoto(this)"><p>Charla entre socios</p></div>
+                        <div class="foto-s"><img loading="lazy" src="grupo6.jpeg" alt="Ambiente de la cena" onclick="abrirFoto(this)"><p>Ambiente de la cena</p></div>
+                        <div class="foto-s"><img loading="lazy" src="grupo7.jpeg" alt="Socios reunidos" onclick="abrirFoto(this)"><p>Reunion de socios</p></div>
+                        <div class="foto-s"><img loading="lazy" src="grupo8.jpeg" alt="Foto de grupo 3" onclick="abrirFoto(this)"><p>Foto de grupo - toma 3</p></div>
+                        <div class="foto-s"><img loading="lazy" src="grupo9.jpeg" alt="Foto de grupo 4" onclick="abrirFoto(this)"><p>Foto de grupo - toma 4</p></div>
+                        <div class="foto-s"><img loading="lazy" src="grupo10.jpeg" alt="Foto de grupo 5" onclick="abrirFoto(this)"><p>Foto de grupo - toma 5</p></div>
+                        <div class="foto-s"><img loading="lazy" src="grupo11.jpeg" alt="Foto de grupo 6" onclick="abrirFoto(this)"><p>Foto de grupo - toma 6</p></div>
+                        <div class="foto-s"><img loading="lazy" src="grupo12.jpeg" alt="Foto de grupo 7" onclick="abrirFoto(this)"><p>Foto de grupo - toma 7</p></div>
+                    </div>
+                </details>
+            </div>
+
+            <!-- JUEGO -->
+            <div class="seccion-juego">
+                <h3>🎮 Un rato de toreo</h3>
+                <div class="caja-juego">
+                    <div style="font-size:38px;line-height:1;">🐂</div>
+                    <div class="txt"><b>Juega a «El Quite»</b>Salta los toros, da capotazos y muletazos y entra a matar para salir por la puerta grande.</div>
+                    <button type="button" onclick="abrirQuite()">¡A torear!</button>
                 </div>
             </div>
         </div>
         <div class="col-der">
             <div id="indicador-avisos" class="indicador verde">🟢 Cargando avisos...</div>
             <button class="btn-montera" onclick="window.location.href='documentos.html'">📂 DOCUMENTOS Y ESTATUTOS</button>
+            <div class="accesos">
+                <a href="actividades_eventos.html">🎟️ Actividades</a>
+                <a href="calendario_2026.html">📅 Calendario</a>
+                <a href="galeria.html">📸 Galería</a>
+                <a href="enlaces.html">📺 Toros en TV</a>
+            </div>
             <a id="link-whatsapp" href="#" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">🟢 WhatsApp</a>
             <button class="btn-notif" id="btn-notif" onclick="activarNotificaciones()" style="background:transparent;border:1px solid #28a745;color:#28a745;padding:10px;width:100%;cursor:pointer;border-radius:6px;font-weight:bold;margin-top:6px;display:none;">🔔 Activar notificaciones</button>
 <button class="btn-salir" onclick="cerrarSesion()">CERRAR SESIÓN</button>
@@ -364,6 +416,38 @@ if (!sesion) {
         document.getElementById("display-inscripcion").innerText = datosSocio.fecha;
         document.getElementById("display-estado").innerText = datosSocio.tipo.toUpperCase();
     }
+
+    // Antigüedad en la peña (a partir de la fecha de inscripción)
+    if (datosSocio) {
+        const MESES_N = {enero:0,febrero:1,marzo:2,abril:3,mayo:4,junio:5,julio:6,agosto:7,septiembre:8,octubre:9,noviembre:10,diciembre:11};
+        const m = datosSocio.fecha.match(/(\d+) de (\w+) de (\d{4})/);
+        if (m && MESES_N[m[2]] !== undefined) {
+            const desde = new Date(+m[3], MESES_N[m[2]], +m[1]);
+            const dias = Math.floor((new Date() - desde) / 86400000);
+            if (dias >= 0) document.getElementById("display-antiguedad").innerText =
+                dias === 0 ? "🎉 ¡Bienvenido a la Peña!" : "🐂 " + dias + (dias === 1 ? " día" : " días") + " en la Peña";
+        }
+    }
+
+    // Próxima actividad (de eventos.js)
+    try {
+        const ahoraC = new Date();
+        const prox = (typeof EVENTOS_DATA !== "undefined" ? EVENTOS_DATA : [])
+            .filter(e => !e.porConfirmar && e.fecha && (e.fin || e.fecha) >= ahoraC)
+            .sort((a, b) => a.fecha - b.fecha)[0];
+        if (prox) {
+            const dia = prox.fecha.getDate();
+            const mes = prox.fecha.toLocaleDateString('es-ES', { month: 'short' }).replace('.', '');
+            const hora = prox.fecha.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+            const faltan = Math.ceil((prox.fecha - ahoraC) / 86400000);
+            document.getElementById("caja-cita").innerHTML =
+                '<div class="dia"><b>' + dia + '</b><span>' + mes + ' ' + prox.fecha.getFullYear() + '</span></div>' +
+                '<div class="info"><b>' + prox.titulo + '</b><br>📍 ' + (prox.lugar || '') + ' · 🕔 ' + hora + ' h' +
+                (faltan > 0 ? '<br>⏳ Faltan ' + faltan + (faltan === 1 ? ' día' : ' días') : '<br>⏳ ¡Es hoy!') +
+                '<br><a href="actividades_eventos.html">Ver todas las actividades →</a></div>';
+            document.getElementById("proxima-cita").style.display = "block";
+        }
+    } catch (e) {}
 
     // Tabla de cuotas del año en curso
     const normalizar = t => (t || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -550,6 +634,7 @@ function cerrarSesion() {
     window.location.href = "index.html";
 }
 </script>
+<script src="el-quite.js" defer></script>
 <script src="legal.js" defer></script>
 </body>
 </html>
