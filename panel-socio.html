@@ -330,7 +330,7 @@ const DATOS_SOCIOS = {
     "0013": { tipo: "Socio",     fecha: "16 de mayo de 2026" },
     "0014": { tipo: "Socio",     fecha: "16 de mayo de 2026" },
     "0015": { tipo: "Socio",     fecha: "16 de mayo de 2026" },
-    "0016": { tipo: "Socio",     fecha: "16 de mayo de 2026" },
+    "0016": { tipo: "Socio",     fecha: "15 de noviembre de 2026", alta: { anio: 2026, mes: 11 } },  // Iván García Organista (solicitud por web 15/11/2026)
     "0018": { tipo: "Socio",     fecha: "16 de mayo de 2026" },
     "0017": { tipo: "Socio",     fecha: "16 de mayo de 2026" },
 };
@@ -372,10 +372,18 @@ if (!sesion) {
     const anio = new Date().getFullYear();
     const pagosAnio = CUOTAS_PAGADAS[anio] || {};
     document.getElementById("cuotas-anio").innerText = "Año " + anio;
-    document.getElementById("cuotas-body").innerHTML = ["marzo", "septiembre"].map(plazo => {
+    // Socios dados de alta a mitad de año: solo se muestran los semestres desde su alta
+    // (marzo = mar-ago, septiembre = sep-feb). Se pone "alta: { anio, mes }" en DATOS_SOCIOS.
+    const alta = datosSocio && datosSocio.alta;
+    const MES_PLAZO = { marzo: 3, septiembre: 9 };
+    const MESES = ["", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+    const plazos = ["marzo", "septiembre"].filter(plazo =>
+        !alta || anio > alta.anio || (anio === alta.anio && MES_PLAZO[plazo] + 5 >= alta.mes));
+    document.getElementById("cuotas-body").innerHTML = plazos.map(plazo => {
         const info = pagosAnio[plazo];
         const pagado = !!info && ((info.todos && !esEste(info.excepto)) || esEste(info.pagados));
-        const nombrePlazo = plazo.charAt(0).toUpperCase() + plazo.slice(1);
+        let nombrePlazo = plazo.charAt(0).toUpperCase() + plazo.slice(1);
+        if (alta && anio === alta.anio && alta.mes > MES_PLAZO[plazo]) nombrePlazo = MESES[alta.mes] + " (alta)";
         return '<tr><td>' + anio + '</td><td>' + nombrePlazo + '</td><td style="color: ' + (pagado ? 'green' : '#7a0000') + '; font-weight: bold;">' + (pagado ? 'PAGADO' : 'PENDIENTE') + '</td></tr>';
     }).join("");
 
