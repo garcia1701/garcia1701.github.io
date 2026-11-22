@@ -155,6 +155,16 @@ const EVENTOS_DATA = [
         descripcion: "Morenito de Aranda, en solitario, frente a seis toros de seis ganaderías de máximo nivel, en homenaje a Iván Fandiño en el décimo aniversario de su pérdida. Corrida con fines benéficos. Os dejamos el cartel para que lo vayáis viendo.<br><img src=\"cartel_villaseca_2027.jpg\" alt=\"Cartel V Corrida Benéfica Villaseca de la Sagra 2027\" loading=\"lazy\" style=\"display:block;max-width:100%;height:auto;margin:10px auto 0;border-radius:6px;\">"
     },
 
+    // ---- Feria del Aficionado «3 Puyazos» 2027 — San Agustín del Guadalix ----
+    {
+        titulo: "Feria del Aficionado «3 Puyazos» — San Agustín del Guadalix 2027",
+        fecha: new Date(2027, 3, 24, 12, 0),          // sábado 24 abril 2027 — mañana: novillada (hora por confirmar)
+        fin:   new Date(2027, 3, 25, 23, 59),         // el 26 de abril pasa al historial
+        lugar: "Plaza de Toros de San Agustín del Guadalix (Madrid)",
+        descripcion: "La feria hecha por aficionados y para aficionados, organizada por el Club Taurino 3 Puyazos, con el toro íntegro y la suerte de varas como protagonistas. Tres festejos en dos días: el sábado 24 por la mañana, novillada con picadores, y dos corridas de toros, la última el domingo 25 por la mañana. Ganaderías, carteles y horarios, por anunciar.",
+        destacado: "📅 Fechas ya confirmadas: 24 y 25 de abril de 2027. Iremos poniendo aquí ganaderías y carteles en cuanto se anuncien."
+    },
+
     // ---- PRÓXIMAMENTE (sin fecha todavía) ----
     // Mientras tengan "porConfirmar: true" salen en Próximas Citas con "Fecha por confirmar".
     // Cuando sepáis el día: quitad "porConfirmar: true" y poned fecha, fin y lugar,
